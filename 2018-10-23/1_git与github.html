@@ -87,10 +87,17 @@
         工作区到暂存区:
             git add 文件的名字
 
+            多个文件操作:
+                git add .
+
         暂存区到版本区：
             git commit -m "注释"
 
                 这里的注释主要是为了方便管理员查找、操作
+
+        快速从工作区到版本区:
+            前提是文件是已经添加过的
+                git commit -a -m "注释"
 
     设置贡献者的信息:
         git config --global user.name "用户名"
