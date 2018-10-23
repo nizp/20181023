@@ -73,14 +73,22 @@
 
         进入文件夹
             cd 文件夹名字
+        
+        回退目录:
+            cd ..
 
         查看当前目录下有啥
             ll 或者 ls
 
         输入一些关键字可以按tab键自动补全
 
+        git log的时候回退不了了
+            此时使用:q键回退
 
-    命令:
+        
+
+
+    6.命令:
         查看状态:
             git status
 
@@ -99,12 +107,30 @@
             前提是文件是已经添加过的
                 git commit -a -m "注释"
 
+        把版本区的文件传到远程仓库里:
+            默认
+                git push origin master
+
+
+        查看每个区域之间的差异:
+
+            工作区查暂存区
+                git diff
+
+            暂存区查版本区
+                git diff --cached
+
+            工作区查版本区
+                git diff master
+
     设置贡献者的信息:
         git config --global user.name "用户名"
         git config --global user.email "xx@.com"
 
     永久免密:
         git config --global credential.helper store
+
+    
 
         
 
