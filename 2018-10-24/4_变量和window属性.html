@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        变量:
+            var、let 
+
+        属性:
+            obj = {name:"海龙"}
+            obj.a
+            obj.xxx   undefined
+
+
+        当使用var来声明变量的时候，自动会给window上添加一个同名属性。
+        var a = ''  window.a
+
+        有变量的时候才会和widnow的属性是相映射的
+
+        没有变量的时候，window的属性只有赋值之后才会挂上，如果在赋值之前访问
+        属性只是undefined
+
+        在全局范围中所有的属性，方法都属于window,没有主默认主是window
+
+            aa = > window.aa
+            window.aler 
+
+
+        in是运算符，它能够运算某个属性是不是这个对象的
+
+            '属性名' in 对象
+                有:true
+                没有:false
+
+
+        对象身上没有这个属性是undefined
+            window.aa  undefined
+
+        var aa   undefined
+
+        window.alert()
+
+
+        ie浏览器window下是没有name的，window.name是undefined
+        chrome||ff,有name，并且name值为''
+
+    */    
+//    var obj = {
+//        name:"海龙",
+//        obj1:{
+//            name:'小鱼儿',
+//            fn:function(){
+//                console.log(this);
+//            }
+//        }
+//     }
+
+    // console.log(typeof window);//'object'
+//    console.log( window.cc );
+
+    // console.log(obj.obj1.name);
+    // obj.obj1.fn();
+    // console.log(a);
+//    console.log(obj.xxx);
+
+
+
+
+    // console.dir(window);  
+
+    // console.log(aa); //undefined  找的是变量aa,它会预解析（预解析的undefined）
+
+    // console.log(window.aa);//undefined   对象上的一个属性（没有就是undefined）
+    
+    // var aa = 10;  //aa 是变量
+
+    // console.log('aa' in window); //true
+    
+    // console.log(window.aa);  //属性
+
+
+    // console.log('bb' in window); //false
+    // console.log(bb);
+    // bb =  10; //只有赋值之后才会给window加属性 
+    // console.log(window);
+   
+
+    // let aa = 20;
+    // console.log(window.aa);//undefiend
+    // console.log(aa);//20
+
+
+    /*
+        在赋值之前，先看变量是什么，如果变量undefined
+        还会去window上查找
+
+        赋值的时候window的属性值才会被添加
+
+        dd = undefined
+        window.dd = undefined
+
+
+        dd = undefined
+
+        window.dd = undefined
+
+        dd = ''
+        window.name =  ''
+
+
+        window.dd = undefined
+
+
+        1.变量 
+        2.属性
+        3.映射
+
+        有变量的时候 会跟window相映射
+            变量自己走与解析 -> undefined
+
+            如果window也没有这个属性才是undefined
+
+            ‘aa’ in window  true
+
+            如果window上有，因为变量和window相映射，所以变量的值就为widnow属性上有的值
+
+
+        没有变量的时候
+            window.a
+                如果window也没有这个属性才是undefined
+
+            因为没有变量所以window上也不可能映射属性
+            所以，'aa' in window flase
+
+
+            a  报错
+        
+
+    */
+
+//    console.log(window.xx);
+
+    // console.log(name);
+    // var name = 12;
+    // console.log(name);
+
+    // console.dir(window);//29
+    // console.dir(window.bb);//undefined
+    // bb = 29;
+
+    // var defaultStatus = true;
+
+    // console.log(length);
+    // var length = '12';
+    // console.log(length);
+
+    // console.log(typeof defaultStatus); 
+    
+
+    
+
+
+
+    
+
+    
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

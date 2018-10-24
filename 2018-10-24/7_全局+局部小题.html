@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        var a = undefined
+
+        fn = function(){}
+
+        function(){}
+        a = 5  
+
+        a = 80
+
+       
+
+    */
+
+    console.log(fn);
+    var a = 5;
+    console.log(a);
+    // var fn = 3;
+    function fn(){
+    /*
+        var a = undefined
+
+        fn = function fn(){alert(5);}
+
+        fn = 30
+
+        fn = function(){alert(1);}
+
+        a = 50
+        
+        function(){alert(1);},50
+
+    */
+        fn = 30;
+        console.log(fn); //30
+        var fn = function(){alert(1);};
+        a = 50;
+        console.log(fn,a); //function(){alert(1);},50
+        function fn(){alert(5);}
+        console.log(fn); //function(){alert(1);}
+        var a = fn = 70;//自己的，外面的
+        console.log(a,fn); //70,70
+        window.a = 80
+    } 
+
+    /*
+        var b = 3;
+        var a = 5;
+        b = 5;
+    */
+
+    fn();
+    console.log(a,fn); //80,整个大的代码块
+
+
+
+</script>
+</body>
+</html>

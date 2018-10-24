@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        1.变量提升
+
+
+            fn =  function fn(){
+                alert(2);
+            }
+
+
+        2.逐行解读代码
+            
+
+            alert(2) 、20、function(){alert(3);}、10、10
+
+    */
+
+
+
+    // console.log(fn); //alert(2)
+    // var fn = 20;  //fn = 20
+    // function fn(){
+    //     alert(1);
+    // }
+    // console.log(fn);//20
+
+    // var fn = function(){alert(3);}
+    // console.log(fn);//function(){alert(3);}
+    // var fn = 10;
+    // console.log(fn); //10
+
+    // function fn(){
+    //     alert(2);
+    // }
+    // console.log(fn);//10
+
+
+
+    /*
+        
+
+        1.fn = function fn(){alert(1);}
+
+        2.
+            function fn(){alert(1);}
+            1     √
+            20
+            function(){alert(3);}
+            3    √
+            function(){alert(3);}
+            function(){alert(3);}
+            3   √
+            10
+            报错
+
+    */
+
+    console.log(fn); 
+    fn();
+    var fn = 20; 
+    console.log(fn);
+    var fn = function(){alert(3);}
+    fn();
+    function fn(){alert(2);}
+    console.log(fn);
+    function fn(){alert(1);}
+    console.log(fn);
+    fn();
+    var fn = 10;
+    console.log(fn); 
+    fn();
+   
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+   /*
+        变量:
+            var let
+
+        对象的属性
+            没有才会是undefined，自定义或者自身有，话就是后面的值
+
+        映射:
+            有变量和window之间有映射
+
+
+        当没有用var声明的时候，只有赋值window上才会添加这个属性，所以在开发的时候
+        声明变量必须使用var或者let，最好用let
+
+        
+
+        简单类型的属性
+            没有会是undefined，自定义也是undefined，自身有那么就是后面的值
+
+
+        经过试验，chrome下70版本
+        当window中默认属性的值为是字符串时，并且在var变量赋值数字时，
+        结果会为字符串
+            name,defaultStatus,status...
+
+        一般情况下，对象的属性能读能写，写什么，读的就是什么。
+        
+   */
+    // let obj = {aa:10};
+    // obj.aa  obj.bb  undefined
+
+    // let str = '123';
+    // str.aa = 10;
+    // console.log(str.length);
+
+
+
+    // var bb = 10;
+    // console.log(bb); //10
+    // bb = 12;
+    // console.log(window.bb); //12
+
+    // console.log(bb);//预解析的undefined
+    // console.log(window.bb); //是查找window下的bb
+    // console.log(window);//window.bb=12
+    // console.log('bb' in window); //true
+    // //window上一定有bb，因为映射关系，如果window上有。那么bb就是windnow上的
+    // var bb = 10; //bb = 10  window.bb = 10;
+    // bb = 12;
+
+    // console.log(bb);//看变量 -> 报错
+    // console.log(window.bb); //看属性是不会报错的 -> undefined
+    // console.log(window);
+    // bb = 10;
+    // console.log(window.bb);
+
+    // var bb; //undefined
+    // cc ;//报错
+    // console.log(bb);
+
+    /*
+        var name = ''
+        window.name = ''
+
+        name = 12
+        window.name = 12
+    */
+
+    // console.log(name); 
+    // var name = 12;
+    // console.log(typeof name);
+
+
+    // var defaultStatus = 10;
+    // var length = '10';
+    // console.log(defaultStatus)
+
+    // console.dir(status);
+    // var status = 10;
+    // console.log(innerHeight);
+    // var innerHeight = '20';
+    // console.log(innerHeight);
+
+
+
+    // console.log(a,b);
+    // var a = b = 5;    
+    /*
+        var a = 5;
+        b = 5;
+
+        var a=5,b=5;
+            var a = 5;
+            var b = 5;
+    */
+
+//    console.log(a,b);
+
+
+    var a = b = 3;
+    console.log(a,b);//3,3
+    function fn(){
+        console.log(a,b);//undefined,3
+        var a = 5;
+        b = 6;
+        console.log(a,b);
+    }
+    
+    fn();
+    console.log(a,b);//3,6
+
+    
+
+
+
+
+
+</script>
+</body>
+</html>

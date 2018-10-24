@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        函数内先看有没有变量，如果没有变量还会去找参数有没有
+            优先级:
+                先找函数内的变量，如果变量为undefined，才找参数
+
+            参数有:走参数，
+                如果是简单类型的数据并且内部修改这个值，外部是不会受到影响
+                如果是复合类型的数据并且内部修改了这个类型的值，外部也是会受到干扰的
+                
+                注意:
+                    如果函数内部的参数被修改地址了，此时，修改内部对象是不会影响外部对象的。
+
+            参数没有就找父级,直到window
+
+
+            
+
+        在函数中，如果有形参并且赋值而且还有变量，在声明变量的上方访问
+        那么结果是实参。
+
+    */
+    // var a = 20;
+    // function fn(a){
+    //     a = 30;
+    //     console.log(a);//30
+    // }    
+    // fn(a);
+    // console.log(a);//30
+
+
+
+    // var a = 20;
+    // function fn(a){
+    //     /*
+    //         var a = 20
+    //     */
+    //     console.log(a);//20
+    //     var a = 30;
+    // }    
+    // fn(a);
+    // console.log(a);
+
+    var obj = {
+        name:'小强'
+    };
+    function fn(obj){
+        console.log(obj);//小强
+        obj = new Object();
+        obj.name = '小明';
+        console.log(obj); //小明
+    }
+    fn(obj);
+    console.log(obj); //小强
+
+
+</script>
+</body>
+</html>

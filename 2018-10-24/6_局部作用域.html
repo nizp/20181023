@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        局部作用域:
+            在函数中或者块中有的作用域。
+            
+            在局部作用域中有自己的一套预解析机制、逐行解读代码并且赋值。
+
+            特点:(词法作用域)
+                如果是函数套函数的情况下，越里面的函数中的变量优先级就越高.
+                
+                子函数没有,会去父函数中查找，如果还没有再到外层查找，直到找到window，如果都没有就报错。
+
+                不能父函数找子函数（从里往外找，不允许从外往里找）。
+
+        ES6中有了块的概念
+            {
+                
+            }
+
+            使用let||const是支持块级作用域的，let或者const只会作用于在块
+
+            如果在块中有声明函数，那么在这个块中的任何地方都能找到这个代码块
+
+            如果不在这个块中，并且为声明之前访问块中的函数，那么值为undefined
+    */    
+
+//     var a = 12;
+//     function fn(){
+//            var a = 11;
+//         function nf(){
+//             var a = 10;
+//             var b = 20;
+//             console.log(a);
+//         }
+//         nf();
+//         console.log(b);
+//     }
+//    fn();
+
+    // {
+    //     // console.log(a);//暂存死区
+    //     let a = 8;
+    //     {
+    //         console.log(fn);
+    //         {
+    //             function fn(){}
+    //             let a = 17;
+
+    //             {
+    //                 console.log(a);
+    //             }
+    //         }
+    //     }
+    // }
+    // console.log(fn);
+
+        // {
+        //     console.log(fn); //undefined
+        //     {
+        //         // console.log(fn);
+        //         function fn(){}
+        //         // console.log(fn);
+        //     }
+        //     console.log(fn);//代码块
+        // }
+
+        var b = 8;
+        var a = 20;
+        function fn(){
+            /*
+                var b = undefined
+                var a = undefined
+            */
+            console.log(b);
+            var b = 10;
+            b = 30;
+            nf();
+            console.log(a);//undefined
+            var a = 20;
+            console.log(a);//20
+
+        }
+        fn();
+    
+
+</script>
+</body>
+</html>

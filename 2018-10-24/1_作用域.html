@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    作用域是js的难点，难点不是知识点本身，而是结合使用起来乱。
+
+    学好的技巧就是专门专项练（大量刷题）
+
+    MDN中学习js，一个技术文档
+
+    作用域（scope）:
+        域：范围、空间..
+
+        变量、函数、对象名称的可用性,去探究某段代码它的值（结果）是什么。
+        
+        全局作用域:当打开浏览器的时候执行js代码，此时的域就是全局作用域
+            在浏览器中全局指向window
+
+            单纯被script标签包着的范围就是全局范围。
+
+            最大的栈内存，存储简单数据
+
+
+            当你打开浏览器的时候js执行分为2步
+
+                1.变量提升（预解析、预处理）
+                    在全局只看2个东西(var和function)
+                        
+                        1.var a = undefined 
+                            遇见var不但会找到变量，并且给变量赋值undefined
+
+                            如果2个变量名是一样的，下面把上面的覆盖即可
+
+                        2.function a(){}
+                            遇见函数直接把函数名提升并且赋值为整个代码块
+
+                            2个函数名字一样的情况下，下面把上面的覆盖（只需要看最后一个函数就行）
+
+                        3.变量名与函数名一样的情况下
+                            最终留下的是代码块（函数）
+
+                            如果是函数声明那么就不会在读取了（只是预解析的那一次）
+
+                            函数表达式是带等号的，所以会读
+
+
+                2.逐行解读代码
+                    只看等号
+
+        局部作用域:
+            在函数或者块({})里的js的作用范围
+
+        
+        
+
+        
+
+
+
+*/    
+
+    /*
+        var a = undefined
+
+        a = function a(){}
+
+        fn = function fn(){};
+    */
+
+    // console.log(fn);
+
+    console.log(a); //预解析的结果  函数代码块
+
+    // var a = 1;
+    a = 1
+
+    console.log(a); //1
+
+    var a = 2;  // a = 2
+
+    console.log(a); //2
+
+    function a(){}
+
+    console.log(a);//2
+
+    var a = function(){alert(2)};  //  a=function(){alert(2)};
+
+    console.log(a);
+
+    
+
+   
+
+
+
+   
+    // if(true){
+    //     let b = 10;
+    //     console.log(b);  //块
+    // }
+
+
+
+    // function fn(){
+    //     alert(1);
+    // };
+    // fn();
+    // function fn(){
+    //     alert('改了');
+    // };
+    // fn();  //找最后一个同名函数即可
+
+
+    // console.dir(window);
+
+</script>
+</body>
+</html>

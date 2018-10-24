@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        全局作用域
+            window(最大的栈内存)
+
+            上来做2件事:
+                1.变量提升
+                    var 会赋值undefined
+                    function 会赋值代码块
+                    如果是有多个同名函数，只看最后一个
+
+                2.逐行解读代码
+                    只看 =，不用看函数，也不用看var
+
+                
+                当你使用var的时候，在window上映射了同变量名的属性
+                可以通过in运算符，查看到
+
+                如果window的私有属性和变量名重名，在赋值之前会把window的值给变量
+
+                变量和window属性值，不是一个东西,但是有映射关系.
+
+                如果不使用var，是不会和window映射的，window中添加属性只能是赋值之后添加
+            
+
+        局部作用域:(函数和块)
+
+            
+
+            函数内会自己的一个作用域，会预解析、会逐行解读代码
+
+            有var变量，那么这个变量只存在函数中，跟外面没关系（私有,局部变量）
+
+            如果函数体内有函数，访问函数名优先走内部的函数。
+
+            如果有参数并且函数体内也有函数，最后的结果是函数体内的函数
+
+            有变量，变量为undefined，并且有参数（参数赋值的），最后的结果是参数
+
+
+            优先级:
+                先找函数内的变量，如果变量为undefined，才找参数，参数没有就找父级,直到window为止
+
+            参数有:走参数.
+
+                如果实参是简单类型的数据并且内部修改这个值，外部是不会受到影响
+                var a = 10;
+                function fn(a){
+                    a = 20;
+                }
+                fn(a);
+                console.log(a); //10
+
+                如果是复合类型的数据并且内部修改了这个类型的值，外部也是会受到干扰的
+                
+                var obj = {name:'爆炸'};
+                function fn(obj){
+                    obj.name = '心态';
+                }
+                fn(obj);
+                console.log(obj); // '心态'
+
+                
+                注意:
+                    如果函数内部的复合类型的参数被修改地址了，
+                    此时，修改内部对象是不会影响外部对象的。
+                
+                var obj = {name:'爆炸'};
+                function fn(obj){
+                    有形参（复合类型），形参有修改了地址，在修改地址的上面，访问参数（就是传入的实参）
+                    console.log(obj);//爆炸
+                    obj = {name:'良好'};
+                    obj.name = '心态';
+                }
+                fn(obj);
+                console.log(obj); // '爆炸'
+                
+
+            function fn(){
+                一个函数就是一个作用域，
+                var a = 10; 
+
+                function a(){}
+            }
+    */
+    // fn();
+    // var fn = function(){};
+    // fn = 123;
+    // function fn(){
+    //     alert(1);
+    // }
+    // var fn = 30;
+
+
+    
+
+    // fn();
+    // function fn(){
+    //     alert(2);
+    // }
+    // fn();
+    // function fn(){
+    //     alert(3);
+    // }
+    // fn();
+
+    // console.log(name);
+    // var name = '20';
+
+    // console.log(window.a);//undefined
+    // console.log('a' in window);//false
+    // console.log(window);
+    // console.log(window.a);
+    // a = 20; //在赋值的时候，就把a挂在了window身上
+    // console.log(a);
+
+    
+    var f = function(){alert(2)};
+    function fn(f){
+        /*
+           f = function f(){}
+           f = function f(){}
+        */
+        console.log(f);
+        var f = 10;
+        function f(){}
+    }
+    fn(f);
+
+
+
+</script>
+</body>
+</html>
