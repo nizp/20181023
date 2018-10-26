@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Closure
+    */
+
+    // function fn(a){
+    //     function fn2(){
+    //         a++;
+    //         console.log(a);
+    //     }
+    //     return fn2;
+    // }
+
+    function fn(a){
+        return function (){
+            a++;
+            console.log(a);
+        };
+    }
+
+    /*
+        1.函数执行
+        2.接收返回值
+    */
+    // let f = fn(5);
+
+    //少一步，子函数没有被外界引用,等同于单纯的函数调用，所以父函数的参数或者变量是不会被存储的
+    fn(5)(); //6
+    fn(5)(); //6
+
+    // console.log(f);
+    // f();
+    // f();
+
+
+</script>
+</body>
+</html>

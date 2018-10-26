@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+    <div id="box" index="1"></div>
+<script>
+    /*
+        当通过js获取元素的时候，这个元素自身有一堆属性、事件名
+        其中id、className都是内置的对象属性。只要标签上有内置的属性名
+        在js获取的时候就会被映射到js获取的元素身上。
+
+
+        index是自定义的，不是内置的，所以不能直接通过.的方式获取
+        此时:
+            设置行间属性
+                ele.setAttribute(设置的属性名,设置的属性值);
+            获取行间属性
+                ele.getAttribute(获取属性名) ，得到属性值
+
+                如果获取不到，值为null
+
+        行间自定义的属性，就要用getAttribute获取
+
+        元素对象加自定义属性，就要用ele的属性来获取  ele.index
+
+    */
+    const box = document.getElementById('box');
+
+    // console.dir(box.index);
+
+    box.index2 = 10; //对象上的
+
+    box.setAttribute('index2',20); //元素行间的
+
+    console.log(box.getAttribute('index2'));
+
+    console.log(box.index2);
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+div{
+    width:200px;
+    height: 80px;
+    display: none;
+    border: 1px solid #000;
+}
+div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+    <input type="button" value="按钮一" class="active">
+    <input type="button" value="按钮二">
+    <input type="button" value="按钮三">
+    <div class="show">1111111</div>
+    <div >222222</div>
+    <div >333333</div>
+<script>
+
+    /*
+        在你点击的时候循环早就结束（循环的速度一定比点击要快）
+
+        在点击中访问了i，此时局部作用域中没有i，参数也没有，这个时候会向
+        外找，全局正好有个i，这个i是循环之后的结果，所以就输出i的结果.
+
+
+        在事件中，触发事件时，事件绑定的元素是谁，this就是谁（事件函数的默认this是触发的元素）
+
+        一个东西要关联另一个东西，就要索引（给打个标记）
+
+
+        虽然闭包可以把父函数的参数或者变量存储起来，但是对于性能优化是不好的。
+        所以尽量不要使用闭包的“存”这个特性，使用完变量之后赋值null
+
+        垃圾回收:
+            1.标记清除法:
+                打开页面的时候，先把使用的变量打上标记，如果下次查询之前标记的没被引用，此时就回收
+            2.引用计数法
+                变量每用一次就记录一次,一开始是0，下次引用再+1，每少引用一次就-1，当变为0的时候就回收
+
+        如何让变量不再引用呢？
+            就是直接给变量赋值一个null的地址即可。
+            
+    */
+    var btns = document.getElementsByTagName('input');
+    var divs = document.getElementsByTagName('div');
+    // var i=0;
+    // for(;i<btns.length;i++){ //0,1,2
+        
+    // //    btns[i].setAttribute('index',i); //
+    //     btns[i].index = i; //自定义属性
+    //     btns[i].onclick = function(){
+    //         // console.log(this);
+    //         for(var i=0;i<btns.length;i++){
+    //             btns[i].className = '';
+    //             divs[i].className = '';
+    //         }
+    //         this.className = 'active';
+    //         divs[this.index].className = 'show';
+    //         // console.log(this.getAttribute('index'));
+    //         // divs[this.getAttribute('index')].className = 'show';
+    //         // var i = 0;
+    //         // alert(i);
+    //     }
+    // }
+    // console.log(i);
+
+    /*
+        用匿名函数自执行包了一下，此时是函数套函数
+        
+        在点击的事件函数中访问j，j在当前的局部作用域中没有，参数也没有
+        还会去父函数中查找，正好父函数有参数（子函数使用了父函数的参数）
+
+        事件函数本身，每次循环都绑定给了按钮的点击事件，这个事件函数就一直被引用着（释放不了）
+
+        这个时候就形成了闭包环境，那么每次循环的i值都不会被浏览器收回。
+
+
+    */
+    // for(var i=0;i<2;i++){ 
+    //     (function(j){
+    //         btns[j].onclick = function(){
+    //             alert(j);
+    //             for(var i=0;i<btns.length;i++){
+    //                 btns[i].className = '';
+    //                 divs[i].className = '';
+    //             }
+    //             this.className = 'active';
+    //             divs[j].className = 'show';
+    //         }
+    //     })(i);  
+    // }
+
+
+    // for(var i=0;i<3;i++){ 
+    //     btns[i].onclick = (function(j){
+    //         return function(){
+    //             for(var i=0;i<btns.length;i++){
+    //                 btns[i].className = '';
+    //                 divs[i].className = '';
+    //             }
+    //             this.className = 'active';
+    //             divs[j].className = 'show';
+    //         }
+    //     })(i);
+    // }
+
+
+    for(let i = 0;i < 3;i ++){ 
+        btns[i].onclick = function(){
+            for(let j=0;j<btns.length;j++){
+                btns[j].className = '';
+                divs[j].className = '';
+            }
+            this.className = 'active';
+            divs[i].className = 'show';
+        }
+    }
+
+    /*
+        { 
+            btns[0].onclick = function(){
+                for(let j=0;j<btns.length;j++){
+                    btns[j].className = '';
+                    divs[j].className = '';
+                }
+                this.className = 'active';
+                divs[0].className = 'show';
+            }
+        }
+        { 
+            btns[1].onclick = function(){
+                for(let j=0;j<btns.length;j++){
+                    btns[j].className = '';
+                    divs[j].className = '';
+                }
+                this.className = 'active';
+                divs[1].className = 'show';
+            }
+        }
+    */
+
+   
+
+    /*
+        btns[0].onclick = function(){alert(i)} 001
+        btns[1].onclick = function(){alert(1)} 002
+        btns[2].onclick = function(){alert(1)}  003
+    */
+    
+    console.dir(btns[2]); //没有事件函数值为null
+
+
+</script>
+</body>
+</html>

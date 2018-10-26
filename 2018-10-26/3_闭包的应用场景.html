@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        应用场景:
+            1.私有变量不被外界所干扰(互相不冲突)
+
+                在多人开发的时候，在全局作用域下难免会遇到名字重复的情况。（全局污染）
+
+                解决:
+                    可以使用封闭空间
+                        (function(){})()
+
+                    可以使用命名空间
+                        把变量变成属性、把函数变成方法
+
+                
+                变量、属性
+                    变量前面没主（默认主为window）
+                    属性前面有主（主就是.前面的对象）
+
+                函数、方法
+                    函数前面没主（默认主为window）
+                    方法前面有主（主就是.前面的对象）
+
+                string.substring()
+                arr.push()
+
+            封闭空间缺点:
+                外面想用函数内的运算结果，是不能直接访问到的。
+
+                    解决:
+                        return
+                        挂window下
+
+                var obj = (function(){
+                    ...
+                    return {
+                        a,b,c
+                    }
+                })();
+
+                        
+
+            2.存储父函数的参数或者变量
+                
+
+    */
+
+    // function f(){
+    //     function fn(){
+    //         alert(1);
+    //     }
+    //     fn();
+    // }
+
+    // f();
+
+
+    // (function(){
+    //     function fn(){
+    //         alert(1);
+    //     }
+    //     fn();
+    // })();
+
+    // !function(){
+    //     function fn(){
+    //         alert(1);
+    //     }
+    //     fn();
+    // }();
+
+    // +function(){
+    //     function fn(){
+    //         alert(1);
+    //     }
+    //     fn();
+    // }();
+
+    // ~function(){
+    //     function fn(){
+    //         alert(1);
+    //     }
+    //     fn();
+    // }();
+
+    var a = 10;
+
+    // function fn(){
+    //     // alert(1);
+    //     console.log(this); //window
+    // }
+
+    // var 我的对象 = {
+    //     fn:function (){
+    //         // alert(1);
+    //         console.log(this);//我的对象
+    //     },
+    //     a:10
+    // };
+    
+    // 我的对象.fn(); //执行方法
+    // fn(); //执行函数
+
+
+    // a++;
+    // console.log(a);
+
+    // 我的对象.a ++;
+    // console.log(我的对象.a);
+    
+
+
+
+    // var 你的对象 = {
+    //     fn:function (){
+    //         alert(2);
+    //     }
+    // }
+
+    // 你的对象.fn();
+
+
+    /*
+        a = 10
+        b = 5
+
+        b=10
+        a=5
+    // */
+    // function fn3(a,b){
+    //     var c = a + b;
+    //     a = c - a;
+    //     b = c - b;
+    //     return {
+    //         a:a,
+    //         b:b
+    //     }
+    // }
+
+    // var c = fn3(10,5);
+
+    // console.log(obj.a,obj.b);
+
+
+
+    function fn3(a,b){
+        var c = a + b;
+        a = c - a;
+        b = c - b;
+        window.a = a;
+        window.b = b;
+    }
+
+    fn3(10,5);
+    // var c = fn3(10,5);
+    // console.log(obj.a,obj.b);
+    console.log(a,b);
+
+
+
+</script>
+</body>
+</html>

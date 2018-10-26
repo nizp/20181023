@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        闭包:
+            闭包(必问):Closure
+            函数套函数，子函数使用父函数的参数或者变量(作用域链，先看函数体内有没有这个变量或者函数，没有就找参数，还没有就到外面找，直到window结束)并且子函数被外界所引用（没释放）
+                这个时候，父函数的参数或者变量不会被垃圾回收机制回收，此时在浏览器（chrome）
+                中打印父级的返回值，在scopes下多了一个closure,closure就叫闭包。
+
+        应用场景:    
+            1.私有变量不被外界所干扰
+                封闭空间:
+                    优点:
+                        解决了命名冲突的问题（全局污染）
+                    缺点的解决方案:
+                        return
+                        window.xx
+
+                命名空间
+                    变量、属性
+                    函数、方法
+
+
+            2.存储父函数的参数或者变量
+                选项卡
+                (function(n){
+                    ele[n].onclick = function(){
+                        alert(n);
+                    }
+                })(i)
+
+                ele[n].onclick = (function(n){
+                    return function(){
+                        alert(n);
+                    }
+                })(i)
+
+        let
+            1.变量名不能重复
+            2.暂存死区
+            3.不映射window
+            4.支持块级作用域
+
+        const
+            声明必赋值
+            不可变
+            别的都跟let一样
+
+        模板字符串:
+                ``
+                ${}
+
+        setAttribute(key,val)
+        getAttribute(key)
+
+        window.name会调用toString方法
+
+
+
+                
+
+
+
+    */    
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        变量:
+            var let(ES6新增加的知识点)  babel可以把ES6转成ES5
+
+            let的好处:
+                1.在同域中不能有2个相同的名字出现（也包括形参），不然就报错
+                2.不会与window进行映射（不在window上属性）
+                3.变量声明的上方，有暂存死区(就报错)
+                4.支持块级作用域,只要有{}都支持块
+                    常用的:
+                        if(){}
+                        for(){}
+                        while(){}
+                        () => {}
+                        switch(){}
+                        {}
+
+            const:常量
+                1.不可变的量,一变就报错
+                2.声明之后必须赋值,不赋值就报错
+                3.不会与window进行映射（不在window上属性）
+                4.变量声明的上方，有暂存死区(就报错)
+                5.支持块级作用域,只要有{}都支持块
+
+            应用场景:
+                一般这个值不会变了，就用常量
+                获取静态元素的时候可以使用
+
+                用的是它的一变就报错的特性
+
+
+                const num = 500;
+                const lis = document.querySelectorAll('li');
+
+    */    
+
+    // var a = 10; 
+    // console.log(a);
+    // var a = true;
+    // console.log(a);
+
+    // console.log(a);
+    // let a = 10;
+    // a = 11;
+    // let a = 11;
+    // console.log(window);
+
+    // if(!true){
+    //     // let i = 0;
+    //     function fn(){}
+    // }
+    // console.log(fn);
+
+
+    const a = 10;
+
+    
+    console.log(window);
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>

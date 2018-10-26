@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    /*
+        模板字符串
+            `字符串`
+            如果加变量或者运算，直接在模板字符串中使用${变量或者运算}
+
+            普通字符串是不能直接换行的，不过可以继续字符串拼接
+                let str = '我的名字叫'+ name +',我'
+                + '今年'+ age +'岁';
+
+            模板字符串是可以随意换行的，不过换行之后显示也是换行的
+                `我的名字
+                叫${name},我今
+                年${age}岁`
+
+    */
+    let name = '曹原野';
+    let age = 23;
+
+    let str = '我的名字叫'+ name +',我'+
+    '今年'+ age +'岁';
+
+    // console.log(str)
+
+    console.log(`我的名字叫${name},我今年${age}岁`);
+
+    
+
+    
+    
+</script>
+</body>
+</html>
