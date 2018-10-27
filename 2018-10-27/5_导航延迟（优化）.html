@@ -91,15 +91,29 @@
     const lis = document.querySelectorAll('li');
     let timer = null;
     let n = 0;
-    let ele = lis[0];
+
+    /*
+        li[0]  i=0
+        li[1]  i=1
+
+        box    i=2
+        box    i=2
+
+    */
 
     for(let i=0;i<lis.length;i++){
         //移入
         lis[i].onmouseover = box.onmouseover  = function(){
             clearTimeout(timer);
             box.style.display = 'block';
-        
-            n = i;
+            
+            /*
+                如果移入的元素不是div，就使用i
+                nodeType -> nodeName || tagName
+            */
+            if(this.nodeName === 'LI'){
+                n = i;
+            }
             
             box.innerHTML = txt[n];
             box.style.left = pos[n] + 'px';
@@ -109,7 +123,6 @@
             timer = setTimeout(function(){
                 box.style.display = 'none';
             },1000);
-            
         }
     }
 

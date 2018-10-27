@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p"></p>
+<script>
+    /*
+        倒计时原理: 
+            1.未来的时间
+            2.现在的时间（每分每秒都在动）
+
+            未来的时间 - 现在的时间 = 剩下多少时间
+
+            new Date(工作时这儿放服务器时间);
+
+            设置时间:
+                字符串:
+                    new Date('年 月 日 时:分:秒')
+                    new Date('2018 10 27 15:40:00')
+
+                数字版:
+                    new Date(年,月,日,时,分,秒)
+                    new Date(2018,9,27,15,40)
+
+                    注意:
+                        设置月份的时候要减1
+
+        let d = Math.floor(t/86400);
+        t %= 86400;
+        let h = Math.floor(t/3600);
+        t %= 3600;
+        let m = Math.floor(t/60);
+        t %= 60;
+
+
+        t = 86465/86400    1
+        t %= 86400
+        86465 % 86400   余数是65
+        t = 65
+        65/60   1
+        65%=60  5
+
+
+
+
+    */
+   
+    // console.log(new Date('2018 10 27 15:40:00'));
+    // console.log(new Date(2018,9,27,15,40));
+
+
+    let newdate = new Date('2018 10 28 16:00:00');  //未来的时间
+
+    let timer = null;
+
+    function fn(){
+        let nowDate = new Date(); //现在的时间
+        let t = Math.floor((newdate - nowDate)/1000);
+        if(t <= 0){
+            //如果未来的时间 - 现在的时间 小于0，说明现在的时间已经超过了设置的时间，所以关闭定时器
+            clearInterval(timer);
+        }else{
+
+            /*
+                86400
+                3600
+                60
+            */
+            
+            let d = Math.floor(t/86400);   //1
+            t %= 86400;  
+            let h = Math.floor(t/3600);
+            t %= 3600;
+            let m = Math.floor(t/60);
+            t %= 60;
+
+            p.innerHTML = tDou(d)+'天'+tDou(h)+'时'+tDou(m)+'分'+tDou(t)+'秒';
+
+            // console.log();
+        }
+
+    }
+    fn();
+    timer = setInterval(fn,1000);
+
+
+    function tDou(n){
+        return n<10?'0'+n:''+n;
+    }
+
+
+
+
+</script>
+</body>
+</html>
