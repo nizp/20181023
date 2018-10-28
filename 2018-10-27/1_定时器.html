@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding:0;
+}
+#box{
+	width:250px;
+	height: 400px;
+	margin:auto;
+	position: absolute;
+	top:-1650px;
+	left:2000px;
+	right: 0;
+	bottom: 0;
+	transition: 1s;
+	/* display: none; */
+}
+</style>
+</head>
+<body>
+	<div id="box">
+		<img width="250" src="./mm1.jpg" alt="">
+	</div>
+<script>
+    /*
+	        闹钟、秒表、炸弹、微波炉
+	        
+	 	直接调用函数 fn()
+	 	事件调用函数 ele.onclick = function(){}
+	 	定时器调用函数
+	 	
+	
+	   	setTimeout(function(){},延迟时间,第一函数的参数)
+	   			三个参数:
+	   				第一个:
+	   					callback(钩子函数)，当某个“事件”（某个条件成立触发的函数）
+	   				第二个:
+	   					延迟的时间  按毫秒计算，1秒=1000毫秒
+	   					
+	   				第三个:
+	   					钩子函数的实参
+	        
+				指定时间，只触发一次函数
+				
+		返回值:
+			number类型的数字，这个数字（编号），每添加一个定时器就会加1
+			这个返回值会一直在计算机中存储，就算关闭定时器也存储
+
+
+		关闭定时器:(clearInterval也能用)
+			clearTimeout(定时器的编号);
+
+
+    */   
+    
+    // setTimeout(function(a,b){
+    // 	alert(a+b);
+    // },1000,1,2);
+
+	
+
+	let n = setTimeout(function(){
+		box.style.top = '0';
+		box.style.left = '0';
+	},3000);
+
+	document.onclick = function(){
+		clearTimeout(n);
+		// console.log(setTimeout(function(){}))
+	}
+
+
+	// let n2 = setTimeout(function(){},2000);
+
+	// console.log(n,n2);
+
+
+
+    
+    
+    
+</script>
+</body>
+</html>

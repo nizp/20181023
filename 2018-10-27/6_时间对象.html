@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p"></p>
+<script>
+    /*
+        new Date()
+            获取当前用户的本地时间（用户的本地时间是不可靠的）
+
+            在真正的开发中，要获取服务器的时间（相对安全）
+
+        时间戳:
+            1970年01月01日00时00分00秒到当前的时间
+
+            new Date().getTime();  //number类型
+            Date.now()
+            + new Date
+
+        2018年10月27日，12点43分00秒
+
+        下面获取的时间都是数字类型:
+            获取当前的年份:
+                t.getFullYear() 
+
+            获取当前的月份
+                t.getMonth()
+                注意:
+                    获取来的值少1个月份，所以要加1
+
+            获取日
+                t.getDate()
+
+            获取周几
+                t.getDay()   周日为0
+
+            获取小时:
+                t.getHours()
+
+            获取分钟:
+                t.getMinutes()
+
+            获取秒:
+                t.getSeconds()
+
+    */
+
+//    console.log(new Date);
+
+    // console.log(new Date().getTime());
+
+    // console.log(Date.now());
+
+    // console.log(+new Date);
+
+    // console.log(''+1);
+    // console.log(+'1');//number
+    let arr = ['周日','周一','周二','周三','周四','周五','周六'];
+
+
+    console.log(['周日','周一','周二','周三','周四','周五','周六'][new Date().getDay()])
+    
+
+    function fn(){
+        let t = new Date();
+        let y = t.getFullYear();
+        let m = tDou(t.getMonth()+1);
+        let d = tDou(t.getDate());
+        let h = tDou(t.getHours());
+        let mi = tDou(t.getMinutes());
+        let se = tDou(t.getSeconds());
+
+        p.innerHTML = y + '年' + m + '月' + d + '日----' + arr[t.getDay()]+'----'  + h +'点'+ mi +'分'+ se +'秒';
+    }
+    fn(); //上来直接执行，第一下不会闪
+    setInterval(fn,1000);
+
+
+    /*
+        小于10补0
+    */
+    function tDou(n){
+        return n<10?'0'+n:''+n;
+    }
+   
+
+
+
+    // console.log(t.getFullYear());
+
+    // console.log(t.getMonth() + 1);
+
+    //  console.log(t.getDate());
+
+    // console.log( t.getDay() );
+
+    // console.log(t.getHours());
+
+    // console.log(t.getMinutes());
+
+    // console.log(t.getSeconds());
+
+
+
+
+
+
+</script>
+</body>
+</html>

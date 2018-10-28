@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        setInterval(callback,时间,钩子函数的参数);
+            三个参数:
+	   				第一个:
+	   					callback(钩子函数)，当某个“事件”（某个条件成立触发的函数）
+	   				第二个:
+	   					延迟的时间  按毫秒计算，1秒=1000毫秒
+	   					
+	   				第三个:
+	   					钩子函数的实参
+
+            每隔一段时间就执行一次代码，只要不关闭就不断执行
+
+            返回值:
+                number类型的数字，这个数字（编号），每添加一个定时器就会加1
+                这个返回值会一直在计算机中存储，就算关闭定时器也存储
+
+            关闭定时器(clearTimeout也能用):
+                clearInterval(定时器的编号);
+                
+    */    
+
+    let n = setInterval(function(){
+        alert('炸死你!!~boom'); //alert还可以阻塞代码
+    },2000);
+
+    document.onclick = function(){
+        // clearInterval(n);
+        clearTimeout(n);
+    }
+
+
+
+
+</script>
+</body>
+</html>

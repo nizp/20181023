@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="b1">开始</button>
+    <button id="b2">停</button>
+    <p id="p"></p>
+<script>
+    let arr = [
+        '曹原野',
+        '许益凡',
+        '婶儿',
+        '小鱼儿',
+        '小慧慧',
+        '小燕燕',
+        '小芦丛'
+    ];
+
+    let timer = null,num = 0,n=0;
+    b1.onclick = function(){
+        timer = setInterval(function(){
+            p.innerHTML = arr[num];
+            num ++;
+            n++;
+            num %= arr.length;
+            if(n == 100){
+                clearInterval(timer);
+                p.innerHTML = arr[5];
+            }
+        },60);
+    }
+    
+    b2.onclick = function(){
+        clearInterval(timer);
+        p.innerHTML = arr[5];
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

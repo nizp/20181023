@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+#list{
+    border: 1px solid pink;
+    overflow: hidden;
+    width:174px;
+}
+
+#list li{
+    text-align: center;
+    line-height: 30px;
+    width:50px;
+    height: 30px;
+    float: left;
+    background: pink;
+    color:#fff;
+    cursor: pointer;
+    margin-left:5px;
+}
+#list li:hover{
+    background:red;
+    color:#fff;
+}
+#box{
+    width:100px;
+    height: 50px;
+    border: 1px solid red;
+    position: absolute;
+    top:40px;
+    left:0;
+    color: #666;
+    display: none;
+}
+#wrap{
+    position: relative;
+}
+</style>
+</head>
+<body>
+    <div id="wrap">
+        <ul id="list">
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+        <div id="box">
+            11111111
+        </div>
+    </div>
+<script>
+    let pos = [0,40,90];
+    let txt = ['11111111','2222222','333333'];
+
+    /*
+        在移出li的时候，box慢点消失 -> 隔一段时间消失，setTimeout
+
+        但是移入到box身上一秒钟后还会消失，要关闭定时器，就不会消失了
+            1.给定时器编号
+            2.clearTimeout
+
+
+            移出li，开了一个定时器，1秒钟之后再关闭
+            移入box的时候，要把移出li的定时器清掉
+
+
+            移出box，box会立马消失，再移入li就闪（移出box隐藏，移入li显示）
+
+            所以，移出box的时候要延迟消失，但是移入到li身上1秒之后也消失了（因为执行了定时器）
+
+            所以，移入li的时候，把移出box的定时器关闭
+
+
+            移出li的时候，只有移入box才会关闭延迟定时器，如果不移入box
+            移入的是别的li，是不是也会执行延迟定时器
+
+            移出box只能在移入li，才会关闭定时器，如果再移入box还是会隐藏box的
+            所以，移入box的时候，也要把移出box的定时器关掉。
+
+        
+
+        
+
+    */
+
+    const lis = document.querySelectorAll('li');
+    let timer = null;
+    let timer2 = null;
+
+    for(let i=0;i<lis.length;i++){
+        //移入
+        lis[i].onmouseover = function(){
+            clearTimeout(timer2);
+            clearTimeout(timer);
+            box.style.display = 'block';
+            box.innerHTML = txt[i];
+            box.style.left = pos[i] + 'px';
+        }
+        //移出
+        lis[i].onmouseout = function(){
+            timer = setTimeout(function(){
+                box.style.display = 'none';
+            },1000);
+        }
+    }
+
+    box.onmouseover = function(){
+       
+        clearTimeout(timer);
+        clearTimeout(timer2);
+    }
+    box.onmouseout = function(){
+       
+        timer2 = setTimeout(function(){
+            box.style.display = 'none'; 
+        },1000);
+    }
+
+
+
+
+
+</script>
+</body>
+</html>
