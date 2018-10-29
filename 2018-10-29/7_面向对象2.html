@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+
+    
+
+        工厂模式加了new之后，首先，this就是一个空白对象
+
+        this就替代了原材料，给this身上进行加工，最后因为
+        new之后默认返回值是this,所以可以不写return this
+
+
+        let xx = {
+            name:xx,
+            age:xx
+        }
+
+        <div style="width:100px;height:100px">11</div>
+        <div style="width:100px;height:100px">22</div>
+        <div style="width:100px;height:100px">22</div>
+
+        <div class="box">11</div>
+        <div  class="box">22</div>
+        <div  class="box">343</div>
+
+        .box{
+            width:100px;
+            height:100px;
+        }
+
+        原型类似于把style换成class，为了解决性能问题。
+            
+    */
+
+    function Person(name,age,sex){ //构造函数
+        //this -> Person{}   let obj = {}
+       
+        this.name = name;
+        this.age = age;
+        this.sex = sex; 
+        this.say = function(){
+            alert('我叫'+this.name);
+        }
+        
+        // return this;
+    }
+    let p1 = new Person('马国耀',18,'男');  //p1都是Person实例
+    let p2 = new Person('李冰洲',22,'男'); //p2都是Person实例
+    // p1.say();
+    // p2.say();
+    // console.log(p1);
+
+    let arr = [1,2];
+    let arr2 = [1,2];
+
+    console.log(arr.push == arr2.push);
+
+
+    // console.log(p1.say == p2.say); //false
+
+    
+</script>
+</body>
+</html>

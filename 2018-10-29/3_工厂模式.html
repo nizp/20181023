@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        工厂模式:
+            把相同的代码封装起来，实现批量生产目的的一种模式（返回对象）
+
+            原材料
+            材料的加工
+            出厂
+
+            [[321312][...]]
+    */  
+    
+    // let person = {
+    //     name:'马国耀',
+    //     age:18,
+    //     sex:'男'
+    // }
+
+    // let person2 = {
+    //     name:'李冰洲',
+    //     age:22,
+    //     sex:'男'
+    // }
+
+    function person(name,age,sex){ //工厂模式(外界也有人说这叫构造函数)
+        //引进原材料
+        let obj = {};
+        //材料加工
+        obj.name = name;
+        obj.age = age;
+        obj.sex = sex; 
+        
+        //出厂
+        return obj;
+    }
+    let p1 = person('马国耀',18,'男');
+    let p2 = person('李冰洲',22,'男');
+
+    console.log(p1.name)
+
+
+
+    
+</script>
+</body>
+</html>

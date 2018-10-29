@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        new Date()
+        new Array()
+        new Object()
+        new String()
+        new Number()
+
+
+        类分为内置类、自定义类。
+
+        构造函数（constructor）
+            类，配合new运算符来使用的
+
+            把相同的代码归为一类，并且搭配new使用的一种创建对象的方式。
+
+
+    */
+
+    function Person(name,age,sex){ //构造函数
+        //引进原材料
+        let obj = {};
+        //材料加工
+        obj.name = name;
+        obj.age = age;
+        obj.sex = sex; 
+        
+        //出厂
+        return obj;
+    }
+    let p1 = new Person('马国耀',18,'男');
+    let p2 = new Person('李冰洲',22,'男');
+
+    console.log(p1);
+</script>
+</body>
+</html>

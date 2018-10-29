@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        单例模式:（Singleton pattern）
+            单一又独立的实例模式（缺点:很单一,不好维护）
+
+            let Alien1 = {
+                name:'E.T',
+                age:30,
+                sex:'男'
+            }
+
+            let Alien2 = {
+                name:'德莱尼',
+                age:6,
+                sex:'女',
+                纳鲁之光(){
+
+                }
+            }
+
+            let a3 = Alien1;
+            
+            a3.name = '兽人'
+
+            var name = 'E.T';
+            var age = 30;
+            var sex = '男';
+
+            var name = '德莱尼';
+            var age = 6;
+            var sex = '女';
+            
+            Alien1.name
+            Alien2.name
+
+        高级单例:
+            更容易被维护、功能能够更丰富
+            
+            匿名函数自执行 + return 对象，对象中可以开放对外接口
+
+            低耦合高内聚：
+                模块与模块之前不冲突，很少有联系的，功能与功能之前是独立的
+                减少冗余代码。
+
+        模块化开发:
+            每一个模块功能都是独立的，不会出现全局污染，调用起来非常方便。
+
+
+            let police = (function(){
+                let name = '警察';
+                function kongfu(){
+                    console.log('擒拿手');
+                }
+
+                function fadan(){
+                    console.log('开罚单');
+                }
+
+                function 狙击手(){
+                    console.log('开枪');
+                }
+
+                function 便衣(){
+                    kongfu();
+                    狙击手();
+                }
+
+                return {
+                    便衣,
+                    狙击手
+                }
+            })();
+
+            console.log(police); 
+
+
+            let obj = {}  单例
+
+
+            let obj = (function(){ 高级单例
+                fn..
+                let ...
+                return {
+
+                }
+            })()
+    */  
+
+   let tools = {
+       fn:function(){}
+   }
+
+   let changTab = (function(){
+        function events(){
+
+        }
+        function clear(){
+
+        }
+        function init(){
+            events();
+            clear();
+        }
+        return {
+            init
+        }
+
+   })();
+
+   let calendar = (function(){
+        function getDate(){
+            tools.fn();
+        }
+        function init(){
+            getDate();
+        }
+        return {
+            init
+        }
+   })();
+
+   changTab.init();
+   calendar.init();
+
+
+
+</script>
+</body>
+</html>

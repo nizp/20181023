@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        原型:
+            当创建一个函数的时候，函数自身会有一些属性和方法
+            其中有一个属性叫prototype，它就是原型。
+
+            只要是函数都有原型。
+
+            原型是解决性能问题的。
+
+            ***构造函数的原型，只有它实例化对象可以使用。
+
+            换句话：***实例化对象上没有，还会去构造函数的原型下去查找
+
+
+    */
+    function Person(name,age,sex){
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+
+    Person.prototype.say = function(){
+        alert(this.name);
+    }
+
+    let p1 = new Person('王苗苗',18,'女');
+    let p2 = new Person('杨雅婷',18,'女');
+
+    console.log(p1);//Person{name:'王苗苗',age:18,sex:'女'}
+    // console.log(p2);
+
+    p1.say();
+    // p2.say();
+
+    console.log(p1.say == p2.say);
+
+
+</script>
+</body>
+</html>

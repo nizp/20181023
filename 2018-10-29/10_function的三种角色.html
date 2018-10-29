@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+
+        function的三种角色:
+            1.函数
+                function fn(){
+                    整理功能的一个容器，主要为了复用
+                }
+
+            2.类（构造函数）
+                function Person(name){  
+                    this.name = name;
+                    创建对象
+                }
+
+            3.实例化对象
+                函数是由大Function构造
+                function (){} ->  new Function()
+    */  
+    // let fn = new Function('a,b','return a+b');
+    // console.log( fn(1,2) );
+
+    Function.prototype.say = function(){
+        alert('亲爹已经找到就是')
+    }
+    function fn(){}
+    fn.prototype.say = function(){
+        alert('我才是真的');
+    }
+    // fn.say = function(){
+    //     alert('ser');
+    // }
+    // fn.say();
+    let f = new fn();
+    f.say();
+
+    // console.log()
+
+   
+   
+
+
+</script>
+</body>
+</html>

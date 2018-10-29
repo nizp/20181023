@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        类:(就是一个抽象的过程)
+            分类、分组、归类，把具有相同的特征的事务总结分组。
+
+            警察:
+               人、有警徽、穿警服、有证件、拿枪、开警车、在警局工作的
+
+            外星人:
+                大头大眼、ufo、高智慧生命、四肢短小、丑陋无比、没头发、在别的星球
+
+            抽象:
+                抽出像的部分
+
+        实例:
+            一个类的具体事务（同一个类的实例，他们的特征都是相同的，可能是传入数据不同（细节不同））
+
+
+            异形 -> 外星、没头发、丑陋无比、大头大眼
+            E.T ->  外星、没头发、丑陋无比、大头大眼
+
+
+        类和实例的关系:
+            类是实例的抽象、实例是类的具体事务.
+
+        [] -> Array的实例
+
+        js本身就是一种面向对象编程
+            比如:
+                [] -> Array
+                {} -> Object
+
+            只要有类和实例的编程语言就是面向对象编程语言
+
+        面向过程开发:
+            注重实现的方式（如何实现），想一步写一步
+
+        面向对象开发:
+            注重的是谁来实现。
+
+
+        单例模式:
+            单一又独立的实例模式（缺点:很单一,不好维护）
+
+            let Alien1 = {
+                name:'E.T',
+                age:30,
+                sex:'男'
+            }
+
+            let Alien2 = {
+                name:'德莱尼',
+                age:6,
+                sex:'女',
+                纳鲁之光(){
+
+                }
+            }
+
+            let a3 = Alien1;
+            
+            a3.name = '兽人'
+
+            var name = 'E.T';
+            var age = 30;
+            var sex = '男';
+
+            var name = '德莱尼';
+            var age = 6;
+            var sex = '女';
+            
+            Alien1.name
+            Alien2.name
+
+
+        高级单例:
+            更容易被维护、功能能够更丰富
+            
+            匿名函数自执行 + return 对象，对象中可以开放对外接口
+
+
+            let Alien2 = (function(){
+                let name = '德莱尼',
+                let age = 6;
+                let sex = '女';
+
+                function 纳鲁之光(){
+                    能够救人
+                }
+
+                function 不死之身(){
+                    永远死不了
+                }
+
+                return {
+                    name,
+                    age,
+                    纳鲁之光
+                }
+
+            })();
+            
+            
+
+
+        工厂模式:
+        构造函数(面向对象):
+        
+        原型:
+    */    
+
+
+    // let arr = ['a','b']; //Array类
+    // let arr3 = [1,2];
+    // let arr4 = {};//Object类
+    // let arr2 = new Array('a','b');
+
+    // console.log(arr.push);
+    // console.log(arr3.push);
+    // console.log(arr4.push);
+    // console.log(arr2);
+
+    // let Alien2 = {
+    //     name:'德莱尼',
+    //     age:6,
+    //     sex:'女',
+    //     纳鲁之光(){
+            
+    //     }
+    // }
+
+    // Alien2.纳鲁之光 = {};
+
+
+    let police = (function(){
+        let name = '警察';
+        function kongfu(){
+            console.log('擒拿手');
+        }
+
+        function fadan(){
+            console.log('开罚单');
+        }
+
+        function 狙击手(){
+            console.log('开枪');
+        }
+
+        function 便衣(){
+            kongfu();
+            狙击手();
+        }
+
+        return {
+            便衣,
+            狙击手
+        }
+    })();
+
+    console.log(police);
+
+
+
+    
+
+    
+
+</script>
+</body>
+</html>
