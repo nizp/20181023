@@ -23,28 +23,28 @@
 
     */
 
-    let m = 20;
-    let Fn = function (n, m) {
-        this.n = n;
-        this.aa = function () {
-            console.log(this.n + (++m));
-        }
-    };
-    Fn.prototype.bb = function () {
-        console.log(this.n + m); //10+20
-    };
+    // let m = 20;
+    // let Fn = function (n, m) {
+    //     this.n = n;
+    //     this.aa = function () {
+    //         console.log(this.n + (++m));
+    //     }
+    // };
+    // Fn.prototype.bb = function () {
+    //     console.log(this.n + m); //10+20
+    // };
 
-    Fn.prototype.constructor = 10;
+    // Fn.prototype.constructor = 10;
 
 
-    let f1 = new Fn(10, 20);
+    // let f1 = new Fn(10, 20);
   
-    Fn.prototype = {
-        cc: function () {
-            console.log(this.n + m);
-        }
-    };
-    let f2 = new Fn(30);
+    // Fn.prototype = {
+    //     cc: function () {
+    //         console.log(this.n + m);
+    //     }
+    // };
+    // let f2 = new Fn(30);
     // console.log(f1.constructor);//Fn
     // console.log(f2.constructor);//Object
     // console.log(f1.constructor == f2.constructor);//false
@@ -57,6 +57,43 @@
 
     // console.dir();
     // f1.aa();
+
+
+
+
+
+    function Foo() {
+        getName = function () {
+            console.log(1);
+        };
+        return this;//window
+    }
+    Foo.getName = function () {
+        console.log(2);
+    };
+    Foo.prototype.getName = function () {
+        console.log(3);
+    };
+    
+    var getName = function () {
+        console.log(4);
+    };
+    function getName() {
+        console.log(5);
+    }
+
+    Foo.getName(); //2
+    getName();//4
+   
+    Foo().getName();//1
+
+    getName();//1
+
+    new Foo.getName(); //2
+
+    new Foo().getName();//3
+
+    new new Foo().getName();//3
 
 </script>
 </body>

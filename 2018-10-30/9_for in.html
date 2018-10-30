@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+<script>
+    /*
+        for in 循环，通过枚举对象的属性来达到循环的目的
+        
+        	凡是能用点的地方都能使用[],区别在于，.后面必须要跟字符串
+        
+        	for(let key in obj){
+    			key值为属性名
+    			obj[key] 属性值
+        	}
+        
+        for(;i<xx.length;)
+        while
+       
+        
+
+    */  
+    	
+    	Object.prototype.aaa = 20;
+    
+       let obj = {
+          width:'200px',
+          height:'200px',
+          background:'red',
+          attr:5
+       }  
+       
+//     console.log(obj.width);
+
+//	let w = 'width';
+//
+//	console.log(obj[w]);
+       
+       
+      
+       
+//     obj[attr]
+       
+       for(let attr in obj){  //attr就为key值(属性名)
+       		console.log(attr);
+			box.style[attr] = obj[attr];
+       }
+       
+       
+
+    
+
+
+
+    
+
+</script>
+</body>
+</html>

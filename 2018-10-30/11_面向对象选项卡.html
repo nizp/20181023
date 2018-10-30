@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+#box div{
+    width:200px;
+    height:100px;
+    border: 1px solid #000;
+    display: none;
+}
+#box div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <button class="active">按钮一</button>
+        <button>按钮二</button>
+        <button>按钮三</button>
+        <div class="show">111111111</div>
+        <div>22222222222</div>
+        <div>33333333</div>
+    </div>
+<script>
+    /*
+        归类
+
+            怎么那么恶心、为什么那么多、this是什么鬼、好难啊、不想学了
+
+
+            面向对象初期一定是痛苦的，但是后期一定是简单的
+
+            用面向对象写代码会越写越简单，思路也会越来越清晰            
+
+    */
+
+    function Tab(id){
+        this.box = document.getElementById(id);
+        this.btns = this.box.getElementsByTagName('button');
+        this.divs = this.box.getElementsByTagName('div');
+        this.timer = null;
+        this.num = 0;
+    }
+
+    //写方法
+    Tab.prototype.events = function(evName){
+        // console.log(this);//Tab{}  事件外的this是Tab{}
+        let that = this;
+        for(let i=0;i<this.btns.length;i++){
+            //在事件内的this，就是触发的元素
+            this.btns[i][evName] = function(){ 
+                //this,点谁是谁
+                // console.log(that);
+                that.change(i); //打算的this-> Tab{}
+            }
+        }
+    }
+
+    Tab.prototype.change = function(k){
+        for(let i=0;i<this.btns.length;i++){
+            this.btns[i].className = this.divs[i].className = '';
+        }
+        this.btns[k].className = 'active';
+        this.divs[k].className = 'show';
+    }
+
+
+    Tab.prototype.play = function(){
+        //定时器中的this指向window
+        let that = this;
+        this.timer = setInterval(function(){
+            that.num ++;
+            that.num %= that.btns.length;
+            that.change(that.num);
+        },1000);
+    }
+
+
+
+
+
+
+
+    let t = new Tab('box');
+    t.events('onclick');
+    t.play();
+
+    console.log(t)
+
+
+
+
+
+
+</script>
+</body>
+</html>

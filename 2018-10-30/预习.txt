@@ -1,0 +1,6 @@
+面向对象 VS 面向过程
+
+apply、call、bind
+
+继承
+

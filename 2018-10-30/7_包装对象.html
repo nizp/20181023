@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        复杂类型的身上才能加属性和方法
+
+        简单类型身上不能加属性和方法，就算加了也是undefined.
+
+        包装对象:
+            当简单类型去查找一个属性或者方法的时候，默认这个简单类型
+            会转成对象类型，去找已经添加过的属性或者方法，找到之后
+            这个对象自动销毁。（活雷锋）
+
+
+        用new去创建简单类型，虽然是对象类型，但是他们的属性只能读，不能写
+
+        valueOf可以看到数据最本质内容（原始值）。
+
+            当new一个简单类型的内置类的时候，比如new String
+            此时typeof为object，但是它实际上是一个字符串
+            那么可以通过valueOf()去查看此数据的原始值。
+
+
+    */
+    let arr= [1,2,3,4];
+    let str = '32321';
+
+   
+    
+    // arr.num = 10;
+    // arr.num++;
+    // console.log(arr.num);
+
+    // str.num = 10;
+    // str.num ++;
+    // console.log(str.substr);
+
+    // console.log();
+
+    let s = new String('12345');
+
+    // arr.length = 1;
+
+    // str.length = 1;
+
+    s.length = 1;
+
+    // console.log(s.length);
+
+    // console.log(typeof s);
+    // console.log(s.valueOf());
+
+    let obj = {};
+    // console.log(obj.valueOf());
+    let b = true;
+    // console.log(b.valueOf());
+    let bb = new Boolean('1');
+    console.log(typeof bb.valueOf());
+
+
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        hasOwnProperty：
+            看看某个属性是不是对象自己的。
+
+        obj.hasOwnProperty('属性名')
+            会返回一个布尔值
+
+            是自身的属性：true否则false
+
+        in运算符，它能枚举原型
+        
+    */
+    Object.prototype.age = 30;
+    let obj = {name:'yy',sex:'人妖'};
+    // console.log('age' in obj); //age不在obj内部，但是结果还是为true，因为自身找不到会去构造函数的原型上查找。
+
+    let obj2 = {};
+
+    for(let attr in obj){
+        if(obj.hasOwnProperty(attr)){
+            obj2[attr] = obj[attr];
+        }   
+    }
+
+    // obj2.name = 'xx';
+
+    // console.log(obj.hasOwnProperty('age')); //看看age是不是obj自身的属性的
+    
+    console.log(obj2);
+
+
+    
+    
+
+</script>
+</body>
+</html>

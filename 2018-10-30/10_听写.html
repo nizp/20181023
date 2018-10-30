@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="v1">
+    <input type="text" id="v2">
+    <button id="btn">按钮</button>
+    <div id="box"></div>
+    <!-- <ul id="ul"></ul> -->
+
+<script>
+    /*
+        1.js的数据类型有哪些？和typeof的数据类型有什么区别
+
+        简单数据类型：
+            number、string、boolean、null、undefined、Symbol
+
+        引用数据类型:
+            object
+
+        typeof 
+            number、string、boolean、undefined、Symbol、function、object
+
+    */
+
+    // let n1 = Symbol('name');
+    // let n2 = Symbol('name');
+
+    // let obj = {
+    //     n1:'aa',
+    //     n2:'bb'
+    // }
+
+    // console.log(obj.n1);
+    // console.log(typeof null);
+
+    /*
+        2.如何获取普通元素和表单元素的内容？
+            div,p   innerText
+            input   value
+    */
+    // let temp = '';
+    // btn.onclick = function(){
+    //     temp += `<li>${v.value}</li>`;
+    //     // console.log(temp);
+    //     ul.innerHTML = temp;
+    //     v.value = ''
+    // }
+
+    /*
+        3.[]和.的区别
+    */
+
+    // btn.onclick = function(){
+    //     box.style[v1.value] = v2.value;
+    // }
+
+    /*
+        4.当return的时候发生了哪些事
+
+            1.return下面的代码都不执行（终止return下的代码）
+
+            2.函数返回值
+    */
+
+    // function fn(){
+    //     for(let i=0;i<5;i++){
+    //         if(i==1){
+    //             return;
+    //         }
+    //         alert(i);
+    //     }
+    // }
+    // fn();
+
+    /*
+       5.什么叫自定义属性，它是用在哪的
+        
+        在某个对象上自己定义一个属性，索引、通过标记去查找
+
+        setAttribute('key','val')
+
+        getAttribute('key')
+
+        removeAttribute('key')  删除行间的属性
+    */
+
+    /*
+        6.字符串、数组的方法
+
+        字符串:
+            截取类:
+                substring
+                substr
+                slice
+                charAt
+                charCodeAt
+
+            替换:
+                replace(old,new)
+
+            分割:
+                split
+
+            大小写:
+                toUpperCase()
+                toLowerCase()
+
+            查找：
+                indexOf
+                lastIndex
+                includes
+
+            去首尾空格:
+                trim
+
+        数组:
+
+            push
+            pop
+            shift
+            unshift
+            splice
+            slice
+            concat
+            sort
+            reverse
+            join
+            indexOf
+            lastIndexOf
+            forEach
+            map
+            filter
+            some
+            every
+            includes
+            find
+            findIndex            
+
+    */
+
+    /*
+        7.操作DOM的方法有哪些（增删改查替换）？
+
+            document.createElement(ele)
+            parent.appendChild(ele)
+            parent.insertBefore(new,old)
+            parent.removeChild(ele)  || ele.remove();
+            parent.replaceChild(new,old)
+    */
+
+    /*
+        8.定时器有哪些，他们的返回值是什么，关闭定时器的方法是什么？
+
+            setInterval
+            setTimeout
+            数字（编号）
+            clearInterval
+            clearTimeout
+
+    */
+
+    /*
+        
+        9.举例说明什么是隐式类型转换，什么是强制类型转换？
+            隐式类型转换
+                '' + 1 = '1'
+                + '1' => 1
+                '2' * 3 = 6
+
+                '1'*1 + '20'*1
+
+            强制类型转换:
+                Number('20')
+                parseInt('20px')
+                toString
+                .....
+        
+    */
+
+    /*
+        10.数据类型中，哪些是真的，哪些是假的？
+        
+        真：
+            true、非0数字、非空字符串、非null对象、
+        假：
+            false、0、空字符串、null、undefined、NaN
+
+    */
+
+    btn.onclick = function(){
+        // if(v1.value === ''){
+        //     alert('请输入内容')
+        // }
+
+        if(!v1.value)alert('请输入内容')
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+</script>
+</body>
+</html>
