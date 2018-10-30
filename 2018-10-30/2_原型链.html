@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        原型链(__proto__):
+
+            在js中所有的实例都有__proto__这个属性
+
+            除函数以外的对象只有原型链，没有原型
+
+
+            函数不但是函数还是Function实例化对象，所以它既有原型也有原型链
+
+            而函数的原型只给它的实例化对象使用。
+
+            什么时候才会走原型链呢？
+                当前使用这个对象的属性或者方法，自身没有就会走原型链
+
+                通过原型链找到它构造函数的原型。
+
+
+            原型的值是一个对象
+
+            Fn.prototype.a
+            Fn.prototype.b
+
+            Fn.prototype = {
+
+            }
+
+            构造函数的原型 === 实例对象的原型链
+            
+
+
+        先找自身数据（这个xx代表数据）:
+            obj.xx = 数据
+            fn是个构造函数并且return的是当前这个实例
+            function fn(){
+                this.xx = 数据
+            }
+
+        如果找不到数据就找对象的原型链
+            就等同于构造函数的原型
+
+        如果还找不到数据就会找
+            构造函数的原型的原型链,等同于找Object.prototype
+
+        如果还没有，就真的没有了。
+
+
+        
+            
+
+
+
+
+
+    */    
+
+    let obj = {};
+    function Fn(){
+
+    }
+
+    // Fn.prototype.a = 10;
+
+
+    let aa = new Fn();
+
+    Object.prototype.a = 20;
+
+    console.dir(aa);
+
+    /*
+        aa.a -> aa.__proto__ -> Fn.prototype -> 
+
+        Fn.prototype.__proto__ -> Object.prototype
+    */
+
+    // console.log(Fn.prototype); //{a: 10, constructor: ƒ}
+
+    // console.log(Fn.prototype.__proto__); //Object.prototype
+
+
+    // console.dir(aa.__proto__ === Fn.prototype); //true
+
+
+    // let obj2 = {
+    //     name:'oo',
+    //     style:{
+    //         name:'xx',
+    //         fn:function(){
+    //             console.log(this.name);
+    //         }
+    //     }
+    // }
+    // obj2.style.fn();//xx
+
+
+</script>
+</body>
+</html>

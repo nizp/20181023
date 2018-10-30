@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        对象的原型链下有一个属性，叫做constructor
+        这个constructor默认指向实例的构造函数（具有参考性的指针）。
+
+        构造函数下的原型上也有个constructor
+
+        但是constructor并不可靠，容易被修改.
+
+        只要改变了构造函数原型下的constructor，那么实例的constructor就
+        会为改变的值。
+
+        不过就算constructor指向改了，也不会影响代码的正常执行
+
+
+    */
+
+    let m = 20;
+    let Fn = function (n, m) {
+        this.n = n;
+        this.aa = function () {
+            console.log(this.n + (++m));
+        }
+    };
+    Fn.prototype.bb = function () {
+        console.log(this.n + m); //10+20
+    };
+
+    Fn.prototype.constructor = 10;
+
+
+    let f1 = new Fn(10, 20);
+  
+    Fn.prototype = {
+        cc: function () {
+            console.log(this.n + m);
+        }
+    };
+    let f2 = new Fn(30);
+    // console.log(f1.constructor);//Fn
+    // console.log(f2.constructor);//Object
+    // console.log(f1.constructor == f2.constructor);//false
+    // f1.aa(); //this.n = 10  + 21   31
+    // f1.bb(); //this.n = 10  + 20   30
+    // f1.cc();//报错
+    // f2.bb();//报错
+    // f2.cc();//this.n=30  m=20  50
+    // f2.__proto__.cc();//NaN //f2.__proto__ === Fn.prototype = {}  this.n=undefined + 20
+
+    // console.dir();
+    // f1.aa();
+
+</script>
+</body>
+</html>

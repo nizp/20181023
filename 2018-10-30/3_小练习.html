@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        为什么到了Object.prototype之后就不再找了？
+
+        因为Object.prototype没有原型链
+    */
+    function Fn(){
+        // this.a = 5;
+    }    
+    Fn.prototype.a = 10; 
+
+    Fn.a = 15;
+    
+    Object.prototype.a = 20;
+
+    Function.a = 30;
+
+    let ff = new Fn;
+    console.log(ff.a);
+
+
+
+
+    // console.log(new Function().a);  //function.__proto__ Function.prototype -> Function.prototype.__proto__ -> Object.prototype
+    // let f = new Function(); 
+    // f.a = 10; 
+    
+
+   
+
+
+   
+
+
+
+
+
+</script>
+</body>
+</html>

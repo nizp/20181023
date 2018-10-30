@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        new
+
+            this:
+                构造函数中的默认this就是实例对象
+            
+            默认return this
+
+            手写return 如果是简单类型，返回this（实例）
+                       如果是复杂类型，返回return后面的
+
+            可加括号也可不加括号，加括号的目的是为了传参。
+
+
+            如果有多个new的情况下，会先运算右边，再运算左边的。
+    */
+
+    function Fn(name){
+        console.log(this);//构造函数中的this就是实例对象
+        this.name = name;  //{name:name}
+        ff();//window
+    }
+    Fn.fn = function(){
+        console.log(2);//2
+        return function (){
+            this.fn = function(){
+                console.log(6);
+            }
+            console.log(4);
+            // return function(){
+            //     console.log(5);
+            // }
+        }
+    }
+    Fn.prototype.fn = function(){
+        console.log(3);
+    }
+    // new new new Fn.fn().fn;
+
+    let t = new Fn.fn();
+    
+    console.log( new t().fn() ) ;
+
+    //new Fn.fn  
+    //function(){}
+    //function.fn   
+
+
+
+    // function ff(){
+    //     console.log(this);
+    // }
+    // new new Fn().fn();
+    // new new Fn.fn();  //A:报错 B:2  C:3
+
+    // new new Fn.fn();
+
+    
+
+    // let f = new Fn('xx');  //Fn{}  
+
+    // console.log(f);//Fn{}
+
+    // console.log(Fn);//function Fn(){}
+
+
+    // document.onclick = function(){
+    //     console.log(this);
+    //     ff();  //window
+    // }
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
