@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        面向对象:
+            三大特征:
+                抽象、封装、继承、多态
+
+        继承:
+            子类拥有父类的属性或者方法，自己也有自己的一套属性和方法。
+
+        类式(call)继承
+        拷贝继承
+        原型继承（对象继承、寄生式组合式继承）
+        
+
+
+        面向对象的写法:
+            属性挂在类里，方法挂了类的原型下
+
+        面向对象继承:
+            属性使用类式继承
+            方法使用原型继承
+
+        Coder具有Person的特征，此时 Coder 要继承Person，不然代码重复率较高
+
+    */
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.say = function(){
+        console.log('我叫'+this.name);
+    }
+    Person.prototype.runing = function(){
+        console.log('我会跑');
+    }
+
+
+    function Coder(name,age,job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }
+
+    Coder.prototype.say = function(){
+        console.log('我叫'+this.name);
+    }
+    Coder.prototype.coding = function(){
+        console.log('我会敲代码');
+    }
+    Coder.prototype.runing = function(){
+        console.log('我会跑');
+    }
+
+
+    let p = new Person('马国耀',18);
+    let c = new Coder('郑文会',16);
+    p.say();
+
+    c.say();
+    c.coding();
+
+</script>
+</body>
+</html>

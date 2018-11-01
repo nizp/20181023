@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        简单类型的赋值，赋值
+        复杂（引用）类型的赋值，赋址。
+
+        因为复杂（引用）类型的赋值为赋址，**只有简单类型的赋值才是赋值**
+        目的就是让数组中的简单类型,赋值给arr2,此时就循环arr，然后**把arr
+        中的每个简单类型都赋值arr2**，达到只赋值，不赋址的目的（arr拷贝内容给arr2的目的）
+
+
+    */
+
+    // let arr = [1,2,3,4];
+    // let arr2 = [...arr];
+    // let arr2 = arr.concat();
+    // arr2.push(5);
+    
+
+    // console.log(arr,arr2);
+
+
+    // arr.forEach((e,i)=>{
+    //     arr2[i] = e;
+    // });
+
+    // arr2.push(5);
+
+    // console.log(arr,arr2);
+
+
+    // let a = 10;
+    // let b = a;
+
+    // b++;
+    // console.log(a,b);
+
+
+    let obj = {
+        fn:function(){
+            console.log(1);
+        },
+        fn2:function(){
+            console.log(2);
+        }
+    }
+
+
+
+    let obj2 = {};
+
+    for(let attr in obj){
+        obj2[attr] = obj[attr];
+    }
+
+    obj2.fn2 = function(){
+        alert(2);
+    }
+
+
+    // obj2.fn2();
+    // obj.fn2();
+
+    // console.log([1,2,3,4]);
+
+
+
+
+
+
+</script>
+</body>
+</html>

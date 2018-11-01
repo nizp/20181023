@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        window
+            函数名 + 括号（不是箭头函数）
+            匿名函数自执行
+            定时器
+            箭头函数暴露在全局
+        事件
+            事件函数中的this，指向触发事件的元素
+        undefined
+            'use strict'
+        实例
+            new后构造函数中的this
+
+            箭头函数不是new
+
+        箭头函数
+
+            this跟父级域走。
+
+        对象（方法）
+            this是方法名前 .的那个对象
+                obj.fn()  -> this为 obj
+            
+    */
+
+    // let n = 30;
+    // document.onclick = function(){
+    //     let obj = {
+    //         n:10,
+    //         fn:function(){
+    //             console.log(this.n); //10
+    //         }
+    //     }
+    //     setTimeout(function(){
+    //         obj.fn();
+    //     },1000);
+    // }
+
+    //A:10,B:30,C:undefined,D:250
+
+
+    let n = 10;
+    let obj = {n: 20};
+    let fn = obj.fn = (function (n) {//20
+        this.n++; //NaN  
+        n++;
+        //21
+        return function (m) {//10
+                n += 10 + (++m);  //21 += 10 + 11  n = 42
+                console.log(this.n);//window.n -> NaN   20
+                this.n += n;//this.n = NaN
+                console.log(n);//42
+            }
+    })(obj.n);
+   
+    fn(10);
+    obj.fn(10); //42 += 10 + 11 n=63   obj.n = 20+=63  obj.n=83
+    console.log(n, obj.n);//10,83
+
+
+    
+
+</script>
+</body>
+</html>

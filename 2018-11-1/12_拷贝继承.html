@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        
+    */
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.say = function(){
+        console.log('我叫'+this.name);
+    }
+    Person.prototype.runing = function(){
+        console.log('我会跑');
+    }
+
+    function Coder(name,age,job){
+        Person.call(this,name,age);
+        this.job = job;
+    }
+    // Coder.prototype = Person.prototype; //此时赋址了
+
+    Object.prototype.aa = 20;
+
+    for(let attr in Person.prototype){ //因为in会遍历原型，所以只有父类原型上的属性才会赋值
+        if(Person.prototype.hasOwnProperty(attr)){
+            Coder.prototype[attr] = Person.prototype[attr];
+        }
+    }
+
+    Coder.prototype.runing = function(){
+        console.log('会骑UFO');
+    }
+
+    let p = new Person('马国耀',18);
+    let c = new Coder('郑文会',16,'前端');
+
+    c.runing();
+    p.runing();
+
+    console.log(Coder.prototype);
+   
+
+</script>
+</body>
+</html>

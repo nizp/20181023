@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        
+        类式(call)继承(一般类式继承是继承属性)
+            调用父类，通过call来改变this（把window改成子类）
+            
+            达到继承属性的目的。
+
+        拷贝继承
+
+            
+
+        原型继承（对象继承、寄生式组合式继承）
+        
+
+
+    */
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    function Coder(name,age,job){
+        Person.call(this,name,age);
+        this.job = job;
+        // console.log(this);//Coder
+    }
+    let p = new Person('马国耀',18);
+    let c = new Coder('郑文会',16,'猿妹');
+
+    console.log(c);
+
+
+    
+
+</script>
+</body>
+</html>

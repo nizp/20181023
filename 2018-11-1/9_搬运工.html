@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+#box{
+    width:300px;
+    height:200px;
+    border: 1px solid #000;
+    display: inline-block;
+    overflow: hidden;
+}
+ul{
+    display: inline-block
+}
+ul li{
+    width:5px;
+    height: 5px;
+    border:1px solid #000;
+    float: left;
+    margin: 5px;
+}
+li.active{
+    background: yellow
+}
+
+
+</style>
+</head>
+<body>
+    <textarea id="txt" cols="30" rows="10">sadkjsadh8dsadsad1e82u1disqdl;s,axzcxscndksjdsa还看电视的的马赛克了的聚散是的马萨卡的刷卡吗1fnjsdfhksamds电脑上看淡点电脑上卡的扩散才比较成熟
+    </textarea>
+    <button id="btn">点击</button>
+    <span id="n">0/30</span>
+    <ul>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div id="box"></div>
+<script>
+
+    let txtV = txt.value;
+    let len = txtV.length;
+    let lis = document.querySelectorAll('li');
+    let timer = null;
+    let num = 0;
+    n.innerHTML = '0/'+len;
+    btn.onclick = function(){
+        len = txt.value.length;
+        timer = setInterval(function(){
+            let v = txt.value;
+            txt.value = v.substring(1);
+            box.innerHTML += v[0];
+            num++;
+            for(let i=0;i<lis.length;i++){
+                lis[i].className = '';
+            }
+            //0%5  0,1,2,3,4,0
+            lis[num%lis.length].className = 'active';
+            n.innerHTML = num + '/'+len;
+            if(num >= len){
+                clearInterval(timer);
+                num = 0;
+            }
+        },50);
+    }
+</script>
+</body>
+</html>
