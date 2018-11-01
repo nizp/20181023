@@ -118,13 +118,13 @@
    width: 18px;
    height: 8px;
    background-color: #511313;
-   border-radius: 50% / 100% 100% 0 0;
+   border-radius: 50% 50% / 100% 100% 0 0;
 }
 
 .noseBottom{
     width: 0;
     height:0;
-    border-width:9px 9px 0;
+    border-width:9px;
     border-style: solid;
     border-color: #511313 transparent transparent;
 }

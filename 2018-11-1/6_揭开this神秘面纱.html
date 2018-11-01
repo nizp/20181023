@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        this 
+            window
+                函数直接执行(非箭头函数)
+                匿名函数自执行
+                定时器
+                箭头函数暴露在全局
+                
+
+            事件触发的元素
+                事件函数(不能是箭头函数)被触发的时候，事件函数内的this，指向事件元素
+            实例
+                new了之后就指向实例（必须要return this），return上方this指向构造函数的实例
+
+            undefined
+                严格模式
+                'use strict'
+                声明变量必须使用var或let
+                arguments是不和形参相映射的
+                this指向undefined
+
+            对象的this
+                就是方法名.前面的
+                
+
+
+
+            箭头函数
+                ES6新添加的函数表达式
+
+                let fn = function (){}
+
+                let fn = (a,b) => {
+                    //执行语句
+                }
+
+                let fn = function (a){
+                    return a+1;
+                }
+                
+                箭头函数，不加{}就等同于return（只能有一行代码），加{}可以放多行代码。
+                    let fn = (a) => a+1; 
+                        或者是
+                    let fn = a => a+1; 
+
+                注意:
+                    如果没有参数，必须写括号
+
+                this指向老爹（当前箭头函数的上级）
+
+
+
+    */
+
+    // function fn(){
+    //     console.log(this);
+    // }
+    // fn();
+
+    // !function fn(){
+    //     console.log(this);
+    // }();
+
+    // setTimeout(function(){
+    //     console.log(this);
+    // },1000);
+
+
+    // let fn = a => a+1;
+    // let fn = () => 1+1;  //如果没有参数，必须写括号
+
+    // console.log(fn(1));
+
+
+    
+    // document.onclick = function(){
+    //     // let fn = () => console.log(this);
+    //     function fn(){
+    //         console.log(this);
+    //     }
+    //     fn();
+    // }
+
+    // document.onclick = function(){
+    //     console.log(this);
+    // }
+    // document.onclick = () => {
+    //     console.log(this);
+    // }
+
+    // function Fn(){ //Fn{}
+    //     this.a = 10;
+    //     console.log(this);
+    //     return {}
+    // }
+
+    // let f = new Fn;
+    // console.log(f.a);
+
+    // function fn(a,b){
+    //     'use strict'
+    //     // console.log(this);
+    //     // a = 10;
+    //     // console.log(a);
+
+    //     arguments[0] = 5;
+
+    //     let obj = {
+    //         name:'曹'
+    //     }
+    //     delete obj.name; //delete 可以删除对象中的属性
+    //     console.log(obj);
+
+    //     console.log(a);
+    // }
+    // fn(1,2,3);
+
+
+    // let a = 20;
+    // function fn(){
+    //     console.log(this.a);
+    // }
+    // fn();
+
+    
+
+
+    
+
+    
+   
+
+
+</script>
+</body>
+</html>

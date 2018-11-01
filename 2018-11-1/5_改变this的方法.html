@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	/*
+		在创建函数的时候，函数自身有一些属性和方法
+		
+		其中有
+			apply、call、bind方法，这些方法都是能够改变this指向的
+			
+			
+			call:有无数的参数
+				第一个参数：
+					能够改变this指向，基本上是写啥是啥(null,undefined，设置了还是window)
+				
+				从第二个参数以后，就是实参（有几个形参就对应几个实参）;
+				
+				
+			apply:只有2个参数
+				第一个参数：
+					能够改变this指向，基本上是写啥是啥(null,undefined，设置了还是window)
+					
+				第二个参数:(数组内放置的就是实参)
+					数组[]
+					
+			上面2个方法，都是使用之后自动执行函数。
+					
+			bind，调用了bind方法不是直接执行函数，返回值就为新的函数（一般是改变this之后的函数）
+			
+				若干参数:
+					第一个参数：
+						能够改变this指向，基本上是写啥是啥(null,undefined，设置了还是window)
+						
+					从第二个参数以后，就是实参（有几个形参就对应几个实参）;
+			
+			
+			
+		
+	*/
+	
+	function fn(a,b,c,d){
+		console.log(this);
+		console.log(a+b+c+d);
+	}
+	
+//	let f = fn.bind(document);
+	
+//	f(1,2,3,4);
+
+//	fn.bind(document)(1,2,3,4);  //这种和上面f(1,2,3,4)结果是一样的，两种使用方式都可以
+	
+	
+	
+	
+	
+//	fn.call(document,1,2,3,4);
+
+//	fn.apply(document,[1,2,3,4]);
+	
+//	fn();
+	
+//	console.dir(fn);
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+#box div,#box2 div{
+    width:200px;
+    height:100px;
+    border: 1px solid #000;
+    display: none;
+}
+#box div.show,#box2 div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <button class="active">按钮一</button>
+        <button>按钮二</button>
+        <button>按钮三</button>
+        <div class="show">111111111</div>
+        <div>22222222222</div>
+        <div>33333333</div>
+    </div>
+    <div id="box2">
+            <button class="active">按钮一</button>
+            <button>按钮二</button>
+            <button>按钮三</button>
+            <div class="show">111111111</div>
+            <div>22222222222</div>
+            <div>33333333</div>
+        </div>
+        <button id="btn">点击</button>
+        <button id="btn2">点击2</button>
+         <button id="btn3">点击3</button>
+<script>
+    /*
+        1.多个选项卡
+        2.自动轮播
+        3.第一个动，第二个不动
+        4.点击第一个按钮的时候，让第一个停
+        5.点击第二个按钮的时候，让第二个选项卡动起来
+        6.点击第三个按钮的时候，反向动
+
+    */
+
+    function tab(id,onOff){
+        let box = document.getElementById(id),
+        btns = box.getElementsByTagName('button'),
+        divs = box.getElementsByTagName('div'),
+        num = 0;
+        box.timer = null;
+
+        for(let i=0;i<btns.length;i++){
+            btns[i].onclick = function(){ 
+                change(i); 
+            }
+        }
+        function change(k){
+            for(let i=0;i<btns.length;i++){
+                btns[i].className = divs[i].className = '';
+            }
+            btns[k].className = 'active';
+            divs[k].className = 'show';
+        }
+        
+        if(onOff){
+            box.timer = setInterval(function(){
+                num++;
+                num %= btns.length;
+                change(num);
+            },1000);
+        }
+        
+        btn.onclick = function(){
+        	clearInterval(box.timer);
+        }
+        
+    }
+
+   
+    tab('box2');
+    tab('box',true);
+
+  
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
