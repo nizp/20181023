@@ -27,18 +27,13 @@
 
     (function(global,factory){
         factory(global);
-    })(typeof window === 'undefined'?this:window,function(global,noGlobal){
+    })(typeof window !== 'undefined'?this:window,function(global,noGlobal){
 
         function Tab(id){
-            this.box = document.getElementById(id);
-            this.opt = {
-                btns:['新闻','游戏','电影'],
-                content:['金大侠','中国队称霸世界','毒液'],
-                events:'onclick'
-            }
+            return new fn.init1(id);
         }
 
-        Tab.prototype = {
+        let fn = Tab.prototype = {
             constructor:Tab,
             init:function(opt){
                 for(var attr in opt){
@@ -47,7 +42,6 @@
                 this.createBtn();
                 this.createDiv();
                 this.events(this.opt.events);
-                
             },
             createBtn:function(){
                 for(let i=0;i<this.opt.btns.length;i++){
@@ -86,10 +80,21 @@
             }
         }
 
+        fn.init1 = function(id){
+            this.box = document.getElementById(id);
+            this.opt = {
+                btns:['新闻','游戏','电影'],
+                content:['金大侠','中国队称霸世界','毒液'],
+                events:'onclick'
+            }
+        }
+
+        fn.init1.prototype = fn;
+
         global.Tab = Tab;
     });
 
-    let t = new Tab('box');
+    let t = Tab('box');
     t.init({
         btns:['头条','娱乐','体育'],
         content:['重庆公交车','唐嫣结婚了','冬季运动会']
