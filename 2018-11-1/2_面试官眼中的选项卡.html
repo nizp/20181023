@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+#box div{
+    width:200px;
+    height:100px;
+    border: 1px solid #000;
+    display: none;
+}
+#box div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        
+    </div>
+<script>
+    
+
+    (function(global,factory){
+        factory(global);
+    })(typeof window === 'undefined'?this:window,function(global,noGlobal){
+
+        function Tab(id){
+            this.box = document.getElementById(id);
+            this.opt = {
+                btns:['新闻','游戏','电影'],
+                content:['金大侠','中国队称霸世界','毒液'],
+                events:'onclick'
+            }
+        }
+
+        Tab.prototype = {
+            constructor:Tab,
+            init:function(opt){
+                for(var attr in opt){
+                    this.opt[attr] = opt[attr];
+                }
+                this.createBtn();
+                this.createDiv();
+                this.events(this.opt.events);
+                
+            },
+            createBtn:function(){
+                for(let i=0;i<this.opt.btns.length;i++){
+                    let btns = document.createElement('button');
+                    btns.className = (i==0)?'active':'';
+                    btns.innerHTML = this.opt.btns[i];
+                    this.box.appendChild(btns);
+                }
+            },
+            createDiv:function(){
+                console.log(this.opt.content)
+                for(let i=0;i<this.opt.content.length;i++){
+                    let divs = document.createElement('div');
+                    divs.className = (i==0)?'show':'';
+                    divs.innerHTML = this.opt.content[i];
+                    this.box.appendChild(divs);
+                }
+            },
+            events:function(evName){
+                         
+                this.btns = Array.prototype.slice.call(this.box.getElementsByTagName('button'));
+                this.divs = Array.prototype.slice.call(this.box.getElementsByTagName('div'));
+                this.btns.forEach((e,i) => {
+                    e[evName] = () => {
+                        this.change(i);
+                    }
+                });
+            },
+            change:function(index){
+                this.btns.map((e,i) => {
+                    this.divs[i].className = '';
+                    this.btns[i].className = '';
+                });
+                this.btns[index].className = 'active';
+                this.divs[index].className = 'show';
+            }
+        }
+
+        global.Tab = Tab;
+    });
+
+    let t = new Tab('box');
+    t.init({
+        btns:['头条','娱乐','体育'],
+        content:['重庆公交车','唐嫣结婚了','冬季运动会']
+    });
+
+
+
+
+
+</script>
+</body>
+</html>
