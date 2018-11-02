@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    width:100px;
+    height:100px;
+}
+.b{
+    border: 1px solid #000;
+}
+.c{
+    background: skyblue;
+}
+</style>
+</head>
+<body>
+    <!-- <div id="box"></div> -->
+    <div class="c" id="box"></div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script src="tools.js"></script>
+<script>
+
+    /*
+        每个数据类型都有toString方法
+
+        数组和对象的不一样
+            [1,2,3] ->  1,2,3
+            {} ->  [object Object]
+
+        classList.add();
+        classList.remove('b')
+        classList.contains()  返回布尔值，包含就是true，否则false
+        classList.toggle();
+
+        className = 'a b';
+        className = 'a'
+    */
+
+
+
+    let $ = tools;
+    // console.log($.$('li'))
+
+    // console.log($.isObjct({}));
+
+    // console.log();
+
+    document.onclick = function(){
+        // box.classList.remove('b');
+        // box.classList.add('a');
+        // console.log(box.classList.contains('x'))
+        // if(box.classList.contains('b')){
+        //     box.classList.remove('b')
+        // }
+        // box.classList.toggle('b');
+        $.add(box,'b','d','e','f');
+    }
+
+
+
+</script>
+</body>
+</html>

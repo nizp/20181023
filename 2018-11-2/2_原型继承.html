@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        原型继承主要是继承*父类原型上的*属性或者方法。
+
+            1.创建一个空的构造函数
+            2.把空构造函数的原型等于父类的原型
+            3.把子类的原型等于空构造函数的实例对象
+
+            这样就达到了继承属性的目的（主要注意:手动修正constructor指向）
+    */
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.say = function(){
+        alert('我的名字'+this.name);
+    }
+    Person.prototype.runing = function(){
+        alert('我会跑');
+    }
+
+    function Coder(name,age,job){
+        Person.call(this,name,age);
+        this.job = job;
+    }   
+
+    /*
+        
+        1.只有赋址之后，2个对象地址为同一个，修改一个才会影响另一个
+
+        2.实例化对象没有会去它的构造函数的原型上查找
+
+        3.实例化对象不等于构造函数的原型（因为不是一个地址，但是又能通过第二句话的关系找到）
+        
+
+        1.指向的问题
+
+    */
+    function Xhh(){} //炮灰
+    Xhh.prototype = Person.prototype;
+    // let objH = new Xhh;
+    // Coder.prototype = objH;
+    Coder.prototype = new Xhh;
+    // Coder.prototype.constructor = Coder;
+
+    // Coder.prototype = new Person;
+
+    /*
+        c.runing -> c.__proto__ -> Coder.prototype -> 
+
+        objH -> objH.__proto__ -> Xhh.prototype
+
+        -> Person.prototype
+    */
+
+
+    // Coder.prototype.say = function(){
+    //     alert('duang，duang，duang，我有霸王,我怕谁!~');
+    // }
+
+    let c = new Coder('李鹏飞',26,'超级码农');
+    // c.__proto__.constructor = Coder;
+    console.log(c.constructor)
+
+    // c.runing();
+
+    // c.say();
+
+
+    // let p = new Person('何宇杰',26);
+
+    // p.say();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

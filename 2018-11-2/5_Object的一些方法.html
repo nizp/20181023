@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Object的静态方法(静态方法：在类身上的方法，动态方法:在实例身上的方法)
+
+            
+            Object.assgin();  浅拷贝
+                将多个对象的可枚举属性拷贝到目标对象上，并且返回赋值后的目标对象。
+                从右往左赋值。
+
+            Object.defineProperties(obj,{})
+                给对象定义属性，如果存在该属性，
+                则用新定义的属性更新已存在的属性，
+                如果不存在该属性，则添加该属性。
+            
+            enumerable(是否可枚举):默认为false  
+                如果设置为false那么，能够被in运算，但是不能被for in循环到
+            writable(是否可写):默认为false
+            configurable:是否 可被delete，false不能被删除
+
+
+        能够修改对象中的一个属性，数据劫持
+
+            Object.defineProperty(obj,'name',{
+                get:function(){
+                    //当读的时候，触发的函数
+                },
+                set:function(newVal){
+                    //当写的时候，触发的函数
+                }
+            })
+            
+
+    */
+    let obj = {
+        name:'小明',
+        age:99,
+    }
+    // let obj3 = {
+    //     name:'小强',
+    //     age:88,
+    //     o:{n:'h'}
+    // }
+    // let obj2 = Object.assign({},obj,obj3); 
+    // obj2.o.n = 20;
+    // console.log(obj3);
+
+    // Object.defineProperties(obj,{
+    //     name:{
+    //         value:'小强',
+    //         writable:true,
+    //         enumerable:false,
+    //         configurable:false
+    //     }
+    // });
+
+    // obj.name = '小红';
+
+//    delete obj.name;
+
+    // console.log(obj);
+
+    let aa = '小明'
+    Object.defineProperty(obj,'name',{
+
+        set(newVal){
+            aa = newVal;
+            return newVal;
+        },
+        get(){
+            return aa;
+        }
+        //等同于上面那种写法，被对象包着才能那么写
+        // set:function(){ 
+        // }
+    });
+    obj.name = '小渣渣';
+    console.log(obj.name)
+
+
+
+
+
+
+
+    // for(let attr in obj){
+    //     console.log(attr);
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    // let str = '123';
+    // String.fromCharCode('z');
+    // console.log('123'.charAt(1));
+    // console.log( String.fromCharCode(110));
+    
+</script>
+</body>
+</html>

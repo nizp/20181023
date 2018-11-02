@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        类式:继承属性
+            调用父类通过call改变this
+        拷贝:继承方法
+            遍历父类原型上的方法，只要是自身的就赋值给子类的原型
+
+    */    
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.say = function(){
+        alert('我的名字'+this.name);
+    }
+    Person.prototype.runing = function(){
+        alert('我会跑');
+    }
+
+    function Coder(name,age,job){
+        Person.call(this,name,age);
+        this.job = job;
+    }
+
+    for(let attr in Person.prototype){
+        if(Person.prototype.hasOwnProperty(attr)){
+            Coder.prototype[attr] = Person.prototype[attr];
+        }
+    }
+
+    Coder.prototype.say = function(){
+        alert('duang，duang，duang，我有霸王,我怕谁!~');
+    }
+
+
+
+
+    let c = new Coder('李鹏飞',26,'超级码农');
+    let p = new Person('nizp',18);
+
+    c.say();
+    p.say();
+
+    console.log(c);
+
+
+
+
+
+
+</script>
+</body>
+</html>

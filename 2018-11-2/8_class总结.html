@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    class Cat{
+        constructor(type,color,miao){
+            this.type = type;
+            this.color = color;
+            this.miao = miao;
+        }
+        skill(){
+            console.log('抓老鼠');
+        }
+    }
+
+    class Police extends Cat{
+        constructor(job,...arg){
+            super(...arg);
+            this.job = job;
+        }
+        kongfu(){
+            console.log('开枪');
+        }
+    }
+
+    let c1 = new Cat('波斯','白色','喵呜');
+
+    let p1 = new Police('警察','中华田园猫','黑色','说人话');
+
+    p1.skill();
+    p1.kongfu();
+
+    console.log(p1);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Object.defineProperties(obj, props)
+
+        obj：被添加属性的对象
+        props：添加或更新的属性对象
+
+        给对象定义属性，
+        如果存在该属性，则用新定义的属性更新已存在的属性，
+        如果不存在该属性，则添加该属性。
+
+        如果是新添加的属性，一定要设置是否可枚举，不然为false
+            enumerable(是否可枚举):默认为false
+            writable(是否可写):默认为false
+            configurable:是否可delete
+
+
+        Object.defineProperty()
+            在对象上定义新属性，或修改对象现有属性，并返回该对象。
+
+            Object.defineProperty(obj, 属性名字, {设置属性})
+
+
+    */    
+    // let obj = {
+    //     name:'xx',
+    //     num:0
+    // }
+    // Object.defineProperties(obj,{
+    //     name:{
+    //         value:'yy',
+    //         writable: false,
+    //         enumerable: false
+            
+    //     },
+    //     age:{
+    //         value:20,
+    //         enumerable: true
+    //     }
+    // });
+
+    // obj.age = 30;
+    // // delete obj.name;
+    // console.log(obj.name);
+
+
+    let obj = {
+        num:4
+    }
+    let n = 2;
+    
+    Object.defineProperty(obj,'num',{
+        get:function(){
+            console.log(1);
+            /*
+                数据劫持
+            */
+            //当你获取这个属性的时候，会调用
+            n += 2;
+            return n;
+        }
+    });
+
+    // console.log(obj.num);
+    console.log(obj.num < 5 && obj.num > 5);//true
+
+    
+
+
+
+
+    
+
+  
+
+
+   
+
+
+</script>
+</body>
+</html>

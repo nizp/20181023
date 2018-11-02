@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        class  类
+            ES6给我们提供了class的语法糖，可以通过class来创建类
+
+            具体语法
+
+                class 类名 {
+                    constructor(形参){  
+                        //构造方法
+                    }
+                    方法名(){
+
+                    }
+                    此处是不加,号的
+                    方法名(){
+
+                    }
+
+                }
+
+        定义方法:
+            动态方法:
+                这样的写法就等同于把方法挂在类的原型上了
+                方法名(){
+
+                }
+
+                实例使用的方法
+            
+            静态方法:
+                static 方法名(){
+
+                }
+
+                类使用的方法
+                
+
+        let fn = 10;
+
+        class Fn {}
+
+        class Fn {
+            constructor(){
+
+            }
+        }
+
+        Array.isArray()
+        Array.from()
+    */
+
+    class Person {
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        static say(){
+            console.log('静态方法');
+        }
+        say(){
+            console.log(this.name);
+        }
+        runing(){
+            console.log('会跑');   
+        }
+    }
+
+    let p = new Person('刘文浩',20);
+    p.say();
+    // p.runing();
+
+    Person.say();
+
+    console.dir(p);
+
+</script>
+</body>
+</html>

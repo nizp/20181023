@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    class Person {
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        say(){
+            console.log('我的名字是'+this.name,'今年'+this.age);
+        }
+    }
+
+    /*
+        声明子类 extends 父类名 就继承父类了
+    */
+
+    class Coder extends Person {
+        /*
+            在子类constructor中添加属性的小技巧
+
+            专属于子类的属性写在参数的前面，父类的属性放在后面
+            这样一来，就能直接使用...arg
+
+            ...arg
+                把函数中的多余的参数放入数组中体现出来。
+
+        */
+        constructor(job,...arg){
+            // console.log(this)
+            super(...arg); //等同于调用父类，把多余的参数(和父类一样的属性)放到super中，达到继承父类属性的目的
+            /*
+                在继承里，写constructor必须写super
+                super下面才能使用this，super有暂存死区（super上面不能使用this，用了就报错）
+            */
+            this.job = job;//自己私有的属性，直接this点即可
+            console.log(arg);
+        }
+        codeing(){
+            console.log('敲代码');
+        }
+        say(){
+            console.log('哈哈');
+        }
+
+    }
+
+    let c = new Coder('前端','孙志康',20);
+    let p = new Person('小明',30);
+    // delete c.name;
+    console.log(c);
+    // c.say();
+    // p.say();
+    // c.codeing();
+
+
+
+
+
+
+</script>
+</body>
+</html>

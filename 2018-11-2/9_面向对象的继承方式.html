@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        call继承
+            继承属性
+            调用父类，通过call改变this
+        拷贝
+            for in
+            去掉非父类原型自身的属性
+        原型
+            function Xhh(){}
+            Xhh.prototype = Parent.prototype
+            child.prototype = new Xhh;
+        寄生式组合继承
+            child.prototype = Object.create(Parent.prototype)
+        对象继承
+            obj2.__proto__ =  obj;
+        extends
+            class 子类的名字 extends 父类的名字 {
+                constructor(..arg){
+                    super(...arg);
+                    this.xx = xx;
+                }
+                fn(){
+
+                }
+            }
+    */
+
+    // let obj = {
+    //     name:'xx',
+    //     age:18
+    // }
+    // let obj2 = {};
+    // obj2.__proto__ =  obj;
+
+    // let obj2 = {};
+    // function Xhh(){}
+    // Xhh.prototype = obj;
+    // obj2.__proto__ = new Xhh;
+    
+    obj2.name = 'yy';
+    console.log(obj);
+
+
+
+
+
+
+</script>
+</body>
+</html>
