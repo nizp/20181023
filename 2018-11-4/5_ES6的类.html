@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        class -> 构造函数的语法糖
+
+        通过extends
+
+        class 子类 extends 父类 {
+            constructor(子类私有属性,...arg){//...arg  多余，一般多余的都是父类的属性
+                console.log(arg); [放的是，除了子类私有属性以外的参数]
+                写了constructor就必须写super
+                super下方才能使用this，
+                super上方有暂存死区，在super上方是找不到this的
+                super(...arg);//扩展运算符  ...[1,2,3] -> 1,2,3
+            }
+        }
+        
+        function fn(a,b,c){}
+        
+        fn(...[1,2,3]); -> fn(1,2,3);
+
+
+    */
+
+    class Person {
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        static say(){
+            console.log('静态方法');
+        }
+        say(){
+            console.log(this.name);
+        }
+    }
+
+    class Coder extends Person {
+        constructor(job,...arg){
+            // console.log(this); //暂存死区
+            super(...arg);
+            this.job = job;
+        }
+        coding(){
+            console.log('我会编程');
+        }
+    }
+
+    let p = new Person('隐狼',2000);
+    let c = new Coder('前端','郭金',20);
+    // p.say();
+    // Person.say();
+
+    // c.say();
+
+    c.coding();
+
+    console.log(c);
+
+</script>
+</body>
+</html>

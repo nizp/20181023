@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        类:
+           把具有相同的特征的事务总结分组，实例的抽象
+
+           Array
+
+        实例:
+            一个类的具体事务（同一个类的实例，有可能传入数据不同（细节不同），他们的特征都是相同的）
+
+            [1,2,3].push()  
+            [2,3,4].push()
+
+        单例模式(单独的实例):
+            把一堆数据或者运算放到一个对象中管理。
+
+            优点:
+                整合数据,方便操作
+                命名空间
+
+            let obj = {
+                b:true,
+                s:'字符串',
+                fn:function(a,b,c){
+                    a+b+c
+                }
+                ...
+            }
+
+
+        高级单例模式:
+            高内聚低耦合  
+                功能完整独立，减少冗余代码，耦合度低（方便拆解、组合）。
+  
+
+        工厂模式:
+            把相同的代码封装起来，实现批量生产目的的一种模式（返回对象）
+            
+            源材料
+            加工
+            出厂
+
+
+        构造函数模式:
+            new(只能运算函数)
+                1.不用加括号函数依然执行
+                2.this指向实例化对象（Fn{}）默认是空白对象
+                3.默认return 当前类的实例
+                    如果有return    return后面是简单类型的，结果为this
+                                    return后面是复杂类型的，结果为复杂类型
+
+        
+        原型模式:
+            原型:当创建一个函数的时候自身带的一个属性prototype，它的值为对象
+
+            **当前构造函数的原型只给它的实例化对象使用
+            
+        
+        函数三种角色:
+            类（构造函数）
+            普通函数
+            实例   new Function()
+
+
+        面向对象:
+            把具有相同特征的代码归为一类，把描述这个类的特征（功能）挂在这个类的原型的一种编程设计思想。
+            1.归类
+            2.类的原型下挂方法
+
+           js面向对象的三大特征:
+            抽象、封装、继承、(多态)
+
+    
+        原型与原型链的关系:
+
+            每个对象下都有一个属性__proto__,这个__proto__就叫原型链。
+
+            关系
+                实例下的__proto__  === 构造函数的原型
+
+                先看当前对象上有没有
+                    f1.say  function fn(){this.say}
+
+
+            
+        继承（call，拷贝、原型、寄生式组合、es6）
+
+    */
+
+    // var a = 20;
+    // let obj = (function(a){
+    //     // console.log(a);
+    //     function fn(){}
+    //     function fn2(){
+    //         fn();
+    //     }
+    //     return {
+    //         a,
+    //         fn2
+    //     }
+    // })(a);
+
+    // let obj2 = (function(a){
+    //     // console.log(a);
+    //     function fn(){}
+    //     function fn2(){
+    //         obj.fn();
+    //     }
+    //     return {
+    //         a,
+    //         fn2
+    //     }
+    // })(a);
+    // console.log( obj );
+
+
+
+    // function fn(name,age){//工厂模式已经有归类概念了
+    //     let obj = {};
+
+    //     obj.name = name;
+    //     obj.age = age;
+
+    //     return obj;
+
+    // }
+    // let f = fn('李冰洲',22);
+    // let f2 = fn('王梦迪',18);
+    // console.log(f2.name);
+    // console.log(f.name);
+
+
+
+    
+    // function Fn(name,age){
+    //     // let obj = {};
+
+    //     console.log(this);
+    //     // console.log(obj);
+
+    //     this.name = name;
+    //     this.age = age;
+    //     // return [1,2,3,4];    //因为return后是[]所以返回值就是[]
+    //     // return 1;//因为return后是简单类型所以返回值还是this
+
+    // }
+    // let f2 = new Fn('王梦迪',18);
+    // console.log(f2);
+
+
+
+    function Fn(name,age){
+        this.name = name;
+        this.age = age;
+        // this.say = function(){
+        //     console.log(this.name);
+        // }
+    }
+    Fn.prototype.say = function(){
+        console.log(this.name);
+    }
+
+    let f1 = new Fn('洪丹',18);
+    let f2 = new Fn('王梦迪',18);
+
+    console.dir(f2.__proto__ === Fn.prototype);
+
+    /*
+        原型下的方法:
+            可以是实例用（f1.say()）this就是实例
+            直接用（Fn.prototype.say()）this是Fn.prototype
+    */
+
+    // f2.say();
+    // f1.say();
+
+    console.log(f1.say == f2.say);
+
+    // console.dir(Fn);
+   
+
+   
+
+    
+    
+
+   
+
+    
+
+    // console.log([1].push == [1].push);
+
+
+    
+    //函数是Function的实例化对象
+    //let ff = new Function('a,b','return a+b');
+    // console.log ( ff(1,2) );
+
+
+
+    //一道面试题
+    // function gg(){
+    //     alert(5);
+    //     return {}
+    // }
+    // alert( gg() ); //'5'  '[object Object]' 
+
+
+  
+    
+</script>
+</body>
+</html>

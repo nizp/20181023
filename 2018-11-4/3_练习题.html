@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="btnBox">
+        <input type="button" value="button_1" />
+        <input type="button" value="button_2" />
+        <input type="button" value="button_3" />
+        <input type="button" value="button_4" />
+        <input type="button" value="button_5" />
+    </div>
+
+<script>
+
+    /*
+        三（1）
+            请问如下代码是否能实现？
+                不能
+            如果不能实现那么现在的效果是什么样的？
+                5
+            应该做怎样的修改才能达到我们想要的效果，并说明原理？
+                let、闭包
+
+    */
+    // var btnBox=document.getElementById('btnBox'),
+    //     inputs=btnBox.getElementsByTagName('input');
+    // var l=inputs.length;
+    // for(let i=0;i<l;i++){
+    //     inputs[i].onclick=function(){
+    //         alert(i);//5
+    //     }
+    // }
+
+    // let a = (function(){
+    //     let a = 10;
+    //     function ff(){}
+    //     console.dir(ff)
+    //     return function(){
+    //         console.log(a);
+    //     }
+    // })();
+    // console.dir(a);
+
+// var fullName='language';
+// var obj={
+//     fullName:'javascript',
+//     prop:{
+//         getFullName:function(){
+//             return this.fullName;
+//         }
+//     }
+// };
+// console.log( obj.prop.getFullName() );
+// var test = obj.prop.getFullName;
+// console.log(test());
+
+// var name='window';
+// var Tom={
+//    name:"Tom",
+//    show:function(){
+//        console.log(this.name);
+//    },
+//    wait:function(){
+//        var fun=this.show;
+//        fun();
+//     }
+// };
+// Tom.wait();
+
+
+    // function Foo() {
+    //     getName = function () {
+    //         console.log(1);
+    //     };
+    //     return this;
+    // }
+    // Foo.getName = function () {
+    //     console.log(2);
+    // };
+    // Foo.prototype.getName = function () {
+    //     console.log(3);
+    // };
+    // var getName = function () {
+    //     console.log(4);
+    // };
+    // function getName() {
+    //     console.log(5);
+    // }
+    // Foo.getName(); //2
+    // getName();//4
+
+    // Foo().getName();//1
+
+    // getName();//1
+
+    // new Foo.getName();//2
+
+    // new Foo().getName();//3
+
+    // new new Foo().getName();//3
+
+
+
+    function fun(){
+        this.a=0;
+        this.b=function(){
+            alert(this.a);
+        }
+    }
+    fun.prototype = {
+        b:function(){
+            this.a=20;
+            alert(this.a);
+        },
+        c:function(){
+            console.log(this.a);
+            this.a=30;
+            // alert(this.a);
+        },
+        a:1
+    }
+    var my_fun=new fun();
+    // my_fun.b();
+    my_fun.c();
+    console.log(my_fun.a);
+    // fun.prototype.c();
+
+
+    // console.log(document.parentNode);//null
+
+    /*
+        window.onload = function(){
+            
+            let box = document.getElementById('box');
+        
+            box.onclick = function(){
+                console.log(box.id);
+            }
+            
+            box = null;
+        }
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function Fn() {
+    //     this.x = 100;
+    //     this.y = 200;
+    //     this.getX = function () {
+    //         console.log(this.x);
+    //     }
+    // }
+    // Fn.prototype.getX = function () {
+    //     console.log(this.x);
+    // };
+    // Fn.prototype.getY = function () {
+    //     console.log(this.y);
+    // };
+
+    // var f1 = new Fn;
+    // var f2 = new Fn;
+
+    // console.log(f1.getX === f2.getX);//false
+
+    // console.log(f1.getY === f2.getY);//true
+
+    // console.log(f1.__proto__.getY === Fn.prototype.getY); //true
+
+    // console.log(f1.__proto__.getX === f2.getX);//false
+
+    // console.log(f1.getX === Fn.prototype.getX);//false
+
+    // console.log(f1.constructor);//Fn
+
+    // console.log(Fn.prototype.__proto__.constructor);//Object
+
+    // f1.getX(); //100
+
+    // f1.__proto__.getX();//undefined
+
+    // f2.getY();//200
+
+    // Fn.prototype.getY();//undefined
+
+
+
+
+</script>
+</body>
+</html>

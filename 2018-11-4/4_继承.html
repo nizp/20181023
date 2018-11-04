@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        继承：子类继承父类的属性或者方法，自己也有自己的属性和方法
+            call继承
+                继承属性
+                    调用父类
+                    通过call修改this
+
+            拷贝继承
+                继承方法
+                通过for in循环，把父类原型上的方法或者属性，赋值给子类的原型
+
+                for in 会枚举原型，使用hasOwnProperty能够只拷贝父类原型下的方法。
+
+            原型继承
+                继承方法(推荐使用)
+                1、创建一个空函数
+                2、把空函数的原型等于父类的原型
+                3、把子类的原型 等于 new空函数
+
+                注意:
+                    constructor指向会改变，手动修正constructor指向
+
+
+            
+            寄生式组合
+
+              子类的原型 = Object.create(父类的原型)
+                1.创建一个空对象
+                2.让新创建的空对象的__proto__指向第一个传递进来的对象
+
+                在子类的原型的原型链上加了父类的原型
+
+                Coder.prototype = Object.create(Person.prototype);
+
+                Object.create(Person.prototype)
+                    {}.__proto__ = Person.prototype
+
+                Coder.prototype = {}
+                
+
+
+
+
+        改变this的三个方法:
+            当函数创建的时候，函数自身有一些属性和方法，其中下面这三个方法就属于函数自身的
+            call:
+                无数个参数
+                第一个参数：
+                    改变this 除了null、undefined，写啥this就是啥
+
+                从第二个参数之后
+                    实参
+                
+            apply
+                2个参数
+                    第一个参数：
+                        改变this 除了null、undefined，写啥this就是啥
+
+                    第二个参数:
+                        数组（数组中放的就是实参）
+                
+
+            bind
+                无数个参数，使用bind是不会执行函数的，会返回一个新的函数（这个函数是改变this之后的）
+
+                如果要执行代码，需要再次调用
+
+                第一个参数：
+                        改变this 除了null、undefined，写啥this就是啥
+
+                从第二个参数之后
+                    实参
+                
+
+
+    */
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        console.log(this);
+    }
+
+    Person.prototype.say = function(){
+        console.log(this.name);
+    }
+
+
+    function Coder(name,age,job){
+        // this.name = name;
+        // this.age = age;
+        //this Coder{}
+        Person.call(this,name,age);
+        this.job = job;
+    }
+    // Coder.prototype.say = function(){
+    //     console.log(this.name);
+    // }
+
+    // //拷贝继承
+    // for(let attr in Person.prototype){
+    //     if(Person.prototype.hasOwnProperty(attr)){
+    //         Coder.prototype[attr] = Person.prototype[attr];
+    //     }
+    // }
+
+    //原型
+    // function Ph(){}
+    // Ph.prototype = Person.prototype;
+    // Coder.prototype = new Ph;
+
+
+    //寄生式组合
+    Coder.prototype = Object.create(Person.prototype);
+
+    // Coder.prototype.__proto__ = Person.prototype;
+
+    // 实例化的.__proto__ = Person.prototype
+    
+
+    /*
+        c.say -> c.__proto__ -> Coder.prototype -> new Ph
+
+        new Ph.__proto__ -> Ph.prototype -> Person.prototype
+    */
+
+
+    Coder.prototype.coding = function(){
+        console.log('编程');
+    }
+
+    let c = new Coder('郭金',20,'前端');
+    let p = new Person('隐狼',2000);
+
+    // c.__proto__ = new Person  //可以的
+
+    c.say();
+
+    // console.log(c.constructor); //
+
+    console.dir(c);
+
+
+
+
+    function fn(a,b){
+        console.log(this,a+b);
+    }
+    // fn.call(document,1,2);
+
+    // fn.apply(document,[1,2]);
+
+    let f = fn.bind(document,1,2);
+    // f();
+    // console.dir(f);
+
+
+
+
+
+</script>
+</body>
+</html>

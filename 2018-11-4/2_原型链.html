@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        原型与原型链的关系:
+            每个对象下都有一个属性__proto__,这个__proto__就叫原型链。
+
+            关系
+                实例下的__proto__  === 构造函数的原型(默认情况)
+
+                先看当前对象上有没有
+                    f1.xx  function fn(){this.xx}
+
+                如果没有,就通过对象上的原型链，默认情况找实例的原型链
+                就等同于找构造函数的原型。
+                    注意：
+                        实例对象的原型链有可能被修改，修改之后，按照修改的关系来
+
+                    f1.__proto__  ->  Fn.prototype
+
+                如果还找不到，会从Fn.prototype.__proto__上查找，而Fn.prototype
+                又是一个对象，对象的__proto__指向Object.prototype,如果还没有，因为
+                Object.prototype没有原型链了(Object.prototype.__proto__为null)，所以就真的没有了
+
+
+    */
+
+    // let a = null;
+    function Fn(){
+        // this.num = 20;
+        // a = this;
+    }
+    let f = new Fn;
+
+    // f.__proto__ = {num:5}
+
+    // console.log(f.num);
+
+    // console.dir(f);
+
+    console.dir(Object.prototype.__proto__);
+
+
+
+    // f.num = 0;
+
+
+    // console.log(f == a);
+
+
+
+
+
+</script>
+</body>
+</html>
