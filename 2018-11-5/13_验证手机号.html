@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">提交</button>
+<script>
+    /*
+       1
+       345789
+       11位
+
+       /^1[345789]\d{9}$/
+    */
+    btn.onclick = function(){
+        if(/^1[345789]\d{9}$/.test(txt.value.trim())){
+            alert('是手机');
+        }else{
+            alert('你输入是脚机??');
+        }
+    }
+    
+</script>
+</body>
+</html>

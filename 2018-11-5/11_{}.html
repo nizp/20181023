@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        {} 量词的范围
+
+        {n,m}
+            {0,1} == ? 最小没有最大1个
+
+            {1,} == + 最小1个最多不限
+
+            {1,3}  最少1个，最多3个
+
+            {0,} *  最小没有，最多无限
+
+            {9} 最大最小都是9
+    */    
+
+   let str = 'a1ca22ca333ca444444ca5555555555c';
+
+    console.log(str.match(/a\d{1,3}c/g));
+
+</script>
+</body>
+</html>

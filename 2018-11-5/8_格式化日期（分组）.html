@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        2018-11-5
+        2018/11/5
+        2018年11月5日
+        2018.11.5
+        2018.--/11---..5
+
+        \d+
+        \D 一个非数字
+
+        \D+
+
+        分组（子项）
+            用小括号表示分组
+
+            可以提权:  (1+1) * 5
+
+            从左往右来数，有几个（）就有几个分组
+
+            /(\d+)\D+(((\d)+)((\D))+)(\d+)/
+
+            在replace中，有几个分组，$0后面的参数就是这几个分组的值
+
+            当分组和形参对应完之后，又是index、input、undefined
+
+            注意:
+                在分组中，如果分组的后面直接加了量词，那么结果为量词的终点位置。
+
+                如:
+                    /((\d)+)\D+(\d+)\D+(\d+)/
+
+                    $1 是2018
+                    $2 是8
+
+
+        
+        量词:
+            ?  可以没有，最多就一个
+
+    */
+
+    let str = '2018.--/11---..5';
+
+
+    let obj = (function(){
+        function initDate(str){
+            return str.replace(/(\d+)\D+(\d+)\D+(\d+)\D?/,($0,$1,$2,$3)=>{
+                return $1 + '年' + $2 + '月' + $3 + '日';
+            });
+        }
+        return {
+            initDate
+        }
+    })();
+
+    // let s = str.replace(/(\d+)\D+(\d+)\D+(\d+)\D?/,function($0,$1,$2,$3,$4,$5,$6){
+    //     // console.log($1,$2,$3);
+    //     console.log($3);
+    //     return $1 + '年' + $2 + '月' + $3 + '日';
+    // });
+
+    // console.log(s);
+
+    console.log(obj.initDate(str))
+
+    
+
+
+
+    
+
+</script>
+</body>
+</html>

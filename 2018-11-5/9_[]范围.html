@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        []中只代表一个
+
+        数字0-9
+
+        字母:a-z    97-122
+
+        大写字母:A-Z   65-90
+
+        大写小写的范围: [A-Za-z]
+
+        18-110
+        [18-110]
+
+        18-19   1[89]
+        20-99   [2-9][0-9]
+        100-109 10[0-9]
+        110
+
+        ^ :开头
+        $ :结尾
+
+
+
+    */  
+   
+    let str = 'a1ca2ca3ca4ca5ca6ca7caAcaZcabcahcazca_c';
+
+    // console.log(str.match(/a(1|2|3)c/g));
+
+    // console.log(str.match(/a[1-6]c/g));
+
+    // console.log(str.match(/a[A-Za-z]c/g));
+
+
+    // console.log(/(^1[89]$)|(^[2-9][0-9]$)|(^10[0-9]$)|(^110$)/.test('110'))
+
+    console.log(/^((1[89])|([2-9][0-9])|(10[0-9])|(110))$/.test('6'))
+
+
+    
+</script>
+</body>
+</html>

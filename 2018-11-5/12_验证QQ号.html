@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">提交</button>
+<script>
+    /*
+        1.都必须为数字
+        2.开头不能为0
+        3.5-11位
+
+        /^[1-9]\d{4,10}$/  
+        
+         23131    
+    */
+    btn.onclick = function(){
+        if(/^[1-9]\d{4,10}$/.test(txt.value.trim())){
+            alert('是QQ');
+        }else{
+            alert('请重新输入');
+        }
+    }
+    
+</script>
+</body>
+</html>
