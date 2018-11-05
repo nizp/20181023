@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        test:
+
+        //.test(string)
+            当前正则中是否有匹配的字符串，有就返回true，否则false
+        返回:布尔值
+
+
+        exec:
+            //.exec(string)
+            找到正则首次匹配的字符，放到数组中。
+            找不到就返回null
+            
+
+            index：索引
+            input：整个字符串
+            groups：undefined
+            length：1
+
+            
+
+
+        \d  一个数字
+
+        修饰符:
+            i -> 忽略大小写
+
+    */
+
+    let str = 'hjkAdash';
+
+    // console.log(/\d/.test(str)); //查看字符串中是否有数字
+
+    // console.log(/a/.test(str));
+
+    //  console.log(/a/i.test(str)); //查看字符串中是否有a，不管大写还是小写
+
+
+    console.log( /a/i.exec(str) );
+
+    // console.dir(/a/);
+
+
+
+
+
+</script>
+</body>
+</html>

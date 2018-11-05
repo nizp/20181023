@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        replace 替换
+
+            string.replace(''||正则,''||callback)
+
+            把第一个参数中的字符或者规则替换成第二个参数中的字符串或者return值
+
+
+            |  或者
+
+            callback：
+                每次匹配就会调用一次这个回调函数
+                默认的用法
+                第一个参数:（一般会给$0）
+                    本次正则匹配的字符串
+
+                第二个参数:
+                    本次正则匹配字符串的索引
+
+                第三个参数:
+                    整个字符串
+
+                第四个之后参数:
+                    undefined
+                
+
+                
+    */
+
+    // let str = 'djiad'; //夹
+
+    let str = '中国共产党总书记习近平宣布首届中国国际进口博览会开幕';
+
+    //  中国 总书记 进口
+    // console.log(str.replace(/中国|总书记|进口/g,'*'));
+
+    let s = str.replace(/中国|总书记|进口/g,function($0,$1,$2,$3){
+        // console.log($0,$0.length);
+        console.log($3)
+        let temp = '';
+        for(let i=0;i<$0.length;i++){
+            temp += '*';
+        }
+        return temp;
+    });
+
+    console.log('====================================');
+    console.log(s);
+    console.log('====================================');
+
+
+
+
+
+
+
+    // console.log(str.replace('jia','夹'));
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        string.match(''||//)
+
+            把找到的字符串（不但能找一个，还能找一堆）放到数组中
+
+            找不到就返回null
+
+        正则的特性:
+            懒惰:
+                让它找一个，它绝对不找第二个，找到立马返回
+                    如:
+                        /a/  只找一个a
+
+            贪婪:
+                让它找多个，它就会无限的找（有多少找多少）
+
+                    如:
+                        /\d+/  找一个或着无限个数字
+
+
+
+        修饰符:
+            g  找全局  会把整个字符串找个遍
+
+        量词:
+
+            +  最少一个，最多不限
+
+    */
+
+    let str = 'dshad13232h89dj90dhus1111143432434324321112ad1aA232aa12';
+
+    // console.log(str.match(/a/ig));
+
+
+     console.log(str.match(/\d+/g));
+
+</script>
+</body>
+</html>

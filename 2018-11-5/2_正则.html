@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        火星文 - 正则
+            专门检索模糊范围的字符串的一种规则。
+
+        学习技巧:
+            背，找规律
+
+        难点:
+            当你写完之后，自己都看不懂
+
+
+        [] {}...
+
+
+        简写:
+            常用的情况:
+                不需要字符串拼接，不使用参数、变量的时候使用
+            'abc' -> 匹配'abc'中有没有bc -> /bc/
+            /放的是规则，遇到指定的字符串不加''号,直接写字符即可/
+
+
+        标准:
+            常用的情况:
+                在字符串拼接或有变量、参数的时候使用。
+            new RegExp(//||'',修饰符);
+
+
+        转义符:
+            \
+
+        在\+一个字母时可能会有一定含义，这些具有特殊含义的符号叫元字符。
+
+            \n
+            \d
+            \s
+            ...
+    */
+
+
+    let x = 'a';
+    let str = 'abc';
+
+    //let re = /xb/;
+    // let re = new RegExp(x+'b');
+    // console.log(re);
+
+    // let re = /a/;
+    let re = new RegExp('/a/'); //a  /a/ -> /  \/a\/   /
+
+
+    let str1 = 'dsadkl\\';
+    console.log(str1);
+
+    console.dir(re);
+
+    // alert('通知:\\n后天早上要听写');
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
