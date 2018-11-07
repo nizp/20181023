@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+<script>
+    /*
+        JSON数据格式（只支持高版本浏览器，低版本使用json2.js）
+            '{"name":"柔丝"}'  || '[1,2,3,4]'
+
+        XML
+            <person>
+                <name>柔丝</name>
+            </person>
+
+        JSON.parse(json)
+            把JSON格式转成对象
+
+            注意:
+                JSON格式必须为标准的JSON格式
+                    key值是""的字符串
+                    value值如果是字符串也应该是""包着
+
+        JSON.stringify()
+            对象转成JSON
+
+            注意:
+                undefined和function是转不出来的
+
+        eval
+            能够把字符换尽量转成js代码并执行
+
+            注意:
+                容易注入病毒,尽量少用（但是人人都在用）
+            
+    */    
+    // let json = "{'name':'柔丝'}"; //×
+    // let json = '{name:柔丝}';//×
+    // let json = '{"name":"柔丝","age":12}'; //√
+    // let json = '["1","2",true]';
+    // console.log(JSON.parse(json));
+
+    // let obj = {name:'柔丝',n:null,u:undefined,fn:function(){}};
+
+    // console.log(JSON.stringify(obj));
+
+
+    let json = "{'name':'柔丝'}";//200
+
+    // console.log(JSON.parse(json))
+
+    // (function(){})
+
+    // eval('alert(1)');
+
+    // eval('alert(1+2)');
+
+    console.log(eval('('+json+')'));
+
+    document.onclick = function(){
+        alert(eval(txt.value));
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

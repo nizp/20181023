@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body id="body">
+    <div id="box"></div>
+<script>
+    /*
+      DOM 映射：在JS中的元素对象和页面中标签存在一一映射关系，
+      当JS中元素顺序发生改变，那么不会重新创建一个新的元素，
+      而是直接操作页面那个元素；
+
+        JS中的元素对象:
+            通过document提供的获取元素的方法能够获取到页面中的标签
+
+        页面中标签:
+            页面中的标签
+
+
+
+        DOM 的回流：
+            在页面中的某个元素的位置、大小发生变化，
+            那么会影响浏览器对其他元素的位置进行重新计算；
+            这样是非常消耗性能的；
+
+            操作DOM是最大的性能杀手,尽量少操作DOM
+
+
+    // DOM 的重绘： 
+        当页面中元素的背景，或者字体颜色发生改变，
+        那么浏览器要对元素进行重新的描绘；这种现象就是“重绘”；
+    */    
+
+    /*
+        
+        计时器: 2621.270751953125ms
+        计时器: 2089.541015625ms
+        计时器: 2313.92578125ms
+
+        计时器: 6.3427734375ms
+        计时器: 8.887939453125ms
+        计时器: 6.994873046875ms
+
+
+        计时器: 25.18505859375ms
+        计时器: 16.71875ms
+        计时器: 22.746826171875ms
+
+        createDocumentFragment:
+            文档碎片,
+            append()
+
+        计时器: 22.961669921875ms
+        计时器: 18.455078125ms
+        计时器: 20.55810546875ms
+
+        
+
+
+    */
+    // let temp = '';
+    let frg = document.createDocumentFragment();
+    console.time('计时器');
+    for(let i=0;i<1000;i++){
+        // box.innerHTML += '<p>'+ i +'</p>';
+        //box.innerHTML = box.innerHTML + '<p>'+ i +'</p>';
+        // temp += '<p>'+ i +'</p>';
+        
+        let c = document.createElement('p');
+        c.innerHTML = i;
+
+        frg.append(c);
+        // box.appendChild(c);
+
+    }
+    box.appendChild(frg);
+    // box.innerHTML = temp;
+    console.timeEnd('计时器');
+
+
+
+</script>
+</body>
+</html>

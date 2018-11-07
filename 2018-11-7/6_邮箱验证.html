@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.error{
+    border:1px solid red;
+}
+.ok{
+    border:1px solid green;
+}
+</style>
+</head>
+<body>
+    邮箱:<input type="text" id="txt"><span id="s">0字</span>
+<script>
+    /*
+        onchange  当失去焦点之后，如果内容发生变化就触发
+        oninput   当用户在焦点元素上操作内容（添加、删除）的时候触发
+
+
+        dsadsad@163.com
+        dsadsa7321312@sina.com
+        dsadsa7_321312@gmail.com
+
+        开头为字母、可以使用\w,4-18位，.com|.cn|.net
+
+        ^[A-Za-z]\w{3,17}@[1-9A-Za-z]{2,8}\.(com|cn|net)$
+
+        s123_sjh@qqq.com
+
+
+        . 任意符
+            匹配除“\n”和"\r"之外的任何单个字符。要匹配包括“\n”和"\r"在内的任何字符,请使用像“[\s\S]”的模式
+    */
+
+    // txt.onchange = function(){
+    //     console.log(1);
+    // }
+
+    txt.oninput = function(){
+        // console.log(this.value.match(/.+/));
+
+        s.innerHTML = this.value.length + '字';
+        if(/^[A-Za-z]\w{3,17}@[1-9A-Za-z]{2,8}\.(com|cn|net)$/.test(this.value.trim())){
+            this.classList.remove('error');
+            this.classList.add('ok');
+        }else{
+            this.classList.remove('ok');
+            this.classList.add('error');
+        }
+
+        if(!this.value.length)this.className = '';
+
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+var num = 5;
+var obj = {num: 18};
+obj.fn = (function (num) {
+    this.num = num * 5;
+    num--;
+    return function (n) {
+        this.num -= n;
+        num++;
+        console.log(num);
+    }
+})(obj.num);
+var fn = obj.fn;
+fn(3);
+obj.fn(20);
+new obj.fn(10);
+console.log(num, obj.num);
+
+
+1.什么是闭包，举例说明闭包的应用场景
+
+2.let和var的区别
+
+3.什么是高级单例模式、工厂模式
+
+4.什么是面向对象,你学面向对象的感受？
+
+5.函数有哪几种角色各是什么？
+
+6.new和不new的区别
+
+7.原型和原型链的关系
+
+8.this会出现在哪些地方，改变this的方法有哪些
+
+9.继承的方式
+
+10.如何进行数据劫持
+
+
+
+
+
+
+
+

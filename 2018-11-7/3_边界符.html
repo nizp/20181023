@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="li1">
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+/* .li1{
+    border: 1px solid #000;
+} */
+</style>
+</head>
+<body>
+    <ul>
+        <li class="li1     li2">1</li>
+        <li class=" li1 ">2</li>
+        <li class="li12 li1">3</li>
+        <li>4</li>
+        <li class="li1">5</li>
+    </ul>
+<script>
+    /*
+        \b:边界符
+        \B:非边界符
+
+        '|sada| |sd| |sa|'
+
+
+    */    
+    // let str = 'sada sd sds';
+    // console.log(str.replace(/\b/g,'|'));
+
+    let arr = [];
+    let eles = document.getElementsByTagName('*'); //所有的元素
+
+    //没处理过的 只能找到className为li1的，但是'li1 li2'|| ' li1 '就找不到
+    // for(let i=0;i<eles.length;i++){
+    //     if(eles[i].className === 'li1'){
+    //         arr.push(eles[i]);
+    //     }
+    // }
+
+
+    //下面的方法就能解决上面for的问题
+    // for(let i=0;i<eles.length;i++){
+    //     //如果元素身上有className，就用空格切
+    //     if(eles[i].className){
+    //         let arr2 = eles[i].className.split(' ');
+    //         arr2.forEach(str=>{
+    //             //如果切完className之后，字符和li1相等，说明这个元素带有li1，就要把这个元素放到数组中
+    //             if(str === 'li1'){
+    //                 arr.push(eles[i]);
+    //             }
+    //         })
+    //         console.log(arr2)
+    //     }
+    // }
+
+
+    //用正则来解决
+    /*
+        |li1| li2
+        li2 lii     ^li1\s+
+          li1       \s+li1\s+
+        
+        li1        ^li1$
+
+                    (^|\s+)li1(\s+|$)
+    */
+
+    // let re = /\bli1\b/;
+    let s = 'li1';
+    // let re = new RegExp('\\b'+ s + '\\b');
+    let re = new RegExp('(^|\\s+)'+ s + '(\\s+|$)');  
+
+    for(let i=0;i<eles.length;i++){
+        let str = eles[i].className;
+        if(re.test(str)){
+            arr.push(eles[i]);
+        }
+    }
+
+
+
+    arr.forEach(e=>{
+        e.style.border = '1px solid #000';
+    });
+
+    console.log(arr);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

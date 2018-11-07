@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        正则方法:
+
+            //.test()
+            //.exec()
+
+            string.match(//)
+            string.replace(''|//,''|callback)
+
+            元字符:
+                \d
+                \D
+                \w
+                \W
+                \s
+                \S
+                \b
+                \B
+                \n
+
+            修饰符:
+                i
+                g
+                m
+            
+            分组()
+
+            范围[]
+                数字:0-9
+                字母:a-z|A-Z|A-Za-z
+                中文:\u4e00-\u9fa5
+
+            ^开头 $结尾
+
+            ^3213$
+            ^213213$^213321$
+            
+            量词:
+                +
+                ?
+                *  最小没有，最多无限
+                {n,m}
+
+            [^abc]  排除括号中的任意一项
+
+
+
+            367321321313233543521321321
+    */    
+
+//    let str = 'a1ca2ca3cabca0c';
+      let str2 = '367321321313233543521321321'; 
+//    console.log(str.match(/^a[^123]c$/g));//a[0b]c
+
+    //这个字符串中有没有符合5到11位字符串正则的规则，只要有就直接返回
+    //   console.log(/^[1-9]\d{4,10}$/.test(str2));
+
+</script>
+</body>
+</html>

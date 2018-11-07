@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        找出下面字符串中，出现次数最多的是谁，出现了几次？
+
+        {
+           d:1,
+           n:1,
+           s:2,
+           a:1 
+        }
+    */    
+    let str = 'dnsasudhusadssasdgsjdgddsjsddhaslfdiusadlhsdsfudahsful';
+
+    // let obj = {};
+    // for(let i=0;i<str.length;i++){
+    //     if(!obj[str[i]]){
+    //         obj[str[i]] = 1;
+    //     }else{
+    //         obj[str[i]] ++;
+    //     }
+    // }
+    let n = 0;//-Infinity; //负无穷大
+    let name = '';
+    // for(let attr in obj){
+    //     if(obj[attr] > n){
+    //         /*
+    //             6 > -Infinity
+
+    //             n = 6
+
+    //             13 > 6
+    //             n = 13
+
+    //             3 > 13
+    //         */
+    //         n = obj[attr]; 
+    //         name = attr;
+    //     }
+    // }
+
+    
+    let str2 = str.split('').sort().join('');
+    /*
+         str.split('')
+    */
+
+    // console.log( str.split('').sort().join(''))
+    str2.replace(/([a-z])\1+/g,function($0,$1){ //$0本次匹配的字符，$1,第一个分组
+        console.log('$0:'+$0,'$1:'+$1)
+        if(n < $0.length){
+            n = $0.length;
+            name = $1;
+        }
+    });
+
+    console.log(n,name);
+
+
+</script>
+</body>
+</html>

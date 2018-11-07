@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        类数组:
+            类似于数组，它有和数组一样的下标，length，[]，但是不能使用数组的方法
+
+            比如:
+                一组元素
+
+        
+        类数组转数组:
+            Array.from(类数组)-> Array
+
+            目的就是为了使用数组的方法
+
+            Array.prototype.slice.call(类数组)
+
+            [].slice.call(类数组)
+
+            Array.prototype.slice = function(){
+                let arr = [];
+                for(let i=0;i<this.length;i++){
+                    arr.push(this[i]);
+                }
+                return arr;
+            }
+            call(arguments)
+
+
+    */   
+   
+    
+    // console.log(Array.prototype.slice === [].slice);
+    
+    function fn(){
+        // arguments = Array.from(arguments);
+        // arguments = Array.prototype.slice.call(arguments);
+        arguments = [...arguments];
+        arguments.push(8);
+        console.log(arguments);
+        console.log(Array.isArray(arguments));
+      
+    }
+    fn(1,2,3,4,5,6,6);
+
+</script>
+</body>
+</html>
