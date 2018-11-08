@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    const box = document.getElementById('box');
+    let arr = [10,-10,8,-8,6,-6,4,-4,2,-2,0];
+    let timer = null;
+    let num = 0;
+    box.onclick = function(){
+        timer = setInterval(()=>{
+            this.style.left = arr[num] + 'px';
+            num++;
+            if(num > arr.length){
+                clearInterval(timer);
+                num = 0; //以便下次使用
+            }
+        },16.7);
+    }
+
+
+
+</script>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+    /* padding:100px; */
+    /* border:10px solid #000; */
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br> 132132312
+        <br>
+        132132312
+        <br>
+        132132312
+        <br> 132132312
+        <br> 132132312
+        <br>
+    </div>
+<script>
+    /*
+        当前看得见的尺寸:
+            ele.clientWidth/ele.clientHeight  number类型的
+            支持padding，不支持border
+
+        
+        既支持border也支持padding的
+            offsetWidth/offsetHeight;
+
+        如果没有固定的宽高且被内容撑开，那么会计算被内容撑开的高度。
+
+
+        就算有固定宽高，也能获取被内容撑开的高度(实测不包含边框)
+            scrollWidth/scrollHeight
+
+    */
+    
+        //console.log(box.clientHeight);
+        // console.log(box.offsetHeight);
+        console.log(box.scrollHeight);
+
+</script>
+</body>
+</html>

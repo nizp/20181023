@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        字符串遇到\+字母，需要注意是否为元字符，如果是元字符，要转义。
+
+        ()
+
+        .  任意一个字符
+            \n \r
+
+        
+        match -> [] null
+        test -> 布尔值  判断
+        replace
+            替换
+            callback -> 每匹配一次正则就调用一次函数
+            子项
+
+
+        只要函数调用:
+            运行代码
+            返回值（）
+
+            只要是函数、方法都有返回值
+                [1,2,3]
+            4   arr.push(5); //[1,2,3,5] 
+
+
+
+        function fn(){
+            let a = 10;
+            return a;
+        }
+       
+        alert( fn() );
+        
+    */
+    // let str = 'dsadsa\\ndsa';
+    // let re = new RegExp('\\b');
+    // console.log(re);
+    // let str = `dsad.sadsa.dsaa`;
+    // console.log(str.match(/(ds(a)\1+\2/));  //dsadsa
+
+
+    // let num = 10.55442132;
+
+    // console.log(num.toFixed(2));
+
+
+    // console.log(str.match(/.+/g))
+
+
+    let obj = {
+        name:'刘晓婷',
+        age1:18,
+        mm:'杨雅婷',
+        age2:16,
+        12:12
+    };
+
+    //   /{\w+}/
+    let str = '我的名字叫{name}，{12}今年{age1}岁,我还有个妹妹叫{mm}，今年{age2}岁.';
+
+    // console.log(str.match(/{[^}]+/))  //  \{(\w+)\}
+
+    let s = str.replace(/{(\w+)}/g,($0,$1)=>{
+        // console.log(obj[$1]);
+        return obj[$1];
+    });
+    console.log(s);
+
+    let arr = [1,1,22,5];
+
+    arr.push(5,arr.push(6)); //[1,1,22,5,6,5,5] 
+
+    arr.unshift(arr.push(arr.pop(20)));//[7,1,1,22,5,6,5,5] 
+
+    console.log(arr);
+
+</script>
+</body>
+</html>

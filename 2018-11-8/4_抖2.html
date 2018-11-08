@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    const box = document.getElementById('box');
+    
+    box.onclick = function(){
+        dou(box,'left',20,function(){
+            box.style.background = 'skyblue';
+            setTimeout(()=>{
+                box.style.top = '200px';
+                box.style.transition = '1s';
+            },50);
+        });
+    }
+
+
+    function dou(ele,attr,n,callback){
+        let arr = [];
+        let timer = null;
+        let num = 0;
+        for(let i=n;i>0;i-=2){
+            arr.push(-i,i);
+        }
+        arr.push(0);
+
+        // let begin = parseFloat(getComputedStyle(ele).left);//px
+        let begin = parseFloat(getComputedStyle(ele)[attr]);
+        // console.log(attr);
+        timer = setInterval(()=>{
+            // ele.style.left = begin + arr[num] + 'px';
+            ele.style[attr] = begin + arr[num] + 'px';
+            num++;
+            if(num > arr.length){
+                clearInterval(timer);
+                num = 0; //以便下次使用
+                /*
+                    当某个条件（事件）成立的时候，触发的函数就叫钩子函数（回调函数）
+                */
+                callback && callback();
+                // if(callback)callback();
+                // ele.style.background = 'skyblue';
+            }
+        },16.7);
+    }
+
+
+
+</script>
+<script>
+
+</script>
+</body>
+</html>

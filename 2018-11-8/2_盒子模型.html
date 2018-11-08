@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+}
+#box{
+    width:200px;
+    transform: translate(10px,20px) rotate(10deg);
+}
+</style>
+</head>
+<body>
+    <div id="box" style="width:300px"></div>
+<script>
+    const box = document.getElementById('box');
+
+    /*
+        obj.style.width
+
+        obj = {
+            style:{
+                width:100
+            }
+        }
+
+        元素计算之后的样式:
+            getComputedStyle(ele).attr  (高版本浏览器使用)
+                *** 带单位的尺寸
+
+            
+            ele.currentStyle.attr; (IE低版本下使用)
+                box.currentStyle.width;
+        
+
+
+    */
+
+    // console.dir(box);
+
+    // console.log(getComputedStyle(box).width);
+
+    // console.log(box.style.width); //'100px',不知道,'获取不到'
+
+    // console.log();
+
+    let arr = getComputedStyle(box).transform.match(/-?\d+/g);
+
+    let y = arr[arr.length-1];
+    let x = arr[arr.length-2];
+
+    console.log(arr);
+
+</script>
+</body>
+</html>
