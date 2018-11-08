@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+}
+#b{
+    position: absolute;
+    top:100px;
+}
+#b2{
+    position: absolute;
+    top:200px;
+}
+#b3{
+    position: absolute;
+    top:250px;
+}
+
+</style>
+</head>
+<body>
+    <div id="b">
+        <div id="b2">
+            <div id="b3">
+                <div id="box"></div>
+            </div>
+        </div>
+    </div>
+    
+<script src="my_tools.js"></script>
+<script>
+    // $('#box').
+    const box = document.querySelector('#box');
+    // console.log( obj.offset('#box').l );
+    box.onclick = function(){
+        obj.dou(this,'left',10);
+    }
+
+
+    console.log(obj.toDou('05'));
+    
+
+</script>
+</body>
+</html>

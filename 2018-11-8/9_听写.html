@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        
+        1.什么是闭包，举例说明闭包的应用场景.
+
+        closure
+        函数套函数，子函数引用父函数的参数或者变量并且子涵数被外界引用（没被释放）
+        此时父函数形成闭包环境,这个时候父级的参数或者变量不会被浏览器垃圾回收机制回收。
+
+        闭包多了一定是不好的。如果在开发的时候遇到了，闭包环境又不想让变量或者参数不回收，
+        在使用完之后赋值null
+
+        应用场景:
+            减少全局污染
+            存储父函数的参数或者变量，为了累积运算
+
+
+            选项卡，不使用自定义属性，使用闭包
+
+            (function(a){
+                lis[a].onclick = function(){
+                    alert(a);
+                }
+            })(i);
+
+    */
+    
+    // function fn(){
+    //     let a = 0;
+    //     function fn2(){
+    //         a++;
+    //     }
+    //     a = null;
+    //     return fn2;
+    // }
+    // let f = fn();
+    // console.dir(f);
+
+
+    // for(var i=0;i<5;i++){
+    //     // setTimeout(function(){
+    //     //     console.log(i);  
+    //     // },50);
+    //     (function(i){
+    //         setTimeout(function(){
+    //             console.log(i);  
+    //         },50);
+    //     })(i);
+    // }
+    //5个i=5
+    // A:5个6  B:1个6  C:01234  D:5个5  E:1个5
+
+
+    /*
+        2.let和var的区别
+
+        let 不会映射window     var 会
+
+        let 没有预解析（暂存死区）     var 有
+
+        let 支持块作用域       var 不支持
+
+        let 不能重名           var 可以重名
+
+
+    */
+
+
+
+   /*
+        3.什么是高级单例模式、工厂模式
+
+        功能更强大的单独实例模式，用一个匿名函数自执行返回一个对象，对象中可以选择暴露对外接口
+
+        从而达到高内聚、低耦合的开发效果。
+
+        工厂模式:
+            归类、封装达到批量生产的目的（原料->加工->出厂3个阶段，返回对象）
+   */
+
+
+
+  /*
+        4.什么是面向对象？
+
+        把具有相同的特征的代码抽象出来，归为一类，把描述这个类的细节、功能挂在这个类的原型上的一种设计开发编程思想。
+  */
+
+ /*
+        5.函数有哪几种角色各是什么？
+
+        普通函数
+        类（构造函数）
+        对象-> new Function
+ */
+    // function fn(){}
+
+    // Function.prototype.say = 30;
+    // fn.prototype.say = 20;
+
+    // console.dir(fn);
+
+/*
+    6.new和不new的区别
+
+    new                       不new
+
+    不加括号也能执行            必须加括号
+
+    this默认指向实例            window
+
+    return 复杂类型=复杂类型    return 写啥是啥
+           简单类型=实例
+
+    默认return 实例            默认undefined    
+
+*/
+
+/*
+    7.原型和原型链的关系
+
+    原型-> 当创建函数的时候自身带的属性prototype,
+            原型是解决性能问题，实例上没有，就会去构造函数的原型下查找
+
+    
+    原型链-> 当创建一个对象的时候自身带的属性 __proto__
+
+    实例__proto__ === 构造函数的原型
+
+
+    实例没有 -> 类中查看 -> 实例.__proto__ -> 构造函数的原型
+
+    构造函数的原型.__proto__ -> Object.prototype
+
+
+*/
+
+/*
+   8. this会出现在哪些地方，改变this的方法有哪些
+
+    window
+        fn();
+        定时器
+        箭头暴露在全局
+        匿名函数
+
+    对象
+        .前面的
+
+    实例化对象
+        实例
+
+    undefined
+        严格模式 'use strict'
+
+    事件
+        触发之后，this为事件绑定元素
+
+    父级域的this
+        
+        箭头函数
+
+    
+    call
+        无数，第一个都是改变this
+        第二个参数之后就是实参
+    apply
+        2个参数，第二个参数是数组
+    bind
+        无数参数，调用之后不会立马执行函数，而是返回一个改变this之后的函数，需要手动调用
+
+
+*/
+
+/*
+    9.继承的方式
+
+    call（类式）
+        调用父类，call改变this
+
+    拷贝
+        for in
+
+        hasOwnproperty
+
+        children.prototype = Object.assgin({},parent.prototype);
+
+    原型
+
+        function ph(){}
+        ph.prototype = parent.prototype
+        children.prototype = new ph;
+
+        修改constructor = children类
+
+    寄生式组合
+
+       children.prototype = Object.create(parent.prototype)
+
+
+    对象继承
+
+        function ph(){}
+        ph.prototype = parent.prototype
+        obj.__proto__ = new ph;
+
+    ES6继承
+
+        class Childen extends Parent {
+            constructor(,...arg){
+                super(...arg);
+            }
+        }
+
+*/
+
+
+/*
+    10.如何进行数据劫持
+*/
+    // let obj = {
+    //     num:2
+    // }
+    // let n = 2;
+    // Object.defineProperty(obj,'num',{
+    //     get(){
+    //         n += 2;
+    //         return n;
+    //     },
+    //     set(){
+
+    //     }
+    // });
+
+    // console.log(obj.num < 5 && obj.num > 5);
+
+    // console.log(obj.num);
+
+
+    var num = 5;
+    var obj = {num: 18};
+    obj.fn = (function (num) {
+        this.num = num * 5; //window.num = 90
+        num--;//17
+        return function (n) {//10
+            this.num -= n; // this.num = NaN
+            num++;  
+            console.log(num,this.num); //20
+        }
+    })(obj.num);//18
+
+
+    var fn = obj.fn;
+    fn(3); //window.num=87  num=18
+
+    obj.fn(20);//num=19  obj.num = -2
+
+    new obj.fn(10);//num=20
+
+    console.log(num, obj.num);//window.num=87  obj.num = -2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>
