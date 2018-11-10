@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        正则:
+            专门用来检索（模糊范围）字符串的一种规则
+
+            简写://  在杠里面可以放不带''的字符串或者规则（元字符、分组）
+            标准:new RegExp() 
+                第一个参数：
+                    可以放字符串或者正则，注意：如果是字符串形式的元字符，记得要转义。
+                
+                第二个参数:
+                    修饰符
+
+
+            使用变量或者参数的时候，使用new RegExp，如果只是单纯的字符串就使用//
+
+            \:转义符
+            
+            特殊含义的转义符:（元字符）
+                \+字母  有了别的意思
+
+            \s  一个空格
+
+    */
+
+
+//    let str = '\\s'; //空格
+//    console.log(str);
+    // console.log(/a/);
+    // console.log(new RegExp('/a/'));//  /a/   / '\/a\/' /  /\/a\//
+
+    let str = 'abc';
+
+    function fn(str,arg){
+        // let re = /arg/;
+        let re = new RegExp(arg);
+        console.log(re.test(str));
+    }
+    fn(str,'b');
+
+
+
+
+</script>
+</body>
+</html>

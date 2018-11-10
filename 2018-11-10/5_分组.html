@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    /*
+        ():分组||子项
+
+            从左往右的顺序计数
+
+            在replace或者在match中，获取分组从第二个参数起
+
+            \d
+            \D 一个非数字
+    */
+
+    let str = '2018----11---/.10';
+
+    console.log(str.replace(/(\d+)\D+(\d+)\D+(\d+)/,($0,$1,$2,$3)=>{
+        // console.log($1,$2,$3);
+
+        // return $1 + '年' + $2 + '月' + $3 + '日';
+
+        return `${$1}年${$2}月${$3}日`;
+    }));
+
+
+      
+    
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

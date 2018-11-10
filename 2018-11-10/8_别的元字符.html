@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        \d  一个数字
+        \D  一个非数字
+        \s  一个空格
+        \S  一个非空格
+        \w  一个数字、字母、下划线
+        \W  一个非数字、字母、下划线
+        \b  一个边界符
+        \B  一个非边界符
+        \n  一个换行
+    */    
+
+//    let re = new RegExp('\\s+','g');
+//    let str = 'dns  ajdj  sa  k';
+    // let arr = ['d asd','dsa  dsa','j19dj 1  '];
+    // let arr = ['<  li>','<di>1  23</di  v>','</li>'];
+    // console.log(arr);
+    // console.log(arr.join('|').replace(/\s+/g,'').split('|'));
+    //  console.log(arr.join('').match(/\S+/g).join(''));
+//    str.replace(re,'');
+//    console.log(re,str.replace(re,''))
+
+
+    /*
+        6~18个字符，可使用字母、数字、下划线，需以字母开头
+
+        [A-Za-z]\w{5,17}
+    */
+
+
+    /*
+        \b
+            边界符
+
+            文字是没有边界的。
+
+                比如:
+                    你好고사！
+ 
+        abc
+    */
+
+    let str = 'a ca s d 1你好고사！';
+
+    console.log(str.replace(/\b/g,'|'));
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

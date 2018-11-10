@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<script type="text/javascript">
+  
+  /*
+      类数组:
+        长得像数组，有下标，也有length，但是不是一个真正的数组，不能使用数组的方法.
+        
+        为了能让类数组使用数组的方法，所以要把类数组转成数组。
+        
+        比如:
+          arguments、elements
+          
+        Array.from(类数组);
+        
+        Array.prototype.slice.call(类数组)
+        
+        [].slice.call(类数组)
+   */
+  
+
+  function fn(){
+    // console.log(arguments);
+    //
+    let arr = Array.from(arguments);
+    arr.push(6);
+    console.log(arr);
+  }
+  fn(1,2,3,4,5);
+</script>
+</body>
+</html>

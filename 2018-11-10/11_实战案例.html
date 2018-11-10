@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: orange;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        h2{
+            text-align: center;
+        }
+        .wrap{
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #fff;
+            background-color: #fff;
+            margin: 100px auto;
+            padding: 30px;
+        }
+        ul{
+            margin-left: 10px;
+        }
+        li{
+            margin-top: 20px;
+        }
+        li span{
+            width: 70px;
+            text-align: right;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        button{
+            margin-left: 104px;
+            margin-top: 20px;
+            width: 100px;
+            height: 30px;
+        }
+        button.bnd{
+            cursor:no-drop;
+        }
+        button.nd{
+            cursor: pointer;
+        }
+
+
+        .ok{
+            border-color: green;
+            color: green;
+        }
+        .nook{
+            border-color: red;
+            color: red;
+        }
+        input{
+            outline: none;
+            height: 30px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <h2>注册信息</h2>
+    <ul>
+        <li>
+            <span>QQ</span>
+            <input type="text" placeholder="请输入QQ号" class="qq">
+        </li>
+
+        <li>
+            <span>邮箱</span>
+            <input type="text" placeholder="请输入邮箱" class="email">
+        </li>
+
+        <li>
+            <span>手机</span>
+            <input type="text" placeholder="请输入手机号" class="phone">
+        </li>
+
+        <li>
+            <span>出生日期</span>
+            <input type="text" placeholder="请输入****年*月*日" class="day">
+        </li>
+    </ul>
+    <button class="btn bnd" id="btn" disabled>注册</button>
+</div>
+
+<script>
+
+    /*
+        ok
+        nook
+    */
+
+    //把类数组转成了数组
+    const inputs = Array.from(document.querySelectorAll('input'));
+
+    /*
+        把要校验的正则放到一个对象中管理
+    */
+    let re = {
+        qq:/^[1-9]\d{4,10}$/,
+        email:/^[A-Za-z]\w{5,17}@[1-9A-Za-z]{2,8}(\.(com|cn|net)){1,2}$/,
+        phone:/^1[345789]\d{9}$/,
+        day:/^\d+\D+\d+\D+\d+\D*$/
+    }
+
+    let arr = []; //主要存储每一次验证的结果,有几个输入框就有几个布尔值。
+    
+    inputs.forEach((ele,i)=>{
+        arr.push(false); //每个input校验结果 初始为false
+        ele.cName = ele.className;//为了存储初始的class名字，为了之后用
+        ele.oninput = function(){
+            // console.log(this.cName);
+            if(re[this.cName].test(this.value)){ //每个输入框中都能验证对应的规则
+                //成功就添加绿色，删除红色
+                this.classList.remove('nook');
+                this.classList.add('ok');
+                arr[i] = true;//当前对应的布尔值设置为true
+            }else{
+                this.classList.remove('ok');
+                this.classList.add('nook');
+                arr[i] = false;////当前对应的布尔值设置为false
+            }
+            
+            // console.log(arr,arr.every(e=>e));
+            //[1,1,2,1];
+            /*
+                arr.every(num=>{
+                    return num == 1;
+                })
+
+                true  false
+            */
+            btn.disabled = !arr.every(e=>e);
+            btn.className = !arr.every(e=>e)?'bnd':'nd';
+        }
+    });
+
+    console.log(arr);
+
+    // let arr2 = [1,1,2,1,1,1];
+    // console.log(arr2.every(n=>n==1));//false;
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

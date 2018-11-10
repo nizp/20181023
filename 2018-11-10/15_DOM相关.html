@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" index="1" xiaopipi="皮皮虾"></div>
+<script>
+    /*
+        DOM映射
+            通过document提供获取页面标签的接口，这个获取的为元素对象
+            这个对象和标签是一一对应的关系。
+
+            标签上的所有属性，都是能够和元素进行对应
+
+                id,className,src,value
+
+            并不是所有的标签属性都是一一对应在第一层属性上的
+
+            box = {
+                id:'box',
+                attributes:{
+                    index:{
+                        nodeName:
+                        nodeValue:1
+                    }
+                }
+            }
+
+
+
+        DOM回流
+            DOM中如果操作了某个元素的位置或者大小，会导致浏览器会重新计算每个
+            元素的所占的位置，这样特别消耗性能，尽量少操作DOM
+
+            批量操作DOM的时候最好使用字符串
+            其次使用createElement()、appendChild....
+            最后使用文档碎片
+                let frg = document.createDocumentFragment();
+                frg.append(ele1);
+                frg.append(ele2);
+                parentNode.appendChild(frg[ele1,ele2])
+
+
+        
+        DOM重绘
+            当页面中元素的背景或者字体颜色发生改变，
+            那么浏览器要对元素进行重新的描绘；这种现象就是“重绘”；
+        
+
+    */  
+    
+    const box = document.getElementById('box');
+
+    function getAttribute(obj,attr){
+        let attrs = obj.attributes;
+        for(let i=0;i<attrs.length;i++){
+            if(attrs[i].nodeName === attr){
+                return attrs[i].nodeValue;
+            }
+        }
+        return null;
+    }
+
+    console.log(getAttribute(box,'xiaopipi'));
+
+
+    // console.dir(box.attributes.index.nodeValue);
+    
+</script>
+</body>
+</html>

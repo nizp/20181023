@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="./json2.js"></script>
+<script>
+    /*
+        eval:
+            能把字符串以js的方式尽可能运行。
+    */    
+
+    let json = "{'name':'小蛛蛛'}";
+    // eval('alert(1+1)');
+    // console.log(JSON.parse(json));
+    // console.log(eval('('+ json +')'));
+
+    // console.log(new Function('a,b','return a+b')(1,2));
+
+    console.log(new Function('','return'+json)());
+
+
+</script>
+</body>
+</html>

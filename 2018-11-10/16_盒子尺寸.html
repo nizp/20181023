@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    /* padding:100px; */
+    /* left:0; */
+    border: 10px solid #898989;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+            12132<br>
+    </div>
+<script>
+    /*
+        getComputedStyle(obj).attr  带单位  只能获取指定的样式，计算后的样式。不支持padding
+
+            在获取left，top...位置的时候，必须设置一个默认值
+
+        clientWidth/clientHeight
+            支持padding 不带单位，number类型的，不支持border
+
+        clientLeft/clientTop
+            左边框/上边框
+
+
+        offsetWidth/offsetHeight
+            包含边框 + padding + 元素大小
+
+            在没有设置固定宽高的时候，走被内容撑开的宽高
+
+        
+        scrollHeight/scrollWidth
+            不支持边框，但是支持被内容撑开的宽高。
+
+
+
+        
+
+        
+
+
+        
+
+        
+    */    
+   const box = document.getElementById('box');
+//    console.log(box.style.width);
+    // console.log(getComputedStyle(box).width);
+    // console.log(getComputedStyle(box).opacity);
+    // console.log(box.clientWidth);
+    // console.log(box.clientLeft); //边框
+
+    // console.log(box.offsetHeight);
+
+    console.log(box.scrollHeight);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        JSON ->  数据格式
+
+        本质是字符串
+
+        '{"key":"value"}' || '[]' 都叫JSON
+
+
+        都是高版本浏览器使用的,低版本用json2.js
+
+        JSON 转对象 -> JSON.parse(JSON); 
+                转不了undefined和函数(一转就报错)
+
+                第一个参数:json
+                第二个参数:callback
+                    可以进一步处理数据(key,val)=>{}
+
+        对象 转 JSON -> JSON.stringify(obj);
+                转不了undefined和函数(转完之后不会显示)
+
+
+
+    */
+    
+    let json = '{"key":"VALUE","key2":null,"keyx":12,"keyy":"zhufeng"}';
+    // let obj = {"key":"value",key2:undefined,fn:function(){},b:true};
+
+    // console.log(JSON.stringify(obj));
+    // console.log();
+
+    let obj2 = JSON.parse(json,(key,val)=>{
+    //    console.log(key,val);
+        if(typeof val === 'string'){
+            return val[0].toUpperCase() + val.substring(1);
+        }
+        return val;
+    });
+
+    console.log(obj2);
+    
+</script>
+</body>
+</html>

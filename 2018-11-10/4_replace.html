@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        string.replace(''||正则,''||callback);
+
+            返回:新的字符串
+
+            替换:把第一个参数替换第二个参数
+
+
+            callback：
+                正则每匹配到一次字符串就调用一次函数并且把匹配到的字符串放进去
+
+
+        | 或者  ||
+    */
+
+   let str = '毒液上映了';
+    //console.log(str.replace('毒液','小蛛蛛的天敌'));
+    // console.log(str.replace(/毒液|了/g,'小蛛蛛的天敌'));
+
+    let s = str.replace(/毒液|了/g,function($0,$1,$2,$3){
+        console.log($1,$2,$3);//index,input,undefined
+        return $0=='了'?'鸟':'小蛛蛛的天敌';
+    });
+
+    console.log(s);
+
+    
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
