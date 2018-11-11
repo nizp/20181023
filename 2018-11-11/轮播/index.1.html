@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+<style>
+#mask{
+    width:1000px;
+    height: 300px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    font-size:0;
+}
+#prev,#next{
+    width:50%;
+    height:300px;
+    display: inline-block;
+}
+
+#prev::after{
+    content: "";
+    width:28px;
+    height: 45px;
+    background:url('./img/pre.png') 0 0 no-repeat;
+    position:absolute;
+    left:0;
+    top:128px;
+    opacity: 0;
+    transition: 1s;
+    cursor: pointer;
+}
+#next::after{
+    content: "";
+    width:28px;
+    height: 45px;
+    background:url('./img/pre.png') -50px 0 no-repeat;
+    position:absolute;
+    right:0;
+    top:128px;
+    opacity: 0;
+    transition: 1s;
+    cursor: pointer;
+}
+#prev:hover::after,#next:hover::after{
+    opacity: 1;
+}
+
+
+</style>
+</head>
+<body>
+<div id="outer">
+    <div id="mask">
+        <div id="prev"></div>
+        <div id="next"></div>
+    </div>
+    <div id="swiper" style="transition: .3s; margin-left: -1000px">
+        <div><img src="img/banner4.jpg" alt=""></div>
+        <div><img src="img/banner1.jpg" alt=""></div>
+        <div><img src="img/banner2.jpg" alt=""></div>
+        <div><img src="img/banner3.jpg" alt=""></div>
+        <div><img src="img/banner4.jpg" alt=""></div>
+        <div><img src="img/banner1.jpg" alt=""></div>
+    </div>
+    <ul id="focus">
+        <li class="select"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    var curIndex = 1;
+    var _outer = document.getElementById("outer");
+    var _swiper = document.getElementById("swiper");
+    var timer = null;
+    var _mask = document.getElementById("mask");
+    var _lis = document.getElementById("focus").getElementsByTagName("li");
+
+    for(var i = 0,len = _lis.length; i < len; i++){
+        // _lis[i].curIndex = i;
+        // _lis[i].onclick = function(){
+        //     this.curIndex;
+        //     console.log(this.curIndex);
+        // }
+
+        ;(function(nCurIndex){
+            _lis[nCurIndex].onclick = function(){
+                // this.curIndex;
+                // console.log(curIndex);
+                // nCurIndex
+
+                _swiper.style.marginLeft=-(nCurIndex+1) *1000+"px";
+                curIndex = nCurIndex + 1;
+                renderFocus();
+            }
+        })(i);
+    }
+
+    // 鼠标滑到按钮上
+    _outer.onmouseover = function(){
+        // alert(123)
+        // 移出定时器
+        clearInterval(timer);
+    }
+    // 鼠标一开始重新开始轮播
+    _outer.onmouseout = function(){
+        // alert(123)
+        // 移出定时器
+        timer = setInterval(function (){
+            // curIndex++;
+            // if(curIndex > 3){
+            //     curIndex = 0
+            // }
+            // _swiper.style.marginLeft=-curIndex *1000+"px";
+            // renderFocus();
+
+            curIndex++;
+            if(curIndex == 6){
+                _swiper.style.transition = "";
+                curIndex = 1
+            }else{
+                _swiper.style.transition = ".3s";
+            }
+
+            _swiper.style.marginLeft=-curIndex *1000+"px";
+            renderFocus();
+        }, 1000);
+    }
+
+    // 点击按钮
+    _mask.onclick = function(e){
+        // e是事件对象
+        // e.target 是事件源
+        var _id = e.target.id; // id为prev curIndex++, id为next currentIndex--;
+
+        if(_id == "prev"){
+            curIndex++;
+
+            if(curIndex > 5){
+                curIndex = 1;
+                _swiper.style.transition="";
+            }else{
+                _swiper.style.transition=".3s";
+            }
+        }else if(_id == "next"){
+            curIndex--;
+
+            if(curIndex < 0){
+                curIndex = 4;
+                _swiper.style.transition="";
+            }else{
+                _swiper.style.transition=".3s";
+            }
+        }
+        // console.log(e.target.id)
+
+        _swiper.style.marginLeft=-curIndex *1000+"px";
+        renderFocus();
+    }
+
+    // 定时器setInterval
+    timer = setInterval(function (){
+        curIndex++;
+        if(curIndex == 6){
+            _swiper.style.transition = "";
+            curIndex = 1
+        }else{
+            _swiper.style.transition = ".3s";
+        }
+
+        _swiper.style.marginLeft=-curIndex *1000+"px";
+        renderFocus();
+    }, 1000);
+
+    // curIndex
+    function renderFocus(){
+        //console.log(curIndex) 
+        
+        for(var i = 0, len = _lis.length; i < len;i++){
+            _lis[i].className = "";
+
+            if(curIndex == 0){
+                _lis[3].className = "select";
+            }else if(curIndex == 5){
+                _lis[0].className = "select";
+            }else{
+                if(i == (curIndex-1)){
+                    _lis[i].className = "select";
+                }
+                // }else{
+                //     _lis[i].className = "";
+                // }
+            }
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

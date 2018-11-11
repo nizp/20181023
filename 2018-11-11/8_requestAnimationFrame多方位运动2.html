@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    /* left:2em; */
+    left :0;
+    top:0;
+    font-size:2rem;
+}
+</style>
+</head>
+<body>
+    <div id="box">1321313213</div>
+    <script src="./tween.js"></script>
+<script>
+   
+    box.onclick = function(){
+        // move(box,'opacity',0,1000);
+        // move(box,'left','10em',1000,2);
+        // move(box,'top','10em',1000);
+
+        /*
+            {
+                width:100,
+                height:100
+            }
+        */
+
+        // move(box,{
+        //     left:{
+        //         begin:2,
+        //         count:'10em'
+        //     },
+        //     top:'10em',
+        //     fontSize:20
+        // },500);
+
+
+        move(box,{
+            left : 300,
+            top:'300px',
+            width:500,
+            fontSize:{
+                begin:2,
+                count:'5rem'
+            },
+            opacity:.2
+        },500);
+    }
+
+    /*
+        j = {
+            left:{
+                begin:,
+                count:10,
+                unit:
+            },
+            top:{
+                begin:,
+                count:,
+                unit:
+            },
+            left:10,
+            right:{
+                count:100
+            }
+        }
+    */
+
+    function move(ele,attrs,duration){
+        let j = {}
+        let begin = 0;
+        let re = /px|rem|em/;
+        let unit = 'px';
+        let timer = null;
+        let t = 0;
+        for(let k in attrs){
+            //top:'10em';   || typeof attrs[k] === 'number'
+            unit = 'px';
+            if(typeof attrs[k] === 'string'){
+                begin = parseFloat(getComputedStyle(ele)[k]);
+                unit = attrs[k].match(re)?attrs[k].match(re)[0]:'px';
+                j[k] = {
+                    begin,
+                    count:parseFloat(attrs[k]) - begin,
+                    unit
+                }
+            }else if(attrs[k].constructor == Object){
+                if(typeof attrs[k].count === 'string'){
+                    unit = attrs[k].count.match(re)?attrs[k].count.match(re)[0]:'px'; 
+                }
+                j[k] = {
+                    begin:attrs[k].begin,
+                    count:parseFloat(attrs[k].count) - attrs[k].begin,
+                    unit
+                }
+            }else{
+                begin = parseFloat(getComputedStyle(ele)[k]);
+                j[k] = {
+                    begin,
+                    count:attrs[k] - begin,
+                    unit
+                }
+            }
+        }
+
+        (function animate(){
+            timer = requestAnimationFrame(animate);
+            
+            t += 16.7;
+
+            if(t >= duration) t = duration;
+            
+            for(let k in j){
+                if(k === 'opacity'){
+                   
+                    // ele.style[k] = t/duration * j[k].count + j[k].begin;
+                    ele.style[k] = Tween.elasticBoth(t, j[k].begin, j[k].count, duration);
+                }else{
+                    // ele.style[k] = t/duration * j[k].count + j[k].begin + j[k].unit;
+                    ele.style[k] = Tween.elasticBoth(t, j[k].begin, j[k].count, duration) + j[k].unit;
+                }
+            }
+
+            if(t === duration){
+                cancelAnimationFrame(timer);
+            }
+            
+
+        })();
+        
+
+        console.log(j);
+
+    }
+
+    
+</script>
+</body>
+</html>

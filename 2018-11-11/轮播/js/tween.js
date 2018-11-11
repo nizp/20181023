@@ -141,6 +141,56 @@ var Tween = {
 	}
 }
 
+function move(obj){
+	//默认配置
+	let opt = {
+		ele:null,
+		attrs:{},
+		time:1000,
+		callback:function(){},
+		fx:'linear'
+	}
+	let j = {}, 
+		b = 0,
+		oldDate = new Date;
+
+	//有配置走配置，没配置走默认
+	Object.assign(opt,obj);
+	
+	//计算c和b
+	for(let i in opt.attrs){
+		b = parseFloat(getComputedStyle(opt.ele)[i])
+		j[i] = {
+			b,
+			c:opt.attrs[i] - b
+		}
+	}
+	
+	(function animate(){
+		opt.ele.timer = requestAnimationFrame(animate);
+		let t = new Date - oldDate;
+		
+		if(t >= opt.time){
+			t = opt.time;
+		}
+		// Tween[fx](t, b, c, d);
+		for(let attr in j){
+			let v = Tween[opt.fx](t,j[attr].b,j[attr].c,opt.time);
+			if(attr === 'opacity'){
+				opt.ele.style[attr] = v;
+			}else{
+				opt.ele.style[attr] = v + 'px';
+			}
+		}
+		
+		if(t === opt.time){
+			cancelAnimationFrame(opt.ele.timer);
+			opt.callback();
+		}
+
+	})();
+
+}
 
 
 
