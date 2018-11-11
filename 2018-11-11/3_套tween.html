@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script src="./tween.js"></script>
+<script>
+    /*
+        d:总的时间
+        c:总的距离
+        t:当前使用的时间
+        b:起始的位置
+
+        t/d*c+b
+    */
+    let d = 1000;
+    let c = 500;
+    let b = parseFloat(getComputedStyle(box).top); 
+    c = c-b;
+    let timer = null;
+    document.onclick = function(){
+        let old = new Date;
+        
+        timer = setInterval(()=>{
+            let t = new Date - old;
+
+            if(t >= d)t=d;
+            let v = Tween.bounceOut(t, b, c, d);
+            box.style.top = v + 'px';
+
+            if(t===d){
+                clearInterval(timer);
+            }
+
+        },16.7);
+    }
+</script>
+</body>
+</html>

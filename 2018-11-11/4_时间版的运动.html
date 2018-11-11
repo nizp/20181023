@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        在前端能用css操作的尽量用css，因为性能更好
+
+        js动画在以前主要是使用定时器来实现的
+
+        由于主流的屏幕刷新率都在60hz，因此渲染一帧的事件就必须控制在16.7ms内才能保证不掉帧
+        动画更细腻
+
+
+        速度版、时间版 核心原理都是在某个时间上运动多少。
+
+
+        定时器，写的16.7不一定是16.7，只能说是16.7左右
+
+        * t : time 已过时间
+        * b : begin 起始值
+        * c : count 总的运动值
+        * d : duration 持续时间
+        * 
+        
+        10000/10000 * 500 = 500
+
+    */
+
+   var timer = null;
+   var duration = 10000;
+   var count = 500;
+   
+   document.documentElement.onclick = function(){
+        var t = 0;
+        var begin = parseFloat(getComputedStyle(box).left);
+        count = count-begin;
+        timer = setInterval(function(){
+            t += 16.7;
+            if(t >= duration)t = duration;
+            box.style.left = t/duration * count + begin + 'px';
+            if(t === duration){
+                clearInterval(timer);
+            }
+            
+        },16.7);
+   }
+    
+
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        requestAnimationFrame采用系统时间间隔，保持最佳绘制效率，
+        不会因为间隔时间过短，造成过度绘制，增加开销；也不会因为间隔时间太长，
+        使用动画卡顿不流畅，让各种网页动画效果能够有一个统一的刷新机制，
+        从而节省系统资源，提高系统性能，改善视觉效果
+
+
+        requestAnimationFrame(运动函数)
+
+        返回值为 number（编号）
+
+        cancelAnimationFrame(编号)关闭动画帧
+        
+
+    */    
+
+    (function move(){
+        let timer = requestAnimationFrame(move);
+        let date = new Date();
+
+        box.innerHTML = date.getFullYear() +'年'+(date.getMonth()+1) +'月'+
+
+        date.getDate() + '日' + date.getHours() +':'+date.getMinutes() + ':'+
+        
+        date.getSeconds();
+
+        document.onclick = function(){
+            cancelAnimationFrame(timer);
+        }
+        
+    })();
+//    console.log(timer)
+
+   
+
+</script>
+</body>
+</html>

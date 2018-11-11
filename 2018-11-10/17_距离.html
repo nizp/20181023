@@ -59,6 +59,7 @@ div{
   while (obj) {
     l += obj.offsetLeft + obj.clientLeft;
     obj = obj.offsetParent;
+    console.log(obj);
   }
   l -= box3L;
   console.log(l);

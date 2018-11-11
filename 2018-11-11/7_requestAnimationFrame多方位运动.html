@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:2em;
+    top:0;
+    font-size:12px;
+}
+</style>
+</head>
+<body>
+    <div id="box">1321313213</div>
+    <script src="./tween.js"></script>
+<script>
+   
+    box.onclick = function(){
+        // move(box,'opacity',0,1000);
+        // move(box,'left','10em',1000,2);
+        // move(box,'top','10em',1000);
+
+        move(box,{
+            left:{
+                begin:2,
+                count:'10em'
+            },
+            top:'10em',
+            fontSize:30
+        },1000);
+    }
+
+    function move(ele,attr,duration){ //如果begin不为px，那么目标点要写单位
+        let time = 0;
+        let v = null; //存动画的方式
+        let timer = null;
+        let re = /rem|em|px/; //为了验证目标点是否有合法单位
+        let unit = 'px'; //存默认的单位
+        
+        /*
+            {
+                left:{
+                    begin:2,
+                    conut:'10em',
+                    unit:'em'
+                },
+                top:{
+                    begin:parseFloat(getComputedStyle(ele)[attr]),
+                    count:'10em',
+                    unit:'em'
+                }
+            }
+        */
+
+       let j = {};
+       for(let k in attr){
+           unit = 'px';
+           if(typeof attr[k] === 'string' || typeof attr[k] === 'number'){
+                let begin = parseFloat(getComputedStyle(ele)[k]);
+                if(typeof attr[k] === 'string'){
+                    unit = attr[k].match(re)?attr[k].match(re)[0]:'px';
+                }
+                j[k] = {
+                    count:parseFloat(attr[k]) - begin,
+                    begin,
+                    unit
+                }
+           }else{
+                if(typeof attr[k].count === 'string'){
+                    unit = attr[k].count.match(re)?attr[k].count.match(re)[0]:'px';
+                }
+                j[k] = {
+                    count:parseFloat(attr[k].count) - attr[k].begin,
+                    begin:attr[k].begin,
+                    unit
+                };
+           }
+       }
+       
+       console.log(j);
+     
+
+        (function animation(){
+
+            timer = requestAnimationFrame(animation);
+
+            time += 16.7;
+
+            if(time >= duration)time = duration;
+            
+
+            for(let k in j){
+                // v = time/duration * j[k].count + j[k].begin;
+                v = Tween.elasticOut(time, j[k].begin, j[k].count, duration);
+                ele.style[k] = (k === 'opacity') ? v: v + j[k].unit;
+            }
+
+            if(time === duration){
+                cancelAnimationFrame(timer);
+            }
+        })();
+    }
+
+</script>
+</body>
+</html>

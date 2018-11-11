@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:2em;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+   
+    box.onclick = function(){
+        // move(box,'opacity',0,1000);
+        move(box,'left','10em',1000,2);
+    }
+
+    function move(ele,attr,count,duration,begin){ //如果begin不为px，那么目标点要写单位
+        let time = 0;
+        let v = null; //存动画的方式
+        let timer = null;
+        let unit = 'px'; //存默认的单位
+        begin = begin?begin:parseFloat(getComputedStyle(ele)[attr]);
+       
+        let re = /rem|em|px/; //为了验证目标点是否有合法单位
+        /*
+            如果count是一个字符串，'100px'|'1rem'...
+            
+            此时要把设置的单位截取出来，最后添加对应的单位。
+        */
+        if(typeof count === 'string'){
+            unit = count.match(re)?count.match(re)[0]:'px';
+        }
+        //目标点 - 起始位置 = 实际运动距离 
+        count = parseFloat(count) - begin;
+
+        (function animation(){
+
+            timer = requestAnimationFrame(animation);
+
+            time += 16.7;
+
+            if(time >= duration)time = duration;
+
+            v = time/duration * count + begin;
+            // if(attr === 'opacity'){
+            //     ele.style[attr] = v;
+            // }else{
+            //     ele.style[attr] = v + 'px';
+            // }
+            
+            //如果是opacity那么是不加单位的
+            ele.style[attr] = (attr === 'opacity') ? v: v + unit;
+
+            if(time === duration){
+                cancelAnimationFrame(timer);
+            }
+        })();
+    }
+
+</script>
+</body>
+</html>
