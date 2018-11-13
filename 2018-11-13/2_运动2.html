@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left :10rem;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script src="tween.js"></script>
+<script>
+    const box = document.getElementById('box');
+    /*
+        move(ele,{left:200,top:200},1000)
+        move(ele,{left:{begin:10,count:'20rem'},top:200})
+        move(ele,{left:{begin:10,count:'20rem'},top:'200px'})
+
+        回调函数（钩子）:
+            某个条件成立时执行的函数就叫回调函数（callback）
+    */
+   let onOff = false;
+    box.onclick = function(){
+        if(onOff)return;
+        // onOff = true;
+        // move(this,{
+        //     left:{
+        //         begin:10,
+        //         count:'20rem'
+        //     },
+        //     top:'300px'
+        // });
+
+
+        // move({
+        //     fx:'elasticOut',
+        //     ele:this,
+        //     attrs:{
+        //         top:100,
+        //         left:{
+        //             begin:10,
+        //             count:'20rem'
+        //         }
+        //     }
+        // });
+
+
+
+        move({
+            fx:'elasticBoth',
+            ele:this,
+            attrs:{
+                left:{
+                    begin:10,
+                    count:'20rem'
+                },
+                top:'200px'
+            },
+            callback(){
+                move({
+                    ele:box,
+                    attrs:{
+                        width:400
+                    },
+                    fx:'bounceOut',
+                    callback(){
+                        move({
+                            ele:box,
+                            attrs:{
+                                left:{
+                                    begin:20,
+                                    count:'10rem'
+                                },
+                                top:0,
+                                width:100
+                            },
+                            fx:'elasticBoth'
+                        })
+                    }
+                })
+            }
+        })
+
+        /*,()=>{
+            document.documentElement.style.transition = '.5s';
+            document.documentElement.style.background = 'skyblue';
+        }*/
+    }
+    /*
+        count
+        begin
+        {
+            ele,
+            attrs,
+            duration,
+            callback
+        }
+    */
+    function move(obj){
+        //默认的属性
+        let opt = {
+            ele:null,
+            attrs:{},
+            duration:1000,
+            fx:'linear',
+            callback:function(){}
+        }
+
+        //有配置走配置，没配置走默认
+        Object.assign(opt,obj);
+        
+        let j = {};
+        let begin = 0;
+        let time = 0;
+        let re = /px|rem|em/;
+        
+        for(let k in opt.attrs){
+            if(typeof opt.attrs[k] === 'number' || typeof opt.attrs[k] === 'string'){
+                begin = parseFloat(getComputedStyle(opt.ele)[k]);
+               
+                j[k] = {
+                    count:parseFloat(opt.attrs[k]) - begin,
+                    begin
+                }
+            }else if(opt.attrs[k].constructor === Object){
+                j[k] = {
+                    count:parseFloat(opt.attrs[k].count) - opt.attrs[k].begin,
+                    begin:opt.attrs[k].begin,
+                    unit:opt.attrs[k].count.match(re)?opt.attrs[k].count.match(re)[0]:'px'
+                }
+            }
+        }
+        
+        // console.log(j);
+
+        // return
+
+        (function animate(){
+            opt.ele.timer = requestAnimationFrame(animate);
+            time += 16.7;
+            if(time >= opt.duration)time = opt.duration;
+            
+            for(let k in j){
+                // let v = time/duration*j[k].count + j[k].begin;
+                let v = Tween[opt.fx](time, j[k].begin , j[k].count, opt.duration);
+                // ele.style[k] = (k==='opacity')?v:v+'px';
+                // console.log((j[k].unit?j[k].unit:'px'),v,k)
+                opt.ele.style[k] = (k==='opacity')?v:v+(j[k].unit?j[k].unit:'px');
+            }
+
+            if(time === opt.duration){
+                cancelAnimationFrame(opt.ele.timer);
+                opt.callback();
+            }
+            
+        })();
+
+
+
+
+
+        // console.log(j);
+
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

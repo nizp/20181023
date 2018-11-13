@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+<style>
+#list img{
+    opacity: 0;
+    transition: 1s;
+}
+</style>
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <span>排序</span>
+        <a href="javascript:;" kk="time">上架时间
+            <i class="up"></i>
+            <i class="down"></i>
+        </a>
+        <a href="javascript:;" kk="hot">热度
+            <i class="up"></i>
+            <i class="down"></i>
+        </a>
+        <a href="javascript:;" kk="price">价格
+            <i class="up"></i>
+            <i class="down"></i>
+        </a>
+    </div>
+    <ul id="list">
+        <!-- <li>
+            <img src="img/1.jpg" alt="">
+            <span>华为畅享7（香槟金）</span>
+            <span>2018-01-01</span>
+            <span>1</span>
+            <span>992</span>
+        </li> -->
+    </ul>
+</div>
+<script src="json/product.js"></script>
+<script src="./my_tools.js"></script>
+<script>
+    // console.log(data);  let d = data.concat(data);
+
+    /*
+        
+        
+        ele.setAttribute('index',1)
+           标签的属性,在元素的attributes中显示
+            
+        ele.index = 1;
+
+            直接在元素对象的下就能查看到属性。
+
+
+        img的src有个地址之后，会有2个事件去查看图片到底有没有
+
+        onload 只有图片能够正常显示才会进onload
+
+        onerror 只有图片不能正常显示才会进onerror
+
+
+    */
+
+
+    
+    data.push(...data);//复制数据
+
+    //生成结构
+    let temp = '';
+    data.forEach(d => {
+        temp += `
+            <li index="${d.img}">
+                <img alt="">
+                <span>${d.title}</span>
+                <span>${d.time}</span>
+                <span>${d.price}</span>
+                <span>${d.hot}</span>
+            </li>
+        `;
+    });
+    list.innerHTML = temp;
+
+
+    //获取每个li的绝对位置
+    let lis = document.getElementsByTagName('li');
+    
+    //给每个li设置高度的自定义属性
+    //优点：
+    //  因为找绝对位置是通过while循环求出来的，
+    //  而这个循环只把每个元素的绝对位置计算一次出来
+    //  如果放到滚轮事件中，每滚轮一次都会计算一次，性能就稍微差一些
+
+    for(let i=0;i<lis.length;i++){
+        lis[i].top = obj.offset(lis[i]).t;
+        console.log(lis[i].top)
+    }
+
+    // console.log(obj.offset(lis[5]).t);
+
+    let iH = window.innerHeight; //可视区的高度
+    /*
+        如果全部加载完成，再次滚轮的时候就不用循环了
+    */
+    let num = 0;
+
+    //防抖.  当滚轮完成的时候（不滚轮的时候），才执行一次函数，不然快速滚轮，会触发多次调用函数
+    let timer = null;
+    // window.onscroll = function(){
+    //     clearInterval(timer);
+    //     timer = setTimeout(function(){
+    //         console.log(1);
+    //     },500);
+    // }
+
+
+    fn();//没滚轮的时候也要看一下哪些图片应该显示
+    window.onscroll = function(){
+        clearInterval(timer);
+        timer = setTimeout(function(){
+            fn();
+        },500);
+    }
+
+
+    function fn(){
+        // if(num == lis.length)return;
+        /*
+            循环的条件是循环次数、num != lis.length（num只有每次加载完才会++，当num==lis.length，说明加载完成，加载完成就不用for循环了）
+
+        */
+        for(let i=0;i<lis.length && num != lis.length;i++){
+            /*
+                当滚轮的距离 + 可视区的高度 大于或者等于 
+                把每个li的top就把index取出来赋值给img的src
+            */
+            if((window.pageYOffset + iH) >= lis[i].top){
+                //看看在可视区范围内的li是否有index这个属性，如果有就加载，如果没有说明之前已经加载过了就不用加载了
+                if(lis[i].getAttribute('index')){
+                    //有可能有图片是坏的，创建一个img使用它的onload和onerror
+                    let img = new Image;
+                    let linkPic = lis[i].getAttribute('index');
+                    img.src = linkPic;
+                    //当图片能够加载出来，就把src赋值
+                    img.onload = function(){
+                        lis[i].children[0].src = linkPic;
+                        lis[i].children[0].style.opacity = 1;
+                        //删除index这个属性，为了下次就不会再次添加src了
+                        lis[i].removeAttribute('index');
+                        //为了知道加载了多少条数据，当num==lis长度的时候，就说明加载完了
+                        num++;
+                    }
+                    //如果图片坏了，就替换一张默认热图
+                    img.onerror = function(){
+                        lis[i].children[0].src = './img/timg.jpg';
+                        lis[i].children[0].style.opacity = 1;
+                        lis[i].removeAttribute('index');
+                        num++;
+                    }
+                }
+            }
+            console.log(num);
+        }
+        console.log(1);
+        // console.log(lis[0].top);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left :10rem;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script src="tween.js"></script>
+<script>
+    const box = document.getElementById('box');
+    /*
+        move(ele,{left:200,top:200})
+        move(ele,{left:{begin:10,count:'20rem'},top:200})
+        move(ele,{left:{begin:10,count:'20rem'},top:'200px'})
+
+        回调函数（钩子）:
+            某个条件成立时执行的函数就叫回调函数（callback）
+    */
+   let onOff = false;
+    box.onclick = function(){
+        if(onOff)return;
+        // onOff = true;
+        move(this,{
+            left:{
+                begin:10,
+                count:'20rem'
+            },
+            top:'300px'
+        },1000);
+
+        /*,()=>{
+            document.documentElement.style.transition = '.5s';
+            document.documentElement.style.background = 'skyblue';
+        }*/
+    }
+    /*
+        count
+        begin
+    */
+    function move(ele,attrs,duration,callback){
+        let j = {};
+        let begin = 0;
+        let time = 0;
+        let timer = null;
+        let re = /px|rem|em/;
+        
+        for(let k in attrs){
+            if(typeof attrs[k] === 'number' || typeof attrs[k] === 'string'){
+                begin = parseFloat(getComputedStyle(ele)[k]);
+                console.log(begin)
+                j[k] = {
+                    count:parseFloat(attrs[k]) - begin,
+                    begin
+                }
+            }else if(attrs[k].constructor === Object){
+                j[k] = {
+                    count:parseFloat(attrs[k].count) - attrs[k].begin,
+                    begin:attrs[k].begin,
+                    unit:attrs[k].count.match(re)?attrs[k].count.match(re)[0]:'px'
+                }
+            }
+        }
+        
+        // console.log(j);
+
+        // return
+
+        (function animate(){
+            timer = requestAnimationFrame(animate);
+            time += 16.7;
+            if(time >= duration)time = duration;
+            
+            for(let k in j){
+                // let v = time/duration*j[k].count + j[k].begin;
+                let v = Tween.elasticIn(time, j[k].begin , j[k].count, duration);
+                // ele.style[k] = (k==='opacity')?v:v+'px';
+                // console.log((j[k].unit?j[k].unit:'px'),v,k)
+                ele.style[k] = (k==='opacity')?v:v+(j[k].unit?j[k].unit:'px');
+            }
+
+            if(time === duration){
+                cancelAnimationFrame(timer);
+                if(typeof callback === 'function')callback();
+            }
+            
+        })();
+
+
+
+
+
+        // console.log(j);
+
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

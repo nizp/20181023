@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+body{
+    height:3000px;
+}
+#box{
+    width:100px;
+    height:60px;
+    font:20px;
+    line-height: 60px;
+    color: #fff;
+    background:salmon;
+    text-align: center;
+    cursor: pointer;
+    right:0;
+    position: fixed;
+    bottom: 0;
+    display: none;
+}
+</style>
+</head>
+<body>
+    <div id="box">回到顶部</div>
+<script>
+    window.onscroll = function(){
+        if(window.pageYOffset >= 1100){
+            box.style.display = 'block';
+        }else{
+            box.style.display = 'none';
+        };
+    }
+    
+    box.onclick = function(){
+        let time = window.pageYOffset;
+        (function animate(){
+            box.timer = requestAnimationFrame(animate);
+            
+            time -= 100;
+            
+            if(time <= 0){
+                time = 0;
+            }
+            window.scrollTo(0,time);
+
+            if(time == 0){
+                cancelAnimationFrame(box.timer);
+            }
+
+
+        })();
+     
+        // window.scrollTo(0,0);
+    }
+
+
+</script>
+</body>
+</html>
