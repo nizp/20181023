@@ -86,29 +86,7 @@
         num ++;
         if(num>4)num=1;
         //把第二张图片换成下一张
-        img[1].src = 'img/banner'+ num +'.jpg';
-        //改变swiper的位置
-        swiper.style.left = -iW + 'px';
-        //把上一次class清空
-        prev1.className = '';
-        //把当前的class添加select
-        li[num-1].className = 'select';
-        //这个定时器是当swiper到了-1000的位置之后干的事情（这里设置的310ms，是因为transition是.3s）
-        setTimeout(()=>{
-            //把第一张变成第2张，只要第一张和第二张的图片一样，快速拉回才看不出来
-            img[0].src = 'img/banner'+ num +'.jpg';
-            //把transition清掉，没有过度动画
-            swiper.style.transition = '';
-            //快速拉回
-            swiper.style.left = 0;
-            //拉回了之后，迅速添加swiper的动画，为了下次运动使用
-            setTimeout(()=>{
-                swiper.style.transition = '.3s';
-                //再把这次的li变成，下一次的上一次。
-                prev1 = li[num-1];
-                onOff = false;
-            },30);
-        },310);
+        lunBo(num);
     }
 
     /*
@@ -117,34 +95,41 @@
     li.forEach((e,i)=>{
         e.onclick = function(){
             if(num === i+1)return;
-            img[1].src = 'img/banner'+ (i+1) +'.jpg';
-            swiper.style.left = -iW + 'px';
-            prev1.className = '';
-            li[i].className = 'select';
-            setTimeout(()=>{
-                img[0].src = 'img/banner'+ (i+1) +'.jpg';
-                swiper.style.transition = '';
-                swiper.style.left = 0;
-                setTimeout(()=>{
-                    swiper.style.transition = '.3s';
-                    prev1 = li[i];
-                    onOff = false;
-                    num = i+1;
-                },30);
-            },310);
+            lunBo(i+1);
         }
     });
 
+    timer = setInterval(next.onclick,3000);
+
+    outer.onmouseover = function(){
+        clearInterval(timer);
+    }
+    outer.onmouseout = function(){
+        timer = setInterval(next.onclick,3000);
+    }
+
+
+    function lunBo(n){
+        img[1].src = 'img/banner'+ (n) +'.jpg';
+        swiper.style.left = -iW + 'px';
+        prev1.className = '';
+        li[n-1].className = 'select';
+        setTimeout(()=>{
+            img[0].src = 'img/banner'+ (n) +'.jpg';
+            swiper.style.transition = '';
+            swiper.style.left = 0;
+            setTimeout(()=>{
+                swiper.style.transition = '.3s';
+                prev1 = li[n-1];
+                onOff = false;
+                num = n;
+            },30);
+        },310);
+    }
+
+
+
    
-
-    // timer = setInterval(next.onclick,3000);
-
-    // outer.onmouseover = function(){
-    //     clearInterval(timer);
-    // }
-    // outer.onmouseout = function(){
-    //     timer = setInterval(next.onclick,3000);
-    // }
 
 
 

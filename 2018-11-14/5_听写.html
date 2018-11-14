@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+    /*
+        1.类数组转数组的方法
+        
+            Array.from()
+
+            Array.prototype.slice.call()
+
+            [].slice.call()
+
+            [...类数组]
+
+            [].concat.apply([],lis);
+    */    
+
+   let lis = document.getElementsByTagName('li');
+
+   lis = [].concat.apply([],lis);
+
+    console.log(lis);
+
+    /*
+        2.什么是正则
+
+            专门用来检索模糊范围的字符串的一种规则
+            简写:/规则|不加引号的字符串/   
+            标准:new RegExp(//|'','修饰符')
+    */
+
+    /*
+            3.元字符有哪些？
+
+            \s \S  \D \d  \W \w \n \b \B
+            .
+    */
+
+   /*
+        4.15-150之间
+
+        15-19  1[5-9]
+        20-99  [2-9][0-9]
+        100-149 1[0-4][0-9]
+        150
+
+        /^(1[5-9]|[2-9][0-9]|1[0-4][0-9]|150)$/
+
+   */
+
+    /*
+    
+        5.什么是JSON,JSON转对象怎么办？
+
+            JSON就是一种数据类型：
+                '[]' | '{}'
+
+                JSON.parse(json) -> object  
+
+                    json必须是标准格式
+                    undefined和函数转不了
+
+                eval()
+
+                new Function
+
+                JSON.stringify(obj) -> json
+    */
+
+
+   /*
+    6.replace用在哪些地方
+
+        string.replace(''|//,''|callback);  替换的
+        字符串是替换；callback：字符串中每次匹配到规则都会调用一次这个callback
+                        参数：1.整个匹配的结果，2.有子项就是第一个子项（默认索引）
+                              3.有子项就是第二个子项（默认input）...
+
+        格式化日期
+        过滤敏感词
+        查找最多
+        模拟模板 /\{(\w+)\}/
+  */
+
+  /*
+    7.正则的方法
+        //.test()  布尔值，匹配true，否则false
+        //.exec()  []|null
+        string.match(); [] || null
+        string.replace(''|//,''|callback);  替换的
+        字符串是替换；callback：字符串中每次匹配到规则都会调用一次这个callback
+                        参数：1.整个匹配的结果，2.有子项就是第一个子项（默认索引）
+                              3.有子项就是第二个子项（默认input）...
+  */
+
+    /*
+        8.加开头结尾和不加的区别
+
+            加了开头和结尾是看整段字符串有没有匹配规则
+
+            不加只要字符串中有被规则所匹配，就返回
+    */
+
+   //  ?:  只匹配不捕获
+
+    let str = 'abcabc';
+    console.log(str.match(/a(?:b)c/));
+
+    // console.log(new Function('','return {name:"ser"}')());
+
+
+    /*
+       9.盒子的尺寸有哪些？
+
+            clientWidth/clientHeight  padding + width
+            offsetHeight/offsetWidth  padding + width + border
+            scrollHeight/scrollWidth  内容撑开的
+            clientTop/clientLeft   边框
+    */
+
+   /*
+        10.盒子的距离。
+
+        offsetLeft/offsetTop
+            (左|上)外边框的距离到定位父级的(左|上)内边框的距离
+
+        getBoundingClientRect().left/top/right/bottom
+
+   */
+
+
+
+   
+
+</script>
+</body>
+</html>
