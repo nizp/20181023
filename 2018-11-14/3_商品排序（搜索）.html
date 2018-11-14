@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+<style>
+/* #list img{
+    opacity: 0;
+    transition: 1s;
+} */
+</style>
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <span>排序</span>
+        <a href="javascript:;" data-kk="time">上架时间
+            <i class="up"></i>
+            <i class="down"></i>
+        </a>
+        <a href="javascript:;" data-kk="hot">热度
+            <i class="up"></i>
+            <i class="down"></i>
+        </a>
+        <a href="javascript:;" data-kk="price">价格
+            <i class="up"></i>
+            <i class="down"></i>
+        </a>
+
+        <input type="text" placeholder="搜索" id="txt">
+        <select id="sele">
+            <option value="hot">热度</option>
+            <option value="price">价格</option>
+            <option value="time">上架时间</option>
+            <option value="title" selected>商品名称</option>
+        </select>
+        <button id="search">确定搜索</button>
+        <button id="search2">重置</button>
+    </div>
+    <ul id="list">
+        <!-- <li>
+            <img src="img/1.jpg" alt="">
+            <span>华为畅享7（香槟金）</span>
+            <span>2018-01-01</span>
+            <span>1</span>
+            <span>992</span>
+        </li> -->
+    </ul>
+</div>
+<script src="json/product.js"></script>
+<script>
+
+    /*
+        对于数据交互来说，重点不是怎么拿数据，而是怎么操作数据，前期我们重点训练，如何操作数据
+    */
+
+    //生成结构
+    function render(data){
+        let temp = '';
+        data.forEach(d => {
+            temp += `
+                <li>
+                    <img src="${d.img}" alt="">
+                    <span>${d.title}</span>
+                    <span>${d.time}</span>
+                    <span>${d.price}</span>
+                    <span>${d.hot}</span>
+                </li>
+            `;
+        });
+        list.innerHTML = temp;
+    }
+    
+    search2.onclick = function(){
+        render(data);
+    }
+
+    render(data);
+
+    //获取每个li的绝对位置
+    let lis = document.getElementsByTagName('li');
+    let btns = Array.from(document.querySelectorAll('.header a'));
+    let prev = btns[0];
+    btns.forEach((e,i)=>{
+        e.onOff = true;
+        e.onclick = function(){
+            //点的不是自己，就把上一个清除。
+            if(prev != this){
+                prev.children[0].classList.remove('bg');
+                prev.children[1].classList.remove('bg');
+                prev.onOff = true;
+            }
+            if(this.onOff){
+                data.sort((a,b)=>{
+                    let kk = this.dataset.kk;
+                    if(kk === 'time'){
+                        return  a[kk].replace(/-/g,'') - b[kk].replace(/-/g,'')
+                    }
+                    return a[kk] - b[kk];
+                });
+                this.children[0].classList.add('bg');
+                this.children[1].classList.remove('bg');
+            }else{
+                data.sort((a,b)=>{
+                    let kk = this.dataset.kk;
+                    if(kk === 'time'){
+                        return  b[kk].replace(/-/g,'') - a[kk].replace(/-/g,'');
+                    }
+                    return b[kk] - a[kk];
+                });
+                this.children[1].classList.add('bg');
+                this.children[0].classList.remove('bg');
+            }
+            
+            this.onOff = !this.onOff;
+            prev = this;
+            /*
+               this = 价格
+               
+               prev = 'hot'
+            */
+            render(data);
+        }
+    });
+
+
+    let txt = document.getElementById('txt'),
+    sele = document.getElementById('sele'),
+    search = document.getElementById('search');
+
+    //搜索功能
+    search.onclick = function(){
+        let v = txt.value.trim();
+        if(!v){
+            alert('请输入搜索内容');
+            return;
+        }
+        /*
+            filter：把条件成立的过滤出来，返回一个新的数组，不会改变原数组的。
+        */
+        let re = new RegExp('^(huawei|hua|华|hw|为)$','i');
+        let d = data.filter(e=>{
+            //如果选择的是价格，一种是价格的区间，一种是直接写价格
+            if(sele.value === 'price'){
+                //如果是价格区间，输入的内容就带-
+                if(v.includes('-')){
+                    //就把左右两边的值取出来，来返回
+                    let arr = v.split('-');
+                    return arr[0] <= e[sele.value] && arr[1] >=  e[sele.value];
+                }else{
+                    //精确的数字
+                    return new RegExp('^'+v+'$','i').test((''+e[sele.value]));
+                }
+            }
+            //模糊匹配华为，只要复合华为的条件就直接输出华为。
+            if(re.test(v)){
+                return e[sele.value].includes('HUAWEI');
+            }
+            //如果上面的都不成立，就忽略大小写的模糊匹配。
+            return new RegExp(v,'i').test((''+e[sele.value]));
+        });
+        
+        //d就为过滤之后的新数组，是不会影响原数组的。
+        render(d);
+
+    }
+
+    
+</script>
+</body>
+</html>
