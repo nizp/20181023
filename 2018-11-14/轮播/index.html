@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+<style>
+#mask{
+    width:1000px;
+    height: 300px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    font-size:0;
+}
+#prev,#next{
+    width:50%;
+    height:300px;
+    display: inline-block;
+}
+
+#prev::after{
+    content: "";
+    width:28px;
+    height: 45px;
+    background:url('./img/pre.png') 0 0 no-repeat;
+    position:absolute;
+    left:0;
+    top:128px;
+    opacity: 0;
+    transition: 1s;
+    cursor: pointer;
+}
+#next::after{
+    content: "";
+    width:28px;
+    height: 45px;
+    background:url('./img/pre.png') -50px 0 no-repeat;
+    position:absolute;
+    right:0;
+    top:128px;
+    opacity: 0;
+    transition: 1s;
+    cursor: pointer;
+}
+#prev:hover::after,#next:hover::after{
+    opacity: 1;
+}
+
+
+</style>
+</head>
+<body>
+<div id="outer">
+    <div id="mask">
+        <div id="prev"></div>
+        <div id="next"></div>
+    </div>
+    <div id="swiper" style="transition: .3s;">
+        <div><img src="img/banner1.jpg" alt=""></div>
+        <div><img src="img/banner2.jpg" alt=""></div>
+    </div>
+    <ul id="focus">
+        <li class="select"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    /*
+        banner1-4
+    */
+    const img = document.getElementsByTagName('img');
+    const li = document.querySelectorAll('#focus li');
+    const iW = 1000; 
+    let num = 1;
+    let timer = null;
+    let prev1 = li[0];
+    next.onclick = function(){
+        //为了下张图片
+        num ++;
+        if(num>4)num=1;
+        //把第二张图片换成下一张
+        img[1].src = 'img/banner'+ num +'.jpg';
+        //改变swiper的位置
+        swiper.style.left = -iW + 'px';
+        //把上一次class清空
+        prev.className = '';
+        //把当前的class添加select
+        li[num-1].className = 'select';
+        //这个定时器是当swiper到了-1000的位置时（这里设置的310ms，是因为transition是.3s）
+        setTimeout(()=>{
+            //把第一张变成第2张，只要第一张和第二张的图片一样，快速拉回才看不出来
+            img[0].src = 'img/banner'+ num +'.jpg';
+            //把transition清掉，没有过度动画
+            swiper.style.transition = '';
+            //快速拉回
+            swiper.style.left = 0;
+            //拉回了之后，迅速添加swiper的动画，为了下次运动使用
+            setTimeout(()=>{
+                swiper.style.transition = '.3s';
+                //再把这次的li变成，下一次的上一次。
+                prev1 = li[num-1];
+            },30);
+        },310);
+    }
+    // timer = setInterval(next.onclick,3000);
+
+
+
+</script>
+</body>
+</html>
