@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box1{
+    width:150px;
+    height: 150px;
+    background:orange;
+    position: relative;
+}
+#box2{
+    width:50px;
+    height: 50px;
+    background: khaki;
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+</style>
+</head>
+<body>
+    <!-- <select name="" id="sele">
+        <option value="0">上海</option>
+        <option value="1">北京</option>
+        <option value="2">湖南</option>
+        <option value="3">邯郸</option>
+    </select>
+    <div id="box">小笼包</div> -->
+
+    <!-- <input type="text" id="txt" placeholder="万万没想到">
+    <input type="radio">
+    <input type="checkbox" >
+    <input type="button" value="按钮">
+    <div>1321321</div>
+    <a href="#">xxx</a> -->
+
+
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+   
+
+<script>
+    /*
+        onclick
+        onmouseover
+        onmouseout
+        onscroll
+        oninput
+        onchange
+        ondblclick
+        onload
+            静态资源加载完成之后执行（window.onload）
+        onresize
+
+        一个页面，只有一个焦点元素会被激活，一开始，页面中有一个焦点
+        当按了tab键或者直接激活之后焦点会从页面（window,document）中移到焦点元素身上
+
+        onfocus():焦点事件
+        onblur():失去焦点事件
+
+
+
+        onmouseenter    移入
+        onmouseleave    移出
+        上面这2个事件，没有冒泡，也不穿透
+
+
+
+        
+           
+
+    */    
+
+    //1
+    // let arr = ['小笼包','北京烤鸭','黑臭豆腐','没吃的'];
+    // sele.onchange = function(){
+    //     // console.log(arr[this.value]);
+    //     box.innerHTML = arr[this.value];
+    // }
+
+
+
+
+    //2
+    // txt.onfocus = function(){
+    //     // console.log('焦点');
+    //     this.placeholder = '';
+    // }
+    // txt.onblur = function(){
+    //     // console.log('失焦');
+    //     // if(!this.value){
+    //     //     this.placeholder = '万万没想到';
+    //     // }
+    //     this.placeholder = '万万没想到';
+    // }
+    // txt.focus(); //自动聚焦
+
+
+    //3
+    // box1.onmouseover = function(){
+    //     alert('box1移入');
+    // }
+    // box1.onmouseout = function(){
+    //     alert('box1移出');
+    // }
+    // box2.onmouseover = function(ev){
+    //     alert('box2移入');
+    //     // ev.cancelBubble = true;
+    // }
+    // box2.onmouseout = function(ev){
+    //     alert('box2移出');
+    //     // ev.cancelBubble = true;
+    // }
+
+    // 解决方案:使用onmouseenter和onmouseleave
+    // box1.onmouseenter = function(){
+    //     alert('box1移入');
+    // }
+    // box1.onmouseleave = function(){
+    //     alert('box1移出');
+    // }
+    // box2.onmouseenter = function(ev){
+    //     alert('box2移入');
+    // }
+    // box2.onmouseleave = function(ev){
+    //     alert('box2移出');
+    // }
+
+
+
+    // document.ondblclick = function(){ //双击
+    //     alert(1);
+    // }
+
+
+</script>
+</body>
+</html>

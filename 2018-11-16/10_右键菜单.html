@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+
+#ul{
+    position: absolute;
+    left:0;
+    top:0;
+    display: none;
+    border: 1px solid #000;
+}
+li{
+    text-align: center;
+    line-height: 2em;
+}
+li:hover{
+    background: gold;
+    color:#fff;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li data-index="0">救公主</li>
+        <li data-index="1">不救公主</li>
+        <li data-index="2">自杀</li>
+    </ul>
+<script>
+    
+    window.oncontextmenu = function(ev){
+        ul.style.left = ev.pageX + 'px';
+        ul.style.top = ev.pageY + 'px';
+        ul.style.display = 'block';
+        return false;
+    }
+    let arr = ['你变成了王子','变成了屌丝','变成了恶鬼'];
+
+    ul.onmousedown = function(ev){
+        if(ev.target.nodeName === 'LI'){
+            alert( arr[ev.target.dataset.index]);
+        }
+        ev.cancelBubble = true;
+    }
+
+
+    document.onmousedown = function(){
+        ul.style.display = 'none';
+    }
+
+</script>
+</body>
+</html>

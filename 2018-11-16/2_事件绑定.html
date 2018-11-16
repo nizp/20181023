@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:200px;
+    height: 200px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <button id="btn">解除</button>
+<script>
+    const box = document.getElementById('box');
+    const btn = document.getElementById('btn');
+    /*
+        在传统事件中，同一个元素绑定多次同一个事件，那么后面的事件函数会把
+        前面的事件函数给覆盖。
+
+        在DOM2事件绑定中，可以让同一个元素，绑多次同一个事件。
+
+        DOM0级事件
+            on开头
+
+            解除事件:
+                ele.onxx = null;
+
+        DOM1级
+            DOM级别1于1998年10月1日成为W3C推荐标准。
+            1级DOM标准中并没有定义事件相关的内容，所以没有所谓的1级DOM事件模型。
+
+        DOM2级事件
+            在2级DOM中除了定义了一些DOM相关的操作之外还定义了一个*事件模型* ，
+            这个标准下的事件模型就是我们所说的2级DOM事件模型 
+            
+            addEventListener  事件绑定(监听)
+            removeEventListener解除事件绑定
+
+            ele.addEventListener('不带on的事件名',事件函数,布尔值(默认不捕获));
+
+            ele.removeEventListener('不带on的事件名',事件名（***和绑定事件的函数为同一个地址）,布尔值);
+
+            在开发移动端的时候，就要用DOM2,不然有些浏览器不会触发手机端事件
+
+
+            IE低版本用:
+                绑定：
+                    box.attachEvent('带on事件名',function(){})
+                解除:
+                    box.detachEvent('带on事件名',function(){})
+
+    */
+
+
+    // box.onclick = function(){
+    //     alert('DOM0');
+    // }
+    // box.onclick = function(){
+    //     alert(2);
+    // }
+
+    
+
+
+    box.addEventListener('click',fn);
+
+    function fn(){
+        alert(1);
+    }
+
+    btn.addEventListener('click',function(){
+        box.removeEventListener('click',fn);
+    })
+    // box.addEventListener('click',function(){
+    //     alert(2);
+    // });
+    
+
+</script>
+</body>
+</html>

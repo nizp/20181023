@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <img src="timg.jpg" alt="">
+<script>
+    /*
+        事件默认行为:
+            当用户触发某个事件的时候，某种行为不是我们主动写的而是浏览器默认做的就叫事件默认行为。
+
+
+        点击事件是由2个事件组合在一起的形成的新事件
+
+            按下:
+                onmousedown
+
+            抬起:
+                onmouseup
+
+        DOM0阻止默认行为:
+            return false
+
+        DOM2阻止默认行为:
+            ev.preventDefault();
+
+            
+
+    */
+
+    // document.onmousedown = function(){
+    //     console.log('按下');
+    //     return false;
+    // }
+
+    document.addEventListener('mousedown',function(ev){
+        console.log('按下');
+        ev.preventDefault();
+    });
+    // document.onmouseup = function(){
+    //     console.log('抬起')
+    // }
+
+
+
+</script>
+</body>
+</html>

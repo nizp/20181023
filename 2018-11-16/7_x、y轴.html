@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    position:absolute;
+    top:0;
+    left:0;
+    background:aqua;
+    cursor: move;
+}
+body{
+    height:3000px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        ev.clientX/ev.clientY
+            鼠标到可视区(基于可视区)的x、y轴
+
+        ev.pageX / ev.pageY
+            鼠标到可视区（基于页面）的X,Y轴
+
+        onmousemove
+            鼠标移动事件
+    */
+    // document.onclick = function(ev){
+    //     console.log(ev)
+    // }  
+    document.onmousemove = function(ev){
+        console.log(ev.pageY,ev.clientY);
+        box.style.left = ev.clientX - box.offsetWidth/2 + 'px';
+        box.style.top = ev.pageY - box.clientHeight/2 + 'px';
+        // box.style.top = ev.clientY - box.clientHeight/2 + window.pageYOffset +'px';
+    }  
+</script>
+</body>
+</html>

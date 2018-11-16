@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#div1{
+    background:red;
+}
+#div2{
+    background: green;
+}
+#btn{
+    /* position: absolute;
+    top:600px; */
+}
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <button id="btn">点击</button>
+        </div>
+    </div>
+<script>
+    /*
+        冒泡:
+            从目标点由下而上直到window的过程叫冒泡
+
+            如果目标元素和祖先元素绑定同一个事件，那么在执行完目标元素的事件函数之后
+            同样会调用祖先级的同一个事件中的函数。
+
+
+        捕获:
+            DOM0是检测不到捕获的，只能用DOM2来检测捕获的过程
+            从window起，自上而下，直到目标点的过程叫捕获
+
+            DOM2绑定中最后一个参数，是否捕获（true要捕获，false不捕获（冒泡））
+               默认为false,不捕获。
+
+
+        目标阶段:
+            不管是捕获还是冒泡，在目标阶段执行的顺序**按照绑定的先后顺序**来执行的（不是先捕获后冒泡）
+
+
+
+        当一个事件触发的时候，一般会经历3个过程，第一个为捕获阶段，
+        第二个为目标阶段，第三个为冒泡阶段 --- 事件流（事件模型）
+
+    */  
+    // window.onclick = function(){
+    //     alert('window');
+    // }
+    let s ;
+    div1.onclick = function(){
+        alert('red');
+    }
+    div2.onclick = function(){
+        alert('green');
+        // console.log(ev)
+    }
+    
+    btn.onclick = function(){
+        alert('按钮');
+        // console.log(ev)
+    }
+
+    // btn.onmouseover = function(){
+    //     alert('按钮');
+    // }
+
+    // div1.addEventListener('click',function(){
+    //     alert('red');
+    // },true);
+    // div2.addEventListener('click',function(){
+    //     alert('green');
+    // },false);
+    // btn.addEventListener('click',function(){
+    //     alert('按钮');
+    // },false);
+    
+    // function fn(){ alert('tred');}
+    // btn.addEventListener('click',function(){
+    //     alert('按钮2');
+    // },false);
+    // div2.addEventListener('click',function(){
+    //     alert('tgreen');
+    // },true);
+    // div1.addEventListener('click',fn,true);
+    // div1.addEventListener('click',function(){
+    //     alert('red');
+    // },false);
+    // btn.addEventListener('click',function(){
+    //     alert('T按钮2');
+    // },true);
+    // btn.addEventListener('click',function(){
+    //     alert('t按钮');
+    // },true);
+    // div2.addEventListener('click',function(){
+    //     alert('green');
+    // },false);
+    // btn.addEventListener('click',function(){
+    //     alert('按钮');
+    // },false);
+    //tred -> tgreen -> green -> red
+
+    /*
+        tred -> tgreen -> 按钮2 -> T按钮2 -> 按钮 -> t按钮 -> green -> red
+    */
+
+    
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

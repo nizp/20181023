@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    position:absolute;
+    top:0;
+    left:0;
+    background:aqua;
+    cursor: move;
+
+}
+body{
+    height:3000px;
+}
+#wrap{
+    width: 300px;
+    height: 300px;
+    border: 5px solid #000;
+    position: relative;
+    margin-left:50px;
+}
+</style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="box"></div>
+    </div>
+    
+<script>
+    
+    wrap.onmousemove = function(ev){
+        /*
+            为什么要减wrap的距离和边框？
+
+                因为ev.clientX/ev.clientY是可视区到鼠标的位置，而不是wrap的00点到鼠标位置
+                所以，要减去wrap的距离和边框，实现鼠标居中
+        */
+        let l = ev.clientX - box.clientWidth/2 - (wrap.offsetLeft + wrap.clientLeft);
+        let t = ev.clientY - box.clientHeight/2 - (wrap.offsetTop + wrap.clientTop);
+
+        if(l < 0){
+            l = 0;
+        }else if(l > wrap.clientWidth - box.clientWidth){
+            l  = wrap.clientWidth - box.clientWidth;
+        }
+
+        if(t < 0){
+            t = 0;
+        }else if(t > wrap.clientHeight - box.clientHeight){
+            t = wrap.clientHeight - box.clientHeight;
+        }
+       
+       box.style.left = l + 'px'; 
+       box.style.top = t + 'px'; 
+    } 
+
+
+    wrap.onmouseover = function(){
+        box.style.display = 'block';
+    }
+    wrap.onmouseout = function(){
+        box.style.display = 'none';
+    }
+
+
+
+
+</script>
+</body>
+</html>

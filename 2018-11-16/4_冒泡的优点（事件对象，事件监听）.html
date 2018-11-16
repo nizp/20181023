@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+li{
+    border:1px solid #000;
+}
+ul{
+    border: 2px solid red;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+
+    /*
+        事件对象：
+            当用户触发了某个事件的时候，那么事件函数的第一个参数就为事件对象
+
+            这个对象是记录了用户在操作浏览器或者元素时的相关细节信息。
+
+            低版本IE中的事件对象不在事件函数中，在window上，有个event属性
+
+            FF下事件对象只有在事件函数的第一个参数中才有，window上是没有的
+            如果在FF下直接访问event那么就会报错（因为没有这个变量）
+
+            解决：
+                window.event
+
+            chrome window有，事件函数中的第一个参数也有。
+
+            var ev = ev || event;
+            var ev = ev || window.event;
+
+            var ev = window.event || ev;
+
+
+         事件监听（事件源）
+            在事件对象中有一个属性叫target，能够捕获到事件触发时的源头是哪个元素
+            可以节省性能。
+            注意：
+                只有嵌套关系才能获得到准确的事件源
+    */
+
+    const lis = Array.from(document.getElementsByTagName('li'));
+
+    // lis.forEach(e=>{
+    //     e.onclick = function(){
+    //         ul.style.background = 'green';
+    //     }
+    // })
+
+    // ul.onclick = function(){
+    //     this.style.background = 'green';
+    // }
+
+
+    // lis.forEach(e=>{
+    //     e.onclick = function(){
+    //         this.style.background = 'green';
+    //     }
+    // })
+
+    /*
+        
+    */
+    ul.onclick = function(ev){
+        // console.dir(window.event);
+        console.log(ev.target);
+        if(ev.target.nodeName === 'LI'){
+            ev.target.style.background = 'green';
+        }
+        
+    }
+
+    
+</script>
+</body>
+</html>
