@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+<style>
+#mask{
+    width:1000px;
+    height: 300px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    font-size:0;
+}
+#prev,#next{
+    width:50%;
+    height:300px;
+    display: inline-block;
+}
+
+#prev::after{
+    content: "";
+    width:28px;
+    height: 45px;
+    background:url('./img/pre.png') 0 0 no-repeat;
+    position:absolute;
+    left:0;
+    top:128px;
+    opacity: 0;
+    transition: 1s;
+    cursor: pointer;
+}
+#next::after{
+    content: "";
+    width:28px;
+    height: 45px;
+    background:url('./img/pre.png') -50px 0 no-repeat;
+    position:absolute;
+    right:0;
+    top:128px;
+    opacity: 0;
+    transition: 1s;
+    cursor: pointer;
+}
+#prev:hover::after,#next:hover::after{
+    opacity: 1;
+}
+
+
+</style>
+</head>
+<body>
+<div id="outer">
+    <div id="mask">
+        <div id="prev"></div>
+        <div id="next"></div>
+    </div>
+    <div id="swiper" style="transition: .3s;">
+        <div><img src="img/banner1.jpg" alt=""></div>
+        <div><img src="img/banner2.jpg" alt=""></div>
+        <div><img src="img/banner3.jpg" alt=""></div>
+        <div><img src="img/banner4.jpg" alt=""></div>
+    </div>
+    <ul id="focus">
+        <li class="select"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    let swiper = document.getElementById('swiper');
+    let focusLi = document.querySelectorAll('#focus li');
+
+    swiper.innerHTML += swiper.innerHTML;
+    let iW = outer.clientWidth;
+    let lis = swiper.children;
+    let len = lis.length;
+    swiper.style.width = iW * len + 'px';
+    let active = focusLi[0];
+    let num = 0;
+    let num2 = 0;
+    next.onclick = function(){
+        num ++;
+        num2 ++;
+        active.className = '';
+        
+        focusLi[num2%focusLi.length].className = 'select';
+        if(num == len){
+            swiper.style.transition = 'none';
+            swiper.style.left = - (len/2-1) * iW + 'px';
+            num = len/2;
+        }
+        
+        setTimeout(function(){
+            swiper.style.transition = '.3s';
+            swiper.style.left = - iW * num + 'px';
+            active = focusLi[num2%focusLi.length];
+        });
+    }
+
+    prev.onclick = function(){
+        num2 --;
+        num --;
+        active.className = '';
+        if(num2 < 0){
+            num2 = focusLi.length-1
+        }
+        focusLi[num2].className = 'select';
+        if(num < 0){
+            swiper.style.transition = 'none';
+            swiper.style.left = - (len/2) * iW + 'px';
+            num = len/2-1;
+        }
+        setTimeout(function(){
+            swiper.style.transition = '.3s';
+            swiper.style.left = - iW * num + 'px';
+            active = focusLi[num2];
+        });
+    }
+
+    // let timer = setInterval(next.onclick,1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+    position:absolute;
+    left:0;
+    top:0;
+}
+body{
+    height:3000px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        ev.clientX/ev.clientY  可视区到鼠标的距离
+
+        ev.pageX/pageY  页面到鼠标的距离（包括滚动距离）
+    */
+    document.onmousemove = function(ev){
+        // box.style.left = ev.clientX - box.clientWidth/2 + 'px';
+        // box.style.top = ev.clientY - box.clientHeight/2 + 'px';
+        box.style.left = ev.pageX - box.clientWidth/2 + 'px';
+        box.style.top = ev.pageY - box.clientHeight/2 + 'px';
+        // console.log(ev.clientX,ev.clientY);
+    }
+</script>
+</body>
+</html>

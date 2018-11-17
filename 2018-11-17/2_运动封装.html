@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:200px;
+    top:0;
+}
+#bar{
+    height: 20px;
+    border: 1px solid #000;
+    width:0%;
+    background: sandybrown;
+}
+</style>
+</head>
+<body>
+    <div id="bar"></div>
+    <div id="box"></div>
+<script>
+    /*
+        当前运动的时间:
+            time
+
+        总时间:
+            duration
+
+        总距离:
+            count
+
+        开始的位置:
+            begin
+
+        time/duration * count
+
+        setInterval
+        requestAnimationFrame  16.7   返回值为数字
+        cancelAnimationFrame(放编号)
+
+
+        钩子函数（回调函数）：
+            当某个条件成立的时候执行的函数。
+    */
+
+    
+    document.onclick = function(){
+        // move(box,'left',500,1000);
+        move(box,'opacity',.4,1000,function(time,duration){
+            bar.style.width = (time/duration) * 100 + '%';
+        },function(){
+            box.style.background = 'green';
+        });
+
+        move(box,'top',300,1000);
+    }
+
+
+    function move(ele,attr,count,duration,moveMM,moveGG){
+        let timer = null;
+        let time = 0;
+        let unit = attr==='opacity'?'':'px';
+        let begin = parseFloat(getComputedStyle(box)[attr]);
+        count = count - begin;
+        ;(function animate(){
+            timer = requestAnimationFrame(animate);
+            time += 16.7;
+            if(time >= duration)time = duration;
+            moveMM && moveMM(time,duration); //在运动中的生命周期
+            ele.style[attr] = begin + time/duration * count + unit;
+            if(time === duration){
+                cancelAnimationFrame(timer);
+                moveGG && moveGG();//运动死亡的生命周期
+            }
+        })();
+    }
+   
+</script>
+</body>
+</html>

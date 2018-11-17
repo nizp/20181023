@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#box1{
+    background: orange;
+}
+#box2{
+    background: lightcoral;
+}
+
+
+</style>
+</head>
+<body>
+    <!-- <button id="btn1">添加</button>
+    <button id="btn2">删除</button> -->
+    
+    <div id="box1">
+        <div id="box2">
+            <button id="btn">按钮</button>
+        </div>
+    </div>
+<script>
+    /*
+        事件模型:
+            从捕获到目标，从目标到冒泡的整个事件过程叫事件流（一共三个阶段）。
+
+        从window起到目标点的过程，叫捕获
+        从目标点由下而上直到window的过程，叫冒泡
+
+
+        只要元素发生嵌套，都有相同的事件函数，在触发子孙级元素的事件函数时
+        会调用祖先级对应事件的事件函数。
+
+        DOM0  
+            on开头的事件
+
+            onxx = null解除
+
+        DOM2
+            obj.addEventListener(不带事件名,事件函数,一般布尔值)
+
+            布尔值:是否捕获
+                默认为false，不捕获，即为冒泡
+
+            obj.removeEventListener(不带事件名,和绑定一致的函数,和绑定布尔值一致)
+
+    */    
+
+    // btn1.addEventListener('click',fn);
+
+    // btn2.addEventListener('click',function(){
+    //     btn1.removeEventListener('click',fn);
+    // });
+    // function fn(){
+    //     alert(1);
+    // }
+
+
+
+    // box1.addEventListener('click',function(){
+    //     alert('box1')
+    // },true);
+    // box2.addEventListener('click',function(){
+    //     alert('box2')
+    // },true);
+    // btn.addEventListener('click',function(){
+    //     alert('btn')
+    // },true);
+
+    box1.addEventListener('click',function(){
+        alert('box1')
+    },false);
+    box2.addEventListener('click',function(){
+        alert('box2')
+    },false);
+    btn.addEventListener('click',function(){
+        alert('btn')
+    },false);
+
+
+
+
+
+
+    
+
+
+</script>
+</body>
+</html>

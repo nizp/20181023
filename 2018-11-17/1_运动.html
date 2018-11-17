@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:200px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        当前运动的时间:
+            time
+
+        总时间:
+            duration
+
+        总距离:
+            count
+
+        开始的位置:
+            begin
+
+        time/duration * count
+
+        setInterval
+        requestAnimationFrame  16.7   返回值为数字
+        cancelAnimationFrame(放编号)
+    */
+
+    let timer = null;
+    let time = 0;
+    let count = 500;
+    const duration = 1000;
+    console.dir(getComputedStyle(box))
+    document.onclick = function(){
+       let begin = parseFloat(getComputedStyle(box).left);
+       count = count - begin;
+        ;(function animate(){
+            timer = requestAnimationFrame(animate);
+            time += 16.7;
+            if(time >= duration)time = duration;
+            box.style.left = begin + time/duration * count + 'px';
+            if(time === duration){
+                cancelAnimationFrame(timer);
+            }
+        })();
+    }
+   
+</script>
+</body>
+</html>

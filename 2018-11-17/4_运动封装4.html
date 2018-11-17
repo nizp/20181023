@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:200px;
+    top:10rem;
+}
+#bar{
+    height: 20px;
+    border: 1px solid #000;
+    width:0%;
+    background: sandybrown;
+}
+</style>
+</head>
+<body>
+    <div id="bar"></div>
+    <div id="box"></div>
+<script>
+    /*
+        当前运动的时间:
+            time
+
+        总时间:
+            duration
+
+        总距离:
+            count
+
+        开始的位置:
+            begin
+
+        time/duration * count
+
+        setInterval
+        requestAnimationFrame  16.7   返回值为数字
+        cancelAnimationFrame(放编号)
+
+
+        钩子函数（回调函数）：
+            当某个条件成立的时候执行的函数。
+    */
+
+    
+    document.onclick = function(){
+
+        move(box,{
+            opacity:.4,
+            top:{
+                begin:10,
+                count:'20rem'
+            },
+            left:'500px'
+        },1000);
+
+    }
+
+    /*
+        j = {
+            opacity:{
+                count:,
+                begin:
+            },
+            top:{
+                count:,
+                begin:
+            }
+        }
+    */
+
+    function move(ele,attrs,duration,moveMM,moveGG){
+        let timer = null;
+        let time = 0;
+        let begin = 0;
+        let re = /px|rem|em/;
+        
+        /*
+            格式转换
+        */
+        let j = {};
+        for(let k in attrs){
+            if(attrs[k].constructor !== Object){
+                begin = parseFloat(getComputedStyle(ele)[k]);
+                j[k] = {
+                    begin,
+                    count:parseFloat(attrs[k]) - begin,
+                    unit:k ==='opacity'?'':'px'
+                }
+            }else{
+                let unit = re.test(attrs[k].count)?attrs[k].count.match(re)[0]:'';
+                j[k] = {
+                    begin:attrs[k].begin,
+                    count:parseFloat(attrs[k].count) - attrs[k].begin,
+                    unit
+                }
+            }
+        }   
+        ;(function animate(){
+            timer = requestAnimationFrame(animate);
+            time += 16.7;
+            if(time >= duration)time = duration;
+            moveMM && moveMM(time,duration); //在运动中的生命周期
+            
+            for(let k in j){
+                ele.style[k] = j[k].begin + time/duration * j[k].count + j[k].unit;
+            }
+            
+            if(time === duration){
+                cancelAnimationFrame(timer);
+                moveGG && moveGG();//运动死亡的生命周期
+            }
+        })();
+    }
+   
+</script>
+</body>
+</html>

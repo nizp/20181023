@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <div id="box"></div>
+<script>
+
+    /*
+        取消冒泡:
+            ev.cancelBubble = true; 非标准，但是都兼容
+            ev.stopPropagation(); 标准，但是低版本不兼容
+
+        ***
+            取消冒泡一定是在子孙元素的事件中阻止冒泡
+    */
+    let onOff = true;
+    btn.onclick = function(ev){
+        if(onOff){
+            box.style.display = 'none';
+        }else{
+            box.style.display = 'block';
+        }
+        onOff = !onOff;
+        
+        // ev.cancelBubble = true;
+
+        ev.stopPropagation();
+    }
+
+    document.onclick = function(){
+        box.style.display = 'none';
+        onOff = false;
+    }
+</script>
+</body>
+</html>

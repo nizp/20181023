@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    123213213123213
+<script>
+    /*
+        浏览器默认行为:
+            自己没去实现，浏览器自带的行为
+
+            DOM0 
+                return false;
+                ev.returnValue = false;
+
+            DOM2
+                
+
+    */
+
+//    document.onmousedown = function(ev){
+//     //    return false;
+//         console.log(ev);
+//         ev.returnValue = false;
+//    }
+
+    document.addEventListener('mousedown',function(ev){
+        // ev.preventDefault();
+        ev.returnValue = false;
+    });
+
+
+</script>
+</body>
+</html>

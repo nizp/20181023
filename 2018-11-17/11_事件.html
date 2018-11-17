@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <input type="text" id="txt">
+    <button id="btn">点击复制</button>
+<script>
+    /*
+        事件:
+            用户操作浏览器的时候，当某个条件成立触发的一个事务就叫事件
+        
+        元素自身就有一些事件，这些事件只是没有绑定事件函数而已，默认null
+        如果元素没有某个事件，只会当做访问对象上的一个属性而已（undefined）
+
+        用户操作页面的时候，会触发很多的浏览器事件，只有该事件绑定了事件函数之后
+        才会给用户做出响应。
+
+        onclick
+        onmouseover
+        onmouseout
+        onscroll
+        onresize
+        oninput
+        onchange
+        onload
+        onfocus  聚焦
+        onblur   失焦
+        onmousemove  移动
+        onmousedown  按下
+        onmouseup    抬起
+        onmouseenter 移入
+        onmouseleave 移出
+        oncontextmenu 右键菜单
+        ondblclick   双击
+        select  选中
+    */    
+
+//    console.log(box.onclick2);
+
+    /*
+        焦点元素:
+            input,textarea,a,select,button..
+    */
+
+
+    txt.onfocus = function(){
+        console.log(1)
+    }
+    txt.onblur = function(){
+        console.log(2)
+    }
+    // txt.focus(); //自动聚焦
+    // txt.select();//自动聚焦
+
+    btn.ondblclick = function(){
+        txt.select();
+    }
+
+
+    document.onmousedown = function(){
+        console.log('按下');
+    }
+    document.onmouseup = function(){
+        console.log('抬起');
+    }
+    document.onmousemove = function(){
+        console.log('移动');
+    }
+
+</script>
+</body>
+</html>

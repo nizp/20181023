@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body style="height:3000px">
+<script>
+    /*
+        可视区尺寸:
+            window.innerWidth/window.innerHeight（包括滚动条的高度）
+
+            document.documentElement.clientWidth/document.documentElement.clientHeight（不包括滚动条的高度）
+        
+        滚动的距离:
+            window.pageXOffset/window.pageYOffset  能读
+            window.scrollTo(x,y) 写
+            document.documentElement.scrollTop/scrollLeft  能读能写
+    */
+
+    // console.log(window.innerWidth,document.documentElement.clientWidth)
+
+    document.onclick = function(){
+        // console.log(window.pageYOffset);
+        // console.log(document.documentElement.scrollTop)
+        window.scrollTo(0,0);
+    }
+</script>
+</body>
+</html>

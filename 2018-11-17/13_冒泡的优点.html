@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>  
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+    /*
+        在高版本浏览器下，事件函数的第一个参数，是事件对象。
+
+        低版本浏览器下，全局有个event对象。
+
+        不管是高版本的第一个参数还是低版本的event对象
+        都是记录用户在触发这个事件时的一些细节信息。
+
+
+        事件监听（事件委托）ev.target事件源
+
+    */
+    ul.onclick = function(ev){
+        ev.target.style.background = 'red';
+    }
+
+
+</script>
+</body>
+</html>
