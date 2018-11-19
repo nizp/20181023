@@ -10,7 +10,7 @@
     background: red;
     position:absolute;
     left:0;
-    top:1000px;
+    top:0;
    
 }
 </style>
@@ -26,30 +26,30 @@
     let num = 0;
     let old = new Date;
     window.onkeydown = function(ev){
-        let newD = new Date();
-        console.log(newD - old);
-        old = newD;
+        // let newD = new Date();
+        // console.log(newD - old);
+        // old = newD;
         
 
-        // switch(ev.keyCode){
-        //     case 37:
-        //         num -= 2;
-        //         box.style.left = box.offsetLeft - 5 + 'px';
-        //     break;
-        //     case 38:
-        //         num -= 2;
-        //         box.style.top = box.offsetTop - 5 + 'px';
-        //     break;
-        //     case 39: 
-        //         num += 2;  
-        //         box.style.left = box.offsetLeft + 5 + 'px';
-        //     break;
-        //     case 40:
-        //         num += 2;  
-        //         box.style.top = box.offsetTop + 5 + 'px';
-        //     break;
-        // }
-        // box.style.transform = 'rotate('+ num +'deg)'
+        switch(ev.keyCode){
+            case 37:
+                num -= 2;
+                box.style.left = box.offsetLeft - 5 + 'px';
+            break;
+            case 38:
+                num -= 2;
+                box.style.top = box.offsetTop - 5 + 'px';
+            break;
+            case 39: 
+                num += 2;  
+                box.style.left = box.offsetLeft + 5 + 'px';
+            break;
+            case 40:
+                num += 2;  
+                box.style.top = box.offsetTop + 5 + 'px';
+            break;
+        }
+        box.style.transform = 'rotate('+ num +'deg)'
 
         // console.log(ev.keyCode);
     }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body _style="height:3000px">
+<script>
+    /*
+        滚屏事件:
+            onscroll
+
+        滚轮事件:
+            onmousewheel IE|chrome
+
+                通过ev.wheelDelta能够知道当前滚轮的方向，
+                上滚 180
+                下滚 -180
+
+            DOMMouseScroll  FF用的  必须用addEventListener来绑定
+                通过ev.detail能够知道当前滚轮的方向
+                上滚 -3
+                下滚 3
+
+
+    */
+    // window.onscroll =  function(){
+    //     console.log(1);
+    // }
+
+    // window.onmousewheel = function(ev){
+    //     if(ev.wheelDelta > 0){
+    //         alert('上');
+    //     }else{
+    //         alert('下');
+    //     }
+    //     // console.log(ev.wheelDelta);
+    // }
+
+
+    // window.addEventListener('DOMMouseScroll',function(ev){
+    //     if(ev.detail > 0){
+    //         alert('下');
+    //     }else{
+    //         alert('上');
+    //     }
+    // })
+
+    
+    
+    function myWhell(obj,fn){
+        if(window.onmousewheel === undefined){
+            //FF
+            obj.addEventListener('DOMMouseScroll',fn);
+        }else{
+            //IE|chrome
+            obj.addEventListener('mousewheel',fn);
+        }
+    }
+
+    myWhell(window,function(ev){
+        let o = false; //假设false就是向下，true向上(达到2个浏览器都是true为上，false为下的目的)
+        if(ev.wheelDelta){ //有ev.wheelDelta是chrome;
+            o = ev.wheelDelta > 0 ? true : false;
+        }else{
+            o = ev.detail < 0 ? true : false;
+        }
+        if(o){
+            alert('shang');
+        }else{
+            alert('xia');
+        }
+    })
+    // console.log('onmousewheel' in window)
+
+
+
+
+</script>
+</body>
+</html>

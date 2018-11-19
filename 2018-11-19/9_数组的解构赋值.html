@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        解构赋值:
+            如果要解构数组，那么声明变量的时候就要是个数组(左右两边都要是数组)。
+
+            // 报错
+                let [foo] = 1;
+                let [foo] = false;
+                let [foo] = NaN;
+                let [foo] = undefined;
+                let [foo] = null;
+                let [foo] = {};
+
+            数组中的变量可以默认赋值，当等号右边没有值的情况下，会走默认
+            否则走右边的值
+
+
+
+    */  
+//    var a = 10;
+//    var b = 5;
+   
+//    var c = a;
+//    a = b;
+//    b = c;
+
+    // a = a + b;
+    // b = a - b;
+    // a = a - b; 
+   
+
+    // var [b,a] = [a,b];
+    // console.log(a,b);
+
+    //右边为undefined，而左边有默认b=5，最后输出5
+    // var [b=5,a] = [,b];
+    // console.log(b);
+
+    //左边的格式和右边的一样，就能够对应到右边的值。
+    // let [foo, [[bar], baz]] = [1, [[2], 3]];
+    // console.log(foo,bar,baz);
+
+
+//    let [a,[b],[[c], [d],[e,[f]]]] = [1,[4],[[2], [7],[8,[9]]]];
+//    console.log(f); 
+
+
+    // let [head, ...tail] = [1, 2, 3, 4];
+    //head = 1    tail = [2,3,4]
+
+    // let [x, y=1, ...z] = ['a'];
+    // console.log(x,y,z);  a 1 []
+
+
+    // function f() {
+    //     console.log('aaa');
+    // }
+    // let [x = f()] = [];
+    // console.log(x); //aaa , undefined
+
+
+    // let x;
+    // if ([1][0] === undefined) {
+    //     x = f();
+    // } else {
+    //     x = [1][0];
+    // }
+    // console.log(x);
+
+    // let [x = 1, y = x] = [1, 2];  //1,2
+
+    /*
+        先从右往左赋值，如果右边都为undefined，
+        此时就看左边的数组变量，数组变量执行的顺序为从左边到右边
+        如果数组变量的右边使用了数组变量的左边的变量，那么是能够赋值的。
+    */
+    // let [x = 1, y = x] = []; //1,1
+      
+    // let [x = 1, y = x] = [2];  
+
+    /*
+        如果数组变量的左边使用了数组变量右边，那么是找上级作用域的值，如果没有就报错（前提是用let）
+    */
+    let [x = y, y = 1] = []; 
+
+    console.log(x,y);
+
+
+   
+        
+    
+    
+</script>
+</body>
+</html>

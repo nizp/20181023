@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+div{
+    width:100vw;
+    height:100vh;
+}
+body{
+    position: relative;
+    overflow: hidden;
+    top:0;
+    left:0;
+  
+    /* background: silver */
+}
+</style>
+</head>
+<body id="body">
+
+<script>
+    function myWhell(obj,fn){
+        if(window.onmousewheel === undefined){
+            //FF
+            obj.addEventListener('DOMMouseScroll',move);
+        }else{
+            //IE|chrome
+            obj.addEventListener('mousewheel',move);
+        }
+        
+        //事件函数
+        function move(ev){
+            let o = false; //假设false就是向下，true向上
+            if(ev.wheelDelta){ //有ev.wheelDelta是chrome;
+                o = ev.wheelDelta > 0 ? true : false;
+            }else{
+                o = ev.detail < 0 ? true : false;
+            }
+            //回调函数
+            fn(o);
+        }
+    }    
+
+
+    let color = ['pink','orange','indianred','silver','gold','skyblue']
+
+    let temp = '';
+    color.forEach(e=>{
+        temp += `<div style="background:${e}"></div>`
+    });
+    body.innerHTML = temp;
+
+    let iH = window.innerHeight;
+    let num = 0;
+    let onOff = false;
+
+    myWhell(window,function(oo){
+        if(onOff)return;
+        onOff = true;
+        if(oo){
+            num --;
+            if(num<0)num=0;
+        }else{
+            num ++;
+            if(num>color.length-1)num=color.length-1;
+        }
+        body.style.transition = '1s';
+        body.style.top = - num * iH + 'px';
+        setTimeout(function(){
+            onOff = false;
+        },1000)
+    });
+
+
+</script>
+</body>
+</html>

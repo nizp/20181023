@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body _style="height:3000px">
+<script>
+    /*
+        滚屏事件:
+            onscroll
+
+        滚轮事件:
+            onmousewheel IE|chrome
+
+                通过ev.wheelDelta能够知道当前滚轮的方向，
+                上滚 180
+                下滚 -180
+
+            DOMMouseScroll  FF用的  必须用addEventListener来绑定
+                通过ev.detail能够知道当前滚轮的方向
+                上滚 -3
+                下滚 3
+
+
+    */
+    // window.onscroll =  function(){
+    //     console.log(1);
+    // }
+
+    // window.onmousewheel = function(ev){
+    //     if(ev.wheelDelta > 0){
+    //         alert('上');
+    //     }else{
+    //         alert('下');
+    //     }
+    //     // console.log(ev.wheelDelta);
+    // }
+
+
+    // window.addEventListener('DOMMouseScroll',function(ev){
+    //     console.log(ev.detail);
+    // })
+
+    
+    
+    function myWhell(obj,fn){
+        if(window.onmousewheel === undefined){
+            //FF
+            obj.addEventListener('DOMMouseScroll',move);
+        }else{
+            //IE|chrome
+            obj.addEventListener('mousewheel',move);
+        }
+        
+        //事件函数
+        function move(ev){
+            let o = false; //假设false就是向下，true向上
+            if(ev.wheelDelta){ //有ev.wheelDelta是chrome;
+                o = ev.wheelDelta > 0 ? true : false;
+            }else{
+                o = ev.detail < 0 ? true : false;
+            }
+            //回调函数
+            fn(o);
+        }
+    }
+    
+    myWhell(window,function(a){
+        if(a){
+            alert('上')
+        }else{
+            alert('xia')
+        }
+    });
+    // console.log('onmousewheel' in window)
+
+
+
+
+</script>
+</body>
+</html>
