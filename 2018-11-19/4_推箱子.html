@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position:absolute;
+    left:0;
+    top:1000px;
+   
+}
+</style>
+</head>
+<body>
+    <input type="text">
+    <div id="box"></div>
+<script>
+    /*
+        系统为了优化用户体验，在按下时会停顿一小段时间(实测440ms左右)，主要是为了避免用户输入时出现
+        大量输入重复的内容。
+    */
+    let num = 0;
+    let old = new Date;
+    window.onkeydown = function(ev){
+        let newD = new Date();
+        console.log(newD - old);
+        old = newD;
+        
+
+        // switch(ev.keyCode){
+        //     case 37:
+        //         num -= 2;
+        //         box.style.left = box.offsetLeft - 5 + 'px';
+        //     break;
+        //     case 38:
+        //         num -= 2;
+        //         box.style.top = box.offsetTop - 5 + 'px';
+        //     break;
+        //     case 39: 
+        //         num += 2;  
+        //         box.style.left = box.offsetLeft + 5 + 'px';
+        //     break;
+        //     case 40:
+        //         num += 2;  
+        //         box.style.top = box.offsetTop + 5 + 'px';
+        //     break;
+        // }
+        // box.style.transform = 'rotate('+ num +'deg)'
+
+        // console.log(ev.keyCode);
+    }
+
+
+    
+</script>
+</body>
+</html>

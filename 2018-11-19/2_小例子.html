@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">确定</button>
+    <ul id="ul"></ul>
+<script>    
+    let temp = '';
+    btn.onclick = function(){
+        let val = txt.value;
+        temp += `<li>${val}</li>`;
+        ul.innerHTML = temp;
+        txt.value = '';
+    }
+
+
+    // txt.onkeyup = function(ev){
+    //     if( ev.keyCode == 13){
+    //         btn.onclick();
+    //     }
+    // }
+
+
+    txt.onkeyup = function(ev){
+        if(ev.ctrlKey && ev.keyCode == 13){
+            btn.onclick();
+        }
+    }
+
+
+    //txt.onkeyup = null
+    // console.log(txt.onkeyup)
+    // txt.onkeydown = function(ev){
+    //     if(ev.keyCode == 17){
+    //         txt.onkeyup = function(ev){
+    //             if(ev.keyCode === 13){
+    //                 console.log(ev.keyCode)
+    //                 btn.onclick();
+    //                 txt.onkeyup = null;
+    //             }
+    //         } 
+    //         console.log(txt.onkeyup)
+    //     }
+    // }
+   
+    
+</script>
+</body>
+</html>

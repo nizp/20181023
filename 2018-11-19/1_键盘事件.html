@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+<script>
+    /*
+        键盘事件:
+            当按键的时候触发的事件，所有的按键只认一次，如果有2次
+            那么第二次会把第一次给覆盖。所以说如果一般要使用组合键，
+            那么得使用特殊按键符。
+
+        特殊按键:(值为布尔，按着就为true，没按着就是false，默认false)
+            ctrlKey
+            shiftKey
+            altKey
+
+        onkeydown  
+            键盘按下   只要按着不抬起会一直触发
+
+            注意:
+                通过onkeydown获取输入的内容时会比当前按键少一次，所以一般都用onkeyup
+
+        onkeyup    键盘抬起
+
+
+        每个按键中都有对应的键值，这个键值是非常有规律的，这些键值通过事件对象中的
+        keyCode来获取
+
+
+        常用的按下：    
+            左上右下的键值(数字类型):
+                37,38,39,40
+            
+            数字0-9:
+                48-57  
+
+            英文a-z:
+                65-90 
+
+            回车:
+                13
+
+    */
+    
+    // document.onkeydown = function(){
+    //     console.log('按下');
+    // }
+    // document.onkeyup = function(){
+    //     console.log('抬起');
+    // }
+    
+
+    // txt.onkeydown = function(){
+    //     alert(this.value);
+    // }
+
+    txt.onkeyup = function(ev){
+        // alert(this.value);
+        console.dir(ev.keyCode);
+        switch(ev.keyCode){
+            case 37:
+                console.log('左键');
+                break;
+            case 38:
+                console.log('上键');
+                break;
+            case 39:
+                console.log('右键');
+                break;
+            case 40:
+                console.log('下键');
+                break;
+        }
+    }
+
+
+
+    /*
+        switch 跟if差不多，当某个固定的变量或者属性会发生变化的时候使用。
+
+        注意:
+            每个case完要用break(在函数中可以用return)终止switch，
+            不然会穿透（当前成立的条件之后的代码（包括下面的case）都会执行）
+
+        switch(变量|属性){
+            case 具体条件 :
+                上面条件成立的执行语句
+            break;
+            default:
+                如果上面的判断都不成立，就默认执行default的代码
+        }
+    */
+
+    // let a = '60'
+    // switch(a){
+    //     case '49' :
+    //         alert('按了数字1');
+    //     break;
+    //     case '48' :
+    //         alert('按了数字0');
+    //     break;
+    //     case '50' :
+    //         alert('按了数字2');
+    //     break;
+    //     default:
+    //         alert('都没有');
+    // }
+
+
+    
+
+
+
+</script>
+</body>
+</html>
