@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+#div1{
+    width:10px;
+    height:200px;
+    border-radius: 5px;
+    background: #999;
+    margin-left:50px; 
+    position: relative;
+}
+#div2{
+    width:10px;
+    height:20px;
+    border-radius: 5px;
+    background:firebrick; 
+    position: absolute;
+    top:0;
+    left:0;
+}
+#div3{
+    width:200px;
+    height: 200px;
+    background: orange;
+    position:absolute;
+    left:100px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <div id="div3"></div>
+<script>
+    
+    div2.onmousedown = function(ev){
+        let disY = ev.pageY - this.offsetTop;
+        document.onmousemove = function(ev){
+            let t = ev.pageY - disY;
+            if(t < 0){
+                t = 0;
+            }else if(t > div1.offsetHeight - div2.offsetHeight){
+                t = div1.offsetHeight - div2.offsetHeight;
+            }
+            
+            let scale = t/(div1.offsetHeight - div2.offsetHeight);
+            div3.style.height = (1-scale) * 200 + 'px';
+            div3.style.width = (1-scale) * 200 + 'px';
+            console.log(scale);
+
+            div2.style.top = t + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+
+    //滚轮
+    myWhell(div1,function(o){
+        let t = div2.offsetTop;
+        if(o){
+            t -= 5;
+            if(t < 0){
+                t = 0;
+            }
+        }else{
+            t += 5;
+            if(t > div1.offsetHeight - div2.offsetHeight){
+                t = div1.offsetHeight - div2.offsetHeight;
+            }
+        }
+        let scale = t/(div1.offsetHeight - div2.offsetHeight);
+        div3.style.height = (1-scale) * 200 + 'px';
+        div3.style.width = (1-scale) * 200 + 'px';
+
+        div2.style.top = t + 'px';
+    });
+
+
+    function myWhell(obj,fn){
+        if(window.onmousewheel === undefined){
+            //FF
+            obj.addEventListener('DOMMouseScroll',move);
+        }else{
+            //IE|chrome
+            obj.addEventListener('mousewheel',move);
+        }
+        
+        //事件函数
+        function move(ev){
+            let o = false; //假设false就是向下，true向上
+            if(ev.wheelDelta){ //有ev.wheelDelta是chrome;
+                o = ev.wheelDelta > 0 ? true : false;
+            }else{
+                o = ev.detail < 0 ? true : false;
+            }
+            //回调函数
+            fn(o);
+        }
+    }
+    
+
+
+
+</script>
+</body>
+</html>

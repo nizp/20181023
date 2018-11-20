@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 2;
+}
+#box2{
+    width: 100px;
+    height: 100px;
+    background: green;
+    position:absolute;
+    left:300px;
+    top:200px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    const box = document.getElementById('box');
+    let disX = 0;
+    let disY = 0;
+    let num = 0;
+    box.onmousedown = function(ev){
+        disX = ev.pageX - box.offsetLeft
+        disY = ev.pageY - box.offsetTop
+        document.onmousemove = function(ev){
+            
+            if(duang(box,box2)){
+                box2.style.background = 'yellow';
+            }else{
+                box2.style.background = 'green';
+            }
+
+            box.style.left = ev.pageX - disX + 'px';
+            box.style.top = ev.pageY - disY + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmouseup = document.onmousemove = null;
+        }
+        return false;
+    }
+
+    function duang(obj1,obj2){
+        let l1 = obj1.offsetLeft;
+        let t1 = obj1.offsetTop;
+        let b1 = t1 + obj1.offsetHeight;
+        let r1 = l1 + obj1.offsetWidth;
+
+        let l2 = obj2.offsetLeft;
+        let t2 = obj2.offsetTop;
+        let b2 = t2 + obj2.offsetHeight;
+        let r2 = l2 + obj2.offsetWidth;
+        
+        if(r1<l2 || b1 < t2 || l1 > r2 || t1 > b2){
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

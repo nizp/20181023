@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    
+    /*
+        解构的值，必须要为对象的key值，不然会为undefined
+
+        let {key1,key2,key3:k3} = obj
+
+        k3就代表key3 ,当写了:k3时，key3就失效就报错。
+
+        ({key1:obj2.xx,key2:arr[n]} = obj)
+    */
+
+    // let obj = {
+    //     name:'张强',
+    //     age:14,
+    //     sex:'男'
+    // }
+
+    
+    // let {name:n,age:a,sex} = obj;
+    // console.log(a);
+
+    // console.log(getComputedStyle(box).width)
+    // console.log(getComputedStyle(box).height)
+
+    // let {width:w,height:h} = getComputedStyle(box);
+
+    // let {top:t,left:l} = box.getBoundingClientRect();
+    // console.log(t,l);
+
+    // let { baz } = { foo: "aaa", bar: "bbb" };
+
+    // let obj = {
+    //     p: [
+    //         'Hello',
+    //         { y: 'World' }
+    //     ]
+    // };
+    // console.log( obj.p[0]  +  obj.p[1].y );
+
+    // let {p:[h,{y:w}]} = obj;
+    // console.log(h,w);
+
+    // const node = {
+    //     loc: {
+    //         start: {
+    //             line: 1,
+    //             column: 5
+    //         }
+    //     }
+    // };
+    // let {loc:{start:{line,column}}} = node;
+    // console.log(line,column)
+
+    // let obj = {};
+    // let arr = [];
+    // ({ foo: obj.prop, bar: arr[0] } = { foo: 123, bar: true });
+    // console.log(obj.prop,arr[0]);
+
+
+
+    // var {x, y = 5} = {x: 1};
+    // var {x:y=5} = {};
+    // var {x: y = 3} = {x: 5};  //y=5
+
+    // console.log(y);
+
+    // let {foo: {bar}} = {baz: 'baz'};//报错
+
+    // let x;
+    // ({x} = {x: 1});
+
+    // let {log:l,dir:d} = console;
+    // // l('231');
+    // // d(document);
+
+    // let arr = [1, 2, 3];
+    // let {0 : first, [arr.length - 1] : last} = arr;
+    // l(first,last)
+
+
+
+/****************字符串**********************/
+
+// const [a, b, c, d, e] = 'hello';
+
+// console.log(a);
+
+// let {toString: s} = 123;
+// console.log(s === Number.prototype.toString);
+
+// let arr = [1,2,3];
+// let {push:xx,pop:pp} = Array.prototype;
+// Array.prototype.xx = xx;
+// Array.prototype.pp = pp;
+// arr.xx(5);
+// console.log(arr);
+
+/***********函数的解构********/
+
+
+// function add([x, y]){
+//   return x + y;
+// }
+// add([1, 2]);
+
+
+// function fn({name,age}){
+//     console.log(name,age);
+// }
+// fn({
+//     name:'徐曹',
+//     age:3
+// });
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+</script>
+</body>
+</html>

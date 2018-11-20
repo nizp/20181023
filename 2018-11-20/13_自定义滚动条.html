@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+#div1{
+    width:10px;
+    height:200px;
+    border-radius: 5px;
+    background: #999;
+    margin-left:50px; 
+    position: relative;
+}
+#div2{
+    width:10px;
+    height:20px;
+    border-radius: 5px;
+    background:firebrick; 
+    position: absolute;
+    top:0;
+    left:0;
+}
+#div3{
+    width:200px;
+    height: 200px;
+    background: orange;
+    position:absolute;
+    left:100px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <div id="div3"></div>
+<script>
+    
+    div2.onmousedown = function(ev){
+        let disY = ev.pageY - this.offsetTop;
+        document.onmousemove = function(ev){
+            let t = ev.pageY - disY;
+
+            //限定范围
+            if(t < 0){
+                t = 0;
+            }else if(t > div1.offsetHeight - div2.offsetHeight){
+                t = div1.offsetHeight - div2.offsetHeight;
+            }
+            
+            //求比例  div2的top值 / div2目标点的top值  
+            let scale = t/(div1.offsetHeight - div2.offsetHeight);
+
+            div3.style.height = (1-scale) * 200 + 'px';
+            div3.style.width = (1-scale) * 200 + 'px';
+            console.log(scale);
+
+            div2.style.top = t + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+
+</script>
+</body>
+</html>

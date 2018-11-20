@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        this:
+            window:
+                函数名+括号  （箭头函数暴露在全局）
+                定时器直接调用的这个函数
+                匿名函数自执行
+            
+            方法:
+                方法名.前面的对象，前提条件是不被定时器直接调用
+
+            new:
+                实例化对象
+
+            严格模式:
+                undefined
+
+            事件:
+                事件函数绑定谁，触发时this就是这个元素
+
+            箭头函数:
+                只看定义时父级的域。
+                
+
+    */    
+
+    // function fn(){
+    //     console.log(this);
+    // }
+
+    document.onclick = function(){
+        // let fn = (that) => {
+        //     console.log(this,that);
+        // }
+        // fnn(fn);
+        (()=>{
+            console.log(this);
+        })();
+    }
+    // function fnn(fn){
+    //     // console.log(this);//window
+    //     fn(this);
+    // }
+
+
+    let obj = {
+        fn:function(){
+            console.log(this);
+        }
+    }
+    // setTimeout(function(){
+    //     // console.log(this);
+    //     obj.fn();
+    // },1000)
+
+    // setTimeout(obj.fn,1000);
+
+    // let fn = () => {
+    //     console.log(arguments);
+    // }
+    // fn(1,2);
+
+    // new fn; //不能new箭头函数,也没有arguments
+
+
+   
+
+
+
+
+
+
+</script>
+</body>
+</html>
