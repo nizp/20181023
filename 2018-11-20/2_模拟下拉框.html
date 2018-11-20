@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    font-size:12px;
+}
+ul{
+    width:200px;
+    border: 1px dotted firebrick;
+    display: none;
+}
+li{
+    list-style: none;
+}
+li.active{
+    background: firebrick;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul">
+       
+    </ul>
+<script>
+
+    //生成DOM结构
+    let arr = ['亲历习近平：“China, Good!”','十字路口的中国引领','携手共建更PEC上的中国声音','被抓时正在医院就诊','安倍跪了,但悄悄换了'];
+    let temp = '';
+    arr.forEach((e,i)=>{
+        temp += `<li class="${i==0?'active':''}">${e}</li>`;
+    });
+    ul.innerHTML = temp;
+
+    //获取li，设置第0个li
+    let lis = Array.from(document.getElementsByTagName('li'));
+    let li = lis[0];
+    
+    //点击
+    lis.forEach((e,i)=>{
+      e.onmousedown = function(ev){
+        li.className = '';
+        lis[i].className = 'active';
+        li = lis[i]; //把这次点击的li变成下一个次的上一次
+        num = i;//在按键的时候能够接上本次点击的li
+        txt.value = li.innerHTML;
+        ul.style.display = 'none';
+        ev.cancelBubble = true;
+      }
+    });
+    
+    
+    txt.onfocus = function(){
+        ul.style.display = 'block';
+    }
+    // txt.onblur = function(){
+    //     ul.style.display = 'none';
+    // }
+    let num = 0;
+    txt.onkeyup = function(ev){
+        switch(ev.keyCode){
+            case  38:
+                num --;
+                if(num < 0){
+                    num = arr.length - 1;
+                }
+                li.className = '';
+                lis[num].className = 'active';
+                li = lis[num];
+                this.value = li.innerHTML;
+                break;
+            case  40:
+                num ++;
+                num %= arr.length;
+                li.className = '';
+                lis[num].className = 'active';
+                li = lis[num];
+                this.value = li.innerHTML;
+                break;
+            case 13:
+                this.value = li.innerHTML;
+                ul.style.display = 'none';
+                this.blur();
+              break;
+        }
+        
+    }
+
+    document.onmousedown = function(){
+        ul.style.display = 'none';
+    }
+    
+    
+
+
+</script>
+</body>
+</html>

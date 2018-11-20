@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.y{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+    opacity: .5;
+    z-index: 10;
+}
+</style>
+</head>
+<body id="body">
+    <div id="box"></div>
+<script>
+
+    const box = document.getElementById('box');
+    let disX = 0;
+    let disY = 0;
+    let num = 0;
+    let onOff = true;
+    box.onmousedown = function(ev){
+        //按下的位置到元素边的位置 （那一小截）
+        disX = ev.pageX - box.offsetLeft;
+        disY = ev.pageY - box.offsetTop;
+
+        let div = document.createElement('div');
+        div.className = 'y';
+        div.style.left = box.offsetLeft + 'px';
+        div.style.top = box.offsetTop + 'px';
+        body.appendChild(div);
+        
+        document.onmousemove = function(ev){
+            if(onOff){
+                num ++;
+                onOff = false;
+            }
+            div.style.left = ev.pageX - disX + 'px';
+            div.style.top = ev.pageY - disY + 'px';
+        }
+        document.onmouseup = function(){
+            
+            box.style.left =  div.style.left;
+            box.style.top =   div.style.top;
+            div.remove();
+            onOff = true;
+            document.onmouseup = document.onmousemove = null;
+        }
+        return false;
+    }
+   
+
+
+
+</script>
+</body>
+</html>

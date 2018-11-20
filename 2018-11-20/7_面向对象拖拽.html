@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+
+    class Drag{
+        constructor(id){
+            this.disX = 0;
+            this.disY = 0;
+            this.box = document.getElementById(id);
+        }
+        init(){
+            // this.box.addEventListener('mousedown',this.down);
+            // let that = this;
+            // this.box.addEventListener('mousedown',function(ev){
+            //     that.down(ev,this);
+            // });
+            this.box.addEventListener('mousedown',this.down.bind(this));
+        }
+        down(ev){
+            // console.log(this,this.box);  //box,Drag
+            this.disX = ev.pageX - this.box.offsetLeft;
+            this.disY = ev.pageY - this.box.offsetTop;
+            document.addEventListener('mousemove',this.m = this.move.bind(this));
+            document.addEventListener('mouseup',this.u = this.up.bind(this));
+        }
+        move(ev){
+            this.box.style.left = ev.pageX - this.disX + 'px';
+            this.box.style.top = ev.pageY - this.disY + 'px';
+        }
+        up(){
+            document.removeEventListener('mousemove',this.m);
+            document.removeEventListener('mouseup',this.u);
+        }
+    }
+
+    let d = new Drag('box');
+    d.init();
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">点击</button>
+    <button id="btn2">解除</button>
+<script>
+
+    let a = fn.bind(this);
+    btn1.addEventListener('click',a);
+    function fn(){
+        console.log(1);
+    }
+
+    btn2.addEventListener('click',function(){
+        btn1.removeEventListener('click',a);
+    });
+
+    console.log( fn.bind(this) == fn.bind(this));//false 这2个的地址是不一样的。所以bind绑定之后再bind解除是不行的
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        拖拽的三大事件：
+            onmousedown
+            onmosuemove
+            onmouseup
+    */
+
+    const box = document.getElementById('box');
+    let disX = 0;
+    let disY = 0;
+
+    box.onmousedown = function(ev){
+        disX = ev.pageX;
+        disY = ev.pageY;
+        let dL = box.offsetLeft;
+        let dT = box.offsetTop;
+        box.onmousemove = function(ev){
+            /*
+                按下时box的距离 
+                
+                在move时候移动了多少
+                    ( 移动时的坐标 - 按下时的坐标 )
+
+                按下时box的距离  + 在move时候移动了多少 = 盒子的位置
+            */
+            box.style.left = dL + (ev.pageX - disX) + 'px';
+            box.style.top = dT + (ev.pageY - disY) + 'px';
+        }
+        box.onmouseup = function(){
+            box.onmousemove = null;
+        }
+    }
+   
+
+
+
+</script>
+</body>
+</html>

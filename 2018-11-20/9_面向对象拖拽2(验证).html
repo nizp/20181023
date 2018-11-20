@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 2;
+    opacity: 0.5;
+}
+#box2{
+    width: 100px;
+    height: 100px;
+    border: 5px solid #000;
+    background: red;
+    opacity: 0.5;
+    position:absolute;
+    left:300px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    
+    let t2 = box2.offsetTop + box2.clientTop;
+    let l2 = box2.offsetLeft + box2.clientLeft;
+   
+
+    class Drag{
+        constructor(id){
+            this.box = document.getElementById(id);
+            this.disX = this.disY = 0;
+            this.onOff = false;
+        }
+        init(){
+            this.box.addEventListener('mousedown',this.down.bind(this));
+        }
+        down(ev){
+            this.disX = ev.pageX - this.box.offsetLeft;
+            this.disY = ev.pageY - this.box.offsetTop;
+            document.addEventListener('mousemove',this.m = this.move.bind(this));
+            document.addEventListener('mouseup',this.u = this.up.bind(this));
+        }
+        move(ev){
+            let l1 = ev.pageX - this.disX;
+            let t1 = ev.pageY - this.disY;
+            
+            if(Math.abs(t1 - t2) < 5 && Math.abs(l1 - l2) < 5){
+                this.onOff = true;
+                t1 = t2;
+                l1 = l2;
+            }else{
+                this.onOff = false;
+            }
+
+            this.box.style.left = l1 + 'px';
+            this.box.style.top = t1 + 'px';
+        }
+        up(){
+
+            if(this.onOff){
+                console.log('吻合');
+            }else{
+                console.log('不吻合');
+            }
+            document.removeEventListener('mousemove',this.m);
+            document.removeEventListener('mouseup',this.u);
+        }
+    }
+
+    let d = new Drag('box');
+    d.init();
+    
+</script>
+</body>
+</html>
