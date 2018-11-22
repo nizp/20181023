@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+li{
+   width:85px;
+   height:97px;
+   float: left
+   /* border: 1px solid #000;  */
+}
+input{
+    width:80px;
+    display: inline-block; 
+}
+input.hide{
+    display: none;
+}
+p.hide{
+    display: none;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <!-- <li>
+            <img src="folder-b.png" alt="">
+            <p class="hide">新建文件夹</p>
+            <div><input type="text"></div>
+        </li> -->
+        <!-- <li><img src="folder-b.png" alt=""></li> -->
+    </ul>
+    <button id="btn">点击创建</button>
+<script>
+  
+    let arr = [
+        {
+            title:'我的文档',
+            id:0
+        },
+        {
+            title:'我的音乐',
+            id:1
+        },
+        {
+            title:'我的游戏',
+            id:2
+        }
+    ];
+    let arr2 = [];//新建文件夹的序列
+    //生成在页面的数据
+    function render(){
+        let temp = '';
+        arr.forEach(e=>{
+            temp += `
+            <li data-id="${e.id}" data-index="${e.title.match(/\d+$/)?e.title.match(/\d+$/)[0]:''}">
+                <img src="folder-b.png" alt="">
+                <p>${e.title}</p>
+                <div><input class="hide" type="text" value="${e.title}"></div>
+            </li>`;
+        });
+        ul.innerHTML = temp;
+    }
+    render();
+
+
+    //点击添加按钮
+    btn.onclick = function(){
+        //创建li结构
+        let li = document.createElement('li');
+        let v = ''; //为了新建文件夹的存储序列编号
+        if(!arr2.length){ //第一次新建文件夹
+            arr2[0] = 0;
+        }else{
+            //排列新建文件夹的顺序
+            /*
+                v = ''
+                [0,1,undefined,3] 
+                v = 2 
+                对新文件夹进行单独的管理 arr2
+
+                管理数据用数组(数据为number)，如果删除，删除的位置就为undefined
+
+                添加的时候，查看索引中的值是否为undefined，如果是undefined
+
+                就把索引给加上去
+            */
+            for(let i=0;i<arr2.length+1;i++){
+                if(arr2[i] === undefined){
+                    arr2[i] = i;
+                    v = i;
+                    break;
+                }
+            }
+        }
+
+        //上面求出了是，新建文件夹几之后，就把编号放到value中
+        li.innerHTML = `
+            <img src="folder-b.png" alt="">
+            <div><input type="text" value="新建文件夹${v}"></div>
+        `;
+        
+        let txt = li.getElementsByTagName('input')[0];
+        //把li插入到页面之后，选中txt 
+        ul.appendChild(li);
+        txt.select();
+        //在失焦的时候，添加数据，渲染页面
+        txt.onblur = function(){
+            arr.push({
+                title:this.value,
+                id:new Date().getTime() + Math.ceil(Math.random()*50)
+            });
+            render();
+        }
+    }
+
+
+    /*
+        点击li删除li功能
+    */
+    ul.onclick = function(ev){
+        /*
+            ev.target.parentNode  -> img.parentNode -> li
+            
+        */
+        if(ev.target.parentNode.nodeName === 'LI'){
+            //删除新建文件夹
+            for(let i=0;i<arr2.length;i++){
+                if(arr2[i] == ev.target.parentNode.dataset.index){
+                    delete arr2[i];
+                }
+            }
+            //删除数据
+            for(let i=0;i<arr.length;i++){
+                if(arr[i].id == ev.target.parentNode.dataset.id){
+                    arr.splice(i,1);
+                    i--;
+                }
+            }
+            render(arr);
+
+             console.log(arr2,arr);
+        }
+       
+    }
+
+
+</script>
+</body>
+</html>

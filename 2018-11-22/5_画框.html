@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#kuang{
+    width:0;
+    height: 0;
+    background: skyblue;
+    opacity: .5;
+    border: 1px dashed #000;
+    position: absolute;
+    left:0;
+    top:0;
+    display: none;
+}
+</style>
+</head>
+<body>
+    <div id="kuang"></div>
+<script>
+    document.onmousedown = function(ev){
+        kuang.style.display = 'block';
+        let disX = ev.pageX;
+        let disY = ev.pageY;
+        kuang.style.left = disX + 'px';
+        kuang.style.top = disY + 'px';
+        document.onmousemove = function(ev){
+
+            /*
+                移动的时候left，top值会根据拖动的位置发生变化
+                如果按下的点小于移动的点，那么是从左往右移，那么这个时候left，top不用发生变化
+                如果按下的点大于移动的点，那么是从右往左移，那么这个时候left，top要发生变化
+
+                当移动的时候，按下的点和移动的点取最小就能得到元素的left，top值应不应该发生变化。
+
+            */
+            let l = Math.min(ev.pageX,disX);
+            let t = Math.min(ev.pageY,disY);
+
+            kuang.style.width = Math.abs(ev.pageX - disX) + 'px';
+            kuang.style.height = Math.abs(ev.pageY - disY) + 'px';
+            kuang.style.left = l + 'px';
+            kuang.style.top = t + 'px';
+
+        }
+        document.onmouseup = function(){
+            kuang.style.display = 'none';
+            kuang.style.width = kuang.style.height = 0;
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+</script>
+</body>
+</html>

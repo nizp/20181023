@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position:absolute;
+    left:0;
+    top:0;
+   
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        系统为了优化用户体验，在按下时会停顿一小段时间(实测440ms左右)，主要是为了避免用户输入时出现
+        大量输入重复的内容。
+
+        下去思考:
+            2个按键一起按的时候实现，如左上、右下....斜着跑的效果
+                小提示:
+                    可以用对象或者数组。
+    */
+    let timer = null;
+    let obj = {
+        37:false,
+        38:false,
+        39:false,
+        40:false
+    };
+    
+    
+    
+    let onOff = false;
+    window.onkeydown = function(ev){
+        obj[ev.keyCode] = true;
+        if(onOff)return;
+        onOff = true;
+        move();
+        console.log(1);
+    }
+
+    window.onkeyup = function(ev){
+        obj[ev.keyCode] = false;
+        for(let attr in obj){
+            num += obj[attr] 
+        }
+        if(!num){
+            cancelAnimationFrame(timer);
+            onOff = false;
+        }
+        console.log(obj);
+    }
+
+    let num = 0;
+    function move(){
+        ;(function animate(){
+            timer = requestAnimationFrame(animate);
+            if(obj[37]){
+                box.style.left = box.offsetLeft - 5 + 'px';
+            }
+            if(obj[38]){
+                box.style.top = box.offsetTop - 5 + 'px';
+            }
+            if(obj[39]){
+                box.style.left = box.offsetLeft + 5 + 'px';
+            }
+            if(obj[40]){
+                box.style.top = box.offsetTop + 5 + 'px';
+            }
+        })();
+    }
+
+    // timer = setInterval(function(){
+    //     if(obj[37]){
+    //         box.style.left = box.offsetLeft - 5 + 'px';
+    //     }
+    //     if(obj[38]){
+    //         box.style.top = box.offsetTop - 5 + 'px';
+    //     }
+    //     if(obj[39]){
+    //         box.style.left = box.offsetLeft + 5 + 'px';
+    //     }
+    //     if(obj[40]){
+    //         box.style.top = box.offsetTop + 5 + 'px';
+    //     }
+    //     console.log(obj);
+    // },16.7);
+
+
+
+    
+
+
+    
+</script>
+</body>
+</html>
