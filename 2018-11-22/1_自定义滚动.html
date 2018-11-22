@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    font-size:12px;
+}
+#div1{
+    width:10px;
+    height:200px;
+    border-radius: 5px;
+    background: #999;
+    margin-left:50px; 
+    position: relative;
+}
+#div2{
+    width:10px;
+    height:20px;
+    border-radius: 5px;
+    background:firebrick; 
+    position: absolute;
+    top:0;
+    left:0;
+}
+#div3{
+    width:200px;
+    height: 200px;
+    position: relative;
+    left:100px;
+    top:-200px;
+    border: 1px solid #000;
+    /* overflow: hidden; */
+   
+}
+#div4{
+    width:100%;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <div id="div3">
+        <div id="div4">
+            金融虎讯11月22日凌晨消息，昨日，意大利奢侈品牌杜嘉班纳D&G高管涉嫌辱华事件几乎引发了全民关注，从诸多明星公开发声抵制到官媒和机构发声，微博热搜前十话题几乎均与该事件有关。而随着涉嫌辱华事件舆论的不断升温，当前已直接影响到其在华的核心利益。
+            D&G高管辱华致上海大秀活动被取消
+            
+            “这是DG在华最火的一天，也是其最凉的一天！”。11月21日下午14:50左右，“DG设计师”、“迪丽热巴不出席dg秀”、“杜嘉班纳”、“李冰冰”、“陈坤真是刚”、“中国模特罢演DG秀”、“DG设计师称账号被盗”等话题接连登上热搜，几乎占尽排名前十。此外，章子怡、黄晓明、木子洋、王俊凯、唐艺昕、火箭少女、陈学冬等明星也接连表示不会出席于上海举行的杜嘉班纳DG大秀活动
+            D&G高管辱华致上海大秀活动被取消
+            
+            “这是DG在华最火的一天，也是其最凉的一天！”。11月21日下午14:50左右，“DG设计师”、“迪丽热巴不出席dg秀”、“杜嘉班纳”、“李冰冰”、“陈坤真是刚”、“中国模特罢演DG秀”、“DG设计师称账号被盗”等话题接连登上热搜，几乎占尽排名前十。此外，章子怡、黄晓明、木子洋、王俊凯、唐艺昕、火箭少女、陈学冬等明星也接连表示不会出席于上海举行的杜嘉班纳DG大秀活动
+            D&G高管辱华致上海大秀活动被取消
+            
+            “这是DG在华最火的一天，也是其最凉的一天！”。11月21日下午14:50左右，“DG设计师”、“迪丽热巴不出席dg秀”、“杜嘉班纳”、“李冰冰”、“陈坤真是刚”、“中国模特罢演DG秀”、“DG设计师称账号被盗”等话题接连登上热搜，几乎占尽排名前十。此外，章子怡、黄晓明、木子洋、王俊凯、唐艺昕、火箭少女、陈学冬等明星也接连表示不会出席于上海举行的杜嘉班纳DG大秀活动
+D&G高管辱华致上海大秀活动被取消
+
+“这是DG在华最火的一天，也是其最凉的一天！”。11月21日下午14:50左右，“DG设计师”、“迪丽热巴不出席dg秀”、“杜嘉班纳”、“李冰冰”、“陈坤真是刚”、“中国模特罢演DG秀”、“DG设计师称账号被盗”等话题接连登上热搜，几乎占尽排名前十。此外，章子怡、黄晓明、木子洋、王俊凯、唐艺昕、火箭少女、陈学冬等明星也接连表示不会出席于上海举行的杜嘉班纳DG大秀活动
+
+        </div>
+    </div>
+<script>
+    div2.addEventListener('mousedown',function(ev){
+        let disY = ev.pageY - this.offsetTop;
+        let move = function (ev){
+            let t = ev.pageY - disY;
+            if(t < 0){
+                t = 0;
+            }else if (t > div1.clientHeight - div2.clientHeight) {
+                t = div1.clientHeight - div2.clientHeight;
+            }
+            
+            //比例
+            let scale = t/(div1.clientHeight - div2.clientHeight);
+            
+            /*
+                带边框的盒子高度 - 被内容撑开盒子的高度 = 最终的目标点
+
+                285 * .5 = 142.5
+            */
+            div4.style.top =  (div3.clientHeight - div4.scrollHeight)  * scale + 'px';   
+
+            div2.style.top = t + 'px';
+        }
+        let up = function(){
+            document.removeEventListener('mousemove',move);
+            document.removeEventListener('mouseup',up);
+        }
+        document.addEventListener('mousemove',move);
+        document.addEventListener('mouseup',up);
+        ev.preventDefault();
+    });
+</script>
+</body>
+</html>

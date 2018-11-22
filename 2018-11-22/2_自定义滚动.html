@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    font-size:12px;
+}
+body{
+    overflow: hidden;
+}
+#div1{
+    width:10px;
+    height:200px;
+    border-radius: 5px;
+    background: #999;
+    /* margin-left:50px;  */
+    position: absolute;
+    right:0
+}
+#div2{
+    width:10px;
+    height:20px;
+    border-radius: 5px;
+    background:firebrick; 
+    position: absolute;
+    top:0;
+    left:0;
+}
+#div3{
+    width:200px;
+    height: 200px;
+    position: absolute;
+    left:100px;
+    top:0;
+    border: 1px solid #000;
+    /* overflow: hidden; */
+   
+}
+#div4{
+    width:100%;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <div id="div3">
+        <div id="div4">
+            金融虎讯11月22日凌晨消息，昨日，意大利奢侈品牌杜嘉班纳D&G高管涉嫌辱华事件几乎引发了全民关注，从诸多明星公开发声抵制到官媒和机构发声，微博热搜前十话题几乎均与该事件有关。而随着涉嫌辱华事件舆论的不断升温，当前已直接影响到其在华的核心利益。
+            D&G高管辱华致上海大秀活动被取消
+            金融虎讯11月22日凌晨消息，昨日，意大利奢侈品牌杜嘉班纳D&G高管涉嫌辱华事件几乎引发了全民关注，从诸多明星公开发声抵制到官媒和机构发声，微博热搜前十话题几乎均与该事件有关。而随着涉嫌辱华事件舆论的不断升温，当前已直接影响到其在华的核心利益。
+            D&G高管辱华致上海大秀活动被取消
+            金融虎讯11月22日凌晨消息，昨日，意大利奢侈品牌杜嘉班纳D&G高管涉嫌辱华事件几乎引发了全民关注，从诸多明星公开发声抵制到官媒和机构发声，微博热搜前十话题几乎均与该事件有关。而随着涉嫌辱华事件舆论的不断升温，当前已直接影响到其在华的核心利益。
+            D&G高管辱华致上海大秀活动被取消
+            金融虎讯11月22日凌晨消息，昨日，意大利奢侈品牌杜嘉班纳D&G高管涉嫌辱华事件几乎引发了全民关注，从诸多明星公开发声抵制到官媒和机构发声，微博热搜前十话题几乎均与该事件有关。而随着涉嫌辱华事件舆论的不断升温，当前已直接影响到其在华的核心利益。
+            D
+            
+        </div>
+    </div>
+<script>
+
+
+    /*
+        有没有滚动条（）
+            有计算滚动条的高度
+            没有就隐藏
+    */
+
+   let sH = div4.scrollHeight;
+   let div3H = div3.clientHeight;
+
+    if(sH > div3H){
+        //有
+        div1.style.display = 'block';
+        let h = Math.floor( div1.clientHeight * (div3H/sH));
+        if(h < 20)h = 20;
+        div2.style.height = h + 'px';
+        
+
+    }else{
+        div1.style.display = 'none';
+    }
+
+    div2.addEventListener('mousedown',function(ev){
+        let disY = ev.pageY - this.offsetTop;
+        let move = function (ev){
+            let t = ev.pageY - disY;
+            if(t < 0){
+                t = 0;
+            }else if (t > div1.clientHeight - div2.clientHeight) {
+                t = div1.clientHeight - div2.clientHeight;
+            }
+            
+            //比例
+            let scale = t/(div1.clientHeight - div2.clientHeight);
+            
+            /*
+                带边框的盒子高度 - 被内容撑开盒子的高度 = 最终的目标点
+
+                285 * .5 = 142.5
+            */
+            div4.style.top =  (div3.clientHeight - div4.scrollHeight)  * scale + 'px';   
+
+            div2.style.top = t + 'px';
+        }
+        let up = function(){
+            document.removeEventListener('mousemove',move);
+            document.removeEventListener('mouseup',up);
+        }
+        document.addEventListener('mousemove',move);
+        document.addEventListener('mouseup',up);
+        ev.preventDefault();
+    });
+
+
+     //滚轮
+     myWhell(document,function(o){
+        let t = div2.offsetTop;
+        if(o){
+            t -= 5;
+            if(t < 0){
+                t = 0;
+            }
+        }else{
+            t += 5;
+            if(t > div1.offsetHeight - div2.offsetHeight){
+                t = div1.offsetHeight - div2.offsetHeight;
+            }
+        }
+        let scale = t/(div1.offsetHeight - div2.offsetHeight);
+        div4.style.top =  (div3.clientHeight - div4.scrollHeight)  * scale + 'px';   
+
+        div2.style.top = t + 'px';
+    });
+
+
+    function myWhell(obj,fn){
+        if(window.onmousewheel === undefined){
+            //FF
+            obj.addEventListener('DOMMouseScroll',move);
+        }else{
+            //IE|chrome
+            obj.addEventListener('mousewheel',move);
+        }
+        
+        //事件函数
+        function move(ev){
+            let o = false; //假设false就是向下，true向上
+            if(ev.wheelDelta){ //有ev.wheelDelta是chrome;
+                o = ev.wheelDelta > 0 ? true : false;
+            }else{
+                o = ev.detail < 0 ? true : false;
+            }
+            //回调函数
+            fn(o);
+        }
+    }
+    
+
+
+
+</script>
+</body>
+</html>
