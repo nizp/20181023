@@ -1,0 +1,165 @@
+.wrap {
+	width: 100%;
+	height: 640px;
+	margin: 0 auto;
+	background: url(../img/bg.png) no-repeat center center;
+	display: flex;
+}
+
+.box {
+	width: 479px;
+	height: 591px;
+	margin: auto;
+	background: url(../img/bg1.png) no-repeat center center;
+	position: relative;
+	border-radius: 35px; /*white border*/
+	overflow: hidden;
+}
+.list {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 138px;
+}
+.list li {
+	margin-bottom: 18px;
+	width: 100%;
+	height: 44px;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding-left: 44px;
+}
+.list li i {
+	width: 52px;
+	height: 44px;
+	float: left;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.list li i:nth-of-type(1) {
+	background: url(../img/sub.png) no-repeat center center;
+}
+.list li i:nth-of-type(2) {
+	background: url(../img/add.png) no-repeat center center;
+}
+.list li em {
+	width: 44px;
+	height: 36px;
+	float: left;
+	background: #fff;
+	border-radius: 5px;
+	font: 16px/36px arial;
+	text-align: center;
+	margin-right: 10px;
+	overflow: hidden;
+}
+/* add roll effect */
+
+
+
+/* add roll effect .end*/
+
+.list li span {
+	width: 230px;
+	height: 36px;
+	border-radius: 5px;
+	float: left;
+	margin-left: 10px;
+	background: #171818;
+	color: #878787;
+	line-height: 36px;
+	box-sizing: border-box;
+	padding-left: 15px;
+}
+.list li span strong {
+	margin-right: 10px;
+}
+
+.info {
+	width: 100%;
+	height: 140px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: #878787;
+	box-sizing: border-box;
+	padding: 20px 0 0 42px;
+}
+
+.info em {
+	width: 46px;
+	height: 36px;
+	display: inline-block;
+	background: #fff;
+	border-radius: 5px;
+	font: 16px/36px arial;
+	text-align: center;
+	margin: 0 10px 0;
+}
+.info span:nth-of-type(2) em {
+	width: 66px;
+}
+.info span:nth-of-type(3) em {
+	width: 66px;
+}
+.info span:nth-of-type(1) {
+	margin-right: 20px;
+}
+.info button {
+	border-radius: 3px;
+	outline: none;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	margin-left: 10px;
+	cursor: pointer;
+	border: 0;
+	overflow: hidden;
+}
+.info button:active {
+	box-shadow: 0 0 5px 3px #888 inset;
+}
+
+
+
+/*runningDog*/
+#runningDog {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 64px;
+	height: 64px;
+	background: url('../img/dog.png') no-repeat;
+	background-position: 0px -128px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

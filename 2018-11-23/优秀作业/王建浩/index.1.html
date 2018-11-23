@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>123</title>
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="price.css" />
+</head>
+
+<body onselectstart="return false;">
+	<div class="wrap">
+		<div class="box">
+			<ul class="list">
+				<!-- <li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong>12.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li> -->
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>12.5</strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>10.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>8.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>8元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>14.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+			</ul>
+			<div class="info" id="info">
+				<span>商品公合计：<em>0</em>件</span>
+				<span>共花费了：<em>0</em>元</span>
+				<br />
+				<br />
+				<span>其中最贵的商品单价是：<em>0</em>元</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		let lis = document.querySelectorAll('.list li');
+		let zongji = 0;
+		let zongjia = 0;
+		var arr2 = [];
+		class shopCat {
+			constructor(p) {
+				this.p = p;
+				this.strongShuru = [...document.querySelectorAll('.list strong')]; /*输入数据*/
+				this.arr = ['12.5', '8.5', '10.5', '11.5', '100.5'];
+				this.is = lis[p].getElementsByTagName('i');
+				this.ems = lis[p].getElementsByTagName('em')[0];
+				this.strongs = lis[p].getElementsByTagName('strong');
+				this.zongem = document.querySelectorAll('.info em');
+				this.aa = 0;
+			}
+			dateInput() {
+				this.strongShuru.forEach((e, i) => {
+					if (i % 2 === 0) {
+						e.innerHTML = this.arr[i / 2];
+					}
+				})
+			}
+			divideData() {
+				this.dateInput();
+				let ems = lis[this.p].getElementsByTagName('em')[0];
+				let strongs = lis[this.p].getElementsByTagName('strong');
+				let zongem = document.querySelectorAll('.info em');
+				this.reduce(ems, strongs, zongem);
+				this.add(ems, strongs, zongem);
+			}
+			reduce(ems, strongs, zongem) {
+				let that = this;
+				this.is[0].onclick = function () {
+					ems.innerHTML = ems.innerHTML * 1 - 1;
+					if (ems.innerHTML >= 0) {
+						that.aa = (strongs[0].innerHTML * 1) * ems.innerHTML;
+						strongs[1].innerHTML = that.aa + '元';
+						zongji -= 1;
+						zongem[0].innerHTML = zongji;
+						zongjia -= strongs[0].innerHTML * 1;
+						zongem[1].innerHTML = zongjia;
+					} else {
+						ems.innerHTML = 0;
+					}
+					if (ems.innerHTML == 0) {
+						console.log(window.arr2);
+						if (window.arr2.includes(strongs[0].innerHTML)) {
+							window.arr2[that.p]  = '';
+						}
+						zongem[2].innerHTML = Math.max(...window.arr2);
+					}
+				}
+			}
+			add(ems, strongs, zongem) {
+				let that = this;
+				this.is[1].onclick = function () {
+					ems.innerHTML = ems.innerHTML * 1 + 1;
+					if (!window.arr2.includes(strongs[0].innerHTML)) {
+						window.arr2[that.p] /*最后是li的下标*/ = strongs[0].innerHTML;
+					}
+					that.aa = (strongs[0].innerHTML * 1) * ems.innerHTML;
+					strongs[1].innerHTML = that.aa + '元';
+					zongji +=1;
+					zongem[0].innerHTML = zongji;
+					zongjia += strongs[0].innerHTML * 1;
+					zongem[1].innerHTML = zongjia;
+					zongem[2].innerHTML = Math.max(...window.arr2);
+				}
+			}
+
+		}
+
+		for (let i = 0; i < lis.length; i++) {
+			arr2.push(0);
+			let t = new shopCat(i);
+			t.divideData();
+		};
+	</script>
+</body>
+
+</html>

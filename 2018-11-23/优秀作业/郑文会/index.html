@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="price.css" />
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="box">
+				<ul class="list">
+					<!-- <li>
+							<i></i>
+							<em></em>
+							<i></i>
+							<span>
+								单价：<strong>12.5元 </strong> 小计：<strong>0元</strong>
+							</span>
+						</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong>10.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong>8.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong>8元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong>14.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li> -->
+				</ul>
+				<div class="info" id="info">
+					<span>商品公合计：<em>0</em>件</span>
+					<span>共花费了：<em>0</em>元</span>
+					<br />
+					<br />
+					<span>其中最贵的商品单价是：<em>0</em>元</span>
+				</div>
+			</div>
+		</div>
+<script>
+
+//生成DOM结构
+const list = document.querySelector('.list');
+let arr = [12.5,10.5,8.5,8,14.5];
+let temp = '';
+arr.forEach((e,i)=>{
+	temp += `
+		<li>
+			<i></i>
+			<em>0</em>
+			<i></i>
+			<span>
+				单价：<strong>${e}元 </strong> 小计：<strong>0元</strong>
+			</span>
+		</li>`;
+})
+list.innerHTML = temp;
+
+//商品累计
+class Products{
+	constructor(ele,e,i){
+		this.ele = ele;
+		this.price = e;
+		this.i = i;
+		this.sub = this.ele.getElementsByTagName('i')[0];
+		this.add = this.ele.getElementsByTagName('i')[1];
+		this.em = this.ele.getElementsByTagName('em')[0];
+		this.sum = this.ele.getElementsByTagName('strong')[1];
+		this.n = 0;
+		this.s = 0;
+		this.onOff = false;
+	}
+
+	//初始化
+	init(){
+		
+		//默认数量为0的时候，点击-按钮禁用
+		this.disable();
+
+		//点击 -按钮
+		this.sub.addEventListener('click',()=>{
+			this.subFn();
+			this.events();
+		});
+
+		//点击 +按钮
+		this.add.addEventListener('click',()=>{
+			this.addFn();
+			this.events();
+		});
+	}
+
+	//向页面渲染数据：数量、小计
+	render(){
+		this.em.innerHTML = this.n;
+		this.sum.innerHTML = this.s + '元';
+	}
+
+	//点击事件
+	events(){
+
+		//当点击-按钮后this.n的值为-1的时候，设置this.onOff为true，来阻止代码运行，起到优化的作用
+		if(this.onOff) return;
+
+		//必含方法
+		this.disable();  //按钮禁用
+		this.sumFn();  //计算小计
+		this.render();  //渲染数据
+		this.arrFn();  //数组num、sum、price填充数据
+
+		//调用Calculation类的方法，计算总数、总价、最贵
+		Calculation.prototype.init.call(new Calculation, this.arrFn());
+	}
+
+	//数量减少
+	subFn(){
+		--this.n;
+		if(this.n == -1){
+			this.n = 0;
+			this.onOff = true;
+		}else{
+			this.onOff = false;
+		}
+		return this.n;
+	}
+
+	//数量增加
+	addFn(){
+		++this.n;
+		this.onOff = false;
+		return this.n;
+	}
+
+	//计算小计
+	sumFn(){
+		this.s = this.price * this.n;
+		return this.s;
+	}
+
+	//按钮禁用
+	disable(){
+		if(this.n === 0){
+			this.sub.style.cursor = 'not-allowed';
+		}else{
+			this.sub.style.cursor = 'pointer';
+		}
+	}
+
+	//数组填充数据
+	arrFn(){
+		num[this.i] = this.n;
+		sum[this.i] = this.s;
+		price[this.i] = (this.n === 0) ? 0 : this.price;
+		return {
+			num, sum, price
+		}
+	}
+
+}
+
+const lis = list.getElementsByTagName('li');
+let num = [],
+	sum = [],
+	price = [];
+
+//循环生成实例化
+arr.forEach((e,i)=>{
+
+	let pros = new Products(lis[i],e,i);
+	pros.init();
+
+	//循环向数组num、sum、price中赋初始值0
+	num[i] = 0;
+	sum[i] = 0;
+	price[i] = 0;
+
+})
+
+
+//商品总合计、总花费、最贵
+class Calculation{
+	constructor(){
+		this.info = document.querySelectorAll('#info em');
+		this.total = this.info[0];
+		this.cost = this.info[1];
+		this.max = this.info[2];
+		this.t = 0;
+		this.c = 0;
+		this.m = 0;
+	}
+
+	//初始化
+	init(obj){
+		this.totalFn(obj);
+		this.costFn(obj);
+		this.maxFn(obj);
+		this.render();
+	}
+
+	//渲染数据
+	render(){
+		this.total.innerHTML = this.t;
+		this.cost.innerHTML = this.c;
+		this.max.innerHTML = this.m;
+	}
+
+	//计算总数量
+	totalFn(obj){
+		this.t = obj.num.reduce((t,e)=>{
+			return t+e;
+		})
+	}
+
+	//计算总价
+	costFn(obj){
+		this.c = obj.sum.reduce((t,e)=>{
+			return t+e;
+		})
+	}
+
+	//计算最贵
+	maxFn(obj){
+		this.m = Math.max(...obj.price);
+	}
+
+}
+
+
+</script>
+</body>
+
+</html>

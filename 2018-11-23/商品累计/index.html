@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="price.css" />
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="box">
+				<ul class="list" id="list">
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="price">12.5元 </strong> 小计：<strong class="sum">0元</strong>
+						</span>
+					</li>
+					
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="price">10.5元 </strong> 小计：<strong class="sum">0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="price">8.5元 </strong> 小计：<strong class="sum">0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="price">8元 </strong> 小计：<strong class="sum">0元</strong>
+						</span>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong class="price">14.5元 </strong> 小计：<strong class="sum">0元</strong>
+						</span>
+					</li>
+				</ul>
+				<div class="info" id="info">
+					<span>商品公合计：<em>0</em>件</span>
+					<span>共花费了：<em>0</em>元</span>
+					<br />
+					<br />
+					<span>其中最贵的商品单价是：<em>0</em>元</span>
+				</div>
+			</div>
+		</div>
+<script>
+
+	
+	const list = document.getElementById('list');
+	const lis = list.children;
+	let ems = list.getElementsByTagName('em'); //所有的个数
+	let prices = list.getElementsByClassName('price'); //所有的单价
+	let sumall = list.getElementsByClassName('sum');//所有的小计
+
+	let infoEMs = document.querySelectorAll('#info em');
+	let total = 0; //合计
+	let cost = 0; //共花费
+	let price = 0; //最贵
+
+	function fn(i){
+		let btns = lis[i].getElementsByTagName('i');
+		let em = lis[i].getElementsByTagName('em')[0];
+		let sum = lis[i].getElementsByClassName('sum')[0];
+		let priceEle = lis[i].getElementsByClassName('price')[0];
+
+		btns[0].onclick = function(){
+			// --
+			if(em.innerHTML > 0){
+				em.innerHTML = -- em.innerHTML;
+				sum.innerHTML = em.innerHTML * parseFloat(priceEle.innerHTML) + '元';
+				fn2();
+			}
+		}
+		btns[1].onclick = function(){
+			em.innerHTML = ++ em.innerHTML;
+			sum.innerHTML = em.innerHTML * parseFloat(priceEle.innerHTML) + '元';
+			fn2()
+		}
+	}
+
+	function fn2(){
+		price = cost = total = 0;
+		for(let i=0;i<ems.length;i++){
+			total += ems[i].innerHTML * 1;
+			cost += parseFloat(sumall[i].innerHTML);
+			if(ems[i].innerHTML * 1){
+				if(price < parseFloat(prices[i].innerHTML)){
+					price = parseFloat(prices[i].innerHTML)
+				}	
+			}
+		}
+		infoEMs[0].innerHTML = total;
+		infoEMs[1].innerHTML = cost;
+		infoEMs[2].innerHTML = price;
+	}
+
+	for(let i=0;i<lis.length;i++){
+		fn(i);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+	
+</script>
+</body>
+
+</html>

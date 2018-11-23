@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>123</title>
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="price.css" />
+</head>
+
+<body onselectstart="return false;">
+	<div class="wrap">
+		<div class="box">
+			<ul class="list">
+				<!-- <li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<span>
+							单价：<strong>12.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li> -->
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>12.5</strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>10.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>8.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>8元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>14.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+			</ul>
+			<div class="info" id="info">
+				<span>商品公合计：<em>0</em>件</span>
+				<span>共花费了：<em>0</em>元</span>
+				<br />
+				<br />
+				<span>其中最贵的商品单价是：<em>0</em>元</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		class shopCat {
+
+		}
+		let strongShuru = [...document.querySelectorAll('.list strong')]; /*输入数据*/
+		let arr = ['12.5', '8.5', '10.5', '11.5', '100.5'];
+		let arr2 = [0, 0, 0, 0, 0];
+		strongShuru.forEach((e, i) => {
+			if (i % 2 === 0) {
+				e.innerHTML = arr[i / 2];
+			}
+		})
+
+		let lis = document.querySelectorAll('.list li');
+		let zongji = 0;
+		let zongjia = 0;
+
+		function lishijian(p) {
+			let is = lis[p].getElementsByTagName('i');
+			let ems = lis[p].getElementsByTagName('em')[0];
+			let strongs = lis[p].getElementsByTagName('strong');
+			let zongem = document.querySelectorAll('.info em');
+			let aa = 0;
+			is[0].onclick = function () {
+				ems.innerHTML = ems.innerHTML * 1 - 1;
+				if (ems.innerHTML === '0') {
+					if (arr2.includes(strongs[0].innerHTML)) {
+						arr2[p] = '';
+					}
+				}
+				aa -= strongs[0].innerHTML * 1;
+				strongs[1].innerHTML = aa + '元';
+				zongji -= 1;
+				zongem[0].innerHTML = zongji;
+				zongjia -= strongs[0].innerHTML * 1;
+				zongem[1].innerHTML = zongjia;
+				zongem[2].innerHTML = Math.max(...arr2);
+			}
+			is[1].onclick = function () {
+				ems.innerHTML = ems.innerHTML * 1 + 1;
+				if (!arr2.includes(strongs[0].innerHTML)) {
+					arr2[p] /*最后是li的下标*/ = strongs[0].innerHTML;
+				}
+				aa += strongs[0].innerHTML * 1;
+				strongs[1].innerHTML = aa + '元';
+				zongji += 1;
+				zongem[0].innerHTML = zongji;
+				zongjia += strongs[0].innerHTML * 1;
+				zongem[1].innerHTML = zongjia;
+				zongem[2].innerHTML = Math.max(...arr2);
+			}
+		}
+
+
+		for (let i = 0; i < lis.length; i++) {
+			lishijian(i);
+		};
+	</script>
+</body>
+
+</html>
