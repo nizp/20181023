@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul"></ul>
+
+<script>
+    // txt.onkeydown = function(){
+    //     console.log(this.value);
+    // }
+    let html = '';
+    txt.onkeyup = function(ev){
+        if(ev.keyCode === 13 && ev.shiftKey){
+            html += '<li>'+ this.value +'</li>';
+            // console.log(this.value);
+            ul.innerHTML = html;
+            txt.value = '';
+        }
+    }
+</script>
+</body>
+</html>

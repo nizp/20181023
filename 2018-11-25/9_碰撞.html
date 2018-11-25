@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 2;
+}
+#box2{
+    width: 100px;
+    height: 100px;
+    background: green;
+    position:absolute;
+    left:300px;
+    top:200px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    box.onmousedown = function(ev){
+        let disX = ev.pageX - this.offsetLeft;
+        let disY = ev.pageY - this.offsetTop;
+
+        document.onmousemove = function(ev){
+            let l1 = ev.pageX - disX;
+            let t1 = ev.pageY - disY;
+            let r1 = l1 + box.clientWidth;
+            let b1 = t1 + box.clientHeight;
+
+            let l2 = box2.offsetLeft;
+            let t2 = box2.offsetTop;
+            let r2 = l2 + box2.clientWidth;
+            let b2 = t2 + box2.clientHeight;
+
+            if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+                box2.style.background = 'green';
+            }else{
+                box2.style.background = 'yellow';
+            }
+
+            box.style.left = l1 + 'px';
+            box.style.top = t1 + 'px';
+        }
+        document.onmouseup = function(ev){
+            document.onmousemove = document.onmouseup = null;
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

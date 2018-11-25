@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    232132132321321
+    <div id="box"></div>
+<script>
+    /*
+        拖拽的三大事件：
+            onmousedown
+                onmosuemove
+                onmouseup
+
+        先有onmousedown,在onmousedown中添加onmosuemove和onmouseup     
+    */
+
+
+    box.addEventListener('mousedown',function(ev){
+        let disX = ev.pageX - this.offsetLeft;
+        let disY = ev.pageY - this.offsetTop;
+        let m = function(ev){
+            box.style.left = ev.pageX - disX + 'px';
+            box.style.top = ev.pageY - disY + 'px';
+        }
+        let u = function(ev){
+            document.removeEventListener('mousemove',m);
+            document.removeEventListener('mouseup',u);
+        }
+        document.addEventListener('mousemove',m); 
+        document.addEventListener('mouseup',u);
+        ev.preventDefault();
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        ES6
+        常用的是
+            数组解构赋值
+                把右边的值，赋值给左边，左右两边是顺序是一一对应的（数组）。
+                小技巧:
+                    原数组的格式是什么，解构的格式就是什么。
+            对象解构赋值
+                 把右边的值，赋值给左边，左右两边key和变量是一一对应的（对象）。
+
+                注意:
+                    变量中的:号是改别名，:前面的变量就无效了
+    */    
+
+    // var a = 10;
+    // var b = 5;
+
+    // var [b,a] = [a,b];
+
+    // let [a,[b],[c,[[[d]]]]] =  [1,[2],[5,[[[7]]]]];
+
+
+    // let [a,b] = [,2];
+    // let [a=1,b] = [,2];  //1
+    // let [a=1,b=a] = [,2];
+    // let [a=1,b=a] = [];
+    // let [a=b,b=5] = [];  //报错  从左往右找，如果左边的变量用的是后面的变量，如果没有等号右边没有值，就报错
+    // console.log(a);
+
+    // let x;
+    // if ([1][0] === undefined) {
+    //     x = f();
+    // } else {
+    //     x = [1][0];
+    // }
+    // console.log(x);
+    // console.log(a,b,c,d);
+
+
+    let {name,age} = {name:'小明',age:18}
+    // console.log(name,age);
+
+    // console.log(1);
+    let {log:g,dir,info} = console;  //
+    g('1');
+    info('321');
+    // console.log(console);
+
+
+
+
+    
+</script>
+</body>
+</html>

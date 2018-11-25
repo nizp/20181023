@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        滚轮事件(不管页面有没有滚动条都能触发):
+        有chrome和IE
+            onmousewheel
+                ev.wheelDelta 可以反应出滚轮的方向
+
+                    正数就上滚
+                    负数就下滚
+
+                    
+
+        有FF的
+            DOMMouseScroll    必须用事件绑定的方式来添加addEventListener
+
+                ev.detail
+                    正数就下滚
+                    负数就上滚
+
+    */
+   
+    // window.onmousewheel = function(ev){
+    //     console.log(ev.wheelDelta);
+    //     // console.log(ev.detail)
+    // }
+
+    // window.addEventListener('DOMMouseScroll',function(ev){
+    //     alert(ev.detail);
+    // });
+
+
+    function myScroll(obj,fn){
+        if(obj.onmousewheel === undefined){
+            //FF
+            obj.addEventListener('DOMMouseScroll',wheel1);
+        }else{  
+            //IE,chrome
+            obj.addEventListener('mousewheel',wheel2); 
+        }
+        
+        function wheel1(ev){
+            let o = true;//true:上,false下
+            o = ev.detail>0?false:true;
+            fn && fn(o);
+        }
+        function wheel2(ev){
+            let o = true;//true:上,false下
+            o = ev.wheelDelta>0?true:false;
+            fn && fn(o);
+        }
+
+    }
+
+    myScroll(window,function(fx){
+        console.log(fx)
+    })
+
+    // console.log(window.onmousewheel)
+
+
+
+
+</script>
+</body>
+</html>

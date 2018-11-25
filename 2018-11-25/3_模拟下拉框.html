@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    font-size:12px;
+}
+ul{
+    width:200px;
+    border: 1px dotted firebrick;
+    display: none;
+}
+li{
+    list-style: none;
+}
+li.active{
+    background: firebrick;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul">
+       
+    </ul>
+<script>
+
+    //生成DOM结构
+    let arr = ['China, Good!','中国引领','中国声音','被抓','安倍跪了'];
+    
+    let html = '';
+    arr.forEach((e,i)=>{
+        html += `<li class="${i==0?'active':''}">${e}</li>`;
+    });
+    ul.innerHTML = html; 
+
+    let lis = document.querySelectorAll('li');
+    let li = lis[0];
+    let num = 0;
+    let arr2 = [];
+    txt.onfocus = function(){
+        ul.style.display = 'block';
+    }
+    txt.onkeyup = function(ev){
+        switch(ev.keyCode){
+            case 38:
+                li.className = '';
+                num --;
+                if(num<0)num = arr.length-1;
+                lis[num].className = 'active';
+                li = lis[num];
+                // txt.value = li.innerHTML;
+            break;
+            case 40:
+                li.className = '';
+                num ++;
+                lis[num%=arr.length].className = 'active';
+                li = lis[num];
+                // txt.value = li.innerHTML;
+            break;
+            case 13:
+                if(ev.shiftKey){
+                    if(!arr2.includes(li.innerHTML)){
+                        arr2.push(li.innerHTML); 
+                    }else{
+                        //把选中的过滤掉，留下的是不是选中
+                        arr2 = arr2.filter(e=>e!=li.innerHTML);
+                    }
+                    // console.log(arr2);
+                    this.value = arr2;
+                }else{
+                    //数组中的最后一个，如果不是li的内容，说明已经删除了
+                    /*
+                        arr2 [a,b,d] ->  [a,b]
+
+                        num=3
+
+                        arr  [a,b,c,d]
+
+                        num = b的位置就是 1
+                    */
+                    if(arr2[arr2.length-1] != li.innerHTML){
+                        num = arr.indexOf(arr2[arr2.length-1]);
+                        li.className = '';
+                        lis[num].className = 'active';
+                        li = lis[num];
+                    }
+                    ul.style.display = 'none';
+                    this.blur();
+                } 
+            break;
+        }
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

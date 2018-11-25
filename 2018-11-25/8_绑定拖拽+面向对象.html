@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    232132132321321
+    <div id="box"></div>
+<script>
+    /*
+        拖拽的三大事件：
+            onmousedown
+                onmosuemove
+                onmouseup
+
+        先有onmousedown,在onmousedown中添加onmosuemove和onmouseup     
+    */
+
+
+    class Drag {
+        constructor(id){
+            this.box = document.getElementById(id);
+            this.disX = this.disY = 0;
+            this.m = this.u = '';
+            this.box.addEventListener('mousedown',this.down.bind(this));
+        }
+        down(ev){
+            this.disX = ev.pageX - this.box.offsetLeft;
+            this.disY = ev.pageY - this.box.offsetTop;
+            document.addEventListener('mousemove',this.m = this.move.bind(this)); 
+            document.addEventListener('mouseup',this.u = this.up.bind(this));
+            ev.preventDefault();
+        }
+        move(ev){
+            this.box.style.left = ev.pageX - this.disX + 'px';
+            this.box.style.top = ev.pageY - this.disY + 'px';
+        }   
+        up(ev){
+            document.removeEventListener('mousemove',this.m);
+            document.removeEventListener('mouseup',this.u);
+        }
+    }
+
+    new Drag('box');
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#div{
+    width:100px;
+    height: 200px;
+    background: red;
+}
+</style>
+</head>
+<body id="body">
+    <!-- <div id="div"></div> -->
+    <!-- <div id="p">12321321321</div> -->
+    <input type="text" id="txt">
+<script>
+    /*
+        在按键的时候每个键盘都有一个固定的键值，通过键盘事件的事件对象来获取键值
+
+        window下有焦点
+            onkeydown  按下
+            onkeyup    抬起
+
+        在body下，焦点元素（input、a、button...）是可以触发键盘事件的，非焦点元素(div,p,span)是不能触发键盘事件的
+    
+        获取键值:
+            事件对象下的
+                keyCode/which  number类型的  
+
+                    a-z:65-90    
+                    0-9:48-57
+                    左上右下: 37-40
+
+
+                key:  "a" 、"1"
+
+
+
+
+        特殊按键:
+            shiftKey、altKey、ctrlKey   都有默认的值为false，当按下的时候他们会为true
+
+        如果用户按着2个按键，那么最后一次按下的按键会把之前的按键给覆盖。
+
+        一般特殊键用在2个或以上按键一起按的时候，才使用
+
+
+
+
+
+
+
+
+        
+            
+    */    
+
+    // window.onkeydown = function(){
+    //     alert(1);
+    // }
+
+    // p.onkeydown = function(){
+    //     alert(2);
+    // }
+    // console.dir(div);
+
+    // txt.onkeydown = function(ev){
+    //     console.dir(ev);
+    // }
+
+
+
+</script>
+</body>
+</html>
