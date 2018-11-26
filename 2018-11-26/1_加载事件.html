@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    /*  
+        window.onload当页面中的所有静态资源加载完成之后执行代码。
+            link,src,href都会被加载
+
+        ready事件当DOM加载完成之后就执行代码
+            高版本浏览器才兼容 
+                DOMContentLoaded
+
+                onreadystatechange
+
+                在IE下，当DOM加载完之后，在document.documentElement.doScoll('left')
+                的方法，如果DOM没有加载完，调用这个方法会报错。
+                为了避免报错,所以包一个 try{}catch(error){}
+
+                error就为报错的细节，但是try、catch性能不高
+
+        $(function(){
+
+        });
+        
+        $(document).ready(function(){})
+
+    */   
+
+    // window.onload = function(){
+    //     // let div = document.getElementById('div');
+    //     alert(1);
+    // }
+
+    // document.addEventListener('DOMContentLoaded',function(){
+    //     alert(1);
+    // });
+
+    
+    // try {
+    //     console.log(a);  //不报错执行try，报错才会进catch
+    // } catch (error) {
+    //     console.log(error);
+    //     a = 20;
+    // }
+    // console.log(a);
+    // alert(1);
+
+    
+    //模拟DOM加载
+    setTimeout(function(){
+        document.documentElement.doScroll = function(){
+            console.log('有这个方法了');
+        }
+    },3000);
+
+   function fn(){
+        try{
+            document.documentElement.doScroll();
+            console.log('DOM加载完成');
+        }catch(e){
+            console.log('进catch了');
+            setTimeout(fn,30);
+        }
+   }
+
+   fn();
+
+
+
+
+
+        
+</script>
+<body>
+    <div id="div"></div>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543207030433&di=8f95c04aec7f7ce8375dcdc20e3a38bf&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01cd97554350000000019ae90d238c.jpg" alt="">
+    <!-- <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543207140350&di=bec74138e96f7b7cefebc270051c91a4&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F013f6858eda2b8a8012049ef3aa795.jpg%402o.jpg" alt=""> -->
+</body>
+</html>
