@@ -21,6 +21,9 @@ let myTools = (function(){
 
     //通过id找pid
     function getParent(id){
+        /*
+            如果没有id对应的这个数据 或者 当前id数据的pid为-1，说明当前是微云，微云上面没有数据了
+        */
         if(!data[id] || data[id].pid ==-1)return null;
         return data[data[id].pid];
     }
@@ -28,9 +31,9 @@ let myTools = (function(){
     function getParents(id){ //找父级的父级
         let parentArr = [];
         let now = data[id]; //当前的id  [3]
-        while(now){
-            parentArr.unshift(now);
-            now = getParent(now.id);
+        while(now){//0
+            parentArr.unshift(now);// [0,2,3]
+            now = getParent(now.id);//null
         }
         return parentArr;
     }

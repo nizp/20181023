@@ -14,10 +14,12 @@ const {log,dir} = console;
 
 function render(id){
     folders.innerHTML = '';
+    //有没有子级，没有子级就把暂无文件元素打开
     let arr = getChild(id);
     if(!arr){
         fEmpty.style.display = 'block';
     }else{
+        fEmpty.style.display = 'none';
         arr.forEach((e,k) => {
             //文件夹的盒子
             let div = document.createElement('div');
@@ -33,10 +35,14 @@ function render(id){
                     //模拟双击，如果点击的结果是下面的范围就为双击
                     if((now - old) >= 210 && (now - old) <= 350){
                        render(e.id);
-                       //还需要清除这些元素选中的样式
+                       renderMenu(e.id);
+
+                        //还需要清除这些元素选中的样式
+                       arr.forEach(e=>e.checked=false);
                     }else{
                         //单击
                         data[e.id].checked = !data[e.id].checked;
+                        // log(data);
                         render(id);
                     }
                     old = null;
@@ -65,7 +71,7 @@ function render(id){
             div.appendChild(span);
             div.appendChild(input);
             div.appendChild(i);
-    
+        
             folders.appendChild(div);
         });
     }
@@ -73,10 +79,6 @@ function render(id){
 
 render(0);
 
-
-/** */
-
-
 console.log(data);
 
-console.log(getChild(3));
+// console.log(getChild(3));
