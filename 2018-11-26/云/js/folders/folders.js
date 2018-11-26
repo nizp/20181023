@@ -24,34 +24,40 @@ function render(id){
             //文件夹的盒子
             let div = document.createElement('div');
             div.className = e.checked?'file-item active':'file-item';
-            let timer = null;
-            let old = null;
-            div.addEventListener('click',function(ev){
-                if(!old)old=new Date;
-                clearTimeout(timer);
-                timer = setTimeout(()=>{
-                    let now = new Date;
-                    // log((now - old));
-                    //模拟双击，如果点击的结果是下面的范围就为双击
-                    if((now - old) >= 210 && (now - old) <= 350){
-                       render(e.id);
-                       renderMenu(e.id);
+            // let timer = null;
+            // let old = null;
+            // div.addEventListener('click',function(ev){
+            //     if(!old)old=new Date;
+            //     clearTimeout(timer);
+            //     timer = setTimeout(()=>{
+            //         let now = new Date;
+            //         // log((now - old));
+            //         //模拟双击，如果点击的结果是下面的范围就为双击
+            //         if((now - old) >= 210 && (now - old) <= 450){
+            //            render(e.id);
+            //            renderMenu(e.id);
 
-                        //还需要清除这些元素选中的样式
-                       arr.forEach(e=>e.checked=false);
-                    }else{
-                        //单击
-                        data[e.id].checked = !data[e.id].checked;
-                        // log(data);
-                        render(id);
-                    }
-                    old = null;
-                },200);
-            });
+            //             //还需要清除这些元素选中的样式
+            //            arr.forEach(e=>e.checked=false);
+            //         }else{
+            //             //单击
+            //             data[e.id].checked = !data[e.id].checked;
+            //             // log(data);
+            //             render(id);
+            //         }
+            //         old = null;
+            //     },200);
+            // });
 
 
             let img = new Image();
             img.src = 'img/folder-b.png';
+            img.ondblclick = function(){
+                render(e.id);
+                renderMenu(e.id);
+                //还需要清除这些元素选中的样式
+                arr.forEach(e=>e.checked=false);
+            }
     
             //文件的名字
             let span = document.createElement('span');
@@ -66,6 +72,11 @@ function render(id){
             //是否选中
             let i = document.createElement('i');
             i.className = e.checked?'checked':'';
+            i.onclick = function(){
+                data[e.id].checked = !data[e.id].checked;
+                // log(data);
+                render(id);
+            }
     
             div.appendChild(img);
             div.appendChild(span);

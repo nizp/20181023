@@ -13,7 +13,7 @@ function renderMenu(id){
                 a.href = 'javascript:;';
                 a.innerHTML = e.title;
                 a.onclick = function(){
-                    console.log(e.id)
+                    // console.log(e.id)
                     render(e.id);
                     renderMenu(e.id);
                 }
