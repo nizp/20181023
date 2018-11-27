@@ -15,7 +15,7 @@ create.onclick = function(){
     let input = document.createElement('input');
     input.type = 'text';
     input.className = 'editor';
-    log(data);
+    log(data[id]);
     if(!data[id].num.length){
         data[id].num.push(0);
     }else{
@@ -41,7 +41,7 @@ create.onclick = function(){
     input.onblur = function(){
         let id = breadNav.getElementsByTagName('span')[0].dataset.id*1;
         let arr = getChild(id);
-        let o = arr.some(e=>e.title == this.value);
+        let o = arr && arr.some(e=>e.title == this.value);
         if(o){
             console.log('又重了');
             this.value = '新建文件夹' + v;
@@ -56,7 +56,8 @@ create.onclick = function(){
             "title": input.value,
             "type": "file",
             "checked":false,
-            "create":v
+            "create":v,
+            "num":[]
         }
         render(id);
     }
