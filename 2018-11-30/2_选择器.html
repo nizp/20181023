@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="box">1231</div> -->
+    <!-- <ul>
+        <li class="li">1</li>
+        <li class="li1">2</li>
+        <li class="li">3</li>
+        <li class="xx-li1">4</li>
+        <li class="li1">5</li>
+        <li class="id-li1">6</li>
+        <li class="li1-li">7</li>
+    </ul> -->
+
+    <input type="checkbox" value="小曹">小曹
+    <input type="checkbox" value="老美">老美
+    <input type="checkbox" value="小强">小强
+
+
+    <!-- <input type="text"> -->
+    <input type="button" value="按钮">
+    <!-- <input type="radio"> -->
+<script src="./jquery-3.1.1.js"></script>
+<script>
+    /*
+        
+        选择器:
+            #box
+            .li
+            li
+        属性选择器
+            $('ele[属性key=属性val]') -> $('li[class="li1"]')
+
+        伪类选择器
+            :first..
+            :even  匹配所有索引值为偶数的元素，从 0 开始计数（现实中从1计数的奇数）
+            :odd   匹配所有索引值为奇数的元素
+            :lt(num) 小于某个索引
+            :gt(num) 大于某个索引 
+            :checked 匹配所有选中的被选中元素(复选框、单选框等，不包括select中的option)
+
+
+        val('写要设置的内容')  -> value
+
+        html() -> innerHTML
+
+        text() -> innerText
+
+
+    */
+
+    // $('#box').css('border','1px solid #000');
+
+    // $('.li').css('background','red');
+
+    // $('input:first').val('设置你了');
+    // $('input[type="text"]').val('设置你了2');
+    // $('input[type="button"]').val('不点击');
+
+
+    // $('li[class^="li1"]').css('background','red');
+
+
+    // $('li:even').css('background','red');
+    // $('li:odd').css('background','green');
+
+    // $('li:lt(3)').css('background','yellow');
+    // $('li:gt(3)').css('background','pink');
+    // $('input[value="按钮"]').click(function(){
+    //     //ul.innerHTML += '<li>新的</li>'
+    //     // $('ul').html( $('ul').html() + '<li>新的</li>' );
+
+    //     $('ul').append('<li>新的2</li>');
+    // });
+
+    let arr = [];
+    $('input[value="按钮"]').click(function(){
+        let checked = $('input:checked');
+        console.log(checked[0])
+        for(let i=0;i<checked.length;i++){
+            arr.push($(checked[i]).val());
+        }
+       console.log(arr);
+    });
+
+
+
+</script>
+</body>
+</html>

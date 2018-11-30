@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+div{
+    display: none;
+}
+div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+    <button class="active">按钮一</button>
+    <button>按钮二</button>
+    <button>按钮三</button>
+    <div class="show">111111111</div>
+    <div >222222222</div>
+    <div >333333333</div>
+    
+   
+    
+<script src="./jquery-3.1.1.js"></script>
+<script>
+    /* 
+        index()
+            默认以父级为基准，找到子级的索引。
+
+            小技巧:
+                在使用index的时候，把精确匹配条件加上。
+
+                    index('button')：
+                        以一堆button为依据，当前点击的是谁
+
+        siblings()
+            以当前节点为基准的所有兄弟节点
+
+            小技巧:
+                因为兄弟节点包含的元素很多，使用时把精确匹配条件加上
+                siblings('div'):
+                    找到所有兄弟节点为div的元素
+
+        addClass()  添加class
+        removeClass() 删除class
+
+
+        eq(index):
+            找到一组元素的某个，并且还是jquery对象
+
+
+        
+
+        $(ele).each((i,ele)=>{})  
+    */
+
+    // $('button').each(function(i,e){
+    //     $(this).click(function(){
+    //         alert(i);
+    //     });
+    // });
+
+    // $('button').click(function(){
+    //     alert($(this).index());
+    // });
+
+    // $('button').click(function(){
+    //     $('button').attr('class','');
+    //     $($('button')[$(this).index()]).attr('class','active');
+    // });
+
+
+    // $('button').click(function(){
+    //     $('button').removeClass('active');
+    //     $('button').eq($(this).index()).addClass('active');
+    // });
+
+    $('button').click(function(){
+        $(this).addClass('active').siblings('button').removeClass('active');
+        // alert($(this).index('button'))
+        $('div').eq($(this).index('button')).addClass('show').siblings('div').removeClass('show');
+    });
+
+</script>
+</body>
+</html>

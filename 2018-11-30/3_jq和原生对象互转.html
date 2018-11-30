@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+<script src="./jquery-3.1.1.js"></script>
+<script>
+    /*
+        jquery对象转原生对象
+            加下标即可
+
+            $('li') -> jquery对象
+
+            $('li')[0] -> 原生对象
+
+        
+        原生对象转jquery对象
+            $(包原生对象)
+    */
+
+
+    //原生转JQ
+    // $(document).click(function(){
+    //     alert(1);
+    // });
+
+    //JQ转原生
+    // $('#btn')[0].innerText = '按一下';
+
+    $('#btn').get(0).innerText = '按一下';
+
+</script>
+</body>
+</html>

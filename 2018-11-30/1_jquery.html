@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="main" style="width: 600px;height:400px;"></div> -->
+<!-- <script src="echarts.common.min.js"></script> -->
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543555910623&di=b80aa127737095932885bfc52f271909&imgtype=0&src=http%3A%2F%2Fimg.pptjia.com%2Fimage%2F20180117%2Ff4b76385a3ccdbac48893cc6418806d5.jpg" alt="">
+<script src="./jquery-3.1.1.js"></script>
+<script>
+    /*
+        学习jquery的方式跟学习字符串、数组的方法一样
+
+        多用jquery才能会，只要你会原生，jquery也就是换种写法。
+
+
+
+        jquery:
+            js的类库（方法库），把一堆常用的方法进行了封装，能够更好的兼容各种浏览器
+            操作DOM的时候特别方便
+                吃的少干的多。
+
+                https://jquery.com/
+
+                https://www.jquery123.com/  中文文档。
+
+        
+
+        一般公司里面用的是1.72左右的版本，因为这个版本兼容IE
+
+        过一遍之前的知识,jquery也是js，在jquery能写原生，原生必须引jq才能用
+
+
+        jquery一般有2个版本，一个版本是开发版（不压缩），一个版本是生产版（压缩.min）
+
+        1.引入jquery库
+        2.就开始使用了
+
+            $(function(){
+                //ready事件
+            });
+
+            $() -> 一个函数名+括号
+
+    */
+
+    $(function(){
+        //ready事件
+        // alert(1);
+
+        $('img').css({
+            width:20,
+            height:20,
+            position:'absolute',
+            top:0,
+            left:0
+        });
+
+        $(document).click(function(){
+            // $('img').hide();
+            // $('img').toggle();
+            
+            $('img').animate({
+                width:200,
+                left:300,
+                height:200
+            });
+
+        });
+    });
+
+
+    // console.log($);
+
+    // window.onload = function(){
+    //     alert(1);
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var myChart = echarts.init(document.getElementById('main'));
+    // var option = {
+    //     xAxis: {
+    //         type: 'category',
+    //         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    //     },
+    //     yAxis: {
+    //         type: 'value'
+    //     },
+    //     series: [{
+    //         data: [820, 932, 901, 934, 1290, 1330, 1320],
+    //         type: 'line'
+    //     }]
+    // };
+    // myChart.setOption(option);
+
+
+
+
+</script>
+</body>
+</html>

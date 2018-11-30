@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    height:200px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<!-- <script src="./jquery-3.1.1.js"></script> -->
+<script>
+    /*
+        jquery('#box') -> <div id="box"></div>
+
+        jquery(function(){
+            //ready
+        })
+
+        noConflict为了解决重命名的问题
+        
+
+        jquery不可能每次都在window环境下，比如可能会在node，全局为this
+
+        在浏览器中全局为window
+
+
+        无new初始化操作:
+            如果说直接在jquery中new，那么会递归
+
+            解决:
+                找一个替身，这个替身拥有jquery下的所有方法
+                new替身即可
+
+    */
+    (function(global,factory){
+        factory(global);
+       
+    })(typeof window !== 'undefined'?window:this,function(global,noGlobal){
+        function JQuery(seletcor){
+            return new Ts(seletcor);
+        }
+        /*
+            一个参数为字符串的时候是获取，是对象就批量设置
+        */
+        JQuery.fn = JQuery.prototype = {
+            constructor:JQuery,
+            css:function(){
+                // console.log(123);
+                if(arguments.length === 1){
+                    if(typeof arguments[0] === 'string'){
+                        return getComputedStyle(this.ele[0])[arguments[0]];
+                    }
+                }
+            }
+        }
+
+        var Ts = JQuery.fn.ts = function(seletcor){
+            if(typeof seletcor === 'string'){
+                seletcor = document.querySelectorAll(seletcor);
+                this.ele = seletcor;
+            }else if(typeof seletcor === 'function'){
+                document.addEventListener('DOMContentLoaded',function(){
+                    seletcor();
+                });
+            }
+        }
+
+       Ts.prototype = JQuery.fn;
+        
+
+        window.$ = window.JQuery = JQuery;
+    });
+
+
+   
+
+    // new $(function(){
+    //     // alert('DOM加载完');
+    //     let box = new $('#box');
+    //     console.log(box.css('height'));
+    // });
+
+
+    $(function(){
+        console.log( $('#box').css('height') );
+    });
+
+
+
+
+    // function jQuery(a){
+    //     alert('疯了');
+    // }
+
+   
+    // jQuery();
+</script>
+</body>
+</html>

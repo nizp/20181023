@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">全选</button>
+    <button id="btn1" >不选</button>
+    <button id="btn2" >反选</button>
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+<script src="./jquery-3.1.1.js"></script>
+<script>
+    /*
+        $(ele).attr('key','val')
+
+            jquery中基本上都有一个特性
+
+                传一个参数(字符串)是获取，传对象，批量设置
+                传2个参数是设置
+
+        prop专门操作表单元素
+            $('input').prop('checked',false);
+    */
+
+
+    $('#btn').click(function(){
+        $(':checkbox').prop('checked',true);
+    });
+    $('#btn1').click(function(){
+        $(':checkbox').prop('checked',false);
+    });
+
+    $('#btn2').click(function(){
+        let check = $(':checkbox');
+        for(let i=0;i<check.length;i++){
+            if($(check[i]).prop('checked')){
+                $(check[i]).prop('checked',false);
+            }else{
+                $(check[i]).prop('checked',true);
+            }
+        }
+    });
+
+
+    // $('#btn').click(function(){
+    //     // console.log($('#btn').attr('index'));
+
+    //     // $('#btn').attr('index','2');
+    //     // $('#btn').attr('index','');
+    //     $('#btn').removeAttr('index');
+    // });
+
+    // $('#btn').attr({
+    //     'index':'2',
+    //     idd:'x'
+    // });
+    // $('#btn').css('width','100px');
+
+    // $('#btn').css({
+    //     'width':'100px',
+    //     height:200
+    // });
+
+
+    // $('#btn').click(function(){
+    //     // $('input').attr('checked');
+    //     $('input').prop('checked',false);
+    // });
+
+    // console.log($('#btn').css('width'));
+
+</script>
+</body>
+</html>

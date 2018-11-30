@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    height:200px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<!-- <script src="./jquery-3.1.1.js"></script> -->
+<script>
+    /*
+        jquery('#box') -> <div id="box"></div>
+
+        jquery(function(){
+            //ready
+        })
+
+        noConflict为了解决重命名的问题
+        
+
+        jquery不可能每次都在window环境下，比如可能会在node，全局为this
+
+        在浏览器中全局为window
+
+
+        无new初始化操作:
+            如果说直接在jquery中new，那么会递归
+
+            解决:
+                找一个替身，这个替身拥有jquery下的所有方法
+                new替身即可
+
+    */
+    (function(global,factory){
+        factory(global);
+       
+    })(typeof window !== 'undefined'?window:this,function(global,noGlobal){
+        function JQuery(seletcor){
+            return new Ts(seletcor);
+        }
+        /*
+            一个参数为字符串的时候是获取，是对象就批量设置
+        */
+        JQuery.fn = JQuery.prototype = {
+            constructor:JQuery,
+            re:{
+                number:/opacity|background/,
+                unit:/rem|px|em|vh|vw|s|ms/
+            },
+            curcss(){
+                console.log( arguments[0] );
+                for(let i=0;i<this.ele.length;i++){
+                    for(let attr in arguments[0]){
+                        if(this.re.number.test(attr)){
+                            this.ele[i].style[attr] = arguments[0][attr];
+                        }else{
+                            let val = arguments[0][attr] + '';
+                            //都是数字
+                            if(/^\d+$/.test(val)){//'50'
+                                this.ele[i].style[attr] = arguments[0][attr] + 'px';
+                            }else{
+                                //  50px  50ui  50ty
+                                if(this.re.unit.test(val)){
+                                    this.ele[i].style[attr] = arguments[0][attr];
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            },
+            css:function(){
+                // console.log(123);
+                if(arguments.length === 1){
+                    if(this.type(arguments[0],'string')){
+                        return getComputedStyle(this.ele[0])[arguments[0]];
+                    }
+                    /*
+                        this.typeof(数据) -> 它是什么类型的
+                        this.typeof(数据,'Object') -> 是不是
+                    */
+                   //批量设置
+                    if(this.type(arguments[0],'object')){
+                        // console.log(this.ele)
+                        this.curcss(arguments[0]);
+                    }
+                }else if(arguments.length == 2){
+
+                    let key = arguments[0];
+                    let v = arguments[1];
+                    this.curcss({[key]:v});
+
+                    // let obj = {};
+                    // obj[key] = v;
+                    // console.log(obj);
+
+                }
+            },
+            type:function(data,dataType){
+                let toS = Object.prototype.toString;
+                dataType = dataType[0].toUpperCase() + dataType.substring(1).toLowerCase();
+                return toS.call(data) ===  '[object '+ dataType +']';
+            }
+        }
+
+        var Ts = JQuery.fn.ts = function(seletcor){
+            if(typeof seletcor === 'string'){
+                seletcor = document.querySelectorAll(seletcor);
+                this.ele = seletcor;
+            }else if(typeof seletcor === 'function'){
+                document.addEventListener('DOMContentLoaded',function(){
+                    seletcor();
+                });
+            }
+        }
+
+       Ts.prototype = JQuery.fn;
+        
+
+        window.$ = window.JQuery = JQuery;
+    });
+
+    $(function(){
+        // console.log( $('#box').css('height') );
+
+        $('li').css({
+            height:20,
+            background:'red',
+            opacity:.5
+        });
+
+
+        // $('li').css('opacity','.5');
+
+        // console.log( $('li').css({}));
+    });
+
+</script>
+</body>
+</html>
