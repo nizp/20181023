@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body >
+    <div id="app"></div>
+<script>
+    /*
+        用两种方式，创建按钮，并且在按钮身上加事件函数，
+        点那个按钮就弹对应的数据
+    */
+    let arr = [5,6,10];
+
+    // let temp = '';
+    // arr.forEach((e,i)=>{
+    //     temp += `<button data-index="${e}">按钮${i+1}</button>`;
+    // });
+    // app.innerHTML = temp;
+
+    // let btns = document.getElementsByTagName('button');
+
+    // for(let i=0;i<btns.length;i++){
+    //     btns[i].onclick = function(){
+    //         alert(this.dataset.index);
+    //     }
+    // }
+
+    let obj = [
+        {
+            id:0
+        },
+        {
+            id:1
+        },
+        {
+            id:2
+        }
+    ];
+    let arr2 = [] 
+    arr.forEach((d,i)=>{
+        let btn = document.createElement('button');
+        btn.innerText = '按钮'+ (i+1);
+        btn.onclick = function(){
+            alert(d);
+        }
+        arr2.push(obj[i]);
+        app.appendChild(btn);
+    });
+
+    arr2[0].id = 'x';
+    console.log(obj[0]);
+
+
+
+    
+</script>
+</body>
+</html>

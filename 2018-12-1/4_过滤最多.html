@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let arr = ['123','123-副本','123-副本-副本','123-副本-副本-副本','我的音乐','我的文档'];
+
+    let a = arr.filter(e=>{
+        // let re = /^123(-副本)*$/;
+        let re = new RegExp('^'+'123'+'(-副本)*$');
+        // console.log(re)
+        return re.test(e);
+    }).sort((a,b)=>{
+        return a.length-b.length;
+    })
+
+    // console.log(a[a.length-1]);
+    console.log(a);
+
+      
+</script>
+</body>
+</html>
