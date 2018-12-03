@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        https://blog.csdn.net/magic__man/article/details/51831227 
+    */
+    document.addEventListener('上滚',function(ev){
+        console.log(ev);
+        // alert('正在山gun');
+    });
+
+
+    
+    
+     //创建event的对象实例。
+    var event = document.createEvent('HTMLEvents');
+       
+    // 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为
+    event.initEvent("上滚", true, true);
+
+    //给event对象绑定数据
+    event.name = '小胖';
+    event.num = 0;
+
+    
+    document.onmousewheel = function(ev){
+        if(ev.wheelDelta > 0){
+            event.num = ++ event.num;
+            document.dispatchEvent(event);
+        }
+    }
+
+</script>
+</body>
+</html>
