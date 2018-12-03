@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <ul id="ul">
+        
+    </ul>
+    
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        增、删、改、查、克隆
+
+        增:
+            创建
+                $('元素')
+            插入
+                append
+                before
+                ....
+        改:替换
+            
+
+        查:上一个，下一个，子级的，父级的，第一个，最后一个
+
+
+
+    */
+
+    let num = 0;
+    $('#btn').click(function(){
+        num ++;
+        let $li = $('<li><span>'+ num +'</span> <input n='+ num +' style="display:none" value="'+ num +'" type="text"><a rm href="javascript:;">删除</a><a rn href="javascript:;">修改</a></li>');
+        $li.on('click','a[rm]',function(){
+            // console.log($(this));
+            $li.remove();
+        });
+        
+        let $txt = $li.find('input');//find 类似于 getElementsByTagName
+        let $span = $li.find('span');
+        $li.on('click','a[rn]',function(){
+            $txt.show(); //show:display:block  hide:display:none
+            $span.hide();
+            $txt.focus();
+            $txt[0].selectionStart = $txt.val().length;
+        });
+
+        $txt.blur(function(){
+            //失去焦点的时候，如果没有内容
+            if(!$(this).val()){
+                //就把当前内容设置为一开始的n值
+                $(this).val($(this).attr('n'));
+            }else{
+                //有内容，就设置内容，并且，把n这个属性也改了，为了下次用
+                $span.html($(this).val());
+                $(this).attr('n',$(this).val());
+            }
+            $span.show();
+            $(this).hide();
+        });
+
+        // $('#ul').append($li);
+        if($('li:first').length){
+            $('li:first').before($li);
+        }else{
+            $('#ul').append($li);
+        }
+    });
+
+</script>
+</body>
+</html>

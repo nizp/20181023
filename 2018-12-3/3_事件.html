@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+}
+
+</style>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <div id="box"></div>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        jQ的事件，都是事件绑定的（on绑定的）
+
+        jQ的所有的事件都是on()这个方法，扩展出来的(基于on二次封装的)
+            click()
+            mouseover()
+            ....
+
+        注意:
+            在事件套事件的时候，容易出问题(重复绑定的问题)。
+
+
+        解决:
+            在事件套事件的时候，要把上一次的事件清掉，使用off();
+
+            off(可以放精确的范围)
+                比如:具体的事件名、事件名的class
+
+            
+
+
+        
+    */    
+
+
+    // $('#btn').click(function(){
+    //         $('#box').off().click(function(){
+    //             console.log(1);
+    //         });
+    // });
+
+
+    $('#btn').click(function(){
+        // $('#box').off('mouseover');
+        $('#box').off('click.就是你');
+    })
+
+    $('#box').click(function(){
+        alert(1);
+    });
+
+    $('#box').on('click.就是你',function(){
+        alert(2);
+    })
+
+    // $('#box').mouseover(function(){
+    //     alert(2);
+    // });
+ 
+
+
+    // $('#box').click(function(){
+        
+    // });
+    // $('#box').click(function(){
+    //     alert(2);
+    // });
+</script>
+</body>
+</html>

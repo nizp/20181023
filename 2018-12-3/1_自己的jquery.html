@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+<script>
+    /*
+        实参是可以放任意的数据。
+    */
+    (function(global,factory){
+        factory(global);
+    })(typeof window !== 'undefined'?window:this,function(global,noGlobal){
+     
+        //undefined容易被修改，我们知道函数不传参就是undefined，所以noGlobal能够更准确的拿到undefined
+        // var undefined = 5;
+        // console.log(undefined,noGlobal);
+        function jQuery(selector){
+            return new Ph(selector);//无new化操作
+        }
+
+        let fn = jQuery.prototype = {
+            constructor:jQuery,
+            html:function(temp){
+                for(let i=0;i<this.length;i++){
+                    this[i].innerHTML = temp;
+                }
+            }
+        }
+
+        jQuery.trim = function(str){
+            return str.replace(/(^\s+)|(\s+$)/g,'');
+        }
+        jQuery.type = function(data,dataType){
+            let toStr = Object.prototype.toString;
+            return toStr.call(data) === `[object ${dataType[0].toUpperCase() + dataType.substring(1).toLowerCase()}]`;   
+        }
+        
+
+        function Ph(selector){
+            if(selector.nodeType === 1){
+                return selector;
+            }
+            if(typeof selector === 'string'){
+                //如果直接返回元素，那么是用不了jquery方法的，我们既要
+                //获得元素，也要让返回值用自己写的方法，所以才循环元素
+                //把元素挂在实例上。
+
+                let ele = document.querySelectorAll(selector);
+                
+                for(let i=0;i<ele.length;i++){
+                    this[i] = ele[i];
+                }
+                //{0:ele1,1:ele2,a:xx,length:2,xxb:xxx}
+                
+                this.length = ele.length;
+            }else if(typeof selector === 'function'){
+                document.addEventListener('DOMContentLoaded',function(){
+                    selector();
+                });
+            } 
+        }
+        
+        Ph.prototype = fn;
+
+        global.$ = global.jQuery = jQuery;
+
+    });
+
+    // console.log($.trim('   .33231    '));
+
+    // console.log($('','string'));
+
+    // $('#box').html('<p>呵呵阿达</p>');
+
+    $('li').html('写个什么呢?');
+    // console.log($('#box'));
+</script>
+</body>
+</html>
