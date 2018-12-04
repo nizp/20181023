@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    
+    用户名:<input type="text" name="user" id="txt"/>
+    <input type="button" value="提交" id="btn">
+<script src="./javascripts/jquery-3.2.1.min.js"></script>
+<script>
+
+    /*
+        
+        url：请求地址   后台同学一定会给你的
+        data:数据的拼接
+        dataType -> JSON.parse()
+        success:function(data){
+            data -> 为object，直接使用的数据
+        }
+
+        $.ajax({
+            url:必须传,
+            data:{
+                人:穆宝民
+                key(为前后端一起定义的字段):前端传的数据
+            }
+        });
+    */
+
+    $('#btn').click(function(){
+        $.ajax({
+                url:'/get',
+                data:{
+                    user:$('#txt').val()
+                },
+                success:function(json){
+                    let data = JSON.parse(json);
+                    if(data.code === 0){
+                        $('#txt').removeClass('ok');
+                        $('#txt').addClass('error');
+                    }
+                    if(data.code === 1){
+                        $('#txt').removeClass('error');
+                        $('#txt').addClass('ok');
+                    }
+
+                }
+
+        });
+    });
+
+
+
+    // $('#txt').blur(function(){
+    //     $.ajax({
+    //         url:'/get',
+    //         data:{
+    //             user:$(this).val()
+    //         },
+    //         dataType:"json",
+    //         success:function(data){
+    //             console.log(data);
+    //             if(data.code == 1){
+    //                 $('#txt').removeClass('error');
+    //                 $('#txt').addClass('ok');   
+    //             }
+    //             if(data.code == 0){
+    //                 $('#txt').removeClass('ok');
+    //                 $('#txt').addClass('error');
+    //                 alert('用户名已被占用')
+    //             }
+    //         }
+    //     })
+    // });
+</script>
+</body>
+</html>

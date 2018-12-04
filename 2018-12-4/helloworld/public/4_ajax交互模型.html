@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+    <input type="button" value="提交" id="btn">
+<script>
+    /*
+        ajax的模型叫电话模式
+
+        1.先有一个电话     创建ajax对象 new XMLHttpRequest
+        2.输入号码(拨号)   填写请求地址  xhr.open('请求的方式','url地址+具体的参数',是否异步（默认为true）)
+        3.发送             send()
+        4.等待             xhr.onload
+        5.成功接收         在xhr.onload中接收到数据 xhr.responseText
+    */
+
+    // console.log(XMLHttpRequest)
+
+   btn.onclick = function(){
+        let xhr = new XMLHttpRequest; //1.创建ajax对象
+        xhr.open('get','/get?user='+txt.value,true); //是否异步  2.填写请求地址
+        xhr.send();//3发送
+        xhr.onload = function(){ //4.等待服务器响应
+            // console.log(xhr.responseText); //5.接收的信息
+            let data = JSON.parse(xhr.responseText);
+            
+            if(data.code == 0){
+                txt.className = 'error';
+            }else if(data.code == 1){
+                txt.className = 'ok';
+            }
+            
+
+            // console.log('====================================');
+            // console.log(data);
+            // console.log('====================================');
+        }
+   };
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <input type="button" value="今日插曲" id="btn">
+    <ul id="ul"></ul>
+<script src="./javascripts/jquery-3.2.1.min.js"></script>
+<script>
+
+    $('#btn').click(function(){
+        $.ajax({
+            url:'/player',//后台给的
+            data:{
+                json:'true'//后台和你一起定
+            },
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                if(data.code === 0){
+                    let temp = '';
+                    data.msg.forEach(d => {
+                        // if(d.filename.includes('【')){
+                            temp += `<li>${d.filename}</li>`   
+                        // }
+                    });
+                    console.log(data);
+                    $('#ul').html(temp);
+                }
+            }
+        });
+
+
+
+        /*
+            url :  http://www.localhost/player
+            data:  json = 'true'  -> 拿到数据
+                {code:0,msg:list}
+                {code:1,msg:''}
+
+            测试:
+                http://www.localhost/player?json=true
+                返回: 
+                    {code:1,msg:[{id:0,filname:'凉凉'}]}
+        */
+
+        // $.ajax({
+        //     url:'/player',
+        //     data:{
+        //         json:'true'
+        //     },
+        //     dataType:"json",
+        //     success:function(data){
+        //         console.log(data);
+        //     } 
+        // })
+    });
+    
+</script>
+</body>
+</html>
