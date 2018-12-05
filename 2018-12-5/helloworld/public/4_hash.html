@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <p id="p"></p>
+<script>
+    let arr = ['新闻','体育','军事','头条'];
+    let btns = document.getElementsByTagName('button');
+    let hashNum;//为了对应btn的颜色
+    let hash = window.location.hash; //一上来先获取hash
+    if(!hash){//如果没有
+        window.location.hash = 'p=0'; //强行设置一波0，这个时候直接就跑到了hashchange中
+    }else{
+        //如果有，就获取hash值
+        hashNum = window.location.hash.split('=')[1]*1;
+        p.innerHTML = arr[hashNum];
+    }
+
+    arr.forEach((e,i)=>{
+        let btn = document.createElement('button');
+        btn.innerHTML = e;
+        btn.className = hashNum!=undefined && (e==arr[hashNum]?"active":'');
+        btn.onclick = function(){
+            // for(let i=0;i<btns.length;i++){
+            //     btns[i].className = ''; 
+            // }
+            // this.className = 'active';
+            // p.innerHTML = e;
+            window.location.hash = 'p='+i;
+        }
+        box.appendChild(btn)
+    });
+
+    window.onhashchange = function(){
+        for(let i=0;i<btns.length;i++){
+            btns[i].className = ''; 
+        }
+        let i = window.location.hash.split('=')[1]*1;
+        btns[i].className = 'active';
+        p.innerHTML = arr[i];
+    }
+
+</script>
+</body>
+</html>

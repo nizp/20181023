@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">刷新</button>
+<script>
+    let num = 0;
+    btn.onclick = function(){
+        //页面刷新,应该放在事件中
+        // window.location.reload();
+        // window.location = window.location;
+        num++
+        window.location.hash = 'p='+num;
+    }
+
+    window.onhashchange = function(){
+        alert(window.location.hash.substring(1));
+    }
+
+    // window.location = window.location;
+    // window.location.reload();
+
+    /*
+        URL:
+            url是统一资源定位符
+
+        https://www.baidu.com:80/item/url/110640?fr=aladdin
+
+        URL的结构:
+            第一部分:
+                模式/协议（scheme）
+
+                常用超文本传输协议（Hypertext Transfer Protocol，缩写为HTTP）
+
+                https——用安全套接字层传送的超文本传输协议
+
+                ftp——文件传输协议
+                
+                file——当地电脑或网上分享的文件
+
+            第二部分
+                域名 ip地址的一个别名
+                    119.75.217.109 百度的ip地址  
+                
+                顶级域名:
+                    www.baidu.com
+                二级域名:
+                    baike.baidu.com
+                三级域名:
+                    baike.tieba.baidu.com
+
+                .com 商用的国际域名 
+                .cn 供商用的中文域名 
+                .net 用于网络供应服务商（系统类的经常使用NET域名） 
+                .org 用于官方组织 
+                .edu 用于教育 
+                .gov 用于政府
+
+            :数字端口号
+                范围就是0到65535
+                浏览网页服务的80端口
+                mongo:27017
+
+            带/
+                有可能是目录，也有可能是接口，也有可能是二次封装之前的目录呀，接口呀
+
+            ? 查询信息
+                ?到#之间的位置
+
+                window.location.search  包含问号，不包含#号
+
+                即可以读也可以写，写了查询信息是会刷新页面
+
+            #之后的锚信息
+                window.location.hash  包含#号
+
+                即可以读也可以写，写了锚信息是不会刷新页面
+
+                window.onhashchange  当hash值发生变化的时候才会触发  
+
+    */    
+</script>
+</body>
+</html>

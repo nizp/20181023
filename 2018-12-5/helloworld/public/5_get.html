@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+    <input type="button" value="提交" id="btn">
+<script>
+    /*
+        get请求的特性:
+            比post快，
+            get会将数据缓存起来，而post不会
+            url字节长度是每个浏览器都是不一样的（体积是有限的）
+            相对来说是不安全
+            中文的转码问题(在chrome中中文会自动转成URI编码，而IE10以下浏览器都不会自动转)
+            所以要手动转编码
+        更擅长于，查找、展示数据、轻量的数据
+        URI ：Uniform Resource Identifier，统一资源标识符；
+        URL：Uniform Resource Locator，统一资源定位符；
+        URN：Uniform Resource Name，统一资源名称。
+        其中，URL,URN是URI的子集。
+
+        decodeURI('%E7%8E%8B')  ->  中文   
+
+        encodeURI(中文)  ->  uri编码
+
+        %E5%B0%8F%E7%87%95%E5%AD%90 - >小燕子
+
+
+
+    */
+    btn.onclick = function(){
+        /*
+            在IE下，有ActiveXObject插件，
+            new ActiveXObject("Mscrosoft.XMLHttp");
+        */
+        let xhr = new XMLHttpRequest;
+        /*
+            请求方式有:
+                GET、POST、DELETE、PUT
+
+               GET通过URL的方式去请求的服务器
+                
+        */
+        xhr.open('get','/get?ren='+encodeURI(txt.value),true);
+        xhr.send();
+        xhr.onload = function(){
+            console.log(xhr.responseText);
+        }
+
+
+        //未来会用下面这个  get
+        // fetch('/get?ren='+txt.value)
+        // .then((e)=>e.json())
+        // .then(data=>{
+        //     console.log(data);
+        // });
+
+    }
+</script>
+</body>
+</html>
