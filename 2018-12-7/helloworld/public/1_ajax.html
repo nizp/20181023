@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+<script>
+    /*
+        对于请求的数据和静态资源（html的页面、图片），在低版本IE下会缓存
+
+        高版本浏览器是只缓存静态资源，不缓存数据。
+
+        什么样的情况下才会被浏览器缓存？
+            第二次的地址和第一次的地址一样，那么第二次找到的资源就为第一次的
+
+            解决:
+                让第二次的地址和第一次的地址不一样即可。
+
+
+    */
+    //getget?ren=cyy&abc=随机数，时间戳
+    txt.onblur = function(){
+        var xhr = new XMLHttpRequest;
+        // xhr.open('get','/getget?ren='+encodeURI(this.value)+'&id='+Date.now(),true);
+        xhr.open('post','/post');
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        xhr.send('user='+this.value);
+        xhr.onload = function(){
+            console.log(xhr.responseText);
+        }
+    }
+
+</script>
+</body>
+</html>

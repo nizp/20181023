@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+<script>
+    /*
+        XMLHttpRequest在低版本IE下（除IE6），里面的事件和属性都有不同，
+        比如onload，只要高版本才能使用，但是，所有版本都支持 onreadystatechange
+        能够监听到请求的步骤。
+        onreadystatechange能监听5步，每步都有对应的数字0-4，但是第0步监听不到
+        最多只能监听1-4，通过xhr.reayState拿到这些数字；
+
+        在执行1-4步的时候，每完成一次，都会调用一次onreadystatechange，直到最后一
+        步为4的时候，说明服务器已经有回应。
+
+        存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+
+        0: 请求未初始化
+        1: 服务器连接已建立
+        2: 请求已接收
+        3: 请求处理中
+        4: 请求已完成，且响应已就绪
+
+        如果在同步的情况下，低版本IE，是按照正常的同步编程顺序解析的
+        1-4
+
+        在高版本下，没有1-3的过程，直接走4。
+
+
+        send到底放在哪？
+
+            如果是onload,放在onload的上面也行，下面也可以
+
+            但是如果是onreadystatechange，那么send放在
+            事件的下面。
+                1.能够多监听一步  1
+                2.低版本IE下如果把send放事件的上面，在同步的时候，第4步监听不到
+
+        总的来说，如果IE低版本
+            1.创建ajax对象
+            2.填写地址
+            3.等待onreadystatechange
+            4.发送    
+            
+        高版本:
+            1.创建ajax对象
+            2.填写地址
+            3.发送   
+            4.等待onload
+            5.拿到返回信息
+
+
+
+    */
+    txt.onblur = function(){
+        var xhr = new XMLHttpRequest;
+        xhr.open('get','/getget?ren='+encodeURI(this.value)+'&id='+Date.now(),false);
+
+        // console.log(xhr);
+        // xhr.onload = function(){
+            // console.log(xhr.responseText);//''
+            // alert(xhr.readyState)
+        // }
+
+       
+       xhr.send();
+        xhr.onreadystatechange = function(){
+            // if (xhr.readyState === 1) {
+            //     console.log(0)
+            // }
+            // if (xhr.readyState === 2) {
+            //     console.log(1)
+            // }
+            // if (xhr.readyState === 3) {
+            //     console.log(33)
+            // }
+            if (xhr.readyState === 4) {
+                console.log(444444);
+            }
+
+            // if(xhr.readyState === 4){
+            //     alert(xhr.readyState);
+            // }   
+            // alert(xhr.readyState);
+        }
+
+        // xhr.onload = function(){
+        //     console.log(444444);
+        // }
+
+        // console.log(xhr.responseText);
+
+        console.log('下面的1000行代码');
+    }
+
+</script>
+</body>
+</html>

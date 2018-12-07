@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+<script>
+    /*
+        同步:在程序运行的时候，是从上而下的，只要上面的代码没运行完成，会阻塞下面的代码运行，只有
+        上面的程序执行完，下面的代码才会运行。
+
+        异步:在程序运行的时候，是从上而下的，上面的代码没运行完成，不会阻塞下面的代码运行。
+    */
+    txt.onblur = function(){
+        var xhr = new XMLHttpRequest;
+        xhr.open('get','/sleep?name='+encodeURI(this.value)+'&id='+Date.now(),false);
+        xhr.send();
+        // xhr.onload = function(){
+            console.log(xhr.responseText);//''
+
+        // }
+        console.log('下面的1000行代码');
+    }
+
+</script>
+</body>
+</html>

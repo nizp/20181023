@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+<script>
+    /*
+        虽然readyState已经为4，但是接收的信息，不一定是成功的。
+
+        Status Code状态码
+
+        xhr.status 查看当前的状态码。
+
+        * xhr.status => http状态码
+                * 200： 客户端成功接收到服务端的返回的数据
+                * 301： 永久重定向，当前域名地址已经永久跳转到另外一个域名地址中
+                * 302： 临时重定向，一般情况下当服务器超过它的加载负荷范围之后，会重新跳转到一个新的服务器，一般是用来解决负载均衡，或者我们一般的项目的图片、文件、其他资料都放在其他的服务器当中
+                * 304： 加载缓存，一般我们请求一个页面，浏览器会默认将这个页面的全部信息缓存的本地，当我们再次请求这个页面的时候，浏览器检测到输入的地址参数一样的话，会默认走缓存【加载更快】ctrl+f5实现强制刷新 也可以清除缓存，或者服务端可以设置响应头的时间进行变更也可以达到清除缓存的效果，
+                * 我们如果想要每次请求都不走的缓存的话，可以这样操作
+                * xhr.open('get','3.TCP协议.html?_='+Math.random(),true);
+                * xhr.open('get','3.TCP协议.html?_='+new Date().getTime(),true);
+                *
+                * 307: 临时重定向，针对的是http传输协议，一开始http=>https
+                * 400：访问参数错误
+                * 401：没有访问权限
+                * 404：请求地址【资源】不存在
+                * 413：客户端请求的文件超过服务端的最大承载的容量
+                * 500：未知的服务端错误
+                * 503：服务器超过最大的负荷
+                *
+                * 注意：只要是5xx 都是服务端的问题，只要页面是4xx 都是前端的问题 2xx和3xx 都可以表示请求的成功的意思
+                *
+                *
+
+
+    getget?ren=xx&sex1=ttt
+
+
+    */
+    txt.onblur = function(){
+        var xhr = new XMLHttpRequest;
+        xhr.open('get','/getget?ren='+encodeURI(this.value)+'&id='+Date.now());
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+               console.log(xhr.responseText);
+            }
+        }
+        xhr.send();
+        
+    }
+
+</script>
+</body>
+</html>
