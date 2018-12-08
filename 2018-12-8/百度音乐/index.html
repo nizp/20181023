@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="baidu.css" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="baidu">
+				<ul id="list">
+					<li>
+						<div></div>
+						<span>泡沫</span>
+						<span>邓紫棋</span>
+					</li>
+					<li>
+						<div></div>
+						<span>说爱你</span>
+						<span>蔡依林</span>
+					</li>
+					<li>
+						<div></div>
+						<span>稻香</span>
+						<span>周杰伦</span>
+					</li>
+					<li>
+						<div></div>
+						<span>我的梦</span>
+						<span>张靓颖</span>
+					</li>
+					<li>
+						<div></div>
+						<span>怎么说我不爱你</span>
+						<span>萧敬腾</span>
+					</li>
+					<li>
+						<div>️</div>
+						<span>无处安放</span>
+						<span>白若溪</span>
+					</li>
+				</ul>
+				<div class="select">
+					<span class="selectAll"><span>全选</span></span>
+					<div class="others">
+						<span><em></em>收藏</span>
+						<span><em></em>添加</span>
+						<span><em></em>删除</span>
+					</div>
+				</div>
+			</div>
+		</div>
+<script src="./../jquery-3.2.1.min.js"></script>
+<script>
+	$(function(){
+		$('li:odd').css('background','pink');
+		$('li').hover(function(){
+			$(this).css('background','#e15671');
+		},function(){
+			$('li').each((i,e)=>{
+				let $div = $(e).find('div');
+				if($div.html() === '✔️'){
+					$(e).css('background','#e15671');
+				}else{
+					if(i%2){
+						$(e).css('background','pink');
+					}else{
+						$(e).css('background','#fff');
+					}
+				}
+			});
+		});
+
+
+		let checkedAll = false;
+		let $div = $('li').find('div');
+		let $btn = $('#list').find('div');
+		$('.selectAll').click(function(){
+			if(checkedAll){
+				$(this).html('<span>全选</span>');
+				$('li:odd').css('background','pink');
+				$('li:even').css('background','#fff');
+			}else{
+				$(this).html('✔️<span>全选</span>');
+				$('li').css('background','#e15671');
+			}
+			checkedAll = !checkedAll;
+			
+			$div.html(`${checkedAll?'✔️':''}`);
+			arr.forEach((e,i,all)=> {
+				all[i] = checkedAll;
+				// $btn[i].onOff = checkedAll;
+			});
+			console.log(checkedAll,arr);
+		});
+
+		
+		// $.each($btn,function(i,ele){
+		// 	console.log(i);
+		// });
+		let arr = [];
+		$btn.each(function(i,e){
+			// e.onOff = false;
+			arr[i] = false;
+			$(this).click(function(){
+				if(arr[i]){
+					$(e).html('');
+				}else{
+					$(e).html('✔️');
+				}
+				// e.onOff = !e.onOff;
+				// arr[i] = e.onOff;
+				arr[i] = !arr[i];
+				
+				$('.selectAll').html(`${arr.every(e=>e)?'✔️<span>全选</span>':'<span>全选</span>'}`);
+				checkedAll = arr.every(e=>e);
+				
+			});
+		});
+
+		
+		// ✔️
+
+
+
+
+	});
+
+
+
+	
+</script>
+	</body>
+
+</html>

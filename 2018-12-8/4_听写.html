@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+#box{
+    position:absolute;
+    width: 100px;
+    height: 100px;
+    background: #000;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+   /*
+        1.时间版匀速运动的原理
+            b + t/d * c
+
+        2.延迟加载的原理
+
+            1.先把数据埋在对应的元素中  <li _url="./1.jpg">
+            2.滚轮的时候，看看每个元素的getBoundingClientRect().top
+            是否进入可视区的底部，如果是就把img的src替换成之前存好的数据
+
+        3.什么是事件流
+            从window起由上而下到达目标点，再在从目标点由下而上到达window的整个过程就叫事件流
+            在过程中有3个阶段:
+                1.捕获阶段
+                2.目标阶段
+                3.冒泡阶段
+
+        4.什么是event对象
+                当事件触发的时候，函数的第一个参数，默认就为事件对象
+                事件对象记录了，用户触发事件的一些细节信息。
+
+        
+        5.事件委托
+                利用事件模型，给祖先级绑定事件函数的时候，触发子孙级
+                事件（必须是嵌套关系），通过ev.target，可以捕捉到子孙级的行为的这种特性
+                
+        6.如何阻止冒泡和浏览器默认行为
+                冒泡:
+                    ev.cancelBubble = true
+                    ev.stopPropagation();
+
+                浏览器默认行为:
+                    DOM0
+                        return false
+
+                    DOM2
+                        ev.preventDefault();
+
+        7.使用过的事件有哪些，都是什么意思？
+                onclick
+                onmouseover
+                onmouseout
+                onmousedown
+                onmousemove
+                onmouseup
+                onmouseleave
+                onmouseenter
+                onload
+                onchange
+                oninput
+                onfocus
+                onblur
+                onkeydown
+                onkeyup
+                onresize
+                onscroll
+                ondblclick
+                onreadystatechange   DOM加载完成的时候
+                DOMContentLoaded
+                DOMMouseScroll    火狐的滚轮
+                onmousewheel
+                oncontextmenu
+       
+    8.如何获取键盘键值，包括特殊按键。
+        
+        ev.keyCode
+        ev.shiftKey
+        ev.altKey
+        ev.ctrlKey
+
+    9.拖拽的原理
+
+        
+        class Drag{
+            constructor(id){
+                this.box = document.getElementById(id);
+                this.x = 0;
+                this.y = 0;
+
+            }
+            init(){
+                this.box.addEventListener('mousedown',this.down.bind(this));
+            }
+            down(ev){
+                this.x = ev.pageX - this.box.offsetLeft;
+                this.y = ev.pageY - this.box.offsetTop;
+                document.addEventListener('mousemove',this.m=this.move.bind(this));
+                document.addEventListener('mouseup',this.u=this.up.bind(this));
+                ev.preventDefault();
+            }
+            move(ev){
+                this.box.style.left = ev.pageX - this.x + 'px';
+                this.box.style.top = ev.pageY - this.y + 'px';
+            }   
+            up(){
+                document.removeEventListener('mousemove',this.m);
+                document.removeEventListener('mouseup',this.u);
+            }
+        }
+
+    
+        // <template>
+        //     <div ref="box"
+        //         :style="{{left:x}}px;{{top:y}}px"
+        //         @mousedown="down"
+        //         @mousemove="move"
+        //         @mouseup="up"
+        //     ></div>
+        // </template>
+        //     data(){
+        //         x:0,
+        //         y:0
+        //     },
+        //     methods(){
+        //         down(ev){
+        //             this.x = ev.pageX
+        //             this.y = ev.pageY
+        //         },
+        //         move(){
+
+        //         },
+        //         up(){
+
+        //         }
+        //     }
+
+
+        10.举例说明对象和数组的解构赋值
+
+        let {width,height} = getComputedStyle(box);
+
+        var [b,a] = [a,b];
+
+            
+
+   */
+
+   class Drag{
+        constructor(id){
+            this.box = document.getElementById(id);
+            this.x = 0;
+            this.y = 0;
+
+        }
+        init(){
+            this.box.addEventListener('mousedown',this.down.bind(this));
+        }
+        down(ev){
+            this.x = ev.pageX - this.box.offsetLeft;
+            this.y = ev.pageY - this.box.offsetTop;
+            // this.m = this.move.bind(this)
+            // let _that = this;
+            // let m = function(ev){
+            //     _that.move(ev);
+            // }
+            // this.m = m;
+            document.addEventListener('mousemove',this.m = this.move.bind(this));
+            document.addEventListener('mouseup',this.u=this.up.bind(this));
+            ev.preventDefault();
+        }
+        move(ev){
+            this.box.style.left = ev.pageX - this.x + 'px';
+            this.box.style.top = ev.pageY - this.y + 'px';
+        }   
+        up(){
+            document.removeEventListener('mousemove',this.m);
+            document.removeEventListener('mouseup',this.u);
+        }
+    }
+
+    new Drag('box').init();
+
+
+    function fn(){
+        console.log(this);
+    }
+
+    // fn.bind(document)();
+
+    console.log(fn.bind(document) == fn.bind(document))
+
+</script>
+</body>
+</html>

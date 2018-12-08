@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <ul id="ul">
+        
+    </ul>
+    
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        增、删、改、查、克隆
+
+        增:
+            创建
+                $('元素')
+            插入
+                append
+                before
+                ....
+        改:替换
+            
+
+        查:上一个，下一个，子级的，父级的，第一个，最后一个
+
+        事件:
+            on()
+
+            on('click',function(){})
+
+            on('click','target',function(){})
+
+
+            on('click',{key:val},function(ev){
+                ev.data.key
+            })
+
+        自定义事件的好处:
+            1.在维护代码的时候，解决互相干扰（污染）的问题
+            2.对于复杂的条件（事件），实现一次之后可以重复使用，提高的代码的质量
+    */
+            
+    for(let i=0;i<5;i++){
+        let $li = $('<li><span>32132321</span></li>');
+        $li.on('click','span',function(){
+           console.log($(this)[0]);
+        });
+        $('#ul').append($li);
+    }
+
+</script>
+</body>
+</html>

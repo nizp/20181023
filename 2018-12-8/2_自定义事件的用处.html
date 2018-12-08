@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: yellowgreen;
+}
+#box2{
+    width:100px;
+    height:100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+
+    /*
+        let event = document.createEvent('HTMLEvents');    //创建event对象
+        event.initEvent("长按", true, true); //初始化event
+        document.dispatchEvent(event); //发布
+    */
+    //A
+    // document.addEventListener('长按',function(ev){
+    //     // console.log();
+    //     function fn(){
+    //         console.log('A同学');
+    //     }
+    //     if(ev.ev.target.id === 'box'){
+    //         box.style.opacity = 1 - ev.ev.n;
+    //     }
+    //     if(ev.ev.target.id === 'box2'){
+    //         box2.style.border = '10px solid skyblue';
+    //         fn();
+    //     }
+       
+    // });
+
+    //B
+    // document.addEventListener('长按',function(ev){
+    //     function fn(){
+    //         console.log('B同学');
+    //     }
+    //     if(ev.ev.target.id === 'box2'){
+    //         fn();
+    //     }
+    // });
+
+    //C
+    // document.addEventListener('长按',function(ev){
+    //     function fn(){
+    //         console.log('C同学');
+    //     }
+    //     if(ev.ev.target.id === 'box2'){
+    //         fn();
+    //     }
+    // });
+
+    document.addEventListener('长按',function(ev){
+        if(ev.aoe.target.id === 'box2'){
+            console.log(ev.n);
+        } 
+    });
+    
+
+
+    //自定义事件的事件对象
+    let event = document.createEvent('HTMLEvents');    
+    event.initEvent("长按", true, true);
+
+
+    let n = 0;
+    let time = null;
+    let animation = null;
+    document.onmousedown = function(ev){
+        time = setTimeout(function(){
+            (function animate(){
+                animation = requestAnimationFrame(animate);
+                //把原生的事件对象给了event.aoe
+                // console.log(event,ev);
+                event.aoe = ev;
+                n += 0.01;
+                event.n = n;
+                document.dispatchEvent(event);
+            })();
+        },300);
+    
+        document.onmouseup = function(){
+            clearTimeout(time);
+            if(animation){
+                cancelAnimationFrame(animation);
+                n = 0;
+            } 
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

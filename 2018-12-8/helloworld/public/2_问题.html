@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+<script>
+    txt.onblur = function () {
+        var xhr = new XMLHttpRequest;
+        xhr.open('get', '/sleep?name=' + encodeURI(this.value) + '&id=' + Date.now(), false);
+        
+        setTimeout(function () {
+            console.log(2); //2
+        }, 3000);
+    
+        setTimeout(function () {
+            console.log(1);  //1
+        }, 1);//1
+        
+
+        xhr.send();//发送 -> 下面是发送回来的结果
+
+       
+       
+
+        //send下面的代码是发送完毕之后的代码，如果send没有执行完，下面的代码也不会执行
+        
+        
+        //5秒之后，先执行主任务的，再执行，任务队列中的
+        //第一组
+        // setTimeout(function () {
+        //     console.log(1)
+        // }, 1000);
+        // setTimeout(function () {
+        //     console.log(2);
+        // }, 1);
+    
+     
+        console.log('下面的1000行代码');
+    }
+</script>
+</body>
+</html>
