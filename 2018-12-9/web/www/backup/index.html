@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Reddy.Huang"/>
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/register.css">
+    <title>Title</title>
+    <style>
+        h2 {
+            display: none;
+        }
+        #info{
+          display: none;
+        }
+    </style>
+</head>
+<body>
+<h2 id="userInfo">欢迎回来,<span id="user"></span></h2>
+<div class="form-wrapper">
+    <div class="banner"></div>
+    <form id="form">
+        <div class="item-wrapper"><label for="username">登陆名</label><input type="text" name="username" id="username" value=""></div>
+        <div class="item-wrapper"><label for="password">密码</label><input type="password" name="password" id="password" value=""></div>
+        <input type="button" value="登陆" id="submit">
+        <input type="button" value="注册" id="register">
+    </form>
+    <p id="info" >请输入信息</p>
+</div>
+<script src="./ajax.js"></script>
+<script>
+
+    const register = document.getElementById('register');
+    const submit = document.getElementById('submit');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const info = document.getElementById('info');
+    //注册
+
+    register.addEventListener('click',function(){
+        ajax({
+            url:'/api/user/register',
+            data:{
+                username: username.value,
+		        password: password.value,
+            },
+            method:'post',
+            success(e){
+                info.style.display = 'block';
+                if(e.code){
+                    //失败
+                    info.innerHTML = '不好意思，此坑已满';
+                }else{
+                    //成功
+                    info.innerHTML = '恭喜您,大吉大利，赶紧登陆今晚你懂的!';
+                    password.value = '';
+                }
+            // console.log(e);
+            }
+        });
+    });
+
+
+    //登陆
+    submit.addEventListener('click',function(){
+        ajax({
+            url:'/api/user/login',
+            data:{
+                username: username.value,
+		        password: password.value
+            },
+            method:'post',
+            success(data){
+                info.style.display = 'block';
+                if(data.code === -3){
+                    info.innerHTML = data.msg;
+                }
+                if(data.code === 0){
+                    info.innerHTML = '欢迎来到珠峰培训';
+                    let num = 3;
+                    let timer = setInterval(function(){
+                        if(num < 0){
+                            num = 0;
+                            window.location.href = 'http://localhost:88';
+                        }
+                        info.innerHTML = '欢迎来到珠峰培训('+ num + ')';
+                        num --;
+                    },1000)
+                }
+            }
+        })
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

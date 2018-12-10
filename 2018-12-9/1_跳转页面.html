@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <a href="http://www.baidu.com"  target="_blank">点击跳转</a> -->
+    <a href="2.html"  target="_blank">点击跳转</a>
+    <button id="btn">你需要的工具</button>
+<script>
+    /*
+        a标签跳转
+            target="_self"  当前页跳转
+            target="_blank"
+
+        window.open('2.html','_blank');  
+            人为主动触发的时候才不会被拦截
+            如果不是人为触发的事件，高版本浏览器都会拦截
+
+            onload 是不会触发的
+
+
+        window.loaction.href  获取地址栏的信息(高版本浏览器不会拦截)
+        不能新开页面，只能在当前页面跳转地址。
+            可读可写
+            window.location.href  = 'xxx.com'
+
+
+
+    */ 
+    // btn.onclick = function(){
+    //     window.open('2.html','_blank')
+    // }
+    window.location.href  = '2.html';
+    
+</script>
+</body>
+</html>
