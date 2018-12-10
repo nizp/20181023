@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function promise(url){
+        return new Promise((resolve,reject)=>{
+            let img = new Image();
+            img.src = url;
+            img.onload = function(){
+                if(url == './30.gif'){
+                    setTimeout(()=>{
+                        resolve(url);
+                    },2000)
+                }else{
+                    setTimeout(()=>{
+                        resolve(url);
+                    },4000)
+                }
+               
+            }
+            img.onerror = function(ev){
+                reject(url+'出错了');
+            }
+        });
+    }    
+
+    let p1 = promise('./37.gif');
+    let p2 = promise('./36.gif');
+
+    Promise.all([p1,p2])
+    .then((resolve)=>{
+        console.log(resolve);
+    },(reject)=>{
+        console.log(reject);
+    });
+
+
+</script>
+</body>
+</html>

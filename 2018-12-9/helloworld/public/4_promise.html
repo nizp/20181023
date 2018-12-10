@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Promise 是异步编程的一种解决方案
+
+        用Promise主要是换种写法而已
+
+        resolve:成功
+        reject:失败
+
+        new Promise( (resolve,reject)=> {
+            resolve()
+            reject()
+        } )
+    */
+
+    let a = 10;
+
+    let p = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            a = 20;
+            resolve(a);
+        },1000);
+    });
+
+    p.then((a)=>{
+        //成功
+        console.log(a);
+    },()=>{
+        //失败
+    });
+
+    console.log(a);
+
+
+
+
+
+    // setTimeout(function(){
+    //     a = 20;
+    //     console.log(a);
+    // },1000);
+
+//   
+
+</script>
+</body>
+</html>

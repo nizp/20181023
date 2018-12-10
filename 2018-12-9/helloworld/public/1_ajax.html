@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border: 1px solid green;
+}
+.error{
+    border: 1px solid red;
+}
+</style>
+</head>
+<body>
+    用户名:<input type="text"  id="txt"/>
+    <ul id="ul"></ul>
+<script>
+    /*
+        xhr 它是一个实例，对象，
+    * xhr.response  请求到数据之后的响应体，可以是任何格式
+    * xhr.responseText  返回是数据文本，它是一个字符串格式，可以是json数据也可以是xml数据格式
+    * xhr.responseXML  返回的是xml格式的数据
+    *
+    * onabort  中断ajax操作执行的方法
+    * onreadystatuschange  当状态发生改变执行的方法
+    
+    *** timeout  设置ajax请求的超时时间
+    *** ontimeout  超时之后执行的方法
+     
+    * readyState  ajax准备的状态
+    * status   http状态码
+    * statusText  对http状态的一个描述
+    * withCredentials  是否允许ajax跨域 false
+    *
+    * open  打开一个url连接
+    * send  发送ajax请求
+    * overrideMimeType  重写MIME类型
+    * getAllResponseHeaders()  获取所有的响应头信息
+    * getResponseHeader([key]) 获取响应头中的某个属性名对应的属性值
+    *
+    *
+    * */
+
+    txt.onblur = function(){
+        let xhr = new XMLHttpRequest;
+        
+        xhr.open('get','/getget?ren='+this.value);
+        // xhr.open('get','data.xml');
+
+        // xhr.open('get','/sleep?name='+this.value);
+      
+        xhr.onload = function(){
+            
+
+            //XML
+            // let xml = xhr.responseXML;
+            // let person = Array.from(xml.getElementsByTagName('person'));
+            // let temp = '';
+            // person.forEach((ele,i)=>{
+            //     temp += `
+            //         <li>我的名字叫${ele.children[0].innerHTML},
+                    
+            //             芳龄${ele.children[1].innerHTML}岁,
+
+            //             性别:${ele.children[2].innerHTML}
+
+            //             我想说${ele.children[3].innerHTML}
+            //         </li>
+            //     `;
+            // });
+            // ul.innerHTML = temp;
+            // console.log(xhr.statusText );
+            console.log( xhr.getAllResponseHeaders() )
+        }
+
+
+        xhr.timeout = 1000;
+        xhr.ontimeout = function(){
+            console.log('超时');
+        }
+       
+
+        xhr.send();
+
+    }
+
+
+
+</script>
+</body>
+</html>

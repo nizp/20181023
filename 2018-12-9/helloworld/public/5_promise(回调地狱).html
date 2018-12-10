@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#div{
+   width:100px;
+   height: 100px;
+   background: red;
+   position: absolute;
+   left:0;
+   top:0; 
+}
+</style>
+</head>
+<body>
+    <div id="div"></div>
+<script src="./tween.js"></script>
+<script>
+    div.onclick = function(){
+        // move({
+        //     ele:div,
+        //     attrs:{
+        //         width:200
+        //     },
+        //     fx:'elasticOut',
+        //     duration:500,
+        //     cb(){
+        //         move({
+        //             ele:div,
+        //             attrs:{
+        //                 height:620
+        //             },
+        //             duration:500,
+        //             fx:'elasticOut',
+        //             cb(){
+        //                 move({
+        //                     ele:div,
+        //                     attrs:{
+        //                         left:300
+        //                     },
+        //                     duration:400,
+        //                     fx:'backBoth',
+        //                     cb(){
+        //                         move({
+        //                             ele:div,
+        //                             attrs:{
+        //                                 top:300
+        //                             },
+        //                             duration:400,
+        //                             fx:'bounceOut',
+        //                         }) 
+        //                     }
+        //                 })   
+        //             }
+        //         })   
+        //     }
+        // })   
+        
+
+        let m = new Promise((resolve)=>{
+            move({
+                ele:div,
+                attrs:{
+                    width:200
+                },
+                fx:'elasticOut',
+                duration:500,
+                cb(){
+                    resolve('王冲');
+                }
+            })
+        })
+        .then((name)=>{
+            let m2 = new Promise((resolve)=>{
+                move({
+                    ele:div,
+                    attrs:{
+                        height:620
+                    },
+                    duration:500,
+                    fx:'elasticOut',
+                    cb(){
+                        resolve([name,'123456']);
+                    }
+                })
+            });
+            return m2;
+        })
+        .then((arg)=>{
+           return  new Promise((resolve)=>{
+                move({
+                    ele:div,
+                    attrs:{
+                        left:300
+                    },
+                    duration:400,
+                    fx:'backBoth',
+                    cb(){
+                        resolve([...arg,'163']);
+                    }
+                })   
+            })
+        })
+        .then((arg)=>{
+            move({
+                ele:div,
+                attrs:{
+                    top:300
+                },
+                duration:400,
+                fx:'bounceOut',
+                cb(){
+                    console.log(arg,'完');
+                }
+            }) 
+        })
+
+
+        // console.log(m);
+
+
+
+    }
+</script>
+</body>
+</html>

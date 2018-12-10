@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    //如何把URL的查询信息变成一个对象
+    // let obj = {};
+    // let url = 'http://www.baidu.com?bbs=123&xx=321';
+
+    // url = url.substring(url.indexOf('?')+1);
+    // url.split('&').forEach(d=>{
+    //     let arr = d.split('=');
+    //     obj[arr[0]] = arr[1];
+    // });
+
+    /*
+        {bbs: "123", xx: "321"} -> bbs=123&xx=321
+    */
+
+    let obj2 = {bbs: "123", xx: "321"};
+    let arr = [];
+    for(let attr in obj2){
+        arr.push(attr+'='+obj2[attr]);
+    }
+    console.log(arr.join('&'));
+    
+</script>
+</body>
+</html>
