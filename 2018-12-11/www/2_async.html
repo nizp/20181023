@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Promise
+        Generator
+        async 
+
+            函数前面只要加了async 就说明，函数的内部就为同步
+    */ 
+    
+    let a = 0,b=0;
+    function aaa(){
+        return new Promise((resolve)=>{
+            setTimeout(function(){
+                a = 20;
+                // console.log(resolve)
+                resolve(a);
+            },2000);
+        });
+    }
+
+    // aaa().then(function(a){
+    //     console.log(a)
+    // })
+
+    
+
+    function bbb(aa){
+        if(!aa)return null;
+        return new Promise((resolve)=>{
+            setTimeout(function(){
+                b = 30;
+                resolve(b);
+            },100);
+        });
+    }
+    let fn = async function as(){
+        function f(){
+           console.log(1);
+        }
+
+        let aa = await aaa(); //异步 -> 同步
+        
+        console.log(aa);//20
+        f();//1
+        let bb = await bbb(aa);//异步 -> 同步
+        console.log(bb);//3
+        // console.log(a,b);
+    }
+    fn();
+
+    
+</script>
+</body>
+</html>

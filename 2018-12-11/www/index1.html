@@ -1,0 +1,173 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="/public/css/weibo.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="nArea">
+    <!--留言-->
+    <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="text"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" id="submit" class="inputs" value=""/>
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+    <!--已留-->
+    <div class="commentOn">
+        <div class="messList" id="div1">
+            <!--<div class="reply">
+                <p class="replyContent">卫士，新款卫士将推出总共14种车身式样。其中， XS旅行款车型售价为32295英镑(约33.6万元)。</p>
+                <p class="operation">
+                    <span class="replyTime">2018-09-08 16:37:60</span>
+                    <span class="handle">
+                        <a href="javascript:;" class="top">0</a>
+                        <a href="javascript:;" class="down_icon">0</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>-->
+        </div>
+        <div class="page" id="page">
+            <!-- <a href="#" class="active">1</a>
+            <a href="#" >2</a> -->
+        </div>
+    </div>
+</div>
+<script src="./backup/ajax.js"></script>
+<script>
+    
+    const content = document.getElementById('div1');
+    const text = document.getElementById('text');
+    const submit = document.getElementById('submit');
+
+    submit.addEventListener('click',add);
+
+    text.addEventListener('keyup',function(ev){
+        if(ev.keyCode === 13 && ev.shiftKey){
+            add();
+        }
+    });
+
+
+    function add(){
+        let v = text.value.trim();
+
+        if(!v){
+            alert('请输入内容');
+            return;
+        }
+
+        ajax({
+            url:'/api/weibo',
+            data:{
+                act:'add',
+                content:v
+            },
+            success(data){
+                //说明数据库已经有本次的内容
+                if(data.code === 0){
+                    console.log(v)
+                    // data.content = v;
+                    // content.innerHTML += render(data); //?一会就知道了
+                    getData(1);
+                    text.value = '';
+                };
+                console.log(data);
+            }
+        });
+        // ..
+    }
+
+    function getData(num){
+        ajax({
+            url:'/api/weibo',
+            data:{
+                act:'get',
+		        page:num
+            },
+            success(arr){
+                console.log(arr);
+                arr.reverse();
+                arr.forEach(e=>{
+                    content.insertBefore(render(e),content.children[0]);
+                });
+            }
+        });
+    }
+    getData(1);
+
+
+    function render(data){
+        let div = document.createElement('div');
+        div.className = 'reply';
+        div.dataset.tid = data.id;
+        div.innerHTML = `
+            <p class="replyContent">${getM(data.content)}</p>
+                <p class="operation">
+                    <span class="replyTime">${formatTime(data.time)}</span>
+                    <span class="handle">
+                        <a href="javascript:;" class="top">${data.like}</a>
+                        <a href="javascript:;" class="down_icon">${data.dislike}</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+            </p>
+        `;
+        
+        div.addEventListener('click',function(ev){
+            //点赞
+            if(ev.target.classList.contains('top')){
+                ajax({
+                    url:'/api/weibo',
+                    data:{
+                        act:'like',
+		                id:div.dataset.tid
+                    },
+                    success(data){
+                        if(data.code == 0){
+                            getData(1);
+                        }
+                    }
+                });
+            }
+        });
+
+        return div;
+    }
+
+    function getM(str){
+        str = str.trim().replace(/.+$/mg,($0)=>{
+            return `<p>${$0.trim()}</p>`;
+        });
+        return str;
+    }
+
+    function formatTime(time){
+        // 2018-09-08 16:37:60
+        let date = new Date(time);  //***一般服务器给的时间都是秒，所以秒转毫秒都要乘以1000;
+        let iY = date.getFullYear();
+        let iM = date.getMonth() + 1;
+        let iDate = date.getDate();
+        let iH = date.getHours();
+        let iMi = date.getMinutes();
+        let iSe = date.getSeconds(); 
+
+        return `${iY}-${toD(iM)}-${toD(iDate)} ${toD(iH)}:${toD(iMi)}:${toD(iSe)}`;
+        // console.log(date);
+    }
+
+    function toD(n){
+        return n < 10?'0'+n:''+n;
+    }
+    
+
+
+
+
+
+
+</script>
+</body>
+</html>

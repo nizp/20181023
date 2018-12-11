@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    let str = `12dsdsa中文34.
+    12345中文。
+    23456`;
+
+    str = str.trim().replace(/.+$/mg,($0)=>{
+        return `<p>${$0.trim()}</p>`;
+    });
+    box.innerHTML = str;
+    console.log(str);
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function* fn(){
+        // console.log(1);
+        // return 1;
+        yield [1];
+        yield '2';
+        return 3
+    }   
+    let f = fn(); 
+    console.log(f.next());
+    console.log(f.next());
+    console.log(f.next());
+    console.log(f.next());
+    // console.log(fn());
+</script>
+</body>
+</html>

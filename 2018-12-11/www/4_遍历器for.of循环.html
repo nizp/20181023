@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+    let lis = document.getElementsByTagName('li');
+    let arr = ['1','3',5,7];
+
+    /*
+        [1,2,3].keys() ->   拿到了下标
+
+        [1,2,3].values() -> 拿到的是数组的每个值
+
+        [1,2,3].entries() -> keys,values
+
+
+    for of不能直接遍历对象,因为没有Symbol.iterator接口
+
+    只要有Symbol.iterator就能用for..of循环
+
+    不过就算没有Symbol.iterator接口，也可以自己写
+
+    xx[Symbol.iterator] = function(){
+        return {
+            next:function(){
+                return {
+                    value:传出去的值,
+                    done:false没有遍历完,true遍历结束
+                }
+            }
+        }
+    }
+    
+
+        Object.keys()-> key值抽出来，存到一个数组中
+        Object.values(obj) value值抽出来，存到一个数组中
+        Object.entries(obj) 把key，value都抽出来，存到一个数组中
+
+    */
+
+    // for(let i of lis){
+    //     console.log(i)
+    // }
+
+    
+    // for(let i of arr.entries()){
+    //     console.log(i)
+    // }
+
+
+    let obj = {name:'洪丹',age:18};
+
+    obj[Symbol.iterator] = function(){
+        let index = 0;
+        let arr = Object.keys(obj);
+        let len = arr.length;
+        return {
+            next(){
+                if(index < len){
+                    return {
+                        value:{key:arr[index],val:obj[arr[index++]]},
+                        done:false
+                    }
+                }else{
+                    return {
+                        value:1,
+                        done:true
+                    }
+                }
+            }
+        }
+    }
+
+    for(let {key,val} of obj){
+        console.log(key,val);
+    }
+
+    // console.log(Object.keys(obj));
+    // console.log(Object.values(obj));
+
+    // console.log(Object.entries(obj));
+
+    // for(let i of Object.values(obj)){
+    //     console.log(i)
+    // }
+
+
+
+    // console.dir(obj);
+
+</script>
+</body>
+</html>
