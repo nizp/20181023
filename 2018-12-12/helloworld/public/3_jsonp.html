@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<!-- <script src="./qq.exe"></script> -->
+</head>
+<body>
+
+<script>
+/*
+    文件里面是什么跟后缀名关系不大，里面的代码才大。
+
+    script标签中的src能够直接跨域访问资源，并且尽量解析js代码。
+
+    jsonp必须具备以下条件:
+        1.保证全局有个函数
+        2.数据必须是这个函数的调用格式
+        3.当要请求数据的时候，创建一个script标签，把src等于请求的接口
+          再把script标签插入到页面，这个时候就做到了按需请求.
+
+*/    
+// console.log(arr);
+
+    // window.onload = function(){
+    //     console.log(a);
+    // }
+    function fn(a){
+        console.log(a);
+    }
+    // console.log(a);  //undefined,报错,10,9
+    // alert(1);
+</script>
+<script>
+    var a = 10;
+    // alert(2);
+    // fn(a);
+</script>
+<script src="./qq.exe"></script>
+</body>
+</html>

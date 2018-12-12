@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    文件里面是什么跟后缀名关系不大，里面的代码才大。
+
+    script标签中的src能够直接跨域访问资源，并且尽量解析js代码。
+
+    jsonp必须具备以下条件:
+        1.保证全局有个函数
+        2.数据必须是这个函数的调用格式(函数名 + 括号，内部填充数据的格式)
+        3.当要请求数据的时候，创建一个script标签，把src等于请求的接口
+          再把script标签插入到页面，这个时候就做到了按需请求.
+
+
+          https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=s&cb=fn
+
+*/   
+    function fn2(data){
+        console.log(data);
+    }
+   window.onload = function(){
+
+       
+
+        document.onclick = function(){
+            let oS = document.createElement('script');
+        // oS.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=小燕子&cb=fn2';
+            oS.src = 'http://localhost/jsonp?callback=fn2';
+            document.getElementsByTagName('head')[0].appendChild(oS);
+            oS.remove();
+        }
+   }
+
+    // document.onclick = function(){
+        
+    //     // let oS = document.createElement('script');
+    //     // // oS.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=小燕子&cb=fn2';
+    //     // oS.src = 'http://localhost/jsonp?callback=fn2';
+    //     // document.getElementsByTagName('head')[0].appendChild(oS);
+    // }
+
+
+    //  fn({
+    //         q: "s",
+    //         p: false,
+    //         s: ["什么值得买", "顺丰", "双色球", "三国杀", "上海天气", "圣墟", "申通", "苏宁易购"]
+    //     });
+    
+
+
+  
+
+</script>
+<!-- <script src="http://localhost/jsonp?callback=fn2"></script> -->
+</body>
+</html>

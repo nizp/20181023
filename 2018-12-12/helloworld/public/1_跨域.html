@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        1.它是什么？
+        2.它怎么用？
+        3.它有什么问题，如何解决
+
+        跨域(跨源):越过、超出，某个区域，某个范围
+
+            只要有其中一个不同源就跨域 -> 不同源就叫跨域
+
+        源:（域名、端口、协议）
+        同源策略
+            是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略则浏览器的正常功能可能都会受到影响.
+
+
+        同域名、端口、协议
+            www.baidu.com -> www.baidu.com
+            www.baidu.com:80 -> www.baidu.com:80
+            www.baidu.com:80 不能访问 www.baidu.com:88
+            http://www.baidu.com -> file://www.baidu.com
+
+
+        解决跨域的问题:
+            1.CORS是一个W3C标准，全称是"跨域资源共享"
+            浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，
+            有时还会多出一次附加的请求，但用户不会有感觉,因此，
+            实现CORS通信的关键是*服务器*。只要服务器实现了CORS接口，就可以跨源通信。
+            高版本的XMLHttpRequest + 服务器权限解决跨域问题
+
+            2.服务器代理
+            通过服务器的文件能访问第三方资源。这个服务器文件又和当前请求的页面同源
+            这个时候，当前请求的页面去访问服务器文件，就等同于直接请求第三方资源
+
+            3.jsonp（json+padding）把数据内填充起来（其实就是函数调用）
+                所有浏览器都兼容
+
+                <link href="">
+                img src=""
+                <script src="">
+
+    */    
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt"><button id="btn">搜索</button>
+    <ul id="ul"></ul>
+<script>
+    
+   
+
+
+
+    /*
+        https://www.sogou.com/suggnew/ajajjson?key='+ this.value +'&type=web&ori=yes&pr=web&abtestid=2&ipn=&t=1544607713453&suguuid=f5c0c89f-7881-4a3e-8e3f-0988fd796367&ip=221.216.139.31&iploc=1100&suid=7DE0F2B63665860A5890A7DB00078D9F&yyid=null&pid=sogou&policyno=null&mfp=null&hs=https&mp=1&prereq_a=%E4%BC%98%E9%85%B7&sugsuv=1485215571769602&sugtime=1544607725167
+    */
+    txt.onkeyup = async function(){
+        try {
+            let data = await jsonp({
+                url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                callback:'cb',
+                data:{
+                    wd:this.value
+                }
+                // url:'https://www.sogou.com/suggnew/ajajjson',
+                // data:{
+                //     // wd:txt.value
+                //     key:this.value,
+                //     type:'web',
+                //     ori:'yes',
+                //     pr:'web',
+                //     abtestid:'2',
+                //     ipn:''
+                // },
+                // callback:'t=1544607713453&suguuid=f5c0c89f-7881-4a3e-8e3f-0988fd796367&ip=221.216.139.31&iploc=1100&suid=7DE0F2B63665860A5890A7DB00078D9F&yyid=null&pid=sogou&policyno=null&mfp=null&hs=https&mp=1&prereq_a=%E4%BC%98%E9%85%B7&sugsuv=1485215571769602&sugtime=1544607725167'
+            });
+            console.log(data)
+        
+            // data.s.forEach(e=>{
+            //     console.log(e);
+            // });
+        } catch (error) {
+            
+        }
+
+        console.log(10);
+    }
+
+
+
+    // txt.onkeyup = function(){
+    //     jsonp({
+    //         url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+    //         data:{
+    //             wd:txt.value
+    //         },
+    //         callback:'cb'
+    //     })
+    //     .then((data)=>{
+    //         data.s.forEach(e=>{
+    //             console.log(e);
+    //         });
+    //     },(d)=>{
+    //        console.log(d); 
+    //     });
+    // }
+
+
+   
+
+    /*
+        cb=jQuery1102013850564986530056_1544599886101&_=1544599886106
+    */
+
+    function jsonp(obj){
+        return new Promise((resolve,reject)=>{
+            let opt = {
+                url:'',
+                data:{},
+                callback:'callback'
+            }
+            
+            Object.assign(opt,obj);
+            
+            //随机一个不重名的函数名
+            let fnName = 'jQuery'+Date.now()+'_'+Math.random();
+            
+            fnName = fnName.replace('.',''); //去小数点
+            
+            opt[fnName] = setTimeout(function(){
+                reject('请求超时');
+            },20000);
+            window[fnName] = function (data){ //全局函数
+                // opt.success(data);
+                // console.log(data);
+                clearTimeout(opt[fnName]);
+                resolve(data);
+            }
+
+            //把对象转成字符串
+            let arr = [];
+            opt.data[opt.callback] = fnName;
+            for(let attr of Object.keys(opt.data)){
+                arr.push( attr + '=' + opt.data[attr]);
+            }
+            opt.data = arr.join('&'); 
+            let oS = document.createElement('script');
+            oS.src = opt.url + '?'+ opt.data; //+ '&' + opt.callback +'=' + fnName;
+            document.getElementsByTagName('head')[0].appendChild(oS);
+            oS.remove();
+        });
+    }
+
+</script>
+</body>
+</html>

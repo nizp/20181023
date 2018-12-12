@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt"><button id="btn">搜索</button>
+    <ul id="ul"></ul>
+<script>
+
+    function fn(data){
+        let html = '';
+        data.s.forEach(e=>{
+            html += `<li>${e}</li>`;
+        });
+        ul.innerHTML = html;
+    }
+    txt.onkeyup = function(){
+        let oS = document.createElement('script');
+        oS.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+ this.value +'&cb=fn';
+        document.getElementsByTagName('head')[0].appendChild(oS);
+        oS.remove();
+    }
+
+</script>
+</body>
+</html>

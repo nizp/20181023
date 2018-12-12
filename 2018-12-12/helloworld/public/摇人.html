@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">开始</button>
+    <button id="btn2">结束</button>
+    <div id="box"></div>
+<script>
+    let timer = null;
+    btn.onclick = function(){
+        timer = setInterval(function(){
+            box.innerHTML = Math.ceil( Math.random() * 100)
+        },16.7);
+    }
+    btn2.onclick = function(){
+        clearTimeout(timer);
+        // box.innerHTML = 1
+    }
+
+</script>
+</body>
+</html>

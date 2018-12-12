@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+<script>
+    /*
+        只要控制台出现
+            Access-Control-Allow-Origin就说明跨域
+            
+    
+    */
+    btn.onclick = function(){
+        let xhr = new XMLHttpRequest;
+        // xhr.open('get','http://localhost:8080/kuayu?name=yy');
+        // xhr.open('get','http://www.baidu.com');
+        xhr.open('get','/daili');
+        // xhr.open('get','http://m.kugou.com/?json=true')
+        xhr.onload = function(){
+            document.write(xhr.responseText);
+        }
+        xhr.send();
+    }
+</script>
+</body>
+</html>
