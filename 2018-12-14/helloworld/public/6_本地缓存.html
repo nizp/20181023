@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="head">
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        把常用的，公共的部分缓存起来，下次请求的时候读缓存即可，减少http请求
+    */
+    let style1 = localStorage.getItem('style1');
+    if(!style1){
+        head.innerHTML += '<link rel="stylesheet" href="./1.css" id="s1">';
+        fetch('1.css')
+        .then(e=>e.text())
+        .then(e=>{
+            localStorage.setItem('style1',e);
+        });
+    }else{
+        head.innerHTML += '<style>'+ localStorage.getItem('style1') +'</style>';
+    }
+</script>
+</body>
+</html>

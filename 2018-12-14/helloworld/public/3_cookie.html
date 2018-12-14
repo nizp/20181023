@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        cookie(浏览器缓存)
+            其实是个后端技术(一般来说都是后端设置，当然前端也能设置)，
+            指某些网站为了辨别用户身份、进行 session 跟踪而储存在用户本地终端上的数据
+        
+            服务器本身是没有记录客户端身份的方法的。
+
+            以前是字字千金，一个域下只能设置几十个，而现在据说有5M
+
+            其实对于前端来说，种cookie就是给document设置了一个叫做cookie
+            自定义的属性，这个属性能被所有浏览器识别并缓存在浏览器中。
+
+            一定要在服务器环境中运行。
+
+            设置cookie
+                document.cookie = key=val
+
+                *设置cookie都会调用toString
+
+            读取:
+                document.cookie 
+                返回的结果是把这个域中的所有cookie都显示出来了
+                key=val; （以分号，空格分割） 
+
+            cookie的默认生命周期是当浏览器关闭以后生命就结束。
+
+            不过可以通过expires去设置生命周期
+
+            猜你喜欢、身份验证，每日推荐，免登录
+
+            
+    
+    */    
+
+//    document.cookie = 'name=xyf';
+   let d = new Date();
+//    d.setDate(d.getDate()+1);
+//    d.setMinutes(d.getMinutes() + 5);
+//    document.cookie = 'name=xyf2; '+'expires='+ d;
+
+
+    function getCookie(key){
+        let c = document.cookie.split('; ');
+        let on = false;
+        for(let i of c){
+            let arr = i.split('=');
+            if(arr[0] === key){
+                on = true;
+                return arr[1];
+            }
+        }
+        if(!on)return null;
+    }
+
+    function setCookie(key,val,obj={}){
+        let d = new Date();
+        let {name,time} = obj;
+        switch(name){
+            case 'date' :
+                d.setDate(d.getDate() + time);
+            break;
+            case 'minu' :
+                d.setMinutes(d.getMinutes() + time);
+            break;
+            case 'hour' :
+                d.setHours(d.getHours() + time);
+            break;
+        }
+        document.cookie = key +'='+ JSON.stringify(val) + (obj.time?'; expires='+ d:'');
+    }
+    // setCookie('age',12);
+    // setCookie('age',12,{name:'hour',time:5});
+    // console.log(getCookie('name'));
+
+    function rmCookie(key,val){
+        setCookie(key,val,{name:'date',time:-1});
+    }
+
+    let arr = {};
+    setCookie('name',arr,{name:'date',time:1});
+
+   console.log( getCookie('name'));
+
+    
+</script>
+</body>
+</html>

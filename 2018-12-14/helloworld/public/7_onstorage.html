@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+</head>
+<body>
+<script>
+    /*
+        onstorage 当本地缓存修改的时候，自己不触发，兄弟页面触发。
+    */    
+    
+    document.onclick = function(){
+        localStorage.setItem('name','aoe');
+    }
+
+   
+</script>
+</body>
+</html>

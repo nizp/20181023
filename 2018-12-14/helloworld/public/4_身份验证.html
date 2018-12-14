@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="login">
+            用户名:<input type="text" id="user">
+            密码:<input type="password" id="pw">
+            <br/>
+            <label>
+                十天免登录:
+                    <input type="checkbox" id="cd">
+            </label>
+            <button id="btn">登录</button>
+            <button id="btn2">注册</button>
+    </div>
+    <div id="box" style="display: none">
+        <p id="txt"></p>
+        <button id="up">退出</button>
+    </div>
+<script>
+    let sql = [
+        {
+            uv:'洪丹',
+            pv:123456
+        },
+        {
+            uv:'王梦迪',
+            pv:123456
+        },
+        {
+            uv:'曹原野',
+            pv:123456
+        },
+        {
+            uv:'吕海龙',
+            pv:123456
+        }
+    ];
+    
+    if(getCookie('user')){
+        login.style.display = 'none';
+        box.style.display = 'block';
+        txt.innerHTML = '欢迎'+getCookie('user')+'回来!';
+    }
+
+    up.onclick = function(){
+        rmCookie('user',getCookie('user'));
+        window.location.reload();
+    }
+
+    
+    btn.onclick = function(){
+        let uv = user.value;
+        let pv = pw.value;
+
+        let obj = sql.find(e=>e.uv == uv);
+        //有数据
+        if(obj){
+            if(obj.pv == pv){
+                alert('登录成功');
+                if(cd.checked){
+                    setCookie('user',obj.uv,{name:'date',time:10})
+                }else{
+                    setCookie('user',obj.uv);
+                }
+                window.location.reload();
+            }else{
+                alert('用户名或密码错误');
+            }
+        }else{
+            alert('此用户不存在');
+        }   
+        console.log(obj);
+    }
+
+
+    function getCookie(key){
+        let c = document.cookie.split('; ');
+        let on = false;
+        for(let i of c){
+            let arr = i.split('=');
+            if(arr[0] === key){
+                on = true;
+                return arr[1];
+            }
+        }
+        if(!on)return null;
+    }
+
+    function setCookie(key,val,obj={}){
+        let d = new Date();
+        let {name,time} = obj;
+        switch(name){
+            case 'date' :
+                d.setDate(d.getDate() + time);
+            break;
+            case 'minu' :
+                d.setMinutes(d.getMinutes() + time);
+            break;
+            case 'hour' :
+                d.setHours(d.getHours() + time);
+            break;
+        }
+        document.cookie = key +'='+ JSON.stringify(val) + (obj.time?'; expires='+ d:'');
+    }
+ 
+    function rmCookie(key,val){
+        setCookie(key,val,{name:'date',time:-1});
+    }
+
+    
+</script>
+</body>
+</html>
