@@ -1,0 +1,12 @@
+1.jsonp的封装
+
+2.fetch、axios
+
+3.promise系列
+
+4.for of
+
+5.localStorage
+
+
+

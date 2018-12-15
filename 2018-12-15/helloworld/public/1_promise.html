@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        请求过来的数据，有可能是null，有可能是数组，是数组就（进then）遍历
+        如果返回的结果为null，就不需要.then
+    */  
+    
+    // let str = '10';
+
+    // let p = new Promise(function(resolve,reject){
+    //     setTimeout(function(){
+    //         str = '20';
+    //         resolve(str);
+    //     },100);
+    // });
+
+    // p.then((str)=>{
+    //     return 10;
+    // }).then((a)=>{
+    //     return a + 20;
+    // }).then(e=>{
+    //     console.log(e);
+    // });
+
+    // /*
+    //     $('#box').css().css()
+    // */
+    // console.log(p);
+
+    let arr = null;
+
+    let p = new Promise(function(resolve){
+        setTimeout(function(){
+            resolve([1,2,3,4]);
+        },3000);
+    });
+
+    p.then(e=>{
+        if(!e){
+            console.log('没数据');
+        }else{
+            e.forEach(element => {
+                console.log(element);
+            });
+        }
+    })
+    .finally(()=>{
+        console.log('最后执行');
+    });
+
+
+   
+   
+
+   
+
+    
+    
+</script>
+</body>
+</html>

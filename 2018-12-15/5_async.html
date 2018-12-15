@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    function fn2(){
+        return new Promise(function(resolve){
+            setTimeout(function(){
+                resolve(50);
+            },4000);
+        });
+    }
+
+    async function fn(){
+        let y = await fn2() + 2;
+        console.log(y);
+    }
+    fn();
+
+    
+</script>
+</body>
+</html>

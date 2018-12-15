@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。
+
+        第一步，协程A开始执行。
+        第二步，协程A执行到一半，进入暂停，执行权转移到协程B。
+        第三步，（一段时间后）协程B交还执行权。
+        第四步，协程A恢复执行。
+
+        function* fn(){
+
+        }
+
+        函数在调用的时候，执行next方法，碰到yield或者return就停（停到了yield||return代码上）
+        
+        next可以传入数据(传入的数据为上一次yield的表达式的返回值)，为了下一步操作的运算。
+
+
+    */
+
+    // function* fn(){
+    //     console.log(1);
+    // }
+    // fn().next();
+
+    function* gen(x) {
+        console.log(0);
+        var y = yield x + 2;
+        var z = yield x + y;
+        console.log(y);
+        return y;
+    }
+    let y = gen(5);
+    console.log(y.next());
+    console.log(y.next(4));
+    console.log(y.next());
+
+    
+    //next中可以传上次返回的结果
+    // y.next(y.next().value);
+    // console.log(y.next());
+
+</script>
+</body>
+</html>

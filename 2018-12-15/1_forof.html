@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        for of 数据结构的统一遍历接口
+
+        只要带Symbol.Iterator就可以使用for of循环
+
+        ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+        Set 本身是一个构造函数，用来生成 Set 数据结构。
+    */
+    
+    // let arr = [1,2,3,4,5];
+    // for(let [key,val] of arr.entries()){
+    //     console.log(key,val);
+    // }
+
+    let arr = [1,1,1,1,4,2,3,5,5];
+
+    // console.log([...new Set(arr)]);
+    
+    const items = new Set([1, 2, 3, 4, 5, '5', 5, 5]);
+    // console.log(items[0]);
+
+
+    // let a = arr.forEach(function(e,i){
+    //     if(i==2)return;
+    //     alert(i);
+    // });
+    // console.log(a);
+
+</script>
+</body>
+</html>

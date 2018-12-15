@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        function fn(){
+            console.log(1);
+        }
+        fn();
+
+
+        任务队列中又分为，宏任务和微任务
+        
+        宏任务 -> setTimeout
+        微任务 -> promise
+
+        1.宏任务：包括整体代码script，setTimeout，setInterval；
+
+        2.微任务：Promise，process.nextTick
+
+
+        优先执行主任务，主任务执行完（为空），执行微任务(then，按顺序走的)，
+        微任务执行完之后，开始执行宏任务，按照条件的先后顺序执行，
+        这种循环的机制就叫事件循环（event loop）
+
+
+
+
+    */
+    // let arr = null;
+
+    // let p = new Promise(function(resolve){
+    //     console.log(5);
+    //     setTimeout(function(){
+    //         resolve(arr);
+    //     },3000);
+    // });
+    // setTimeout(function(){
+    //     console.log(4);
+    // },1000);
+    // console.log(1);
+    // p.then(e=>{
+    //     if(!e){
+    //         console.log(2);
+    //     }else{
+    //         e.forEach(element => {
+    //             console.log(element);
+    //         });
+    //     }
+    // });
+    // console.log(3);  //51342
+
+    // let p = new Promise((resolve)=>{
+    //     console.log(1);
+    //     resolve(6);
+    // });
+    // let p2 = new Promise((resolve)=>{
+    //     resolve(7);
+    // });
+    // p2.then(e=>{
+    //     console.log(7);
+    // })
+    // console.log(4);
+    // setTimeout(()=>{
+    //     console.log(2);
+    // });
+    // p.then(e=>{
+    //     console.log(e);
+    // });
+    // console.log(5);
+    // setTimeout(()=>{
+    //     console.log(3);
+    // },10);
+
+    //145623
+
+
+
+
+
+    console.log('1主线程');				
+    setTimeout(function() {				
+        console.log('2宏任务');
+        new Promise(function(resolve) {
+            console.log('4微任务');
+            resolve();
+        }).then(function() {
+            console.log('5微任务')
+        })
+    });
+    new Promise(function(resolve) {	
+        console.log('7微任务');
+        resolve();
+    }).then(function() {
+        console.log('8微任务')			
+    })
+    setTimeout(function() {			
+        console.log('9宏任务');
+        new Promise(function(resolve) {
+            console.log('11微任务');
+            resolve();
+        }).then(function() {
+            console.log('12微任务')
+        })
+    })
+
+    /*
+        1主线程 7微任务 8微任务 2宏任务 4微任务 5微任务 9宏任务 11微任务 12微任务
+    */
+
+
+</script>
+</body>
+</html>

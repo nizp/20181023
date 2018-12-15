@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="./axios.js"></script>
+<script>
+    // axios.get('/get?name=kaiwen')
+    // .then(d=>{
+    //     console.log(d.data);
+    // });
+
+    // axios.get('/get',{
+    //     params:{
+    //         name:'kaiwen'
+    //     }
+    // })
+    // .then(re=>{
+    //     console.log(re.data);
+    // })
+
+
+    // axios.post('/post',{
+    //     name:'aaa'
+    // })
+    // .then(re=>{
+    //     console.log(re);
+    // });
+
+
+    async function url(){
+        let data = await axios.post('/post',{name:'aaa'});
+        data = new Function('','return '+data.data)();
+        //eval('('+ data.data + ')');
+        // console.log(data);
+        if(data.code === 0){
+            alert('成功');
+        }
+        if(data.code === 1){
+            alert('失败');
+        }
+    }
+    url();
+</script>
+</body>
+</html>
