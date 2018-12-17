@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        删除指定文件
+    </div>
+    <input type="file" id="file">
+    <button id="btn">确定删除</button>
+<script>
+    btn.onclick = function(){
+        let fv = file.value;
+        /*
+            fv.substring(fv.lastIndexOf('\\')+1)
+        */
+        fv = fv.substring(fv.lastIndexOf('\\')+1);
+        fetch('/?rm='+fv)
+        .then(e=>e.text())
+        .then(e=>{
+            let data = JSON.parse(e);
+            if(data.code === 0){
+                alert('删除成功');
+            }
+            if(data.code === 1){
+                alert(data.msg);
+            }
+        })
+    }
+</script>
+</body>
+</html>
