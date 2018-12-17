@@ -16,7 +16,8 @@
         /*
             fv.substring(fv.lastIndexOf('\\')+1)
         */
-        fv = fv.substring(fv.lastIndexOf('\\')+1);
+        // fv = fv.substring(fv.lastIndexOf('\\')+1);
+        console.log(fv)
         fetch('/?rm='+fv)
         .then(e=>e.text())
         .then(e=>{
