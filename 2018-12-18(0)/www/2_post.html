@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#tan{
+    width:100px;
+    height:30px;
+    background: skyblue;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    top:-40px;
+    left:50%;
+    margin-left:-60px;
+    transition: top 500ms;
+}
+
+</style>
+</head>
+<body>
+    用户名:  <input type="text" id="user">
+    密码:<input type="password" id="pw">
+    <button id="btn">登录</button>
+    <div id="tan">不存在用户</div>
+<script>
+    /*
+        1   参数错误
+        2   不存在用户
+        3   密码错误
+        0   成功
+    */
+    btn.onclick = function(){
+
+        let uv = user.value.trim();
+        let pv = pw.value.trim();
+        if(uv && pv){
+            fetch('/login',{
+                body:new URLSearchParams({
+                    user:uv,
+                    pw:pv
+                }).toString(),
+                method:'post',
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                }
+            })
+            .then(e=>e.json())
+            .then(data=>{
+                if(data.code === 1){
+                    tanFn(data.msg);
+                    // console.log(data.msg);
+                }
+                if(data.code === 0){
+                    tanFn(data.msg,()=>{
+                        window.location.href = 'http://www.zhufengpeixun.cn';
+                    });
+                }
+                if(data.code === 2){
+                    tanFn(data.msg);
+                }
+                if(data.code === 3){
+                    tanFn(data.msg);
+                }
+                console.log(data);
+            });
+        }
+    }
+
+    function tanFn(txt,cb){
+        tan.innerHTML = txt;
+        tan.style.top = '30%';
+        setTimeout(()=>{
+            tan.style.top = '-40px';
+            setTimeout(function(){
+                cb && cb();
+            },500);
+        },2000);
+    }
+</script>
+</body>
+</html>

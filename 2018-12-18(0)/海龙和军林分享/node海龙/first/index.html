@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AJAX练习</title>
+</head>
+
+<body>
+  <input type="text" id="txt">
+  <script>
+    const xml = new XMLHttpRequest();
+    document.onclick = () => {
+      xml.open("get", "http://apis.juhe.cn/cook/query?key=8823b720ffa8a4d4c5933a644bfb4fd8&menu=" + txt.value);
+      xml.send();
+      xml.onreadystatechange = function (data) {
+        if (this.readyState === 4 && this.status === 200) {
+          const obj = JSON.parse(xml.responseText);
+        } else {
+          console.log("Error");
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

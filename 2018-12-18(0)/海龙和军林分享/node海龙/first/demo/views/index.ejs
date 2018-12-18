@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h3>两个部分</h3>
+  <p>主要内容：happy time——3道初级算法题思路</p>
+  <p>次要内容：封装的一点小思路</p>
+  <p>次要内容：控制台对学习的帮助</p>
+  <h1>目的——快乐就完了</h1>
+  <input type="text" id="txt" placeholder="输入1、2、3获取题目">
+  <input type="submit" id="submit" value="submit">
+  <div id="result">输入题号显示题目</div>
+  <script>
+    let xhr = new XMLHttpRequest();
+
+    function req() {
+      if (!txt.value.trim()) return;
+      // xhr.onreadystatechange = function () {
+      //   if (xhr.readyState === 4) {
+      //     if (xhr.status === 200) {
+      //       result.innerHTML = xhr.responseText;
+      //     }
+      //   }
+      //   if (txt.value.trim()) txt.value = "";
+      // }
+      // xhr.open("GET", "/data?happy=" + txt.value);
+      // xhr.send();
+      fetch("/data?happy=" + txt.value)
+        .then(res => {
+          // console.log(res);
+          // console.log(res.text())
+          console.log(res.json());
+        })
+        .then(data => result.innerHTML = data)
+        .catch(err => console.log(err));
+
+      if (txt.value.trim()) txt.value = "";
+    }
+    submit.onclick = req;
+    txt.onkeyup = function (ev) {
+      if (ev.keyCode === 13) req();
+    }
+  </script>
+</body>
+
+</html>

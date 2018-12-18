@@ -1,0 +1,34 @@
+ /*
+                    点击的时候，当页码大于10，让页码显示合适的内容
+                    num 是点击的那个 页码
+                    num3 是总页码个数
+                    */
+                    if (num3 > 10) {
+                        if (num <= 6) {//点到第6个的时候进入
+                            //console.log('前6个');
+                            for (let i = 1; i < num3+1; i++) {
+                                page.children[i-1].style.display = "";
+                                //console.log(i,num3);
+                                if(i > 10){
+                                    page.children[i-1].style.display = "none";
+                                }
+                            }
+                        };
+                        if (num3 - num < 4) {//点到后4个的时候进来,显示从后面开始，往前10个显示
+                            //console.log('后4个');
+                            for (let i = num3; i > 0; i--) {
+                                page.children[i-1].style.display = "";
+                                //console.log(i,num3);
+                                if(i<num3-9){
+                                    page.children[i-1].style.display = "none";
+                                }
+                            }
+                        };
+                        if (num > 6 & num3 - num >= 4) {//点到第7个开始进来
+                            //console.log('第7个开始到倒数第5个为止')
+                            for (let i = num3; i > 0; i--) {
+                                page.children[i-1].style.display = "none";
+                                //console.log(i,num3,num);
+                                if(num-5<=i&i<num+5){
+                                    //console.log(num-5,i,num+5)
+                                    page.children[i-1].style.display = "";

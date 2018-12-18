@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>剪刀石头布</title>
+    <style>
+        #box {
+            border: 1px solid black;
+            width: 1330px;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #box1 {
+            /* margin: 50px auto; */
+            position: absolute;
+            top: 0px;
+            left: -1500px;
+            border: 1px solid black;
+            height: 600px;
+            width: 1330px;
+            transition: all 1s ease;
+
+        }
+
+        #box2 {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border: 1px solid black;
+            height: 600px;
+            width: 1330px;
+            transition: all 1s ease;
+
+        }
+
+        .h1 {
+            /* margin: auto; */
+            text-align: center;
+            margin: 300px auto;
+        }
+        #box3 {
+            position: absolute;
+            top: 0px;
+            left: 1500px;
+            border: 1px solid black;
+            height: 600px;
+            width: 1330px;
+            transition: all 1s ease;
+
+        }
+        #box4 {
+            position: absolute;
+            top: 0px;
+            left: -1500px;
+            border: 1px solid black;
+            height: 600px;
+            width: 1330px;
+            transition: all 1s ease;
+
+        }
+        #box5 {
+            position: absolute;
+            top: 0px;
+            left: 1500px;
+            border: 1px solid black;
+            height: 600px;
+            width: 1330px;
+            transition: all 1s ease;
+
+        }
+        #box6 {
+            position: absolute;
+            top: 0px;
+            left: -1500px;
+            border: 1px solid black;
+            height: 600px;
+            width: 1330px;
+            transition: all 1s ease;
+        }
+        #box7 {
+            position: absolute;
+            top: 0px;
+            left: 1500px;
+            /* border: 1px solid black; */
+            height: 600px;
+            width: 1330px;
+            transition: all 25s ease;
+        }
+
+        #div {
+            width: 400px;
+            height: 100px;
+            margin: auto
+        }
+
+        img {
+            height: 100%;
+            width: 29%;
+            box-shadow: 3px 3px;
+            border-radius: .5rem;
+            margin: 5px;
+        }
+
+        #div2 {
+            width: 660px;
+            height: 175px;
+            /* position: relative; */
+            /* left: 36%; */
+            /* border: 1px solid black; */
+            text-align: center;
+            margin: 100px auto;
+
+        }
+
+        #div1 {
+            width: 200px;
+            height: 30px;
+            border: 1px solid red;
+            margin: auto;
+            text-align: center;
+            line-height: 30px;
+            /* 行高等于高度时，文字垂直居中 */
+            font-size: 20px
+        }
+    </style>
+</head>
+
+<div id="box">
+    <div id="box1">
+        <div id="div">
+            <img src="./imgs/2.jpg" height="220" width="220" />
+            <img src="./imgs/0.jpg" height="220" width="220" />
+            <img src="./imgs/1.jpg" height="220" width="220" />
+        </div>
+        <div id="div2"></div>
+        <div id="div1"></div>
+    </div>
+    <div id="box2">
+        <h1 class="h1">学渣来分享了，稳住！</h1>
+    </div>
+    <div id="box3">
+        <img src="./imgs/1234.png" alt="">
+    </div>
+    <div id="box4">
+        <h2 class="h1">错了，不是她</h2>
+    </div>
+    <div id="box5">
+        <h3 class="h1">这个也不行，太low了</h3>
+    </div>
+    <div id="box6">
+        <h1 class="h1"> 今天的主题 hexo </h1>
+    </div>
+    <div id="box7">
+        <h1 class="h1"> 技术支持 ：会会，亚楠 ...... 特别鸣谢 ：会会，亚楠</h1>
+    </div>
+</div>
+
+<body>
+    <script>
+        const box = document.querySelector("#box");
+        const div = document.querySelector("#div");
+        const img = div.querySelectorAll("img");
+        const div2 = document.querySelector("#div2");
+        const div1 = document.querySelector("#div1");
+        let num = 0;
+        let n = 0;
+        let imgs = Array.from(img);
+        let onOff = false;//设置开关，在运行结束之前，不让再次点击
+
+
+        box2.onclick = function (ev) {
+            box2.style.left = "-1500px"
+            box3.style.left = 0;
+            ev.cancelBubble = true;
+        };
+        box3.onclick = function (ev) {
+            box3.style.left = "1500px";
+            box4.style.left = 0;
+            ev.cancelBubble = true;//冒泡的
+        };
+        box4.onclick = function (ev){
+            box4.style.left = "1500px";
+            box1.style.left = 0;
+            ev.cancelBubble = true;
+        };
+        box1.onclick = function(ev){
+            box1.style.left = "-1500px";
+            box5.style.left = 0;
+            ev.cancelBubble = true;
+        };
+        box5.onclick = function(ev){
+            box5.style.left = "1500px";
+            box6.style.left = 0;
+            ev.cancelBubble = true;
+        };
+        box6.onclick = function(ev){
+            box6.style.left = "1500px";
+            box7.style.left = "-1500px";
+            ev.cancelBubble = true;
+        };
+
+
+
+
+
+
+
+        div.addEventListener("click", function (ev) {
+            if (onOff) return;
+            (Array.from(img)).forEach(e => {
+                e.style.border = ""
+            });
+            change(ev)
+            ev.cancelBubble = true;
+        });
+
+        function change(ev) {
+            div1.innerHTML = "";
+            div2.innerHTML = "";
+            div2.index = "";
+            onOff = true;
+            let a = Math.floor(Math.random() * 3);
+            let timer = setInterval(function () {
+                num++;
+                n++;
+                if (num >= 3) num = 0;
+                div2.innerHTML = `<img src="imgs/${num}.jpg" height="220" width="220"/>`;
+                if (n >= 30) {
+                    clearInterval(timer);
+                    n = 0;
+                    div2.innerHTML = `<img src="imgs/${a}.jpg" height="220" width="220"/>`;
+                    div2.index = a;
+                }
+            }, 50)
+            panduan(ev, a)
+        };
+
+        function panduan(ev, a) {
+            if (ev.target == img[0]) {
+                img[0].style.border = "1px solid red";
+                let timer2 = setTimeout(function () {
+                    if (div2.index === 1) {
+                        div1.innerHTML = "你赢了"
+                    }
+                    if (div2.index === 0) {
+                        div1.innerHTML = "你输了"
+                    }
+                    if (div2.index === 2) {
+                        div1.innerHTML = "平局"
+                    }
+                    onOff = false
+                }, 2000);
+            };
+            if (ev.target == img[1]) {
+                img[1].style.border = "1px solid red";
+                setTimeout(function () {
+                    if (div2.index === 1) {
+                        div1.innerHTML = "你输了"
+                    }
+                    if (div2.index === 0) {
+                        div1.innerHTML = "平局"
+                    }
+                    if (div2.index === 2) {
+                        div1.innerHTML = "你赢了"
+                    }
+                    onOff = false
+                }, 2000)
+            };
+            if (ev.target == img[2]) {
+                img[2].style.border = "1px solid red";
+                setInterval(function () {
+                    if (div2.index === 1) {
+                        div1.innerHTML = "平局"
+                    }
+                    if (div2.index === 0) {
+                        div1.innerHTML = "你赢了"
+                    }
+                    if (div2.index === 2) {
+                        div1.innerHTML = "你输了"
+                    }
+                    onOff = false
+                }, 2000)
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

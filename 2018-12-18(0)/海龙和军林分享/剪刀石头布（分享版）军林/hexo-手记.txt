@@ -1,0 +1,46 @@
+
+1. 先安装nodeJS
+
+2. 先安装git Bash
+
+
+3. hexo使用步骤：可参考hexo官网：https://hexo.io/zh-cn     (找个风水好的地方，新建个文件夹，以后操作最好都在这个文件夹里操作，因为有很多东西要下载，防止找不到）
+	1. npm install hexo-cli -g
+	2. hexo init blog
+	3. cd blog
+	4. npm install
+	5. hexo server
+
+	辅助： (可以先忽略)
+	1. npm i -g hexo
+	2. npm i hexo --save
+
+
+5. _config.yml  修改配置
+                      （找到theme文件夹，下载主题，需要存放在theme包里的，主题文件的，网站：https://hexo.io/themes/）
+	
+	theme:   需要从github上面把theme包下载下来，然后放到theme包中，才可以设置哦
+
+（把 _config.yml文件拉到Visual Studio Code中打开拖到底部找到deploy:）
+	deploy:
+   		type: git   （不修改，固定的）
+		repo: https://github.com/zwhsunshine/zwhsunshine.github.io.git  (github的地址) 
+		branch: master    （：下载的theme包）
+
+6. 启动静态服务器：
+	hexo clean         hexo c    //清除缓存文件 (db.json) 和已生成的静态文件 (public)
+	hexo generate      hexo g    //生成静态文件
+	hexo server        hexo s    //启动服务器，默认http://localhost:4000
+		（注：hexo 3.0把服务器独立成个别模块，需要单独安装：npm i hexo-server）
+
+
+7. 上传到github
+	先安装 npm install hexo-deployer-git --save
+
+
+8. 进入文件夹执行命令，部署至github
+	hexo clean         hexo c    //清除缓存文件 (db.json) 和已生成的静态文件 (public)
+	hexo generate      hexo g    //生成静态文件
+	hexo server        hexo s    //启动服务器，默认http://localhost:4000
+		（注：hexo 3.0把服务器独立成个别模块，需要单独安装：npm i hexo-server）
+	hexo deploy        hexo d   //部署网站

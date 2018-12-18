@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>封装小思路</title>
+</head>
+
+<body>
+  <div id="test">
+    <p class="a"></p>
+    <p class="a"></p>
+    <p class="a"></p>
+  </div>
+  <div class="test">
+    <p class="a"></p>
+    <p class="a"></p>
+    <p class="a"></p>
+  </div>
+  <div class="test">
+    <p class="a"></p>
+    <p class="a"></p>
+    <p class="a"></p>
+  </div>
+  <div class="test">
+    <p class="a"></p>
+    <p class="a"></p>
+    <p class="a"></p>
+  </div>
+  <div class="test">
+    <p class="a"></p>
+    <p class="a"></p>
+    <p class="a"></p>
+  </div>
+  <div class="test">
+    <p class="a"></p>
+    <p class="a"></p>
+    <p class="a"></p>
+  </div>
+  <script>
+    // 实现一个自定义滚动条
+    // 需要的方法：
+    //  1、DOM查找
+    //  2、style改变
+    //  3、鼠标事件添加和移除
+
+    class Scroll {
+      constructor() {}
+
+      find(x, y = document, a, b) { // x目标；y是目标的父节点，默认为documnet；a是父节点的索引值；b是目标的索引；
+        // 参数的情况——可能是字符串，可能是节点本身，可能是不希望传入的参数类型
+        // 判断x，参数是不是符合要求
+        // x可以是字符串，可以是DOM节点，也可以是DOM类数组
+        // getElementById和querySelector是[object HTMLxxxElement]、getElementsByClassName和getElementsByTagName是[object HTMLCollection]、querySelectorAll和getElementsByNames是[object NodeList]
+        //
+        // 判断y，因为y跟x的关联性，y参数比较特殊。y的参数类型也跟x相同
+        // 返回结果的情况——最后返回的结果，一定是数组或者类数组。我们自己声明的数组，以及原生的类数组
+        // 数组的情况——多个y
+        // 类数组的情况——一个y
+        // switch无法通过return打断,所以用if else
+        //
+        // 递归
+        // 最终的目的——所有的结果，都从唯一的判断中导出
+
+        const t = this;
+        // 判断x
+        if (/\[object (HTMLCollection|NodeList|HTML.+Element)\]/.test(x.toString())) return x;
+        if (typeof x !== "string") throw new Error("Invalid parameter 0: It must be String");
+        // 判断y
+        if (typeof y === "string") y = t.find(y); // 结果肯定是DOM节点或者类数组
+        const flag = y.toString();
+
+        if (/\[object HTMLCollection\]/.test(flag)) {
+          if (typeof a === "number") y = y[a];
+          else {
+            if (y.length) {
+              const HTMLCollectionArray = [];
+              for (let i = 0; i < y.length; i++) {
+                HTMLCollectionArray[i] = t.find(x, y[i], a, b); // a肯定没有值
+              }
+              return HTMLCollectionArray;
+            } else throw new Error("Invalid parameter 1: No result for find");
+          }
+        } else if (/\[object NodeList\]/.test(flag)) {
+          if (typeof a === "number") y = y[a];
+          else {
+            if (y.length) {
+              const NodeListAyyay = [];
+              for (let i = 0; i < y.length; i++) {
+                NodeListAyyay[i] = t.find(x, y[i], a, b); // a肯定没有值
+              }
+              return NodeListAyyay;
+            } else throw new Error("Invalid parameter 1: No result for find");
+          }
+        } else if (/\[object HTML.+(Element)?\]/.test(flag)) {
+          if (typeof a === "number") throw new Error("Invalid parameter 2:The length of parameter 1 is 1");
+        } else throw new Error("Invalid parameter 1");
+
+        // 最后一步，递归的出口
+        // 最后的判断——x是id、calss还是tagName;b参数有没有
+        x.replace(/([.#])(.+)/, ($0, $1, $2) => { // $0是x本身，$1、$2分别为2个结果
+          switch ($1) {
+            case "#":
+              x = y.querySelector($0); // getElementById只持支document前缀
+              break;
+            case ".":
+              x = typeof b === "number" ? y.getElementsByClassName($2)[b] : y.getElementsByClassName($2);
+              break;
+            default:
+              x = y.getElementsByTagName($2).length ? (typeof b === "number" ? y.getElementsByTagName($2)[b] : y.getElementsByTagName(
+                $2)) : (typeof b === "number" ? y.getElementsByName($2)[b] : y.getElementsByName($2)) // getElementsByTagName、getElementsByName
+          }
+        })
+
+        return x;
+      }
+
+      mousewheel(a, b, c, d, e, f, g) { // ele,callback,callbackName,boolean,stop,prevent,call
+        const t = this;
+        if (a instanceof Array) a = t.find(...a);
+        else a = t.find(a);
+        let agent = "mousewheel";
+        if (window.onmousewheel === undefined) agent = "DOMMouseScroll";
+        // a只可能是DOM节点、数组或类数组
+        if (a.nodeType) {
+          a[c] = function (ev) {
+            ev = ev || window.event;
+            if (e) ev.stopPropagation();
+            if (f) ev.preventDefault();
+            g ? b.call(t, ev) : b(ev);
+          }
+          a.addEventListener(agent, a[c], d);
+        } else {
+          for (let v of a) {
+            t.mousewheel(v, b, c, d, e, f, g);
+          }
+        }
+      }
+      mouseenter(a, b, c, d, e, f, g) { // ele,callback,callbackName,boolean,stop,prevent,call
+        const t = this;
+        if (a instanceof Array) a = t.find(...a);
+        else a = t.find(a);
+        // a只可能是DOM节点、数组或类数组
+        if (a.nodeType) {
+          a[c] = function (ev) {
+            ev = ev || window.event;
+            if (e) ev.stopPropagation();
+            if (f) ev.preventDefault();
+            g ? b.call(t, ev) : b(ev);
+          }
+          a.addEventListener("mouseenter", a[c], d);
+        } else {
+          for (let v of a) {
+            t.mouseenter(v, b, c, d, e, f, g);
+          }
+        }
+      }
+      mouseleave(a, b, c, d, e, f, g) { // ele,callback,callbackName,boolean,stop,prevent,call
+        const t = this;
+        if (a instanceof Array) a = t.find(...a);
+        else a = t.find(a);
+        // a只可能是DOM节点、数组或类数组
+        if (a.nodeType) {
+          a[c] = function (ev) {
+            ev = ev || window.event;
+            if (e) ev.stopPropagation();
+            if (f) ev.preventDefault();
+            g ? b.call(t, ev) : b(ev);
+          }
+          a.addEventListener("mouseleave", a[c], d);
+        } else {
+          for (let v of a) {
+            t.mouseleave(v, b, c, d, e, f, g);
+          }
+        }
+      }
+      changeStyle(a, b, c, d) { // ele,attr,val,boolean
+        // 可以多个属性同时变换
+        // b和c可能为数组，b为数组的时候c不一定是数组
+        // 属性是叠加还是赋值
+        const t = this;
+        if (a instanceof Array) a = t.find(...a);
+        else a = t.find(a);
+
+        if (a.nodeType) {
+          if (b instanceof Array) {
+            if (c instanceof Array) {
+              for (let i = 0; i < b.length; i++) {
+                t.changeStyle(a, b[i], c[i], d);
+              }
+            } else {
+              t.changeStyle(a, b[i], c, d);
+            }
+          } else { // 递归出口
+            // 如果是border-width这种输入的话，把-得去掉，改成驼峰
+            if (/-/.test(b)) {
+              b.replace(/-/, ($0, $1) => { // $0是结果，$1是索引
+                b = b.slice(0, $1) + b[$1 + 1].toUpperCase() + b.slice($1 + 2);
+              })
+            }
+            if (
+              /^(animation|transition|transform|background|box|overflow|((border|position|float|font-family|display|color|visibility)$))/
+              .test(b)) {
+              if (d) throw new Error(`Type Error: can't add value to attribute ${b}`);
+              a.style[b] = c;
+            } else {
+              if (d) {
+                const e = parseFloat(getComputedStyle(a)[b]);
+                if (/^opacity$/.test(b)) a.style[b] = e + c;
+                else if (/^lineHeight$/.test(b)) a.style[b] = e + c + (/(px|em|%)/.test(b) ? RegExp.$1 : "");// RegExp.$1捕获分组结果
+                else a.style[b] = e + c + (/(em|%)/.test(b) ? RegExp.$1 : "px");
+              } else {
+                if (/^opacity$/.test(b)) a.style[b] = c;
+                else if (/^lineHeight$/.test(b)) a.style[b] = c + (/(px|em|%)/.test(b) ? RegExp.$1 : "");
+                else a.style[b] = c + (/(em|%)/.test(b) ? RegExp.$1 : "px");
+              }
+            }
+          }
+        } else {
+          for (let v of a) {
+            t.changeStyle(v, b, c, d);
+          }
+        }
+      }
+      removeEvent(a, b, c, d) { //ele,event,callback,boolean
+        const t = this;
+        if (a instanceof Array) a = t.find(...a);
+        else a = t.find(a);
+
+        if (a.nodeType) {
+          if (b instanceof Array) {
+            if (c instanceof Array) {
+              for (let i = 0; i < b.length; i++) {
+                this.removeEvent(a, b[i], c[i], d);
+              }
+            } else this.removeEvent(a, b[i], c, d);
+          } else { // 递归出口
+            if (typeof c === "string") {
+              if (a[c]) c = a[c];
+              else throw new Error(`The ${c} is undefined`);
+            }
+            a.removeEventListener(b, c, d);
+            delete a[c];
+          }
+        } else {
+          for (let v of a) {
+            t.removeEvent(v, b, c, d);
+          }
+        }
+      }
+      limit(a, b = -Infinity, c = Infinity) { // 目标值、最小值、最大值
+        a = Math.max(a, b);
+        a = Math.min(a, c);
+        return a;
+      }
+    }
+
+    const scroll = new Scroll();
+    console.log(scroll.find(".a",".test"));
+  </script>
+</body>
+
+</html>
