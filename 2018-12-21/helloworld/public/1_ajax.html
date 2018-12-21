@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="./javascripts/axios.js"></script>
+<script>
+    document.onclick = function(){
+        // let xhr = new XMLHttpRequest;
+        // // xhr.onreadystatechange = function(){
+        // //     alert(xhr.readyState);
+        // // }
+        // xhr.open('get','/get?user=xuyifan');
+
+        //  xhr.onload = function(){
+        //     alert(xhr.readyState);
+        // }
+        // xhr.send();
+
+
+        // fetch('/get?user=xuyifan')
+        // .then(e=>e.json())
+        // .then(e=>console.log(e))
+
+
+        // axios.get('/get?user=yangyating')
+        // .then(e=>{
+        //     console.log(e);
+        // });
+
+        // axios.post('/post',{
+        //     user:'yangyating'
+        // })
+        // .then(e=>{
+        //     console.log(e);
+        // });
+
+        /*
+            a -> b -> c
+            throw 语句创建自定义错误。
+
+
+           
+        */
+
+        // axios.get('/get?user=liuguiqin')
+        // .then(e=>{
+        //     if(e.data.code == 0){
+        //          //这里的目的是为了进下一次的then
+        //         return axios.post('/post',{
+        //             user:'xuyifan'
+        //         })
+        //     }else{
+                    //这里的目的是为了进下一次的catch
+        //         throw '没门儿';
+        //     }
+        // }).then(e=>{
+        //     console.log(e)
+        //     if(e.data.code == 0){
+        //         console.log('芝麻开门');
+        //     }else{
+        //         throw '不开门';
+        //     }
+        // }).catch(e=>{
+        //     console.log(e);
+        // });
+
+
+        function get(){
+            return axios.get('/get?user=liuguiqin')
+        }
+        function post(){
+            return axios.post('/post',{
+                user:'xuyifan'
+            })
+        }
+
+
+        /*
+            2个都请求成功之后再来判断
+
+            all里面必须所有都请求成功，只要有一个请求失败，那么整个都失败
+        */
+        let arr = [get(),post()];
+        axios.all(arr)
+        .then( axios.spread(function (a, b) {
+            console.log(1);
+            if(a.data.code == 0 && b.data.code == 0){
+                console.log('变身');
+            }else{
+                console.log('再等一万年');
+            }
+        })).catch(e=>{
+            console.log('错误');
+        })
+
+
+
+       
+
+
+
+
+
+        
+
+
+
+    }    
+</script>
+</body>
+</html>

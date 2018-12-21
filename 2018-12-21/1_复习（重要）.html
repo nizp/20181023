@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        
+
+        express
+
+        post请求（最后一天讲的）
+
+        静态文件管理（参照我们自己用node来写的去理解static.js,12-17号）
+
+        请求的方法  √
+
+        res，req的属性（请求头）
+
+        中间件   √
+
+        fs模块 sync 用哪个
+
+        微博
+
+        app2（最后一天）
+
+        axios发多次请求  all
+        什么时候请求数据:
+            以前我们的数据都是写死的
+                let arr = [1,2,3,4];
+
+            在真实开发中，需要通过用户的操作给用户想要的数据
+            这些数据是动态请求的。
+
+        下面是常见的HTTP状态码：
+        101 - 切换协议（websocket）
+        200 - 请求成功
+        301 - 资源（网页等）被永久转移到其它URL
+        302 - 临时重定向   h -> a -> b -> c
+        304 - 缓存
+        403 - 服务器已经接受到了请求，但是拒绝处理（一般见于文件或目录权限设置导致）
+        404 - 请求的资源（网页等）不存在
+        500 - 内部服务器错误
+        503 - 服务器超载（超负荷）
+       
+        
+
+
+
+
+        怎么请求？
+            1.要么用那5步(面试用)
+                let xhr = new XMLHttpRequest
+
+                get方式请求，其实就是url的方式请求
+                协议+域名+端口+?+查询信息+hash...
+
+                url是拼接完整的
+
+                xhr.open('get',url,true);
+
+                xhr.onreadystatechange = function(){
+                    xhr.readyState  -> 0-4  
+                        0: 请求未初始化
+                        1: 服务器连接已建立
+                        2: 请求已接收
+                        3: 请求处理中
+                        4: 请求已完成，且响应已就绪
+                }
+                如果是post要设置请求头
+                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                xhr.send();
+            
+
+            https://blog.csdn.net/qq_28483283/article/details/80207674
+            
+            http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html
+
+            以太网:
+                分为2部分:
+                    1.标头:
+                        谁接收、谁发送、数据类型等
+                    2.数据
+
+            MAC:
+                就是接收和发送的网卡地址
+
+            广播:
+                在发送MAC地址的时候，会向本网络的所有计算机发送数据
+                这些计算机接收到信息之后，判断MAC地址是否匹配，匹配就
+                接收（进一步处理），不匹配就丢弃
+
+            这就导致了"网络层"的诞生。
+                它的作用是引进一套新的地址，
+                使得我们能够区分不同的计算机是否属于同一个子网络。
+                这套地址就叫做"网络地址"，简称"网址"。
+
+            IP:
+                IPv4 -> 我们用分成四段的十进制数表示IP地址，从0.0.0.0一直到255.255.255.255。
+
+                IP地址分成两个部分，前一部分代表网络，后一部分代表主机
+
+                比如:
+                    192.168.0  子网络部分
+                    .26  主机部分
+
+            所谓"子网掩码"，就是表示子网络特征（只要在同一子网络下，子网掩码一样）
+
+
+            ARP协议:
+                当发送数据的时候，2台计算机在同一网络下（能获取到IP地址，但是不能获取MAC地址），
+                通过ARP协议去找到MAC地址
+
+                ARP:在发送数据的时候，把要找的IP以广播的形式发送出去，没有匹配的计算机
+                就丢弃这条数据，匹配上的就返回MAC地址。
+
+            "传输层"的功能，就是建立"端口到端口"的通信。
+            相比之下，"网络层"的功能是建立"主机到主机"的通信。
+            只要确定主机和端口，我们就能实现程序之间的交流。
+
+            
+            UDP:
+                IP里面包了端口，以太网里面包了ip和端口
+
+                有IP、发出端口和接收端口、MAC + 数据体
+
+            TCP:
+                一个有确认接收的UDP，如果发送之后，对方没收到，就
+                再次发，收到了就确认。
+
+                TCP协议能够确保数据不会遗失。它的缺点是过程复杂、
+                实现困难、消耗较多的资源。
+            
+            Request Headers 请求头
+
+                Accept:告诉服务器，客户机支持的数据类型
+                    比如:text/html,application/xhtml+xml,application/xml
+                
+                Cache-Control：缓存控制，服务器通过控制浏览器要不要缓存数据
+                
+                cookie:客户机通过这个可以向服务器带数据
+
+            2.fetch 原生提供的ajax请求的方式
+
+            (1)get
+                fetch(/get?xx=yy&ff=ee)
+                .then(d=>d.json()) 
+                .then(d=>{ d就是我们请求回来的数据 })
+                
+            (2)post
+                
+                fetch(/post,{
+                    method:'post',
+                    // body:new URLSearchParams({key:val}).toString(),
+                    body:'key=val1&key2=val2'
+                    headers:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(d=>d.json())
+                .then(d=>{
+                    d就是我们请求回来的数据 
+                })
+                
+
+                
+
+            3.用第三方封装的
+                (1)jquery的$.ajax
+                    $.ajax({
+
+                    })
+                (2)axios
+
+        
+
+          
+    */
+
+//    console.log(new URLSearchParams({'name':'wh',age:27}).toString())
+
+</script>
+</body>
+</html>

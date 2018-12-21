@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .game-board {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #34495e;
+            color: #fff;
+            border: 6px solid #2c3e50;
+            border-radius: 10px;
+
+            display: grid;
+            grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+        }
+
+        .box {
+            border: 6px solid #2c3e50;
+            border-radius: 2px;
+            font-family: Helvetica;
+            font-weight: bold;
+            font-size: 4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-board">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <script>
+        const board = document.getElementsByClassName('game-board')[0];
+        const boxS = board.getElementsByClassName('box');
+        // console.log(boxS);
+        // console.log(board);
+        let num = 0;
+        board.addEventListener('click', Fn)
+        function Fn(ev) {
+            num++;
+            if (num % 2) {
+                ev.target.innerHTML = 'X';
+            } else {
+                ev.target.innerHTML = 'O';
+            }
+            // gOver();
+
+        };
+        // function gOver() {
+        // }
+
+
+    </script>
+
+</body>
+
+</html>

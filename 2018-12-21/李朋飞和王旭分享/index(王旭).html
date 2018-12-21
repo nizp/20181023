@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 40px 80px;
+            width: 200px;
+            height: 80px;
+            position: relative;
+            background: #fff;
+        }
+        .box::before {
+            content: "";
+            width: 220px;
+            height: 100px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            z-index: -1;
+            background-image: repeating-linear-gradient(-45deg,red 0px,red 30px,#fff 30px,#fff 40px,blue 40px,blue 70px,#fff 70px,#fff 80px); 
+        }
+        .btn {
+            margin-left: 80px; 
+            color: aqua;
+            font-size: 15px;
+            padding: 5px 15px;
+            background: #fff;
+            border-image: linear-gradient(90deg,black,aqua) 1;
+        }
+        .text {
+            margin-left: 80px;
+            font-size: 50px;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to bottom,yellow,aqua);
+            -webkit-background-clip: text;
+        }
+        .cont {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: black;
+            border: 1px solid green;
+        }
+        .cont::before,.cont::after {
+            content:"";
+            width: 220px;
+            height: 220px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            border: 2px solid green;
+            box-sizing: border-box;
+            -webkit-animation: clipMy 8s infinite linear;
+        }
+        .cont::before {
+            -webkit-animation-delay: -4s;
+        }
+        @keyframes clipMy {
+            0% {
+                clip:rect(0px,220px,2px,0px);
+            }
+            25% {
+                clip:rect(0px,2px,220px,0px);
+            }
+            50% {
+                clip:rect(218px,220px,220px,0px);
+            }
+            75% {
+                clip:rect(0px,220px,220px,218px);
+            }
+            100% {
+                clip:rect(0px,220px,2px,0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <button class="btn">边框渐变</button>
+    <div class="text">helloworld</div>
+    <div class="cont"></div>
+</body>
+</html>

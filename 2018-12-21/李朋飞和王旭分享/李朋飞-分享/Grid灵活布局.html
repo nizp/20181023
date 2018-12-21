@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Grid灵活布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container div {
+            margin: 0, auto;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 30px;
+
+            /* flex用于一维 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container {
+            display: grid;
+            /* 12份，平分 */
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 50px 350px 50px;
+            /* 网格项之间添加一个间隙 */
+            grid-gap: 5px;
+            /* 网格轨道(Grid Track)  . 来创建空白的网格单元格*/
+            /* grid-template-areas:
+                "h h h h h h h h h h h h"
+                "m m c c c c c c c c c c"
+                "f f f f f f f f f f f f"; */
+
+        }
+
+
+        /* 响应式布局 */
+        /* @media screen and (max-width: 640px) {
+            .container {
+                grid-template-areas:
+                    "m m m m m m h h h h h h"
+                    "c c c c c c c c c c c c"
+                    "f f f f f f f f f f f f";
+            }
+        } */
+
+        /* 字符与网格中的网格项建立对应的连接 */
+        .header {
+            grid-area: h;
+        }
+
+        .menu {
+            grid-area: m;
+        }
+
+        .content {
+            grid-area: c;
+        }
+
+        .footer {
+            grid-area: f;
+        }
+
+        /* 另一种写法 */
+
+        /* .header {
+            grid-column: span 12;
+        }
+
+        .aside {
+            grid-column: span 2;
+        }
+
+        .main {
+            grid-column: span 10;
+        }
+
+        .footer {
+            grid-column: span 12;
+        } */
+
+        .header {
+            background: rgb(167, 240, 126);
+        }
+
+        .menu {
+            background: rgb(241, 243, 104);
+        }
+
+        .content {
+            background: rgb(225, 107, 230);
+        }
+
+        .footer {
+            background: rgb(127, 154, 230);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">HEADER</div>
+        <div class="menu">MENU</div>
+        <div class="content">CONTENT</div>
+        <div class="footer">FOOTER</div>
+    </div>
+
+</body>
+
+</html>
