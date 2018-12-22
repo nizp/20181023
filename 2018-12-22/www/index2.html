@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input type="text" id="user"/>
+    年 龄:<input type="password" id="age"/>
+    <button id="btn">提交</button>
+    <button id="btn2">注册</button>
+    <ul id="ul"></ul>
+<script>
+
+    //运行app2
+    btn.onclick = function(){
+        let uv = user.value.trim();
+        let av = age.value.trim();
+        let data = new URLSearchParams({
+            name:uv,
+            age:av
+        }).toString();
+
+        if(uv && av){
+            fetch('/user/login?',{
+                body:data,
+                method:'post',
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                }
+            })
+            .then(d=>d.json())
+            .then(d=>{
+                switch(d.code){
+                    case 0:
+                        let temp = '';
+                        d.data.forEach(e=>{
+                            temp += `<li>${e}</li>`;
+                        })
+                        ul.innerHTML = temp;
+                    break;
+                    case 1:
+                        alert('请注册!');
+                    break;
+                    case 2:
+                        alert('请检查填写的内容');
+                    break;
+                    case 3:
+                        alert('参数错误');
+                    break;
+                }
+            });
+
+        }else{
+            alert('请填写内容');
+        }
+    }
+
+    //注册
+    //运行app2
+    btn2.onclick = function(){
+        let uv = user.value.trim();
+        let av = age.value.trim();
+        
+        // if(uv && av){
+            fetch('/user/reg?',{
+                method:'post',
+                body: new URLSearchParams({
+                        name:uv,
+                        age:av
+                    }).toString(),
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                }
+            })
+            .then(d=>d.json())
+            .then(d=>{
+                console.log(d);
+            })
+
+        // }else{
+
+        // }
+    }
+</script>
+</body>
+</html>

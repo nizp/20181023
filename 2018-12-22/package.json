@@ -1,0 +1,14 @@
+{
+  "name": "2018-12-22",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

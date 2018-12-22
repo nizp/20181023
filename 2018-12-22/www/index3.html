@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style type="text/css">
+body,
+h1 {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+input {
+	outline: none;
+}
+table {
+	border-collapse: collapse;
+	border: #bbb;
+}
+body {
+	width: 100%;
+	height: 100%;
+	/*background: url(img/2.jpg) no-repeat;*/
+}
+.tBody {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: 30px;
+	padding: 20px 30px 40px;
+	background-color: rgba(255,255,255,.6);
+}
+.title {
+	text-align: center;
+	color: #fca113;
+	text-shadow: 0 0 2px #fcf913;
+	line-height: 50px;
+}
+table {
+	background-color: #fff;
+}
+th {
+	background-color: #ddd;
+}
+tr {
+	height: 30px;
+}
+ul {
+	padding: 5px 0;
+	width: 600px;
+	text-align: center;
+}
+td{
+	text-align: center;
+}
+td input {
+	margin: 0 2px;
+}
+li {
+	padding: 5px 0;
+	overflow: hidden;
+}
+label {
+	display: inline-block;
+}
+input[type="text"] {
+	border: 1px solid #ccc;
+	width: 80px;
+	height: 20px;
+}
+/*.active {
+	background-color: #f7cb75;
+}*/
+/*#tab tbody tr:hover {
+	background-color: #f7cb75;
+}*/
+</style>
+</head>
+<body>
+<section class="tBody">
+	<h1 class="title"></h1>
+	<ul id="header">
+		<li class="addPre">
+			<label>名字： <input type="text" name="" /></label>
+			<label>年龄： <input type="text" /></label>
+			<input type="button" value="添加" />
+		</li>
+		<li>
+			<span>排序</span>
+			<select>
+				<option value="price">年龄</option>
+				<option value="id">编号</option>
+			</select>
+			<select>
+				<option value='2'>从高到底</option>
+				<option value='1'>从低到高</option>
+			</select>
+			<input type="button" value="提交" />
+			<input type="button" value="批量删除" />
+		</li>
+	</ul>
+	<table id="tab" width="600" align="center" border="1">
+		<thead>
+			<th>全选<input type="checkbox" id="checkAll"></th>
+			<th index="id">编号</th>
+			<th>商品</th>
+			<th index="price">年龄</th>
+			<th>操作</th>
+		</thead>
+		<tbody>
+			<!--<tr>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td>露露</td>
+				<td>12</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td>
+			</tr>-->
+		</tbody>
+	</table>	
+</section>
+</body>
+<!--<script src="jquery-3.2.1.js"></script>-->
+<script>
+var data = [
+//  {
+//      'id' : 1,
+//      'name' : 'momo',
+//      'price' : 36
+//  },
+//  {
+//      'id' : 2,
+//      'name' : '小恋',
+//      'price' : 40
+//  },
+//  {
+//      'id' : 3,
+//      'name' : 'yaya',
+//      'price' : 20
+//  },
+//  {
+//      'id' : 4,
+//      'name' : 'feifei',
+//      'price' : 10
+//  },
+//  {
+//      'id' : 5,
+//      'name' : 'hhehe',
+//      'price' : 35
+//  }
+];
+	const ul = document.getElementById('header');
+	const px = ul.children[1];
+	let pxSels = px.getElementsByTagName('select');
+	let pxInps = px.getElementsByTagName('input');
+	const addPre = document.querySelector('.addPre');
+	const inps = addPre.getElementsByTagName('input');
+	const tBody = document.getElementsByTagName('tbody')[0];
+	
+	const checkAll = document.getElementById('checkAll');
+	let num = 0;
+	inps[2].onclick = function(){
+		let val1 = inps[0].value;
+		let val2 = inps[1].value;
+		if(!val1 || !val2){//有一个没填或者都没填会提醒
+			alert('请准确添加名字及年龄~');
+		}else{//两个input都有内容了就执行下面的代码
+			num++;
+			data.push({'id' : num,
+                       'name' : val1,
+                       'price' : val2})
+//			console.log(data);//点击完了，data发生变化
+//			tBody.innerHTML = '';//添加之前先清一遍
+			tBody.innerHTML += ` <tr>
+								<td><input type="checkbox"></td>
+								<td>${data[num-1].id}</td>
+								<td>${data[num-1].name}</td>
+								<td>${data[num-1].price}</td>
+								<td>
+									<input type="button" value="删除"/>
+									<input type="button" value="上移">
+									<input type="button" value="下移">
+								</td>
+								</tr>`;
+								
+			//生成数据结束
+		}//else
+		let trs = tBody.getElementsByTagName('tr');
+		
+		for(let i = 0;i<trs.length;i++){
+			trs[i].children[0].onclick = function(){
+				let onOff1 = true;
+				let input = this.children[0];
+				if(onOff1){
+					input.checked = true;
+					onOff1 = false;
+				}else{
+					input.checked = false;
+					onOff1 = true;
+				}
+//				for(let j = 0;j<trs.length;j++){
+//					if(trs[i].children[0].children[0] == true){
+//						checkAll.checked = true;
+//					}
+//				}
+			}
+		}//点击复选框td就能选中对应复选框
+	}//点击添加
+	
+	
+	//点击提交按钮
+	pxInps[0].onclick = function(){
+		let val1 = pxSels[0].value;
+		let val2 = pxSels[1].value;
+		if(val1 == 'price' ){
+			if(val2 == '2'){
+				data.sort((a,b) => {
+					return b.price - a.price;
+				})//data已经根据年龄从大到小
+//				console.log(data);//data已经根据年龄从大到小
+				age(data);
+			}//按照年龄从大到小排序
+			if(val2 == '1'){
+				data.sort((a,b) => {
+					return a.price - b.price;
+				})//data已经根据年龄从小到大
+//				console.log(data);//data已经根据年龄从小到大
+				age(data);
+			}
+		}//按照年龄排序
+		if(val1 == 'id'){
+			if(val2 == '2'){
+				data.sort((a,b) => {
+					return b.id - a.id;
+				})//data已经根据id从大到小
+//				console.log(data);//data已经根据id从大到小
+				readd(data);
+			}//按照id从大到小排序
+			if(val2 == '1'){
+				data.sort((a,b) => {
+					return a.id - b.id;
+				})//data已经根据id从小到大
+//				console.log(data);//data已经根据id从小到大
+				readd(data);
+			}
+		}//按照id排序
+	}//提交按钮点击事件
+	
+	
+	//如果每一个都勾选，那么全选勾选
+	
+//批量删除按钮点击事件
+	pxInps[1].onclick = function(){}
+	
+	
+//	let onOff = true;
+//点击全选全部选中
+//	checkAll.onclick = function(){
+//		let trs = Array.from(tBody.getElementsByTagName('tr'));
+//		console.log(trs[0].children[0].children[0].checked);
+//		for(let i = 0;i<trs.length;i++){
+//			if(onOff1){
+//				trs[i].children[0].children[0].checked=true;
+//			}else{
+//				trs[i].children[0].children[0].checked=false;
+//			}
+//		}
+//		onOff1 = !onOff1;
+//	}
+//	
+	
+//	age函数是按照年龄排序的函数，从大到小，从小到大都要调用
+	function age(data){
+		let num = 1;
+        data.forEach((e,i) => {//e就是每一个对象
+//					console.log(e.price);
+			e.id = num;
+			num++;
+		})//重新编写id
+//				console.log(data);
+		readd(data);
+	}//age结束
+	
+	
+//	readd函数（排好得到新数组后重新添加）
+	function readd(data){//排好得到新数组后重新添加
+		let str = '';
+		tBody.innerHTML = '';//添加之前先清一遍
+		for(let i = 0;i<data.length;i++){
+			str += `<tr>
+				<td><input type="checkbox"></td>
+				<td>${data[i].id}</td>
+				<td>${data[i].name}</td>
+				<td>${data[i].price}</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td>
+				</tr>`;
+		}
+		tBody.innerHTML = str;
+	}
+</script>
+</html>
