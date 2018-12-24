@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>马国耀分享</title>
+    <style>
+        /* 文字阴影 */
+        .c{
+            width: 100%;
+            height: 60px;
+            font-size: 50px;
+            text-align: center;  /* 水平居中 */
+
+             /* 文字阴影效果 
+            第一个数值是水平移动 正为右，负为左运动；
+            第二个数值是垂直移动 正为下，负为上运动；
+            第三个数值是阴影的模糊程度  越正越模糊，负为无阴影。
+            */
+            text-shadow: 2px -3px 3px rgb(155, 150, 150);
+        }
+
+        /* 开关（圆角） */
+        .a{
+            width: 60px;
+            height: 30px;
+            display: none;
+            display: inline-block;       /* 设为行内块元素 */
+            border-radius: 15px;         /* 边框直角变圆角  后面可用 单位为px 的，也可用百分比的写法*/
+            /* border-radius: 80%; */
+            border: 1px solid #efefef;  /* 设置边框粗细、实线、颜色*/
+            position: relative;           /*相对定位，此处是为了提供定位坐标*/
+        }
+        .a::before{              /* 伪元素选择器 在目标元素前创建一个元素*/
+            content: "";         /* 此处是元素的内容 可填内容，也可为空*/
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            border-radius: 50%;  /*圆角弧度为50%*/
+            background: #ccc;
+            position: absolute;    /*进行定位，上1px,左1px --->  此处必须需要定位*/
+            top: 0px;
+            left: 0px;
+            transition: all .4s;
+        }
+        #off:checked+.a{
+            background: #4cd760;
+        }
+        #off:checked+.a::before{
+            left: 31px;
+            background: #fff;
+        } 
+        /* #off{
+            display: none;
+        } */
+        .b{
+            width: 100px;
+            height: 100px;
+            background: orange;
+
+            /* 圆角的多种调节方式 
+            前一个是调节边框的左上和右下角。
+            第二个参数是调节右上角和左下角 */
+            /* border-radius: 50%; */
+            /* border-radius: 50% 0; */
+
+            /* 阴影效果 
+            第一个数值是水平移动 正为右，负为左运动；
+            第二个数值是垂直移动 正为下，负为上运动；
+            第三个数值是阴影的模糊程度  越正越模糊，负为无阴影。
+            第四个数值是阴影整体的扩大范围 正为大 负为小*/
+            /* box-shadow: 0px 5px 0px 0px #000; */
+            /* box-shadow: 0px 5px 0px 0px #000,0px -5px 0px 0px #000;  */
+             /* 可以设置多层阴影 */
+            border-top-left-radius: 50px;
+            /* 盒子和文字阴影相比，有第四个数值，
+            如果文字阴影是写上第四个数值是不会有效果的
+            盒子的阴影不写第四个的话是不会有影响的*/
+        }
+
+        /* 定位进行页面布局 */
+        .e{
+            position: absolute;
+            top: 100px;
+            left: -7%;
+        }
+        .playa{
+            position: absolute;
+            top: -150px;
+            left: 40%;
+        }
+
+        .d{
+            position: relative;
+            top: 100px;
+            left: 200px;
+            
+        }
+
+        .f{
+            position: relative;
+            top: 250px;
+            margin: 0 auto;
+        }
+        .g{
+            position: absolute;
+            top: 30px;
+            left: -7%;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 文字阴影 -->
+    <div class="c">分享内容：</div>
+
+    <!-- 开关（圆角）-->
+    <div class="d">
+        <input  id="off" type="checkbox">  
+        <label  class="a" for="off"></label><!--这个标签，经实践不可用div代替。否则会点击开关不管用-->
+        <!-- 开关本质是 先写一个开关的形状出来，然后在前面写一个单选选框 
+            然后就会有两种选择了-> 选中和未选中  将开关和单选框绑定，
+            当选中时 开关一个状态，未选中时 开关另外一个状态 -->
+        <!-- id 和 for 是一种绑定的关系，将单选的为选中绑定到开关的未打开状态上 -->
+        <!-- 在此处input和label 不可换顺序，否则点击开关不管用，但是其他地方视情况而定-->
+        <div class="b"for="off"></div>
+    </div>
+
+    <!--音频-->
+    <div class="d"> 
+        <audio class="g" width="50" height="50" src="sourse/horse.ogg" controls></audio>
+        <audio  class="e" width="10" height="10" src="sourse/童珺 - 给陌生的你听.mp3" controls loop></audio>
+        
+        <!-- autoplay:就绪后马上播放、  controls：显示控件、loop：结束后重新播放、
+            preload：页面加载时进行加载，并预备播放，如有autoplay则忽视。-->
+        
+        <video class="playa" width="400" height="300" src="sourse/dongbei.mp4" controls loop></video>
+        <video class="f" src="sourse/dongbei.mp4" controls loop></video>
+        
+        <!-- 视频框可以设置高和宽，界面会根据界面的大小有所改变-->
+    </div>
+
+
+    <!-- 　
+        分别设置边框的四个角：
+    * border-top-left-radius: 50px/25px  前一个值是水平的，后一个值是垂直的。
+
+　　* border-top-right-radius
+
+　　* border-bottom-right-radius
+
+　　* border-bottom-left-radius -->
+
+
+    <!-- 
+        盒子和文字阴影详细介绍:
+        https://blog.csdn.net/VhWfR2u02Q/article/details/84001207
+     -->
+
+     <!-- 
+         音频播放使用详解：audio标签（h5标签）
+         https://www.cnblogs.com/leinov/p/3896772.html
+      -->
+
+      <!-- 
+          视频播放简介：video  
+          http://www.runoob.com/html/html5-video.html   （菜鸟教程）
+       -->
+</body>
+</html>

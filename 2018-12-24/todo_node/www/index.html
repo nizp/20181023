@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style type="text/css">
+body,
+h1 {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+input {
+	outline: none;
+}
+table {
+	border-collapse: collapse;
+	border: #bbb;
+}
+body {
+	width: 100%;
+	height: 100%;
+	/*background: url(img/2.jpg) no-repeat;*/
+}
+.tBody {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: 30px;
+	padding: 20px 30px 40px;
+	background-color: rgba(255,255,255,.6);
+}
+.title {
+	text-align: center;
+	color: #fca113;
+	text-shadow: 0 0 2px #fcf913;
+	line-height: 50px;
+}
+table {
+	background-color: #fff;
+}
+th {
+	background-color: #ddd;
+}
+tr {
+	height: 30px;
+}
+ul {
+	padding: 5px 0;
+	width: 600px;
+	text-align: center;
+}
+td{
+	text-align: center;
+}
+td input {
+	margin: 0 2px;
+}
+li {
+	padding: 5px 0;
+	overflow: hidden;
+}
+label {
+	display: inline-block;
+}
+input[type="text"] {
+	border: 1px solid #ccc;
+	width: 80px;
+	height: 20px;
+}
+/*.active {
+	background-color: #f7cb75;
+}*/
+/*#tab tbody tr:hover {
+	background-color: #f7cb75;
+}*/
+</style>
+</head>
+<body>
+<section class="tBody">
+	<h1 class="title"></h1>
+	<ul id="header">
+		<li class="addPre">
+			<label>名字： <input type="text" id="uname" /></label>
+			<label>年龄： <input type="text" id="uage"/></label>
+			<input type="button" value="添加" id="add" />
+		</li>
+		<li>
+			<span>排序</span>
+			<select id="s1">
+				<option value="age">年龄</option>
+				<option value="id">编号</option>
+			</select>
+			<select id="s2">
+				<option value='2'>从高到底</option>
+				<option value='1'>从低到高</option>
+			</select>
+			<input type="button" value="提交" id="sort"/>
+			<input type="button" value="批量删除" id="deletes"/>
+		</li>
+	</ul>
+	<table id="tab" width="600" align="center" border="1">
+		<thead>
+			<th>全选<input type="checkbox" id="checkAll"></th>
+			<th index="id">编号</th>
+			<th>商品</th>
+			<th index="price">年龄</th>
+			<th>操作</th>
+		</thead>
+		<tbody id="tbody">
+			<!--<tr>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td>露露</td>
+				<td>12</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td>
+			</tr>-->
+		</tbody>
+	</table>	
+</section>
+<script src="./axios.js"></script>
+<script>
+	/*
+		先加载初始的数据
+	*/
+	let dataArr = null;
+	fetch('/getdata')
+	.then(e=>e.json())
+	.then(e=>{
+		// tbody
+		if(e.code == 0){
+			render(e.data);
+		}
+	});
+	function render(data){
+		dataArr = data;
+		let temp = '';
+		data.forEach(d=>{
+			temp += `<tr data-id="${d.id}">
+				<td><input type="checkbox"></td>
+				<td>${d.id}</td>
+				<td>${d.name}</td>
+				<td>${d.age}</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td>
+			</tr>`
+		});
+		tbody.innerHTML = temp;
+	}
+
+
+	
+
+	// 点击按钮添加数据
+
+	add.onclick = function(){
+		let un = uname.value.trim();
+		let ua = uage.value.trim();
+		if(un && ua){
+			//localhost/add?name=xx&age=xx  接口
+			fetch('/add?name='+un+'&age='+ua)
+			.then(d=>d.json())
+			.then(d=>{
+				render(d.data);
+			});
+		}
+	};
+
+
+	//排序
+	/*
+		localhost/sort?select=age&ab=1
+
+		select   age || id
+		ab       1  从低到高
+				2  从高到低   
+		{code:0,data:[]}  把排序完的数据传给前端
+	*/
+	sort.onclick = function(){
+		let s1v = s1.value;
+		let s2v = s2.value;
+		
+		fetch('/sort?select='+s1v+'&ab='+s2v)
+		.then(e=>e.json())
+		.then(d=>{
+			// console.log(d);
+			if(d.code == 0){
+				render(d.data);
+			}
+		});
+		// console.log(s1v,s2v) 
+	}
+
+
+	//上移下移  localhost/move?type=down|up&id=9
+	tbody.onclick = function(ev){
+		if(ev.target.value === '上移'){
+			let id = ev.target.parentNode.parentNode.dataset.id;
+			fetch('/move?type=up&id='+id)
+			.then(e=>e.json())
+			.then(e=>{
+				if(e.code === 0){
+					alert('移动成功');
+					render(e.data);
+
+				}
+				if(e.code === 5){
+					alert(e.msg);
+				}
+			});
+		}
+		if(ev.target.value === '下移'){
+			let id = ev.target.parentNode.parentNode.dataset.id;
+			fetch('/move?type=down&id='+id)
+			.then(e=>e.json())
+			.then(e=>{
+				if(e.code === 0){
+					alert('移动成功');
+					render(e.data);
+				}
+				if(e.code === 5){
+					alert(e.msg);
+				}
+			})
+		}
+		if(ev.target.value === '删除'){
+			let id = ev.target.parentNode.parentNode.dataset.id;
+			fetch('/rm?id='+id)
+			.then(e=>e.json())
+			.then(e=>{
+				if(e.code === 0){
+					alert('删除成功');
+					render(e.data);
+				}
+			})
+		}
+	};
+
+
+	deletes.onclick = function(){
+		let arr = [];
+		let checkeds = document.querySelectorAll('#tbody input[type="checkbox"]');
+		
+		for(let ele of checkeds){
+			if(ele.checked){
+				arr.push(ele.parentNode.parentNode.dataset.id);
+			}
+		}
+		// axios({
+		// 	method: 'post',
+		// 	url: '/deletes',
+		// 	data:{
+		// 		arr:'123'
+		// 	}
+		// })
+		// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+		
+
+		// fetch('/deletes',{
+		// 	method:'post',
+		// 	body:'arr=[0]',
+		// 	headers:{
+		// 		'Content-Type':'application/x-www-form-urlencoded'
+		// 	}
+		// })
+
+		// let parmas = new URLSearchParams();
+		// parmas.append('arr',JSON.stringify(arr));
+
+		//https://www.jianshu.com/p/7a9fbcbb1114
+		
+		/*
+			axios.post的写法
+			
+			1.axios.post('/deletes','key=val&key2=val2')
+
+
+			2.
+				let parmas = new URLSearchParams();
+				parmas.append(key,val);
+				parmas.append(key2,val2);
+				axios.post('/deletes',parmas)
+
+		*/
+		let parmas = new URLSearchParams();
+			parmas.append('arr',JSON.stringify(arr));
+				
+		
+		axios.post('/deletes',parmas
+		// axios.post('/deletes','arr='+JSON.stringify(arr)
+			// {
+			// 	headers:{
+			// 		'Content-Type':'application/x-www-form-urlencoded'
+			// 	}
+			// }
+		).then(e=>{
+			// console.log(e);
+			if(e.data.code === 0){
+				// console.log(e.data);
+				render(e.data.data);
+			}else if(e.data.code == 6){
+				alert(e.data.msg);
+			}
+		});
+		// console.log(arr);		
+	}
+
+
+
+
+
+
+
+
+
+
+	// fetch('/deletes',{
+	// 	method:'post',
+	// 	body:'arr2=[]',
+	// 	headers:{
+	// 		'Content-Type':'application/x-www-form-urlencoded'
+	// 	}
+	// })
+	// .then(e=>e.json())
+	// .then(e=>{
+	// 	console.log(e);
+	// })
+
+
+</script>
+</body>
+</html>

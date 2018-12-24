@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //Object ->  类 （函数）
+    //xx.prototype ->  对象 
+    /*
+        
+
+        函数的三种形态:
+            构造函数(类)
+                系统自带的类:
+                    Object、Function、Array...
+                我们写的类:
+                    Person
+
+                原型:只给它的实例对象使用
+                
+            实例对象
+                作为Function的实例
+                只要是实例都有原型链 __proto__
+
+            普通函数
+                函数名 + 括号
+
+                1.执行函数
+                2.返回值
+
+                
+    */ 
+
+    // function fn(a,b){
+    //     console.log(a + b);
+    // }
+
+    // let a = fn(1,2);
+
+    // console.log(a);
+
+/*
+    Object.__proto__ -> Function.prototype.__proto__
+
+
+    {}.__proto__ ->  Object.prototype
+
+    
+    Object.prototype.__proto__ = null
+
+
+    http://www.fgm.cc/learn/  有美女图
+
+*/
+
+console.log(Object.__proto__.__proto__ === Object.prototype.__proto__);//false
+
+
+let p = new Promise(function(resolve,reject){
+    reject();
+    resolve(); 
+});
+
+
+p.then(function(e){
+    console.log(1)
+},function(){
+    console.log(10)// 2
+})
+.then(function(e){
+    console.log(2)
+},function(e){
+    console.log(3)// 4
+})
+.then(function(e){
+    console.log(4)// 6
+},function(e){
+    console.log(5) 
+});
+
+
+p.then(function(e){
+    console.log(6) // 
+},function(){
+    console.log(20)// 3
+})
+.then(function(e){
+    console.log(7)//  5
+},function(e){
+    console.log(8)
+})
+console.log(9)// 1
+</script>
