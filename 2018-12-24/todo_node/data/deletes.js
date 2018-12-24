@@ -24,6 +24,7 @@ const bp = bodyParser.urlencoded({ extended: false });
 const route = ex.Router();
 
 //[1,2,3,4,5,6]    [4,5,6]
+//'[1,2,3]' -> [1,2,3]  
 
 route.post('/',bp,(req,res)=>{
     
@@ -31,7 +32,7 @@ route.post('/',bp,(req,res)=>{
     let {sql:data} = req;
     console.log(arr);
     try {
-        arr = JSON.parse(arr);
+        arr = JSON.parse(arr); //'[]'
         
         for(let i=0;i<arr.length;i++){
             for(let k=0;k<data.length;k++){
