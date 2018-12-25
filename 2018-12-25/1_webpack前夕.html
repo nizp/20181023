@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- <script src="./build/haha.js"></script> -->
+<script>
+    /*
+        webpack
+            学webpack就靠记忆、英文(报错都是英文的，挂就挂在一报错就懵圈)
+
+            报错了就多翻译，多报几次错就会了
+
+        模块化开发:
+
+            不管下面这3个有多大区别核心点:就是他们如何做到的模块化方式
+
+            简单点:如何倒出，如何引入
+
+            CommonJS   node就遵循这套规范  
+                module.exports  导出
+                require()   引入
+
+                CommonJS规定，每一个JS都是单独的模块（模块是私有的：里面涉及的值、变量以及函数等都是私有的，和其它JS文件中的内容不冲突）
+                >特点：
+                >1. 所有代码都运行在模块作用域，不会污染全局作用域（每一个模块都是私有的，包括里面所有的东西都是私有的）
+                >2. 模块可以多次加载，但是只会在第一次加载时运行一次，因为第一次加载的时候缓存了。如果想多次调用，必须清理缓存。（为了保证性能，减少模块代码重复执行的次数）
+                >3. 模块加载顺序时按照其在代码中出现的顺序。CommonJS是同步操作
+
+
+            AMD   require.js
+                Asynchronous Module Definition，即异步模块加载机制
+
+            CMD  sea.js  
+                Common Module Definition)表示通用模块定义
+
+
+
+        ES6模块化
+                import {fn} from './xx.js'; 引入模块
+
+            //xx.js
+                export function fn(){}   导出模块
+
+                // 写法一
+                export var m = 1;
+
+                // 写法二
+                var m = 1;
+                export {m};
+
+                // 写法三
+                var n = 1;
+                export {n as m};
+
+
+
+        未来的vue或者react都得用它
+
+    */
+
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    222
+<script>
+    /*
+        webpack
+            webpack可以看做是模块打包机，它做的事情是分析你的项目结构
+            找到js模块以及其他的一些浏览器不能直接运行的拓展语言（Scss,TypeScript等）
+            并将打包为适合的格式以供浏览器使用。
+
+            1.代码转换:ts编译成js，把scss编译为css
+            2.文件优化:压缩js，css，html代码，压缩合并图片等
+                200K + 200K < 400K
+            3.代码分割:提取多个页面的公共代码，提取首屏不需要的执行部分的代码让其异步加载
+            4.模块合并:在采用模块化的项目里会有很多个模块个文件，
+            需要构建功能把模块分类合并成一个文件。
+            5.自动刷新:监听本地源代码的变化。自动重新构建、刷新浏览器
+
+
+        快速上手:
+            1.初始化项目  (取名字的时候一定不要取些工具的名字)
+                npm init -y
+            2.
+                安装webpack
+                    npm i webpack -g  不建议在全局安装
+
+                    建议本地安装
+                        npm install webpack --save-dev
+
+                        npm i webpack-cli -D
+
+
+                        npm i webpack webpack-cli -D
+
+                        简写:
+                            npm i webpack -D
+                        开发依赖  
+                            有些配置开发的时候使用，到了线上就不使用了 
+
+                        项目依赖
+                            打包后上线需要的依赖
+                            npm i xx -S
+                            npm install xxx --save
+            3.
+                手动建立webpack.config.js文件
+
+
+            4.入口、出口、模块、插件
+
+
+    */    
+</script>
+</body>
+</html>
