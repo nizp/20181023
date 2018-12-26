@@ -2,9 +2,6 @@ const path = require('path');
 const HWP = require('html-webpack-plugin');
 const CWP = require('clean-webpack-plugin');
 const webpack = require('webpack'); //1.5
-// const etwp = require('extract-text-webpack-plugin');
-const mcep = require('mini-css-extract-plugin');
-
 
 /*
     node v5.2.0以上才能使用npx 
@@ -67,40 +64,16 @@ const obj = {
     },
     module:{
         rules:[
-            // {
-            //     test:/\.css$/,
-            //     //先放style-loader，再放css-loader
-            //     use:['style-loader','css-loader'],
-            // }
-
-            // {
-            //     test:/\.css$/,
-            //     //先放style-loader，再放css-loader
-            //     use: etwp.extract({
-            //         fallback: "style-loader",
-            //         use: "css-loader",
-            //         // disable:true
-            //     }),
-            // }
-
             {
                 test:/\.css$/,
-                use: [
-                    {
-                      loader: mcep.loader,
-                    },
-                    "css-loader"
-                  ]
+                //先放style-loader，再放css-loader
+                use:['style-loader','css-loader'],
             }
         ]
     },
 
     plugins:[
         new CWP(['build']),//清除多余js文件，必须放在html的上面
-        // new etwp('index.css'),
-        new mcep({
-            filename:'1.css'
-        }),
         new HWP({
             template:'./index.html',
             // inject:false    //不放script标签
@@ -109,11 +82,10 @@ const obj = {
                 removeAttributeQuotes:true,//清除属性的引号
                 collapseWhitespace:true //把html压缩成一行
             },
-            // hash:true,//给js,css文件加?dsua89a
+            hash:true,//给js文件加?dsua89a
             chunks:['index','index2'],
             title:'欢迎大家来到珠峰培训'
         }),
-       
         new webpack.HotModuleReplacementPlugin()//1.8
     ],
     devServer:{

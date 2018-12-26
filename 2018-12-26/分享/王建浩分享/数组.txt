@@ -1,0 +1,75 @@
+https://blog.csdn.net/   改变原数组的方法  
+  
+  arr.push (6,7,8)   =&gt; arr = 结果是[1,2,3,4,6,7,8]   
+  在数组的末尾添加任意项     返回的是数组的长度  
+
+     2  pop   
+
+  arr.pop() =&gt; arr = [1,2,3]   
+  删除数组最后一项    
+
+     3  shift   
+
+  arr.shift() =&gt; [2,3,4]   
+  删除数组第一项  
+
+     4    unshift   
+
+  在数组的前面添加任意项   返回数组的长度  
+
+     5    sort   
+
+  arr.sort()  [3,7,9,2,1].sort() 排序   只在0-9范围之内是准确的   
+  如果想排序10以上的数字需要传入一个方法，   
+  return  a-b 是升序   return  b-a  就是降序  
+
+     6    revese   
+  颠倒数组，最后一项变第一项类推，返回颠倒过后的数组  
+
+     7  splice   
+
+  arr.splice(n,m,a,b,c)   
+  arr.splice(n,m,a,b,c) 从索引n开始（包括n）删除m个内容，并且从索引n（包括n）处添加 a b c   
+  只传n，m就是只删除 不添加   
+  只传n 表示从索引n开始（包括n）一直删除到末尾   
+  如果n是负数  就是从数组末尾开始数的第n项（-1就是最后一项，没有0）
+
+
+ <ol>   1  slice   
+
+  (n,m) 截取  从索引n（包括n）开始  截取到索引m（不包括m）返回的是一个数组里面截取的内容   
+  如果是负数就从数组的最后开始（-1位数组最后一项，没有-0）   
+  如果 没有m 表示截取到最后一项（包括最后一项）   
+  n ，m都可以为负数，如果为负数就是从最后一项开始数（最后一项是-1）  
+
+     2  toString   
+
+  arr.toString() 转字符串[1,2].toString() =&gt; ‘1,2’  
+
+     3  join   
+
+  arr.join()  将数组以指定的内容拼接成字符串   
+  [1,2,3].join() =&gt; ‘1,2,3’  //和arr.toString()一样   
+  [1,2,3].join(“”) =&gt; ‘123’   
+  [1,2,3].join(‘+’) = ‘1+2+3’  
+
+     4  concat   
+
+  arr.concat([1,2],3)将原数组和其他数组或内容合并一个数组（合并数组）  
+
+     5  indexof   
+
+  arr.indexof(val) 返回一个索引，表示val在数组中第一次出现的位置（从左边开始计算）如果不存在返回 -1   
+  在项目中用来判断  数组里有没有某个值（arr.indexof(val) === -1)  
+
+     6  lastindexof   
+
+  arr.lastindexof(val) 和indexof一样只不过从右边开始数，也就是内容最后一次出现的位置  
+
+     7  includes
+
+  arr.includes(val) includes查找字符，有就返回true 没有就是false  
+     8.map
+	这里的map不是“地图”的意思，而是指“映射”。[].map(); 基本用法跟forEach方法类似：
+	9.forEach()
+

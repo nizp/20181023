@@ -1,0 +1,40 @@
+1、canvas
+
+       H5 <canvas> 标签用于绘制图像（通过脚本，通常是 JavaScript）
+       不过，<canvas> 元素本身并没有绘制能力（它仅仅是图形的容器）
+       必须要使用脚本来完成实际的绘图任务。
+
+2、getContext() 
+
+       方法可返回一个对象，该对象提供了用于在画布上绘图的方法和属性
+       getContext("2d")/getContext("3d")
+
+3、fillStyle
+
+       fillStyle 属性设置或返回用于填充绘画的颜色、渐变或模式
+
+4、fillRect
+       
+        fillRect() 方法绘制“已填色”的矩形。默认的填充颜色是黑色。四个参数x,y,width,height
+
+
+5、~~
+        纯数字，返回整数；一旦有数字以外的字符了，返回0
+
+6、flex
+       
+       是一种布局方式。它即可以应用于容器中，也可以应用于行内元素
+       是W3C提出的一种新的方案，可以简便、完整、响应式地实现各种页面布局
+
+7、justify-content
+
+       justify-content 用于设置或检索弹性盒子元素在主轴（X轴）方向上的对齐式
+
+8、align-items
+
+       align-items 属性定义flex子项在flex容器的当前行的侧轴（Y轴）方向上的对齐方式
+
+9、arguments.callee 
+       是 arguments 对象的一个属性。
+       它可以用于引用该函数的函数体内当前正在执行的函数。这在函数的名称是未知时很有用
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 500px;
+            height: 100px;
+            font-size: 60px;
+            background: linear-gradient(to right, red, blue ,#000);/*从左到右*//*线性渐变*//*背景渐变色*/
+/*必须加-webkit-*/-webkit-background-clip: text; /* 规定背景的绘制区域是文字*/
+            color: transparent; /*文字透明 就显出了背景色*/
+        }
+        #box2{
+            width: 1500px;
+            height: 100px;
+            font-size: 60px;
+            background-image: linear-gradient(60deg, red, blue , rgba(0,0,0,0.3));/*线性渐变*//*角度变化*//*也可以加透明度*/
+        }
+        #box3{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            font-size: 20px;
+            background-image: radial-gradient( red, blue ,#000);/*线性渐变*//*角度变化*//*背景渐变色*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">你看我是渐变色的</div>
+    <div id="box2">角度渐变</div>
+    <div id="box3"></div>径向渐变<br>
+    <a href="http://www.runoob.com/css3/css3-gradients.html">跳转</a> http://www.runoob.com/css3/css3-gradients.html
+
+   
+    
+    <script src="./myarray.js"></script>
+    <script>
+
+
+        var arr = [1, 2, 3, 5,6,7];
+        // alert(arr.mySplice(3, 3)) //-----结果 [23,5,8];
+        // alert(arr);//-----结果 [1,2,3,9000,456464,56522,1,2,3,5,6,8,7,6,9,7,8,9,5,6];
+        // alert(arr.mySlice(3)) //-----结果 
+        // alert(arr);//-----结果
+        
+        console.log(arr.mySplice(3,3,9,6,7,8))//3,5
+        console.log(arr.slice(0,9))//3,5
+    </script>
+</body>
+
+</html>

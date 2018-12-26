@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+    
+    body{
+        display:flex;
+         /*display:flex 是一种布局方式。它即可以应用于容器中，也可以应用于行内元素。
+         是W3C提出的一种新的方案，可以简便、完整、响应式地实现各种页面布局。 */
+         margin-top: 100px;
+         padding: 0;
+         justify-content: center;
+         /*justify-content 用于设置或检索弹性盒子元素在主轴（X轴）方向上的对齐方式*/
+         align-items: center;
+         /*align-items 属性定义flex子项在flex容器的当前行的侧轴（Y轴）方向上的对齐方式。*/
+         background:url("./images/chunse-001.jpg") no-repeat 100% 78%
+    }
+
+    </style>
+</head>
+<body>
+    <canvas id="cavs" width="400" height="400" style="background-color:black">该浏览器不支持canvas</canvas>
+    <script>
+     // 支持canvas的浏览器会只渲染canvas标签，而忽略其中的替代内容。不支持 canvas 的浏览器则 会直接渲染替代内容。
+    let snake = [41,40];//snake表示蛇的身体，初始节点存在但并不显示
+    let direction = 1;//1表示向右，-1则表示向左，20表示向下，-20则为向上
+    let food = 43;//食物的位置
+    let n//这是下次移动的位置
+    let box = document.getElementById('cavs').getContext('2d');//getContext() 方法返回一个用于在画布上绘图的环境。
+    function draw(we,dd){
+        box.fillStyle = dd;//fillStyle 属性设置或返回用于填充绘画的颜色、渐变或模式
+        box.fillRect(we % 20 *20 + 1, ~~(we / 20) * 20 + 1, 18, 18);
+        //~~纯数字，字符串——纯数字，返回整数；一旦有数字以外的字符了，返回0
+        //fillRect() 方法绘制“已填色”的矩形。默认的填充颜色是黑色。四个参数x,y,width,height  
+    }
+    document.onkeydown = function(ev){
+        //当键盘上下左右键按下的时候后改变direction
+        direction = snake[1] - snake[0] == (n=[-1,-20,1,20][(ev||event).keyCode - 37]||direction)?direcion:n;
+        //keyCode  left up right down 37 38 39 40
+    };
+    !function(){//!function跟(function(){})();函数意义相同，叫做立即运行的匿名函数(也叫立即调用函数)。
+        snake.unshift(n = snake[0]+ direction);//unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+        //此时的n为下次蛇头出现的位置，n进入队列
+        if(snake.indexOf(n,1)>0||n<0||n>399||direction ==1 && n%20==0||direction==-1 && n % 20 == 19){
+         //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置
+            return alert('GAME OVER!');
+        }
+     draw(n,"lime");//画出蛇头下次出现的位置
+     if(n == food){//如果吃到食物时，产生一个蛇身以外的随机的点，不会与蛇尾重叠
+        while(snake.indexOf(food = ~~(Math.random()*400)) > 0);
+        draw(food,"yellow");
+     }else{//没有吃到食物就正常移动，
+        draw(snake.pop(),"black");
+        //pop() 方法用于删除并返回数组的最后一个元素。
+     }
+     
+    setTimeout(arguments.callee,150);//每隔0.15秒执行函数一次，可以调节蛇的速度 
+        //arguments.callee 是 arguments 对象的一个属性。
+        //它可以用于引用该函数的函数体内当前正在执行的函数。这在函数的名称是未知时很有用
+       
+    }()
+    </script>
+</body>
+</html>

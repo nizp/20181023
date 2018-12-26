@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--content属性:
+        width\height->可视区域的宽度\高度，值可为数字或关键词device-width\device-height
+        initial-scale->首次被显示是可视区域的缩放级别（初识比例），取值1.0则页面按实际尺寸显示，无任何缩放
+        maximum-scale=1.0, minimum-scale=1.0;可视区域的缩放级别
+        user-scalable->是否允许缩放 no禁止缩放，yes可缩放【ios10需要通过js监听来单独处理】
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0, user-scalable=no">
+    <!--X-UA-Compatible[兼容]：自从IE8新加的一个设置，对于IE8以下的浏览器是不识别的
+        告诉IE浏览器，IE8/9及以后的版本都会以最高版本IE来渲染页面-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分享demo</title>
+    <script src="js/public.js" type="text/javascript"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        a{
+            text-decoration:none;
+        }
+        footer{
+            width:100%;
+            height:3rem;
+            position:fixed;
+            bottom:0;
+            left:0;
+            z-index:10;
+            display:flex;
+            background:#fff;
+            box-sizing:border-box;
+            box-shadow: 0 0 10px 0 hsla(0,5%,55%,.3);
+        }
+        footer .icon-bosh{
+            display:flex;
+            flex:auto;
+            flex-direction: column;
+            justify-content:center;
+            align-items:center;
+        }
+        footer .icon-active span,footer .icon-active i{
+            color:red;
+        }
+       footer i{
+           display:block;
+           color:#333;
+       }
+       footer span{
+           display:block;
+           color:#333;
+           font-size:.7rem;
+       }
+
+       /*format可以自定义浏览器识别的字体格式，后面是对应的字符串类型*/
+      @font-face{
+          font-family:'iconfont';
+          src:url('fonts/iconfont.eot');
+          src:url('fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+          url('fonts/iconfont.woff') format('woff'),
+          url('fonts/iconfont.ttf') format('truetype'),
+          url('fonts/iconfont.svg#iconfont') format('svg');  
+
+          /*为了获得更好的显示效果可以添加下面两个属性*/
+
+         /*webkit引擎下设置字体的抗锯齿渲染或者光滑度属性*/
+          -webkit-font-smoothing:antialiased;
+          /*火狐和mac下设置字体的抗锯齿渲染或者光滑度属性*/
+          -moz-osx-font-smoothing:grayscale;
+
+      }
+      .iconfont{
+          font-family:'iconfont';
+          font-style:normal;
+      }
+
+    .icon-gouwu:before { content: "\e608"; }
+
+    .icon-icon-test:before { content: "\e627"; }
+
+    .icon-icon-test1:before { content: "\e628"; }
+
+    .icon-shouye:before { content: "\e603"; }
+
+    .icon-fenlei:before { content: "\e65e"; }
+    </style>
+</head>
+<body>
+   <!-- <footer class="foot">
+       <a href="#" class="icon-bosh icon-active"><i class="iconfont">&#xe603;</i><span>首页</span></a>
+       <a href="#" class="icon-bosh"><i class="iconfont">&#xe65e;</i><span>分类</span></a>
+       <a href="#" class="icon-bosh"><i class="iconfont">&#xe608;</i><span>团购</span></a>
+       <a href="#" class="icon-bosh"><i class="iconfont">&#xe628;</i><span>购物</span></a>
+       <a href="#" class="icon-bosh"><i class="iconfont">&#xe627;</i><span>我的</span></a>
+   </footer> -->
+   <footer class="foot">
+    <a href="#" class="icon-bosh icon-active"><i class="iconfont icon-shouye"></i><span>首页</span></a>
+    <a href="#" class="icon-bosh"><i class="iconfont icon-fenlei"></i><span>分类</span></a>
+    <a href="#" class="icon-bosh"><i class="iconfont icon-gouwu"></i><span>团购</span></a>
+    <a href="#" class="icon-bosh"><i class="iconfont icon-icon-test1"></i><span>购物</span></a>
+    <a href="#" class="icon-bosh"><i class="iconfont icon-icon-test"></i><span>我的</span></a>
+</footer>
+</body>
+</html>

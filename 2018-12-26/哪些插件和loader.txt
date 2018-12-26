@@ -1,0 +1,13 @@
+uglifyjs-webpack-plugin
+
+optimize-css-assets-plugin
+
+处理css3前缀的
+
+编译less
+
+图片:
+file-loader
+url-loader
+
+

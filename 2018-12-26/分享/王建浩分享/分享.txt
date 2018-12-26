@@ -1,0 +1,25 @@
+<!DOCTYPE> 声明位于文档中的最前面的位置，处于 <html> 标签之前。
+
+<!DOCTYPE> 声明不是一个 HTML 标签；它是用来告知 Web 浏览器页面使用了哪种 HTML 版本。
+
+在 HTML 4.01 中，<!DOCTYPE> 声明需引用 DTD （文档类型声明），因为 HTML 4.01 是基于 SGML （Standard Generalized Markup Language 标准通用标记语言）。DTD 指定了标记语言的规则，确保了浏览器能够正确的渲染内容。
+
+HTML5 不是基于 SGML，因此不要求引用 DTD。
+
+提示：总是给您的 HTML 文档添加 <!DOCTYPE> 声明，确保浏览器能够预先知道文档类型。
+
+
+
+less
+
+git 分支
+
+数组方法封装
+
+rem  em px  的去别 和应用场景
+
+link  @imoort 的区别
+
+css 动画 transform transition animation
+
+
