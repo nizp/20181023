@@ -1,12 +1,12 @@
-import './1.css';
-import './2.css';
+import './css/1.css';
+import './css/2.css';
 
 const a = 20;
 console.log(a);
 
-if(module.hot){
-    module.hot.accept();
-}
+// if(module.hot){
+//     module.hot.accept();
+// }
 
 //     let $ = obj; 
 //     class Nice {

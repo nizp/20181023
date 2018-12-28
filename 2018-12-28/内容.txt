@@ -24,6 +24,11 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); jsÑ¹Ëõ
 npm install url-loader file-loader --save  ÄÜ¹»½âÎöÍ¼Æ¬µÄ
 
 
+====================================================================
+
+npm i webpack webpack-cli css-loader clean-webpack-plugin html-webpack-plugin mini-css-extract-plugin url-loader file-loader optimize-css-assets-webpack-plugin html-withimg-loader  -D
+
+
 
 
 

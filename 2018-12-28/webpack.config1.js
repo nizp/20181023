@@ -13,33 +13,30 @@ const path = require('path');
 
 */
 const HWP = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ocawp = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const cwp = require('clean-webpack-plugin');
+const webpack = require('webpack');
 const obj = {
-    mode:'production',
+    devServer:{
+        host:'localhost',
+        port: 80,
+        open:true,
+        compress: true,
+        hot:true
+    },
+    mode:'development',
     entry:{
         'app':'./app.js'
     },
     output:{
         path:path.resolve(__dirname,'build/js'),
         filename:'[name].[hash:6].js',
-        publicPath:'/'
     },
     module:{
         rules:[
             {
                 //在根目录下去找.
                 test:/\.css$/,
-                // use:[
-                //     'style-loader',
-                //     'css-loader'
-                // ]
                 use:[
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                    },
+                    'style-loader',
                     'css-loader'
                 ]
             },
@@ -50,37 +47,20 @@ const obj = {
                         loader:'url-loader',
                         options:{
                             limit:4096,
-                            outputPath:'../images',
-                            publicPath:'/images'
+                            // outputPath:'../images',
+                            // publicPath:'/images'
                         }
                     }
                 ]
             }
+           
         ]
     },
-    // optimization: {
-    //     minimizer: [
-    //       new UglifyJsPlugin({
-    //             parallel:true//启动并进行压缩
-    //       }),
-    //       new ocawp({}),
-    //     ],
-    //   },
     plugins:[
-        new ocawp({}),
-        
         new HWP({
-            template:'./index.html',
-            filename:'../index.html',
-            minify:{
-                collapseWhitespace:true,
-                removeAttributeQuotes:true,
-            }
+            template:'./index.html'
         }),
-        new cwp(['build']),
-        new MiniCssExtractPlugin({
-            filename:'../css/[name].css'
-        })
+        new webpack.HotModuleReplacementPlugin()
     ]
 }
 
