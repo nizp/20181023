@@ -1,0 +1,50 @@
+过一遍webpack
+
+npm i clean-webpack-plugin --save-dev
+
+清除之前打包的文件 :CleanWebpackPlugin
+
+HtmlWebpackPlugin({
+
+	minify:{
+		removeAttributeQuotes:true,  去双引号
+		collapseWhitespace:true      弄成一行
+	},
+	chunks:['a']
+})
+
+一定要放在HtmlWebpackPlugin它的下面
+
+style-loader css-loader   解析css
+
+npm i optimize-css-assets-webpack-plugin -D  压缩css
+
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); js压缩
+
+npm install url-loader file-loader --save  能够解析图片的
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+purifycss-webpack  purify-css glob -D   删除无用的css
+
+
+postcss-loader  autiprefixer -D   给css加前缀
+
+
+copy-webpack-plugin -D   拷贝插件
+
+proviePlugin  || expose-loader   都可以实现，引入jQ能在全局下使用$
+
