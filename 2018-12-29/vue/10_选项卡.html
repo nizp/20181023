@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#ppa{} 
+.active{
+    background: yellow;
+}
+</style>
+</head>
+<body>
+    <div id="ppa">
+        <!-- 循环数据，当点击的时候把当前的key传到changeC中 -->
+        <button 
+            v-for="(val,key) in content"
+            @click="changeC(key)" 
+            :class="{active:key==num}"
+        >
+        按钮{{key+1}}
+        </button>
+        <!-- 循环数组，只要key等于num的就显示 -->
+        <div 
+            v-for="(val,key) in content"
+            v-show="key==num"
+        >{{val}}</div>
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    new Vue({
+        el:'#ppa',
+        methods:{
+            changeC(key){
+                this.num = key;
+                // console.log(key);
+            }
+        },
+        data:{
+            content:['1111','2222','3333'],
+            num:0
+        }
+    })
+</script>
+
+</body>
+</html>

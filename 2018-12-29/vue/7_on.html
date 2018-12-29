@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.box{
+    width:100px;
+    height:100px;
+    background: red;
+}
+.box2{
+    width:100px;
+    height:100px;
+    background: yellow;
+}
+.box3{
+    width:100px;
+    height:100px;
+    background: green;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <!-- <button v-on:click="fn">{{str}}</button> -->
+        <button @click="fn">{{str}}</button>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+       v-on:事件名
+       缩写:@事件名
+
+       事件函数写在methods
+
+        methods在根实例下，值为一个对象
+
+        methods:{
+            函数名(){
+                this指向实例
+                this的数据修改，直接this.数据名即可
+            }
+        }
+
+    */
+    let app = new Vue({
+        el:'#app',
+        data:{
+            str:`按钮`
+        },
+        methods: {
+            // fn:function(){ },
+            fn(){
+               this.str = '按钮X';
+            }
+        },
+    });
+
+</script>
+</body>
+</html>

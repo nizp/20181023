@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <button @click="add">点击</button>
+        <button @click="rm">删除</button>
+        <ul>
+            <li v-for="(val,key) in arr">{{val}}</li>
+        </ul>
+    </div>
+<script src="vue.js"></script>
+<script>
+    /*
+        改变数据，视图就会跟着发生变化
+    */
+    new Vue({
+        el:'#app',
+        data:{
+            arr:[],
+            num:0
+        },
+        methods:{
+            add(){
+                this.arr.unshift( ++this.num );
+            },
+            rm(){
+                /*
+                    [1,2,3]
+                    [1,2]
+                */
+                if(this.num > 0){
+                    this.arr.shift();
+                    this.num --;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#ppa div{
+    width:100px;
+    height:100px;
+}
+.red{
+    background: red;
+}
+.green{
+    background: green;
+}
+.bor{
+    border: 10px solid #000;
+}
+</style>
+</head>
+<body>
+    <div id="ppa">
+        <button @click="changeC">点击变绿</button>
+        <!-- <div v-bind:class="c"></div> -->
+        <!-- <div :class="c"></div> -->
+        <!-- <div :class="{red:onOff}"></div> -->
+        <div :class="[c1,c2]"></div>
+    </div>
+<script src="vue.js"></script>
+<script>
+    /*
+        v-bind:属性名
+            缩写:
+                :class
+            一般是用来操作属性。
+
+            :class="c"  可以写数据
+            :class="{red:true}"  red->类名: 布尔值 ，只有为true的时候才显示这个class
+            :class="[c1,c2]" c1和c2为对象 {red:true}
+            常用的：class、style、src、href
+    */
+    new Vue({
+        el:'#ppa',
+        methods:{
+            changeC(){
+                // this.c = 'green';
+                // this.onOff = !this.onOff;
+                this.c2.green = true;
+                this.c1.red = false;
+                this.c1.bor = false;
+            }
+        },
+        data:{
+            c:'red',
+            onOff:true,
+            c1:{
+                red:true,
+                bor:true
+            },
+            c2:{
+                green:false
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

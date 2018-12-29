@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.box{
+    width:100px;
+    height:100px;
+    background: red;
+}
+.box2{
+    width:100px;
+    height:100px;
+    background: yellow;
+}
+.box3{
+    width:100px;
+    height:100px;
+    background: green;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <div class="box" v-show="onOff == 'a'"></div>
+        <div class="box2" v-show="onOff == 'b'"></div>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        v-show
+            条件成立就显示，不成立就display:none
+            性能比v-if略好。
+    */
+    let app = new Vue({
+        el:'#app',
+        data:{
+            onOff:'a'
+        }
+    });
+
+</script>
+</body>
+</html>

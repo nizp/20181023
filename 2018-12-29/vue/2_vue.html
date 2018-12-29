@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{dd}}
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        使用vue的步骤:
+            1.引入vue
+            2.在body中创建一个元素，并且给它一个class或者id
+            3.实例化Vue
+                {
+                    el:第二步的名字,
+                    data:{
+                        数据:''|{}|[]
+                    }
+                }
+            4.显示数据:
+                在第二步的元素中输入 
+                    {{ 数据名称 }}
+    */
+    let app = new Vue({
+        el:'#app',
+        data:{
+        //   dd:'你好,世界!~'  
+            dd:''
+        }
+    });
+
+    //2秒以后显示数据
+    setTimeout(()=>{
+        app.dd = 'hell world'
+    },2000);
+
+
+
+</script>
+</body>
+</html>

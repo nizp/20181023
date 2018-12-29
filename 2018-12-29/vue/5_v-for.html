@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.box{
+    width:100px;
+    height:100px;
+    background: red;
+}
+.box2{
+    width:100px;
+    height:100px;
+    background: yellow;
+}
+.box3{
+    width:100px;
+    height:100px;
+    background: green;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- 如果index=0就显示 -->
+            <li v-for="(val,key,index) in obj" v-if="index==0">{{key}}:{{val}}</li>
+        </ul>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+      <li v-for="(val,key,index) in obj">{{index}}</li>
+        val:数组中的每个值，对象每个值
+        key:数据就下标，对象key值
+        index:下标0,1,2
+
+        v-for="(val,key)" in obj
+
+        注意:
+            {{里面只能写一个变量}}  -> {{index}}{{key}}
+    */
+    let app = new Vue({
+        el:'#app',
+        data:{
+            arr:[1,2,3,4,5,6],
+            obj:{
+                name1:'曹原野',
+                name2:'许益凡',
+                name3:'杨雅婷'
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

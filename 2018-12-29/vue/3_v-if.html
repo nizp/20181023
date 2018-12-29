@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.box{
+    width:100px;
+    height:100px;
+    background: red;
+}
+.box2{
+    width:100px;
+    height:100px;
+    background: yellow;
+}
+.box3{
+    width:100px;
+    height:100px;
+    background: green;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <div>隔的就是你</div>
+        <div class="box" v-if="onOff == 'a'"></div>
+        <div class="box3" v-else-if="onOff == 'b'"></div>
+        <div class="box2" v-else></div>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+       v-if="数据|判断"
+       只要条件成立，就显示if中的元素
+
+       v-else （注意:必须跟在v-if或者v-if-else的后面，不然失效）
+        如果if条件不成立显示当前的元素
+
+       v-else-if 要紧跟v-if
+    */
+    let app = new Vue({
+        el:'#app',
+        data:{
+            onOff:'b'
+        }
+    });
+
+</script>
+</body>
+</html>
