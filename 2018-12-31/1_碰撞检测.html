@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+#box2{
+    width:100px;
+    height:100px;
+    background: green;
+    position: absolute;
+    left:300px;
+    top:300px;
+}
+
+</style>
+</head>
+<body>
+    3213213213213213283921830921
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    /*
+        Array.xx()
+        [].xx()
+    */
+    class Drag {
+        constructor(id) {
+            this.box = document.getElementById(id);
+            this.disX = this.disY = 0;
+        }
+        static duang(obj1,obj2){
+            let t1 = obj1.offsetTop;
+            let l1 = obj1.offsetLeft;
+            let b1 = t1 + obj1.offsetHeight;
+            let r1 = l1 + obj1.offsetWidth;
+
+            let t2 = obj2.offsetTop;
+            let l2 = obj2.offsetLeft;
+            let b2 = t2 + obj2.offsetHeight;
+            let r2 = l2 + obj2.offsetWidth;
+
+            if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+                return false;
+            }else{
+                return true;
+            }
+
+        }
+        init(){
+            this.box.addEventListener('mousedown',(ev)=>{
+                this.disX = ev.pageX - this.box.offsetLeft;
+                this.disY = ev.pageY - this.box.offsetTop;
+                document.addEventListener('mousemove',this.m = this.move.bind(this));
+                document.addEventListener('mouseup',this.u = this.up.bind(this));
+                ev.preventDefault();
+                // {disX,disY,m}
+            });
+        }
+        move(ev){
+            let l = ev.pageX - this.disX;
+            let t = ev.pageY - this.disY;
+            
+            if(Drag.duang(this.box,box2)){
+                box2.style.background = 'yellow';
+            }else{
+                box2.style.background = 'green';
+            }
+
+            this.box.style.left = l + 'px';
+            this.box.style.top = t + 'px';
+        }
+        up(){
+            // console.log(this.m)
+            document.removeEventListener('mousemove',this.m);
+            document.removeEventListener('mouseup',this.u);
+        }
+    }
+
+    new Drag('box').init();
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        在构造函数内不能new自己，因为就递归，无new化主要是为了减少用户的操作
+
+        那么既要实现不让用户new，又要实现不递归，还要保证构造函数的所有方法都能使用
+
+        此时，可以通过另一个函数与构造函数的属性一样，方法一样，然后new这个函数
+
+        就完成了无new化操作
+    */
+
+
+    function jQuery(select){
+        return new Tishen(select);
+    }
+    function Tishen(select){
+
+    }
+    jQuery.prototype.css = function(){
+        console.log('$的css');
+        return this; //链式调用
+    }
+    Tishen.prototype = jQuery.prototype;
+
+    window.$ = jQuery;
+
+    $().css().css();
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        [[0,true]]
+        {}    
+
+        深度克隆:
+            [0,1,2,3] -> [0,1,2,3] 
+            [0,1,2,3,[]] -> [0,1,2,3,[]]
+
+            对象类型的赋值为赋址，当浅拷贝的时候，操作A下的复合类型
+            会影响B下的复合类型
+
+            为了解决这个问题，所以只要是复合类型就一直for in循环，直到
+            拷贝的数据为简单类型为止。
+    */
+
+    function deepclone(obj){
+        let o = obj.push?[]:{};
+        for(let attr in obj){
+            if(typeof obj[attr] === 'object'){
+                o[attr] = deepclone(obj[attr]);
+            }else{
+                o[attr] = obj[attr];
+            }
+        }
+        return o;
+    }
+
+    let arr = [1,2,3,4,[5]];
+
+    // let arr2 = arr;
+    // let arr2 = deepclone(arr);
+    let arr2 = JSON.parse(JSON.stringify(arr));
+    arr2[4].push(6);
+    console.log(arr2[4]);
+    console.log(arr[4]);
+
+
+</script>
+</body>
+</html>

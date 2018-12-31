@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        5.ajax的交互模型
+
+        1. 创建一个ajax对象  new XMLHttpRequst()
+
+        2. 填写请求方式、地址、是否异步
+
+        3. onreadystatechange 监听请求步骤
+            0-4 步  只要xhr.readyState为4就说明请求已完成，能够接收后台返回给你的数据
+
+            但是为4的时候，不一定成功
+
+            200 - 307  都算成功
+
+            常见的状态码:
+                200  成功
+                304  走缓存
+                301  永久重定向
+                302  临时重定向
+                307  协议转了
+                400  参数错误
+                401  没有权限
+                413  服务器超负荷了，断开连接，不让用户继续请求 
+                404  服务器文件没有找到
+                500  服务器的问题
+                503  过载或者临时服务器维护，拒绝用户访问（请求）
+
+            别的都是失败
+
+        4. 发送 send()
+
+
+        get和post的区别
+
+        get:
+            比post快，快2步
+                
+            体积跟不同的浏览器url的最大限度走
+            相对来说不安全
+            有缓存（加?随机数）
+            中文在IE下，使用encodeURI()转一道
+
+        post:
+            比get慢2步
+            理论上体积无限大
+            相对安全
+            没有浏览器缓存
+            有请求头
+                setRequestHead('Content-Type','application/x-www-form-urlencoded')
+
+    */
+    
+</script>
+</body>
+</html>
