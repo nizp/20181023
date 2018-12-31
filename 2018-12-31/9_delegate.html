@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        delegate -> 由jquery中的on来封装的
+
+        目的就是通过父级元素去监听子级元素（通过事件的冒泡机制，只要嵌套关系，父级能监听到子级）
+        也叫事件委托。
+
+        绑定div，监听div下的button，在button点击的时候触发一件事情。
+        $("div").delegate("button","click",function(){
+            $("p").slideToggle();
+        });
+    */
+</script>
+</body>
+</html>

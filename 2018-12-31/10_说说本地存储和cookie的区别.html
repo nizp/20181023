@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        都是浏览器的缓存
+        如果设置一个引用类型，那么会自动调用toString()
+        获取的时候使用JSON.parse() 
+        存储的时候使用JSON.stringify()
+
+        cookie:高版本浏览器，每个域名下可以使用5M，低版本根据浏览器存储的大小来定，一般为每个域名下有多少个
+
+
+        生命周期:
+            默认，关闭浏览器就死亡
+            通过expires去设置
+            
+            获取的时候，会把整个cookie信息都获取出来，一个信息与一个信息之间用; （分号+空格）分割的
+
+        localStorage
+            大小：5M
+            生命周期:
+                不清就一直在
+                localStorage.getItem();
+                localStorage.setItem();
+                localStorage.removeItem();
+                localStorage.clear();
+
+            onstorage  -> 在操作localStorage的时候，兄弟页面会触发
+
+
+        sessionStorage
+                sessionStorage.getItem();
+                sessionStorage.setItem();
+                sessionStorage.removeItem();
+                sessionStorage.clear();
+
+            生命周期:
+                关闭浏览器就死亡
+
+                用不了onstorage
+
+    */
+</script>
+</body>
+</html>

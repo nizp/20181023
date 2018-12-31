@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /* 
+        跨域:
+            不同源就跨域（不同域名、端口、协议）
+        跨域的解决方案:
+            1.CORS -> 高版本浏览器的XMLHttpRequest + 服务器请求头设置权限
+
+            2.服务器代理
+                A 不能直接访问 C  因为跨域问题，
+                而B（服务器代码）能访问C ，A和B是同源，这个时候当A访问B就可以实现A能访问C了
+
+            3.jsonp
+                1.全局有个接收函数
+                2.数据必须是函数名+括号，括号内填充数据的格式
+                3.当需要请求数据的时候，创建一个script标签
+                4.把请求的url赋值给script的src
+                5.插入到页面
+                6.删除script标签
+
+
+    */
+</script>
+</body>
+</html>

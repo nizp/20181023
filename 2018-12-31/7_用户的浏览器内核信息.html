@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        window.navigator.userAgent
+            查询浏览器的内核信息（字符串）
+
+            虽然它能够查询内核信息，但是不是特别精准，信息容易被模拟。
+
+
+            每个品牌的浏览器都有它独特的标识
+                chrome中：
+                    Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+                    AppleWebKit/537.36 (KHTML, like Gecko) 
+                    Chrome/70.0.3538.67 Safari/537.36
+
+                    包含Chrome
+
+                ff中:
+                    Mozilla/5.0
+                    (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 
+                    Firefox/63.0
+                    包含:Firefox
+
+                IE中:
+                    IE10以下:
+                        Mozilla/5.0 (compatible; MSIE 9.0;
+                        Windows NT 10.0; WOW64; Trident/7.0; 
+                        .NET4.0C; .NET4.0E)
+
+                        包含MSIE 9.0
+
+                    IE11
+                        Mozilla/5.0 (Windows NT 10.0; 
+                        WOW64; Trident/7.0; .NET4.0C; 
+                        .NET4.0E; rv:11.0) like Gecko
+
+                        IE包含Trident和rv:11.0
+
+                    IE的EDGE
+                        Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+                        AppleWebKit/537.36 (KHTML, like Gecko) 
+                        Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134
+
+                        带edge
+    */
+    // console.log(window.navigator.userAgent);
+
+    // switch (getBroswer()) {
+    //     case 'chrome':
+    //         box.style.background = 'red';
+    //         break;
+    //     case 'msie 8.0':
+    //         box.style.background = 'green';
+    //         break;
+    //     case 'msie 7.0':
+    //         box.style.background = 'yellow';
+    //         break;
+    //     case 'msie 9.0':
+    //         box.style.background = 'skyblue';
+    //         break;
+    //     case 'msie 10.0':
+    //         box.style.background = 'yellowgreen';
+    //         break;
+    //     case 'rv:11.0':
+    //         box.style.background = 'pink';
+    //         break;
+    //     case 'edge':
+    //         box.style.background = 'orange';
+    //         break;
+    //     case 'firefox':
+    //         box.style.background = '#333';
+    //         break;
+
+    //     case 'mobile':
+    //     box.style.background = '#666';
+    //         break;
+    //         // window.location.href = 'http://www.zhufengpeixun.cn';
+    //     break;
+
+            
+    //     default:
+    //         break;
+    // }
+
+
+    if(getBroswer('android')){
+        console.log('安卓');
+    }
+
+   
+
+
+
+    // function getBroswer(){
+    //     var s = window.navigator.userAgent.toLowerCase();
+    //     console.log(s);
+    //     var arr = ['edge','chrome','mobile','iphone','android','ipad','rv:11.0','msie 7.0','msie 8.0','msie 9.0','msie 10.0','firefox'];
+    //     for(var i=0;i<arr.length;i++){
+    //         if(s.indexOf(arr[i]) != -1){
+    //             return arr[i];
+    //         }
+    //     }
+    //     return null;
+    // }
+
+
+    function getBroswer(arg){
+        var s = window.navigator.userAgent.toLowerCase();
+        return s.indexOf(arg) != -1;
+    }
+
+    
+
+
+</script>
+</body>
+</html>
