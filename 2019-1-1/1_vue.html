@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        {{ ss }}
+        <button @click="fn">按钮</button>
+        <ul>
+            <li 
+                v-for="(val,key) in arr"
+                :class="{active:val.onoff}"
+                @click="cc(key,val,$event)"
+            >{{ val.title }}</li>
+        </ul>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        在事件函数中，如果不加括号就默认传入event对象,那么事件函数的第一个参数就是event对象。
+        *** 如果在事件函数中，已经有参数了，但是还要使用event对象，那么就使用$event。
+    */
+    new Vue({
+        el:'#app',
+        data:{
+            ss:'呵呵',
+            arr:[],
+            num:0
+        },
+        methods: {
+            fn(ev){
+                console.log(ev); //event对象
+                // alert(1);
+                //给arr添加数据，生成li
+                this.arr.push({
+                    title:++this.num,
+                    onoff:false
+                });
+            },
+            cc(key,val,ev){
+                // console.log(ev);
+                //点击某个li的时候，取出当前对应的数据，改变数据，vue自动更新视图
+                this.arr[key].onoff = !this.arr[key].onoff;
+            }
+        }
+    });
+</script>
+</body>
+</html>

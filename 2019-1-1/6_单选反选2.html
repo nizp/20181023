@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="all">全选</button>
+        <button @click="fan">反选</button>
+        <button @click="no">全不选</button>
+        <input 
+            v-for="(val,key) in arr"
+            type="checkbox"
+            v-model="arr[key]"
+        />
+        <!-- <input 
+            v-for="(val,key) in arr"
+            type="checkbox"
+            v-model="val.c"
+        /> -->
+        {{arr}}
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- <script src="./vue.js"></script> -->
+<script>
+  
+    new Vue({
+        el:'#app',
+        data:{
+            arr:[false,false,false,false]
+            // arr:[{c:true},{c:false},{c:false},{c:false},{c:false}]
+        },
+        methods: {
+            all(){
+              this.arr = this.arr.map(e=>e=true);
+
+                /*
+                    如果数组中是对象，那么在改变对象中的属性时，
+                    不用直接改变数据数组（原数组）
+
+                    如果数组中不是对象，那么改变数组的某个值的时候，要
+                    改变原数组。
+                */
+            //    this.arr.forEach(e=>e.c=true);
+            },
+            fan(){
+                this.arr = this.arr.map(e=>e=!e);
+            },
+            no(){
+                this.arr = this.arr.map(e=>e=false);
+            }
+        },
+    })
+</script>
+</body>
+</html>

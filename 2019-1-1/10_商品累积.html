@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+input,button{
+    /* outline:none; */
+    /* -webkit-appearance: none; */
+}
+.con{
+    width: 600px;
+    /* height:500px; */
+    background: teal;
+    margin: 60px auto;
+}
+.con h1{
+    text-align: center;
+    color: #ffffff;
+    display: block;
+    padding: 30px;
+}
+.con ul{
+    width: 500px;
+    /* border: 1px solid red; */
+    list-style: none;
+    margin: 0 auto;
+    clear: both;
+}
+.con ul li{
+    width: 400px;
+    height: 60px;
+    background:salmon;
+    margin: 20px auto;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 60px;
+    /* padding-left: 20px; */
+}
+.con ul li>span:nth-child(4),.folter>span:last-child{
+    float: right;
+    margin-right: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+.con ul li>span:nth-child(4){
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+.con ul li>span:nth-child(1),.folter>span:first-child{
+    float: left;
+    /* border: 1px solid red; */
+    width: 200px;
+    margin-left: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+.con ul li>span:nth-child(2){
+    float: left;
+    margin-left: 20px;
+}
+.con ul li>span:nth-child(3){
+    float: right;
+    margin-right: 20px;
+    /* float: left; */
+    /* margin-left: 30px; */
+    cursor: pointer;
+    display: inline-block;
+    /* border: 1px solid red; */
+}
+.folter{
+    height: 50px;
+    width: 400px;
+    margin: 0 auto;
+    border-top: 1px solid #fff;
+    padding-top: 15px;
+    font-size: 25px;
+}
+.con ul li.active{
+    background: yellowgreen;
+}
+ul input{
+    float: left;
+}
+.add{
+    width: 450px;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    color: #fff;
+    height: 50px;
+}
+.add span{
+    margin-right: 10px;
+}
+.add input{
+    width: 130px;
+    margin: 5px;
+    height: 25px;
+    /* border: 1px solid #333; */
+    border-radius: 5px;
+    color: salmon;
+    padding-left: 10px;
+}
+.add button{
+    width: 40px;
+    height: 30px;
+    border-radius: 5px;
+}
+.del{
+    display: inline-block;
+}
+
+.kuang{
+    width: 400px;
+    height: 280px;
+    background:rgba(0,0,0,0.8);
+    /* border: 2px solid #333;; */
+    position: fixed;
+    border-radius: 5px;
+    margin-left: -200px;
+    top:20%;
+    left: 50%;
+    display: none;
+}
+.kuang span{
+    color: #fff;
+    text-align: center;
+    display: block;
+    margin-top: 60px;
+    font-size: 24px;
+}
+.kuang button{
+    width: 120px;
+    /* border: 1px solid red; */
+    height: 40px;
+    /* display: inline-block; */
+    cursor: pointer;
+    margin: 80px 10px 0px 50px;
+    border-radius: 10px;
+    background: none;
+    color: #fff;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+   
+    <div id="main">
+        <div class="con">
+            <h1>PRODUCT</h1>
+            <div class="add">
+                <span>商品:</span>
+                    <input type="text" v-model.trim="val">
+                <span>价格:</span>
+                    <input 
+                        type="text" 
+                        v-model.trim.number="pri" 
+                        @input="panduan"
+                    >
+                <button @click="add">添加</button>
+            </div>
+            <ul>
+                <li 
+                    v-for="(val,key) in arr"
+                    :class="{active:val.active}"
+                >
+                    <input 
+                        type="checkbox" 
+                        v-model="val.active"
+                        @click = "change"
+                    />
+                    <span>{{val.name}}</span>
+                    <span>${{val.price}}</span>
+                    <!-- <span>修改</span> -->
+                    <span 
+                        @click="rm(val.id)"
+                    >删除</span>
+                </li>
+            </ul>
+
+            <div class="folter">
+                <span>total</span>
+                <span>{{sum}}</span>
+            </div>
+            <div 
+                class="kuang"
+                :style="{display:b}"
+            >
+                    <span>确定要删除么？</span>
+                    <button @click="ok">确定</button>
+                    <button @click="nook">取消</button>
+            </div>
+
+        </div>
+        
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        1.添加商品
+        2.选中
+        3.删除功能
+        4.总计功能
+    */
+
+    new Vue({
+        el:'#main',
+        data:{
+            arr:[
+                {
+                    id:1,
+                    name:'APPLE',
+                    price:300,
+                    active:true
+                },
+                {
+                    id:2,
+                    name:'BANANA',
+                    price:500,
+                    active:false
+                },
+                {
+                    id:3,
+                    name:'CHESTNUTS',
+                    price:200,
+                    active:false
+                },
+                {
+                    id:4,
+                    name:'WATERMELON',
+                    price:800,
+                    active:false
+                }
+            ],
+            val:'',//商品名称
+            pri:'',//商品价格
+            b:'none',
+            num:null
+        },
+        methods:{
+            panduan(){
+                /*
+                    12321321321.12
+                */
+                if(!/^\d{1,8}(\.\d{1,2})?$/.test(this.pri)){
+                    console.log('凯文别瞎搞');
+                }
+            },
+            add(){
+                
+                let {pri,val} = this;
+                if(!/^\d{1,8}(\.\d{1,2})?$/.test(pri)){
+                    console.log('别瞎写');
+                    return;
+                }
+                /*
+                    当点击添加的时候，往arr中push新的数据
+                */
+                this.arr.push({
+                    id:Date.now(),
+                    name:val,
+                    price:pri,
+                    active:false
+                });
+
+                this.pri = this.val = '';
+
+            }
+            ,rm(id){
+                //让this.b为block，让弹框显示
+                this.b = 'block';
+                this.num = id; //把要删除的id，赋值给this.num,为了找到删除的那项。
+            },
+            ok(){
+                //把不是this.num的数据保留下来（过滤删除的id对应的数据）
+                this.arr = this.arr.filter(e=>e.id!=this.num);
+                //删完，弹框要隐藏
+                this.b = 'none';
+                //把数据清空
+                this.num = null;
+            },
+            nook(){
+                //就隐藏弹框
+                this.b = 'none';
+                this.num = null;
+            }
+        }
+        ,computed:{
+            /*
+                是vue专有的一个计算属性
+                    当数据发生变化的时候，通过变化的数据，做另一件事
+                只要使用，一开始就会执行一次，之后只要数据发生变化就执行
+                
+                定义:
+                    函数(){
+                        return 是什么，显示就是什么
+                    }
+                使用:
+                    {{函数名}}
+
+                注意:
+                    函数名不要跟data中的数据一致
+            */
+            sum(){
+                    return '$' + this.arr.filter(e=>e.active).reduce((prev,num)=>prev+num.price,0);
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

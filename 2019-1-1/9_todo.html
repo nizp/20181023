@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="rmAll">批量删除</button>
+        <input type="text" @keyup.13="fn" v-model.trim="val">
+        <ul>
+            <li v-for="(val,key) in arr">
+                <input 
+                    type="checkbox" 
+                    v-model="val.checked"
+                />{{val.txt}}</li>
+        </ul>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        数据为数组中包对象情况的时候:
+            直接赋值一个新的对象，使用filter是可以的
+
+        不能使用map因为map，返回的是一个新的数组，并且新数组的个数是固定的，
+        在写过滤的业务时，用filter
+    */
+    new Vue({
+        el:'#app',
+        data:{
+           arr:[
+                {
+                    checked:true,
+                    txt:'金歌'
+                },
+                {
+                    checked:false,
+                    txt:'ser'
+                },
+                {
+                    checked:false,
+                    txt:'木马'
+                },
+                {
+                    checked:false,
+                    txt:'美美'
+                }
+           ],
+           val:''
+            
+        },
+        methods: {
+            fn(){
+                //每回车一次，就添加数据
+                this.arr.unshift({
+                    txt:this.val,
+                    checked:false
+                });
+                this.val = '';
+            },
+            rmAll(){
+                //把没有选中的过滤出来，赋值给this.arr
+                this.arr = this.arr.filter(e=>!e.checked);
+            }
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:200px;
+    height:200px;
+    background: yellow;
+}
+#box2{
+    width:50px;
+    height:50px;
+    background: orange;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <div 
+            id="box" 
+            @click="b1"
+        >
+            fdnsdhdsuhe2j9dj2d
+            <div 
+                id="box2" 
+                @mousedown.prevent
+                @click.stop="b2"
+            >321321</div>
+        </div>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+       .stop  event.stopPropagation()。
+
+       .prevent - 调用 event.preventDefault()。
+    */
+    new Vue({
+        el:'#app',
+        data:{
+           
+        },
+        methods: {
+            b1(){
+                alert(1);
+            },
+            b2(){
+                alert(2);
+            }
+        }
+    });
+</script>
+</body>
+</html>

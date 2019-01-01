@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="all">全选</button>
+        <button @click="fan">反选</button>
+        <button @click="no">全不选</button>
+        <input 
+            v-for="(val,key) in arr"
+            type="checkbox"
+            v-model="arr[key]"
+        />
+        {{arr}}
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        *** v-model中只能传数据变量
+
+        不能写成v-model = "true"、v-model = "{b:true}"  报错
+           
+        只能用数据
+            v-model = "数据"
+
+        ***在v-for中如果要循环数组，还要使用v-model,
+        那么model中的值，应该传成arr[key],在改变数据的时候
+        使用赋值的方式更改数据。
+
+
+        如果是对象，不能使用赋值的方式更改数据。
+
+       
+    */
+    new Vue({
+        el:'#app',
+        data:{
+            // b:true,
+            arr:[true,true,false,false]
+            // arr:[{c:true},{c:false},{c:false},{c:false},{c:false}]
+        },
+        methods: {
+            all(){
+                //循环所有的数组，把每个c设置为true
+               this.arr.forEach(e => e.c = true);//[{c:true}]
+                // this.arr = this.arr.map((e)=>e=true); //[true]
+                
+            },
+            fan(){
+                //取反选择
+                // this.arr.forEach(e => e.c = !e.c);
+                this.arr.forEach(e=>e=!e);
+            },
+            no(){
+                //循环所有的数组，把每个c设置为false
+                // this.arr.forEach(e => e.c = false);
+                this.arr.forEach(e => e = false);
+            }
+        },
+    })
+</script>
+</body>
+</html>

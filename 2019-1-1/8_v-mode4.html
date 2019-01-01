@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <select  v-model="b">
+            <option disabled value="">请选择</option>
+            <option value="aa">上海</option>
+            <option value="bb">北京</option>
+            <option value="cc">杭州</option>
+            <option value="dd">长沙</option>
+        </select>
+        {{b}}
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        在select中，直接绑上v-model，如果option中有value，选择的结果
+        优先value值，如果没有value值，走option的内容。
+    */
+    new Vue({
+        el:'#app',
+        data:{
+           b:''
+        },
+    })
+</script>
+</body>
+</html>

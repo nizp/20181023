@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+       <!-- <input 
+        type="checkbox" 
+        v-model="b"
+        />    -->
+
+        小曹:<input type="checkbox" value="小曹" v-model="arr"/>
+        <hr>
+        老美:<input type="checkbox" value="老美" v-model="arr"/>
+        <hr>
+        小燕子:<input type="checkbox" value="小燕子" v-model="arr"/>
+        <hr>
+        {{arr}}
+        <!-- {{b}} -->
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        在表单控件中使用
+            <input>
+            <select>
+            <textarea>
+
+            v-model  
+
+        当在表单元素中，绑定了v-model，那么只要用户改变视图中的内容
+        那么就等同于直接改变数据，当然改变数据，一样会改变视图
+
+
+        在使用v-model的时候，如果放个数组，那么会自动查找表单元素中的value
+        没有则出现null,如果要统计多个表单元素的信息，可以把同一个数据绑定到
+        v-model上
+
+        
+
+
+    */
+   
+    new Vue({
+        el:'#app',
+        data:{
+          b:false,
+          arr:['小曹']
+        },
+        // methods: {
+        //     fn(ev){
+        //         this.b = ev.target.checked;
+        //         // console.log(ev.target.checked);
+        //     }
+        // }
+    });
+</script>
+</body>
+</html>
