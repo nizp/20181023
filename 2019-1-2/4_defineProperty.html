@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Object.defineProperty(哪个对象,哪个属性,对于属性的配置) 
+            数据劫持
+
+            当操作一个对象的某个属性的时候，进行别的操作
+
+            writable->是否可写。默认为false，属性值就不能被重写
+            configurable->是否可被删除。如果为false，不能被删除
+            enumerable->是否可枚举（for...in循环遍历），默认false
+            （如果设置为false那么能够被in运算，但是不能被for in枚举到）
+
+    */
+    let obj = {
+        num:4
+    }
+    let n = 2;
+    Object.defineProperty(obj,'num',{
+        // writable:false,
+        // configurable:false,
+        enumerable:false,
+        get(){
+            // console.log('ta看我了');
+            return n += 2;  //4 < 5 && 6 > 5
+        },
+        set(newValue){
+            console.log('操作',newValue);
+        }
+    });
+
+     console.log(obj.num < 5 && obj.num > 5);//true
+     console.log(n);
+    obj.num = 5; //set
+    // delete obj.num;
+    // console.log(obj.num); //get
+
+    // console.log('num' in obj); //可被in运算(有没有这个属性)
+
+    for(let attr in obj){ 
+        console.log(attr);
+    }
+
+
+    // let n = 2;
+    
+    // Object.defineProperty(obj,'num',{
+    //     get:function(){
+    //         console.log(1);
+    //         /*
+    //             数据劫持
+    //         */
+    //         //当你获取这个属性的时候，会调用
+    //         n += 2;
+    //         return n;
+    //     }
+    // });
+
+    // console.log(obj.num);
+   
+</script>
+</body>
+</html>

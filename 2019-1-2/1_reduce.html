@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        reduce(回调函数,初始值):
+            当需要计算、统计数组中的每项的结果的时候使用它
+            这一次的运算，需要上一次的计算累积。
+    */
+
+    let arr = [1,2,3,4,5];
+    // let num = 0;
+    // for(let i of arr){
+    //     num += i;
+    // }
+    // console.log(num);
+
+    // arr.reduce((a,b)=>{
+    //     /*
+    //         a:代表上一次的结果
+    //         b:本次循环的那个
+    //     */
+    //     console.log('a:'+a,'b:'+b);
+    //     return a+b;   
+    // },0);
+     
+    let ary = arr.reduce((a,b)=>{
+        /*
+            a:代表上一次的返回结果
+            b:本次循环的那个
+        */
+        a.push(b);   // [1,2,3,4]
+        return a;
+    },[]);
+
+    console.log(ary)
+
+
+
+
+
+</script>
+</body>
+</html>

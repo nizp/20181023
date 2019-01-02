@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input 
+            type="text" 
+            v-model="val"
+        >
+        <div>{{val.split('').reverse().join('')}}</div>
+        <div>{{revers}}</div> 
+        <div>{{revers}}</div> 
+        <hr>
+        <div>{{val}}</div> 
+        <input 
+            type="text" 
+            v-model="val"
+        > -->
+
+        全选:<input 
+            type="checkbox" 
+            v-model="all"
+        >
+        <hr>
+        <input 
+            v-for="(val,key) in arr"
+            type="checkbox" 
+            v-model="val.checked"
+        >
+        {{arr}}
+    </div>
+<script src="./vue.js"></script>
+<script>
+
+    new Vue({
+        el:'#app',
+        data:{
+            arr:[
+                {
+                    checked:false
+                },
+                {
+                    checked:false
+                },
+                {
+                    checked:false
+                }
+            ]
+        },
+        computed:{
+            // all(){
+            //     return this.arr.every(e=>e.checked);
+            // }
+            all:{
+                get(){
+                    return this.arr.every(e=>e.checked);
+                },
+                set(newValue){
+                    // console.log(newValue);
+                    return this.arr.forEach(e=>e.checked = newValue)
+                }
+            }
+        }
+    });
+
+    /*
+        
+        
+        get(){
+            //获取的时候
+        }
+        set(newValue){
+            //修改的时候
+            newValue就是改变之后的结果
+        }
+
+        当使用get、set的时候，那么computed中定义的属性，为一个对象
+        当不使用get、set的时候，computed中定义的属性是可以为函数
+
+
+    */
+    
+
+    // new Vue({
+    //     el:'#app',
+    //     data:{
+    //         val:''
+    //     },
+    //     //什么时候用computed，需要点经验（多敲）
+    //     computed:{
+    //         revers(){
+    //             return this.val.split('').reverse().join('');
+    //         }
+    //     }
+    // });
+
+
+    
+</script>
+</body>
+</html>
