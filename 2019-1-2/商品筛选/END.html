@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			font-size: 14px;
+			font-family: "Lantinghei SC Extralight",Arial;
+		}
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		img {
+			vertical-align: top;
+		}
+		#wrap {
+			width: 760px;
+			height: 260px;
+			margin: 100px auto;
+			padding: 145px 120px 95px;
+			background: url(img/bg.jpg) no-repeat 0 0;
+		}
+		.section {
+			width: 760px;
+			height: 260px;
+			-moz-box-shadow: 0px 0px 4px rgba(0,0,0,.2); 
+			box-shadow: 0px 0px 4px rgba(0,0,0,.2);
+		}
+		.choose {
+			width: 760px;
+			height: 50px;
+			margin: 0 auto;
+			background: url(img/nav_bg.png) no-repeat 0 0;
+			line-height: 50px;
+			text-indent: 21px;
+		}
+		.type {
+			width: 100%;
+			height: 210px;
+			background: url(img/type_bg.png) no-repeat 0 0;
+			padding: 17px 0 16px 28px;
+		}
+		.type li {
+			height: 44px;
+			color: #8a8a8a;
+			line-height: 44px;
+		}
+		.type a {
+			margin: 0 12px 0 11px;
+			color: #000;
+		}
+		.choose mark {
+			position: relative;
+			display: inline-block;
+			height: 24px;
+			line-height: 24px;
+			border: 1px solid #28a5c4;
+			color: #28a5c4;
+			margin: 12px 5px 0;
+			background: none;
+			padding: 0 30px 0 6px;
+			text-indent: 0;
+		}
+		.choose mark a {
+			position: absolute;
+			cursor: pointer;
+			top: 3px;
+			right: 2px;
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			background: #28a5c4;
+			color: #fff;
+			line-height: 18px;
+			font-size: 12px;
+			text-align: center;
+		}
+.type li a.active{
+	color: rgb(40, 165, 196);
+}
+/* v-for="x,i in newList"
+			 	v-on:click="remove(i)" {{x}}*/
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<section class="section">
+			<nav class="choose">
+			你的选择:<mark 
+				:style="{display:b}"
+				v-for="(val,key) in arr2"
+		
+			>
+			{{val.t}}
+			<a @click="cancel(val,key)">X</a></mark>
+			</nav>
+			<ul class="type">
+				<li v-for="(val,i) in arr">
+					{{val.title}}
+					<a
+						v-for="(val,key) in val.list"
+						:href="href"
+						@click="pin(val,i,key)"
+						:class="{active:val.f}"
+					>
+					{{val.t}}
+					</a>
+				</li>
+			</ul>
+
+		</section>
+	</div>
+
+
+<script src="./vue.js"></script>
+<script>
+
+	new Vue({
+		el:'#wrap',
+		//请求数据
+		created(){
+			fetch('./data.json')
+			.then(e => e.json())
+			.then(d=>{
+				// console.log(d)
+				this.arr.push(...d);
+			})
+		},
+		data:{
+			b:'none',
+			href:'javascript:;',
+			color:'rgb(40, 165, 196)',
+			arr:[],
+			arr2:[]
+		},
+		methods:{
+			//点击A标签的时候 触发的事件 val是list的数据  key是索引值  而i是arr的索引值
+			pin(val,i,key){
+				//大清洗
+				this.arr[i].list.forEach((w)=>{
+					w.f = false;
+				});
+				//点击时候  给当前设为true  并且字体变颜色
+				val.f = true;
+				this.bian = 'rgb(40, 165, 196)';
+
+				
+				this.arr2.forEach((e,j)=>{
+					if(this.arr[i].title == e.tt){
+						console.log(1)
+						this.arr2.splice(j,1)
+					}
+				})
+				//将当前的数据push到this.arr2中
+				this.arr2.splice(i,0,{
+					tt:this.arr[i].title,
+					t:val.t
+				});
+				// this.arr2 = this.arr2.filter((e)=> e!='');
+				this.b = 'inline-block';
+				
+
+
+			},
+			cancel(val,key){
+				//删除arr2中的 数据
+				this.arr2.splice(key,1);
+
+
+				//当你点击删除的时候  要让规定的 地方变为false  
+				this.arr.forEach(e=>{
+					// console.log(e.list)
+					e.list.find((ff)=>{
+						if(ff.t == val.t){
+							ff.f = false;
+						}
+					})
+				})
+			}
+		},
+	});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="val"> -->
+        <ul>
+            <li 
+                v-for="(val,key) in arr"
+                
+            >
+                <input type="checkbox" v-model="val.checked"/>
+            </li>
+        </ul>
+        {{arr}}
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        watch（指定数据的监听器）：
+            当指定数据发生变化的时候触发，一开始是不会触发的，只有数据变化才触发
+
+        第一种写法:
+            watch:{
+                要监听的数据名(新的数据,更新之前的数据){
+                    只能监听一层，深层就监听不到
+                    []一层 -> [{}]多层
+                }
+            }
+        
+        第二种写法:
+            watch:{
+                要监听的数据名:{
+                    handler(新的数据,更新之前的数据){
+
+                    },
+                    deep:true  深度监听
+                }
+            }
+
+
+    */
+
+    new Vue({
+        el:'#app',
+        data:{
+            arr:getStorage('data')
+            // val: getStorage('name1','金歌')
+            // arr:[{checked:true},{checked:false},{checked:false}]
+            // arr:JSON.parse(getStorage('data','[]'))
+
+        },
+        // methods: {
+        //     fn(){
+        //         this.arr.pop();
+        //     }
+        // },
+        watch:{
+
+            arr:{
+                handler(v){
+                    localStorage.setItem('data',JSON.stringify(v));
+                },  
+                deep:true
+            }
+
+            // arr(v){
+            //     console.log(1);
+            //     // localStorage.setItem('data',v);
+            // }
+
+            // val(v, ov){
+            //     console.log(1);
+            //     //v:改变之后的数据
+            //     //ov:改变之前的数据
+            //     // console.log(v,ov);
+            //     localStorage.setItem('name1',v);
+            // }
+
+
+        }
+    });
+
+    // function getStorage(name,init){
+    //    return  localStorage.getItem(name) || init;
+    // }
+
+    function getStorage(name){
+        let data = localStorage.getItem(name) || '[{"checked":false},{"checked":false},{"checked":false}]';
+        return  JSON.parse(data); //[] -> [{}]
+    }
+
+
+</script>
+</body>
+</html>

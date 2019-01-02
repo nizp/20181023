@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>父级：{{aaa}}</h1>
+        <hr>
+        <ppa></ppa>
+        <!-- <pp-x></pp-x> -->
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        组件化开发:
+            主要就是把一个大的功能拆分成若干个小的功能，解决高耦合的问题，
+            方便开发人员维护。
+
+        component（组件）    数据传递，容易晕
+
+    ***    Vue.component(组件的名称,对象)   必须放在根实例的上面.
+
+        {
+            template:`<div>子级</div>`,
+            data,
+            methods,
+            computed
+        }
+
+        命名规则:
+            尽量不要使用驼峰命名法
+
+        小技巧:
+            创建组件时的名字和引入组件的名字最好一样
+            比如:
+                Vue.component('pp-x')   创建组件时的名字
+                <pp-x></pp-x>   引入组件的名字
+
+        注意：
+            如果要写成驼峰命名，引入组件名字的时候，大写变小写，中间带-
+            所谓的烤串命名法
+
+            比如:
+                Vue.component('ppX')
+                <pp-x></pp-x>
+
+            font-size  -> fontSize
+
+
+
+        写组件的方式:
+            1.Vue.component('名字',{})
+            2.new Vue()
+            3.引入: <组件的名字>
+
+        {
+            template:`<div id="box">
+                <div></div>
+            </div>`
+        }
+
+        在template中，顶层只能有一个元素,比如上面代码的#box
+
+        ***在子组件中，data必须为函数，函数中返回一个对象，对象下挂数据。
+        
+        
+    */
+
+    // Vue.component('pp-x',{
+    //     template:'<div>子级</div>'
+    // });
+
+    Vue.component('ppa',{
+        template:`
+            <div>
+                <div>子级</div>
+                <h3>{{ val }}</h3>
+                <button @click="fn">按钮</button>
+            </div>
+        `,
+        //子组件的data为一个函数
+        data(){
+            return {
+                val:'这个是子组件'
+            }
+        },
+        methods:{
+            fn(){
+                alert(1);
+            }
+        }
+    });
+
+    new Vue({
+        el:'#app',
+        data:{
+            aaa:'父级的数据'
+        }
+    });
+
+    
+
+</script>
+</body>
+</html>

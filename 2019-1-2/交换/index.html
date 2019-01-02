@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div id="main">
+
+<!-- 第一种 -->
+
+        <!-- <div class="nav">
+            <a class="nav_L"
+                :class="{active:lei == 'list'}"
+                @click="lei ='list'"
+            ></a>
+            <a class="nav_R"
+                :class="{active:lei == 'box'}"
+                @click="lei = 'box'"
+            ></a>
+        </div> -->
+
+        <!-- <ul v-if="lei == 'list' " class="list">
+            <li v-for="(val,key) in arr">
+                <a><img :src="val.image"/></a>
+                <p>{{val.title}}</p>
+            </li>
+        </ul> -->
+        <!-- <ul v-if="lei == 'box'" class="box">
+            <li v-for="(val,key) in arr">
+                <a><img :src="val.image"/></a>
+                <p>{{val.title}}</p>
+            </li>
+        </ul> -->
+
+
+<!-- 第二种 -->
+
+        <div class="nav">
+            <a class="nav_L"
+                :class="{active:lei == 'list'}"
+                @click="List"
+            ></a>
+            <a class="nav_R"
+                :class="{active:lei == 'box'}"
+                @click="kuai"
+            ></a>
+        </div> 
+
+        <ul :class="lei">
+            <li v-for="(val,key) in arr">
+                <a><img :src="val.image"/></a>
+                <p>{{val.title}}</p>
+            </li>
+        </ul>
+   
+
+    </div>
+<script src="./vue.js"></script>
+<script>
+
+    new Vue({
+
+        el:'#main',
+        data:{
+            lei:'list',
+            arr:[
+                {
+                    'title':'aaaaaaaaa',
+                    'src':'src',
+                    'image':'./images/1.jpg'
+                },
+                {
+                    'title':'bbbbbbbbbb',
+                    'image':'./images/2.jpg'
+                },
+                {
+                    'title':'cccccccccccccc',
+                    'image':'./images/3.jpg'
+                },
+                {
+                    'title':'ddddddddddddd',
+                    'image':'./images/4.jpg'
+                },
+                {
+                    'title':'eeeeeeeeeeeeee',
+                    'image':'./images/5.jpg'
+                },
+                {
+                    'title':'fffffffffff',
+                    'image':'./images/6.jpg'
+                },
+            ]
+
+
+        },
+        methods:{
+            List(){
+                this.lei = 'list';
+            },
+            kuai(){
+                this.lei = 'box';
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
