@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <section class="todoapp" id="app">
+        <div>
+            <myhead
+                @adddata="parentAdd"
+            ></myhead>
+            <section class="main">
+                <input 
+                    class="toggle-all" 
+                    type="checkbox"
+                    v-model="all"
+                >
+                <list 
+                    :ary="cal"
+                    @rmdata="parentRm"
+                ></list>
+            </section>
+           <myfooter
+                :n="num"
+                :cn="cnum"
+                @cr="changrouter"
+           ></myfooter>
+        </div>
+    </section>
+<!--
+    [Deprecation] Using unescaped '#' characters in a data URI body is deprecated and will be removed in M71, around December 2018. Please use '%23' instead. See https://www.chromestatus.com/features/5656049583390720 for more details.
+-->
+<script src="../vue.js" charset="utf-8"></script>
+<script src="./component/header.js"></script>
+<script src="./component/list.js"></script>
+<script src="./component/footer.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            arr:[
+                {
+                    txt:'巴拉巴拉小燕子',
+                    id:0,
+                    checked:true
+                },
+                {
+                    txt:'巴拉巴拉小胖子',
+                    id:1,
+                    checked:false
+                },
+                {
+                    txt:'巴拉巴拉小美美',
+                    id:2,
+                    checked:false
+                }
+            ],
+            cnum:'/all'
+        },
+        methods: {
+            //父级做的事:把传过来的数据push到arr中
+            parentAdd(data){
+                this.arr.unshift(data);
+            },
+            //删除数据
+            parentRm(id){
+                this.arr = this.arr.filter(e=>e.id !== id);
+            },
+            //当hash值变化的时候，会自动进入cal
+            changrouter(hash){
+                console.log(hash);
+                this.cnum = hash;
+            }
+            
+        },
+        computed:{
+            //全选系列
+            all:{
+                get(){
+                    return this.arr.every(e=>e.checked);
+                },
+                set(newValue){
+                    this.arr.forEach(e=>e.checked = newValue);
+                }
+            },
+            //有多少条未选中
+            num(){
+                return this.arr.filter(e=>!e.checked).length;
+            },
+            //通过this.cnum 当hash变化的时候，过滤对应的数据
+            cal(){
+                return this.arr.filter(e=>{
+                    switch (this.cnum) {
+                        case '/all':
+                            return e;
+                            break;
+                        case '/unchecked':
+                            return !e.checked;
+                            break;
+                        case '/checked':
+                            return e.checked;
+                        break;
+                        default:
+                            return e;
+                            break;
+                    }
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

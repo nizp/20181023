@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>父级的</h2>
+            <input type="text" v-model="val" @keyup.13="add">
+            {{arr}}
+        <hr>
+
+        <h2>子组件</h2>
+        <list :data="arr" ></list>
+
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        ***双向数据绑定（数据和视图）
+
+        ***单向数据流动（父级数据和子级数据的流动）
+
+            数据从父级流向子级，数据本身还是父级的，如果操作子级要改变
+            父级的数据，只能通过子级告知父级要操作哪个数据，然后让父级
+            去修改数据。（简单说就是子级不能修改父级的数据，让父级改自己的数据）
+
+        
+        子传父:
+            1.在子组件上绑定一个自定义的事件，并且传入父级的“事件”处理函数
+                比如:
+                    <ppa @changeboolean="changC">
+
+                        @changeboolean 是子组件定义的
+                        changC 父组件中定义的
+
+            2.在子组件内部监听这个自定义的事件(满足自定义函数的条件就执行)
+                this.$emit(自定义的事件名,参数)
+
+                比如:
+                    change(){
+                        this.$emit('changeboolean',id,xx)
+                    }
+    */
+    let obj = {
+        template:`
+            <div>
+                <ul>
+                    <li v-for="(val,key) in data">
+                        <input 
+                            type="checkbox" 
+                            @change="changeFn(val,$event)"
+                        >
+                        <span>{{val.txt}}</span>    
+                    </li>    
+                </ul>
+            </div>
+        `,
+        methods:{
+            //不能直接在子级修改父级的数据
+            changeFn(val,ev){
+                val.checked = !val.checked;
+            }
+        },
+        props:{
+            data:{
+                type:Array,
+                default:[]
+            }
+        }
+    }
+
+    Vue.component('list',obj);
+
+    new Vue({
+        el:'#app',
+        data:{
+            val:'',
+            arr:[
+                {
+                    id:0,
+                    txt:'马国耀',
+                    checked:false
+                },
+                {
+                    id:1,
+                    txt:'小燕子',
+                    checked:false
+                },
+                {
+                    id:2,
+                    txt:'小胖',
+                    checked:false
+                }
+           ]
+        }
+        ,methods:{
+            add(){
+                this.arr.push({
+                    id: +new Date,
+                    txt:this.val,
+                    checked:false
+                });
+                this.val = '';
+            }
+        }
+    });
+</script>
+</body>
+</html>

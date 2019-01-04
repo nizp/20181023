@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        
+        请看12月8号和12月3号的课件
+        钩子函数:
+            当某个条件（“事件”）成立的时候触发的函数（生命周期函数）
+
+        document.addEventListener('点击',fn);
+        document.addEventListener('点击',fn2);
+
+        {
+            点击:[fn,fn2]
+        }
+
+        鼠标点击了页面,点击行为已经产生，这个时候，只要找到对应的事件名下的数组，
+        循环数组依次调用。
+    */
+
+    //收集器
+    document.addEventListener('点击',function(){
+        alert(1);
+    });
+    document.addEventListener('点击',function(){
+        alert(3);
+    });
+
+
+
+    //事件初始化
+    let ev = document.createEvent('HTMLEvents');
+    ev.initEvent('点击',true,true);
+
+
+    //触发器
+    document.onclick = function(){  
+        document.dispatchEvent(ev);
+    }
+
+
+
+
+</script>
+</body>
+</html>

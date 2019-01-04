@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ppa sex="boy" :v="vv"></ppa>
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        注意:
+            自定义属性不要和子组件的数据名一样。
+
+            props可以为数组也可以为对象，数组的时候传字符串，使用对象
+            的时候是为了启用高级配置（传入数据类型的检测、自定义校验和设置默认值）
+
+
+            在传入数据的时候，类型检测会帮助你更快的锁定问题（故意报错）
+
+            kw:{
+                type:Number,  数据类型
+                default:128   如果子组件上没有这个属性，默认走default
+            }
+
+            
+    */
+    let obj = {
+        // props:['kw','sex','v'],
+        props:{
+            // kw:Number,
+            kw:{
+                type:Number,
+                default:128
+            },
+            sex:String,
+            v:String
+        },
+        template:`
+            <div>
+                <h2>{{val}}</h2>
+                <p>我是凯文，我今年{{1+kw}}岁,我的性别是:{{sex}},我的梦想是{{v}}</p>
+            </div>`,
+        data(){
+            return {
+                val:'你好!'
+            }
+        }
+    }
+
+    Vue.component('ppa',obj);
+
+    new Vue({
+        el:'#app',
+        data:{
+            vv:'迎娶白富美，走上人生巅峰!',
+            n:'18'
+        }
+    });
+</script>
+</body>
+</html>

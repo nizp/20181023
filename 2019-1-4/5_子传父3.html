@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>父级的</h2>
+            <input type="text" v-model="val" @keyup.13="add">
+            {{arr}}
+        <hr>
+
+        <h2>子组件</h2>
+        <list :data="arr" :k="kk" @getchilddata="changeC"></list>
+
+    </div>
+<script src="./vue.js"></script>
+<script>
+    /*
+        如果要让子级有功能（操作父级数据的能力），那么可以把父级传进来的数据变成自己的
+        子级改变自己的数据，是不会影响父级的数据。
+
+
+        步骤:
+            1.传数据
+                :data="arr"
+
+            2.接收数据：props:['data']
+
+            3.data(){   把父级传过来的数据变成自己的
+                return {
+                    cd:this.data
+                }
+            }
+
+            4.`<div>{{cd}}</div>`  使用自己的数据
+
+        注意:
+            如果父级传进来的数据是复合类型（引用类型）的，那么变成自己
+            的数据时，要深拷贝一下，不然改变子级会影响父级。
+
+    */
+    let obj = {
+        template:`
+            <div>
+                <ul>
+                    <li v-for="(val,key) in cd">
+                        <input 
+                            type="checkbox" 
+                            @change="changeFn(val.id)"
+                        >
+                        <span>{{val.txt}}</span>    
+                    </li>    
+                </ul>
+                {{cd}}
+            </div>
+        `,
+        methods:{
+            changeFn(id){
+                let b;
+                this.cd.forEach(data => {
+                    if(data.id === id){
+                        data.checked = !data.checked;
+                        b = data.checked;
+                    }
+                });
+
+                this.$emit('getchilddata',id,b);
+                console.log(this.cd);
+                // this.k = '变了'; //
+                // console.log(this.k);
+            }
+        },
+        props:['data','k'],
+        data(){
+            return {
+                cd:JSON.parse(JSON.stringify(this.data))
+            }
+        },
+        // computed: {
+        //     cc(){
+        //         return JSON.parse(JSON.stringify(this.data))
+        //     }
+        // },
+    }
+
+    Vue.component('list',obj);
+
+    new Vue({
+        el:'#app',
+        data:{
+            kk:'变',
+            val:'',
+            arr:[
+                {
+                    id:0,
+                    txt:'马国耀',
+                    checked:false
+                },
+                {
+                    id:1,
+                    txt:'小燕子',
+                    checked:false
+                },
+                {
+                    id:2,
+                    txt:'小胖',
+                    checked:false
+                }
+           ]
+        }
+        ,methods:{
+            add(){
+                this.arr.push({
+                    id: +new Date,
+                    txt:this.val,
+                    checked:false
+                });
+                this.val = '';
+            },
+            changeC(id,bool){
+                this.arr.forEach(e=>{
+                    if(e.id === id){
+                        e.checked = bool;
+                    };
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>
