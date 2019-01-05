@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#loading{
+    display: none;
+}
+</style>
+</head>
+<body>
+    <div id="loading" >loading....</div>
+    <div id="app">
+        <button @click="val = '哈哈哈'">按钮</button>
+
+        <div>{{val}}</div>
+        <ul>
+            <li v-for="val in arr">{{val}}</li>
+        </ul>
+    </div>
+
+    <template id="ppa">
+        <div>我是ppa</div>
+    </template>
+
+
+<script src="./todolist/vue.js"></script>
+<script>
+    /*
+        vue的生命周期就是一个vue组件从出生到死亡的过程
+
+        *** 生命周期，你需要知道它是什么时候触发。
+
+        beforeCreate  
+            在组件初始化之前  在这个生命周期中组件的数据、方法、事件都还没有。
+
+        简单来说，new Vue之后，可以理解为第一句话就调用beforeCreate
+
+        可以在loading的时候用
+
+        function Fn(age){
+            beforeCreate();
+            this.age = age;
+        }
+
+
+        created
+            当数据、方法、事件初始化之后调用.
+            简单点来说，当数据有初始值之后调用。
+
+            一般都是请求数据的时候用,关闭loading。
+
+            function Fn(age){
+                beforeCreate();
+                this.age = age;
+                created()
+            }
+
+        要么看看有没有el属性，没有就再看看实例下有没有$mount(el)
+        有就使用$mount的el
+
+        ** template属性，会覆盖根元素
+
+        1.
+            template:'<div></div>'
+
+        2.
+            <template id="demo1">
+                <div>demo1</div>
+            </template>
+
+            template:'#demo1'
+
+        3.
+
+            <script type="x-template" id="demo2">
+                <h2 style="color:red">我是script标签模板</h2>
+            <//script>
+
+            template:'#demo2'
+
+        有模板走模板，没模板走根元素的innerHTML
+
+        beforeMount:
+            渲染之前 
+        mounted
+            DOM渲染之后，可以获取页面的元素（主要是数据生成出来的元素）  
+        
+
+        当DOM更新完成时触发。只要操作DOM直接使用nextTick搞定
+        Vue.nextTick()
+        .then(function () {
+            // DOM 更新了
+        });
+
+        angular : 脏值检查
+
+        [
+            {
+                name:'ul',
+                children:[
+                    {name:li},
+                    {name:li},
+                    
+                ]
+            }
+        ]
+
+        [
+            {
+                name:'ul',
+                children:[
+                    {name:li},
+                    {name:li},
+                    {name:li},
+                ]
+            }
+        ]
+
+        beforeUpdate
+            数据更新之前
+        updated
+            数据更新之后
+
+        其实直接使用computed即可。
+
+
+        beforeDestroy
+            死亡前
+                关掉定时器、状态的初始化
+        destroyed  没有路由的时候是人为手动触发，有路由，切换路由的时候上一个组件触发
+            死亡后，数据就不能添加了
+
+        
+            
+
+        
+        
+    */
+
+    let vm = new Vue({
+        data:{
+            val:'',
+            arr:[1,2,3,4]
+        },
+        created(){
+            // console.log(this.val);
+            setTimeout(() => {
+                this.val = '数据请求成功';
+                document.getElementById('loading').style.display = 'none';
+                console.dir(document.getElementById('loading'))
+            }, 3000);
+
+        },
+        beforeCreate() {
+            console.log(this);
+            // debugger;
+            document.getElementById('loading').style.display = 'block';
+            // console.log('这是第一个生命周期函数');
+            // this.val = 'haha';
+           
+        },
+        beforeMount(){
+            console.log(document.getElementsByTagName('li'));
+        },
+        mounted(){
+            //获取数据渲染之后的DOM使用nextTick
+            Vue.nextTick(()=>{
+                console.log(document.getElementsByTagName('li'));
+            });
+        },
+        beforeUpdate() {
+            alert('更新之前');
+        },
+        updated(){
+            // console.log(this.val);
+            alert('更新之后');
+        }
+        // template:`<h1>{{val}}</h1>` 
+        // template:'#ppa' 
+        // el:'#app',
+    });
+
+    vm.$mount('#app');
+</script>
+</body>
+</html>
