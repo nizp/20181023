@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.box{
+    width:100px;
+    height:100px;
+    border:1px solid #000;
+}
+.xob{
+    width:100px;
+    height:100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+       <ppa>
+            <div slot="content">修身</div>
+            <div slot="footer">修脚</div>
+            <!-- <div class="xob" slot="box"></div> -->
+       </ppa>
+    </div>
+<script src="vue.js"></script>
+<script>
+    /*
+        定义slot:(目的，有配置，没配置走默认)
+            引入子组件，如果不定义某个默认的结构或者样式，那么直接写子组件的名称即可
+
+            如果要自定义:
+                1.子组件必须为双标签。
+                2.子组件内写上自定义的结构或者样式并且加上slot的属性，
+                    而这个属性名要对应默认slot的名字
+                3.在子组件中，包一个slot的元素，可以任意修改，在slot元素上定义一个
+                    叫做name的属性，为了好对应操作
+    */
+
+    Vue.component('ppa',{
+        template:`
+            <div>
+                <slot name="box">
+                    <div class="box" ></div>   
+                </slot> 
+                <slot name="content">
+                    <div>中间的内容</div>   
+                </slot> 
+                <slot name="footer">
+                    <div>底部的内容</div>   
+                </slot> 
+            </div>
+        `
+    });
+    
+    new Vue({
+        el:'#app'
+    });
+</script>
+</body>
+</html>

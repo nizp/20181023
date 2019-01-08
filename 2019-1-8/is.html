@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button 
+            v-for="i in 3"
+            @click="click(i)"
+        >按钮{{i}}</button>
+        <div :is="h"></div>
+        <table>
+            <!-- <ppa></ppa> -->
+            <!-- <tr is="ppa"></tr> -->
+            <!-- <tr>
+                <td><ppa /></td>
+            </tr> -->
+        </table>
+    </div>
+<script src="vue.js"></script>
+<script>
+    /*
+        有些时候，组件本身和使用组件的地方有冲突，
+        比如:
+            在table中使用div组件，这个时候组件会到table的外面去
+            这个时候，可以通过is的方式，把组件嵌套到table中
+
+
+    */
+    // Vue.component('ppa',{
+    //     template:`<div>1111</div>`
+    // });
+    
+
+    let  ppx = {
+        template:`<div>111111111111</div>`
+    }
+    let  ppx2 = {
+        template:`<div>22222222222</div>`
+    }
+    let  ppx3 = {
+        template:`<div>33333333333333</div>`
+    }
+
+    new Vue({
+        el:'#app',
+        data:{
+            h:'ppx'
+        },
+        methods:{
+            click(key){
+                switch (key) {
+                    case 1:
+                        this.h = 'ppx';
+                        break;
+                    case 2:
+                        this.h = 'ppx2';
+                        break;
+                    case 3:
+                        this.h = 'ppx3';
+                        break;
+                    default:
+                        this.h = 'ppx';
+                        break;
+                }
+            }
+        },
+        components:{
+            ppx,
+            ppx2,
+            ppx3
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+    <h1><%= txt%></h1>
+    <div id="box"></div>
+    <ul>
+        <%for(var i=0;i<arr.length;i++){%>
+            <li><%= arr[i]%></li>
+        <%}%>
+    </ul>
+    <a href="/2.html">跳转到第二个页面</a>
+<script src="/1.txt"></script>
+</body>
+</html>
