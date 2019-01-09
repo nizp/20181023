@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul"></ul>
+<script>
+/*
+    后端路由  ->  路由 -> (地址->  /add  /  /2.html )
+
+    后端路由的问题:
+        1.切换页面的时候是跳转全局刷新页面（用户体验极差）
+
+        2.A页面的静态资源和B页面的静态资源会重复请求
+
+        SSR -> 服务器渲染，网络爬虫在爬取资源的时候会及时找到重要的资源
+        有利于SEO优化，但是对服务器造成的压力较大，所以建议首页服务器渲染，
+        别的还是走ajax
+
+    前端路由:
+        / -> index
+        /2.html -> 2.html
+
+        通过不同的路由切换，干不同的事或者切换不同的页面
+        优势:
+            用户所有的操作都在一个页面完成，单页应用（spa）
+            既然是一个页面，共享资源只需要请求一次即可
+
+    
+    vue路由:
+        1.vue create app
+
+        2.自己配
+
+            1)安装  npm install vue-router
+
+            2)引包
+                import Vue from 'vue'
+                import VueRouter from 'vue-router'
+
+            3)使用
+                Vue.use(VueRouter)
+
+            4)配置
+                const routes = [
+                    {
+                        path:'/',
+                        component:组件
+                    },
+                    {
+                        path:'/',
+                        component:组件
+                    }
+                ]
+                new VueRouter({
+                    routes
+                });
+
+            5)放到根下
+
+                new Vue({
+                    el:'#app',
+                    render:()=>h,
+                    routes
+                })
+
+            6)渲染
+                <router-view></router-view>
+
+        hash路由 ->  #/  #/2.html
+        history路由  /    /2.html
+
+        
+
+    如果有子路由,路由上挂一个children属性,children为一个数组
+    数组下又包一些对象，对象的path不要加'/'
+        {
+            path:'/',
+            component:app,
+            children:[
+                {
+                    path:'a',
+                    component:aaa
+                }
+            ]
+        }
+
+    有子级路由，那么记得在父级身上加上<router-view></router-view>
+
+    此时组件就会在父级的组件上显示。不管多少层都遵循这个规律。
+
+    解决激活状态切换时，加不了事件的问题，使用.native
+
+        比如:
+            @click.native=""
+
+    如果要在刷新页面的时候通过路由的信息来操作数据，可以在created下
+    使用this.$route 这个的属性
+
+        this.$route   存着一些与路由相关的信息
+
+        常用的:
+            parmas   预设的变量
+            path     当前的路由的路径
+            query    查询信息 ?号
+            hash     hash信息 #号
+
+    <router-link>  自动转成一个a标签
+
+        to='/'  放一个简单的字符串即可。
+        除了可以写成to，还可以是 :to  
+
+        :to的后面可以是一个字符串也可以是一个对象
+            :to="'a'"
+
+            :to="{path:'a'}"
+            :to="{params:{a:5}}"  
+                注意:
+                    如果使用params，那么就不能定义path，改为使用name
+
+            :to="{query:{a:5}}"
+
+        如果是:to,那么路径要写成字符串 :to="'a'" 和 to是有区别的
+            比如:
+                to="a"
+                :to="'a'"
+
+    编程式路由:
+        可以使用this.$router 身上的方法去任意切换路由
+        
+        里面有几个方法:
+            push()  直接放入跳转的路径（由）
+                比如：this.$router.push('/c');
+                ['/','/a','/b','/c','/','a']
+
+
+            go(num)  去第几个
+                比如：this.$router.go(-1);上一个
+                this.$router.go(1);下一个
+
+            ['/','/a','/b']
+            [0,1,2]
+
+            replace()把当前路径替换成什么
+            ['/','/a','/c']
+
+
+
+            
+
+
+
+        
+                
+
+        
+
+    
+            
+            
+    
+
+
+        
+
+
+                
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+    let html = ''; 
+    for(let i=0;i<5;i++){
+        html += '<li>'+ i +'</li>'
+    }
+    ul.innerHTML = html;
+
+
+</script>
+</body>
+</html>
