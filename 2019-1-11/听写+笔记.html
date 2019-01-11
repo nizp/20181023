@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    1.computed和watch的区别及用途是什么
+
+    computed:计算属性，能够监听vue数据上的变化，页面上来就之执行一次，
+
+    每改变一次数据就又触发;你在操作数据的时候，派生出另一个事情（比如在用户输入输入框改变数据的时候过滤数字）
+
+    computed:{
+        listenArr(){}   get
+
+        listenArr:{get(){},set(newVal){}}
+    }
+
+    watch：能够监听vue数据上的变化，页面上来是不会执行的，只有指定的数据发生变化就又触发一次（比如:种localStorage的时候，深度添加）
+
+    watch:{
+        arr(){
+            做你想做的事	
+        
+        }
+
+        arr:{
+            handler(){
+
+            },
+            deep:true
+        }
+    }
+
+
+
+    2.如何创建vue-router
+
+    1.安装  npm install vue-router
+
+    2.引包  import Route from  'vue-router'
+
+    3.引用  Vue.use(Route)
+
+    4.配置
+        const routes = [
+            {
+                path:'/',
+                component:App
+
+            },
+            {
+                path:'/about',
+                component:About,
+                children:[
+
+                    {
+                        path:'a',
+                        component:A,
+                    }
+                ]
+
+            },
+
+            {
+
+                path:'/ppx/:id',
+                name:'ppx'
+                component:ppx
+            }
+        ];
+
+        new Route({routes,mode:'history'})
+
+    5.<router-view></router-view>
+
+    注意:
+        new Route({routes})  Route是vue-router
+        new Vue({router})
+    
+
+
+    3.$route和$router各表示是什么？
+    
+    $route ->（使用它的属性）  常用属性
+            params
+            path
+            hash
+            query
+            meta
+
+    $router -> （使用它的方法） 常用方法
+            go(num)  
+            push('/')去哪的路径
+            replace()
+
+
+    4.<router-link>的to有几种写法，怎么写？
+
+        to="/"
+        :to="'/'"
+        :to="{path:'/'}"
+        :to="{name:'index',params:{id:1}}"  如果要用params就要用name去引，
+        不能用path去引，因为有冲突。
+    
+ ***注意:
+        在设置to的时候，一定记得加/ + 路径，不然点击多次link的时候会累加!!!
+
+    
+    重定向:
+        redirect
+
+        {
+            path:'/',
+            redirect:'/xx'
+        }
+        当访问某个路径的时候，跳转到另一个路径中去。
+
+        还有别的写法:
+        {
+            path:'/',
+            redirect:{name:xxx}
+        }
+        可以通过name指定一个组件
+
+        还可以是这种写法:
+        { path: '/a', redirect: to => {
+            to:是获取从哪里来的一个对象，记录了上一次路由的信息
+            常用:
+                params、query、hash、path
+            
+            return 重定向的 字符串路径/路径对象
+        }}
+
+
+
+
+*/
+</script>
+</body>
+</html>
