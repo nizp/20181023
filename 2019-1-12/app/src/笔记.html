@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        内容:
+            vuex - 状态管理容器，能够管理你的数据状态
+
+            用于复杂的页面，一个数据多个页面或者多个路由共享（互相交互）时
+            、多层级数据交互时可以使用vuex。  
+
+            https://vuex.vuejs.org/zh/
+
+
+        使用vuex步骤:
+            1.安装   npm i vuex
+            2.引包
+                引vue和vuex
+            3.引用
+                Vue.use(Vuex)
+            4.new Vuex.Store({
+                你想要哪些数据被所有组件直接拿到就把这些数据放到state下
+                state:{
+                    //初始化状态  
+                    注意:
+                        改变state中的引用类型的数据必须要让数据直接发生变化（地址发生变化）
+
+                        比如:
+                            arr:[{id:xx,num:123}]
+
+                            {id:xx,num:124}
+                            state.arr = [...state.arr]
+
+                    },
+
+                mutations:{
+                    改变数据的方法
+                    add(state){ 这里的state就是初始化状态
+                        此处为改变state.xxx数据的代码....
+                    }
+
+                    this.$store.commit(mutations中函数名,可以跟参数)
+
+                    注意:
+                        在mutations下的操作都是同步的。
+                }
+            })
+            5.new Vue({
+                store
+            })
+
+
+
+        在输出state的时候可以使用辅助函数来简化你的操作（不用也行）
+        import {mapState} from 'vuex';
+
+        computed:mapState(['count'])
+        
+        建议使用下面这种。
+        computed:{
+            ...mapState(['count'])
+        }
+
+
+        getters(等同于computed):当数据发生变化的时候派生出另一个"事务"，这个时候使用getters
+
+            view层使用:
+                this.$store.getters.xxx
+
+            辅助函数
+                mapGetters(['xxx'])
+
+        actions(只要是这个数据状态需要被很多组件使用，并且此数据还是从后台请求过来的数据（异步数据）就要使用actions)
+
+        actions:{
+            actionsName($store,可以跟参数){
+                异步环境之后使用
+                $store.commit('add',参数)
+            }
+        }
+
+            view层使用:
+                this.$store.dispatch('actionsName',传参)
+
+
+
+        onst moduleA = {
+            state: { ... },
+            mutations: { ... },
+            actions: { ... },
+            getters: { ... }
+        }
+
+        const moduleB = {
+        state: { ... },
+        mutations: { ... },
+        actions: { ... }
+        }
+
+        const store = new Vuex.Store({
+            modules: {
+                a: moduleA,
+                b: moduleB
+            }
+        })
+
+        store.state.a // -> moduleA 的状态
+        store.state.b // -> 
+
+        https://www.cnblogs.com/theblogs/p/9964753.html (常用的UI)
+
+        vux、iview
+
+        
+
+            
+
+https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html（首页）
+https://3g.163.com/touch/reconstruct/article/list/BD29LPUBwangning/0-20.html（国内）
+https://3g.163.com/touch/reconstruct/article/list/BD29MJTVwangning/0-10.html（国际）
+
+https://3g.163.com/touch/reconstruct/article/list/BA8D4A3Rwangning/0-10.html（科技）
+
+//30-10
+
+
+
+
+            
+
+            使用组件 - 第三方组件
+    */    
+</script>
+</body>
+</html>
