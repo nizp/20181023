@@ -1,0 +1,331 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="applicable-device" content="mobile">
+    <meta name="theme-color" content="#ff3333">
+    
+    <title>权健公司束昱辉等16人被批准逮捕 涉组织领导传销_手机网易网</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="keywords" content="逮捕,犯罪,批准,人民检察院,公安">
+    <meta name="description" content="记者从检察机关获悉，2019年1月13日，天津市武清区人民检察院对公安机关提请批准逮捕的权健自然医学科技发展有限公司束某某等16名犯罪嫌疑人，经审查证据材料，告知犯罪嫌疑人诉讼权利并讯问犯罪嫌疑人后，以涉嫌组织，领导传销活动等罪依法作出批准逮捕决定。">
+    <meta property="og:title" content="权健公司束昱辉等16人被批准逮捕 涉组织领导传销_手机网易网">
+    <meta property="og:type" content="news">
+    <meta property="article:author" content="津云">
+    <meta property="article:published_time" content="2019-01-14T08:34:49+08:00">
+    <meta property="article:tag" content="逮捕,犯罪,批准,人民检察院,公安">
+    <meta property="og:description" content="记者从检察机关获悉，2019年1月13日，天津市武清区人民检察院对公安机关提请批准逮捕的权健自然医学科技发展有限公司束某某等16名犯罪嫌疑人，经审查证据材料，告知犯罪嫌疑人诉讼权利并讯问犯罪嫌疑人后，以涉嫌组织，领导传销活动等罪依法作出批准逮捕决定。">
+    <meta property="og:image" content="http://pic-bucket.ws.126.net/photo/0001/2018-12-29/E47FAH5D00AP0001NOS.jpg?imageView&thumbnail=160y120">
+    <!-- 360智能摘要-->
+    <meta property="og:release_date" content="2019-01-14T08:34:49+08:00">
+    <meta name="robots" content="index,follow">
+	<meta name="googlebot" content="index,follow">
+    <script>
+        if(document.referrer.toLowerCase().match(/index\.php\?s=\/wap\/lucrative/)){
+            window.stop && window.stop();
+        }
+    </script>
+<link href="//static.ws.126.net/163/wap/article-ssr-2018/run.2564ba2.css" rel="stylesheet"></head>
+<body>
+    <script type="text/javascript">
+        try {
+            var channel;
+            var reg = /https?:\/\/(?:.*\.)?3g\.163\.com(?:\:\d+)?\/([a-zA-Z0-9]+)\/article\/([A-Z0-9]{16})\.html/;
+            var matches = location.href.match(reg)
+            if (matches) {
+                channel = matches[1]
+            }
+            document.body.classList.add(channel);
+            if (channel != "idol") {
+                document.body.classList.add("home");
+            }
+        } catch (error) {
+            console.warn(error);
+        }
+    </script>
+    <script>"use strict";var Dpr=1,uAgent=window.navigator.userAgent,isIOS=uAgent.match(/iphone/i),isYIXIN=uAgent.match(/yixin/i),is2345=uAgent.match(/Mb2345/i),ishaosou=uAgent.match(/mso_app/i),isSogou=uAgent.match(/sogoumobilebrowser/gi),isLiebao=uAgent.match(/liebaofast/i),isGnbr=uAgent.match(/GNBR/i),$fixed=document.getElementById("fixed");function resizeRoot(){var e,i=0<screen.width&&(window.innerWidth>=screen.width||0==window.innerWidth)?screen.width:window.innerWidth,n=0<screen.height&&(window.innerHeight>=screen.height||0==window.innerHeight)?screen.height:window.innerHeight;window.devicePixelRatio&&window.devicePixelRatio,isIOS&&(i=screen.width,n=screen.height),n<i&&(i=n),100<(e=32<(e=1080<i?144:i/7.5)?e:32)&&(e=100),window.screenWidth_=i,isYIXIN||is2345||ishaosou||isSogou||isLiebao||isGnbr?setTimeout(function(){i=0<screen.width&&(window.innerWidth>=screen.width||0==window.innerWidth)?screen.width:window.innerWidth,n=0<screen.height&&(window.innerHeight>=screen.height||0==window.innerHeight)?screen.height:window.innerHeight,e=32<(e=1080<i?144:i/7.5)?e:32,document.getElementsByTagName("html")[0].style.fontSize=e+"px",$fixed&&($fixed.style.display="none")},500):(document.getElementsByTagName("html")[0].style.fontSize=e+"px",$fixed&&($fixed.style.display="none"))}resizeRoot();var reviseViewPort=function(e,i){var n=0,t=i||5,o=setInterval(function(){var e,i=0<screen.width&&window.innerWidth>=screen.width?screen.width:window.innerWidth;i<window.screenWidth_?(e=32<(e=1080<(window.screenWidth_=i)?144:i/7.5)?e:32,document.getElementsByTagName("html")[0].style.fontSize=e+"px",clearInterval(o)):n++,t<=n&&clearInterval(o)},e||200)};reviseViewPort(200);</script>
+    <div class="share_mask js-share-mask">
+    </div>
+    <header style="display: none">
+        <div class="topbar" style="display: none"></div>
+    </header>
+    <!-- 通栏ad1 顶部通栏-->
+    <div class="a_adtemp a_topad js-topad" style="display: none">
+    </div>
+    <main>
+        <!--文章内容-->
+        <article id="article-E5FGSV6A0001899O">
+            <div class="head">
+                <h1 class="title">权健公司束昱辉等16人被批准逮捕 涉组织领导传销</h1>
+                <div class="info">
+                    <span class="time js-time">2019-01-14 08:34:49</span>
+                    <span class="source js-source">津云</span>
+                </div>
+            </div>
+            <div class="content">
+                <div class="page js-page on">
+                    <div id="E5FGSV6A0001899O-article-photoset-1"
+                  class="photoset"
+                  data-photoset-id="2298782"
+                  data-channel-id="0001"
+                  data-panel-index="1">
+              </div><p>记者从检察机关获悉，2019年1月13日，天津市武清区人民检察院对公安机关提请批准逮捕的权健自然医学科技发展有限公司束某某等16名犯罪嫌疑人，经审查证据材料，告知犯罪嫌疑人诉讼权利并讯问犯罪嫌疑人后，以涉嫌组织，领导传销活动等罪依法作出批准逮捕决定。</p><div class="spinfo" data-sptype="推荐">
+                  <div class="type">
+                      推荐
+                  </div>
+                  <div class="sp_content">
+                      <p><a urlmacroreplace="false" target="_self" href="//3g.163.com/news/article/E567C7MP000187VE.html">权健砸重金欲做无罪辩护 律师：不接！</a></p><p>“权健的人来找我，说愿意出高额费用，让我们给束昱辉做取保候审，甚至要求做无罪辩护。”北京某律所律师对中新经纬说，“我们所没有人会接他们的案子。”自1月7日权健实控人束昱辉等18名犯罪嫌疑人依法刑事拘留后，“权健”就成为了烫手山芋，让许多律师事务所避之不及。</p><p><a urlmacroreplace="false" target="_self" href="//3g.163.com/news/article/E55525240001875P.html">权健骗局：大家心知肚明，却都没有捅破传销的秘密</a></p><p>在事发之前，根据商务部官网消息，权健是一家获得经营许可的合法的直销企业。实际上，根据中国政府规定，直销和传销是两种不同的商品销售模式，但在过去20年的时间，两者相互交错，不少企业都游走在二者之间的灰色地带。
+                  </div>
+              </div></p>
+                    <div class="otitle_editor">
+ 
+                        <p class="editor">
+                            (责任编辑：荀建国_NN7379)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="show_article js-show-article">
+                    加载全文
+                    <i class="down_arrow iconfont">&#xe60e;</i>
+                </div>
+                <!-- 世界杯广告 -->
+                <div class="a_adtemp a_topad js-wcbottomad">
+                </div>
+                <div class="auto_recommend js-autoRecommend">
+                </div>
+                <div class="wakeup_client js-wakeupclient">
+                    <div class="more_client more-client">
+                        <span class="wakeup_bar">
+                            <span class="logo"></span>
+                            <span class="app_title">一键安装官方客户端</span>
+                        </span>
+                        <span class="wakeup_desc">重大事件及时推送 阅读更流畅</span>
+                    </div>
+                </div>
+                <!-- 通栏ad2 淘宝非标-->
+                <div class="a_adtemp js-columsADBlowContent">
+                    <iframe width="100%" height="100%" src=""></iframe>
+                </div>
+                <topicname style="display: none;">0001-头条发稿(无需填来源)</topicname>
+                <first-img style="display: none;">http://pic-bucket.ws.126.net/photo/0001/2018-12-29/E47FAH5D00AP0001NOS.jpg?imageView&amp;thumbnail&#x3D;160y120</first-img>
+                <template data-type=""></template>
+            </div>
+        </article>
+        <!-- 跟贴 -->
+        <tie></tie>
+        <!-- 15周年看板 -->
+        <fif-year-panel></fif-year-panel>
+        <!-- 相关推荐 -->
+        <relative-doc-list></relative-doc-list>
+        <!-- 热门新闻开始 -->
+        <hot-news-list></hot-news-list>
+    </main>
+    <footer>
+        <div class="copyright">&copy;1997-2019网易公司版权所有</div>
+    </footer>
+    <div class="sub_box sub-box">
+    </div>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://3g.163.com/news_x/article/E5FGSV6A0001899O.html"
+            },
+            "headline": "权健公司束昱辉等16人被批准逮捕 涉组织领导传销",
+            "image": {
+                "@type": "ImageObject",
+                "url": "http://pic-bucket.ws.126.net/photo/0001/2018-12-29/E47FAH5D00AP0001NOS.jpg?imageView&thumbnail=160y120",
+                "width": 720,
+                "height": 540
+            },
+            "datePublished": "2019-01-14T08:34:49+08:00",
+            "dateModified": "2019-01-14T08:34:49+08:00",
+            "author": {
+                "@type": "Organization",
+                "name": "津云"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "手机网易网",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://cms-bucket.nosdn.127.net/6e3e71b810474d699e0cf512101220d020170830175354.png",
+                    "width": 260,
+                    "height": 60
+                }
+            },
+            "description": "记者从检察机关获悉，2019年1月13日，天津市武清区人民检察院对公安机关提请批准逮捕的权健自然医学科技发展有限公司束某某等16名犯罪嫌疑人，经审查证据材料，告知犯罪嫌疑人诉讼权利并讯问犯罪嫌疑人后，以涉嫌组织，领导传销活动等罪依法作出批准逮捕决定。"
+        }
+    </script>
+    
+    
+    
+    
+    
+    
+    <script src="//static.ws.126.net/163/wap/article-ssr-2018/article_ssr_beta-wapCommonLib.js"></script>
+    
+    
+    
+    
+    <script src="//static.ws.126.net/163/wap/article-ssr-2018/article_ssr_beta-wapCommon.js"></script>
+    <script type="text/javascript" src="https://static.ws.126.net/163/wap/npm/@newap/path-verify/0.1.6/index.es5.js"></script>
+    <!-- START NetEase Devilfish 2006 -->
+<script src="//analytics.163.com/ntes.js" type="text/javascript"></script>
+<script type="text/javascript">
+    _ntes_nacc = "wap";
+    neteaseTracker();
+    neteaseClickStat();
+</script>
+<!-- END NetEase Devilfish 2006 -->
+<!-- START AntNest -->
+<script type="text/javascript">
+    (function (w, d, s, n) {
+        var f = d.getElementsByTagName(s)[0],
+            k = d.createElement(s);
+        k.async = true;
+        k.src = "//static.ws.126.net/163/frontend/antnest/" + n + ".js";
+        f.parentNode.insertBefore(k, f);
+    })(window, document, "script", "NTM-5AE0KFYY-2");
+</script>
+<!-- END AntNest -->
+<!-- START Baidu autopush -->
+<script>
+    (function () {
+        var bp = document.createElement("script");
+        var curProtocol = window.location.protocol.split(":")[0];
+        if (curProtocol === "https" && window.location.href.indexOf("wc18") < 0) {
+			bp.defer = true;
+            bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        }
+    })();
+</script>
+<!-- END Baidu autopush -->
+    <script type="text/javascript">
+        //导流逻辑
+        if((pathVerify.tools.testWebview("wx")||pathVerify.tools.testWebview("wb")||pathVerify.tools.testWebview("qq"))&&!pathVerify.tools.testWebview("miniprogram")){
+            location.href = "http://3g.163.com/wap/special/redirect_backflow/?sourceurl="+encodeURIComponent(location.href)+"&spss=wap_refluxdl_2018";
+        }
+        window.isEmptyPage = false;
+        window.stepBtnRedirectApp = false;
+        window.isFromNav = false;
+        var pageRules = {
+            //直访
+            article_ref_empty:{
+                test:{
+                    ref: ""
+                }
+            },
+            //导航
+            article_ref_navigation_website: {
+                test: {
+                    //url: /^https?:\/\/3g\.163\.com\/\w+\/article\/\w+\.html.*$/i,
+                    ref: /(^https?:\/\/m\.hao123\.com\/[^\/]*$)|(^https?:\/\/hao\.uc\.cn\/[^\/]*$)|(^https?:\/\/m\.2345\.com\/[^\/]*$)|(^https?:\/\/h5\.mse\.360\.cn\/navi\.html.*$)|(^https?:\/\/pms\.mb\.qq\.com\/index\?[^\/]*cid=news$)/i
+                }
+            },
+            //百度搜索
+            article_ref_baidu: {
+                test: {
+                    ref: /baidu\.com/i
+                }
+            },
+            //神马搜索
+            article_ref_sm: {
+                test: {
+                    ref: /sm\.cn/i
+                }
+            },
+            //搜狗搜索来源
+            article_ref_sogou: {
+                test: {
+                    ref: /sogou\.com/i
+                }
+            },
+            //360搜索
+            article_ref_360: {
+                test: {
+                    ref: /so\.com/i
+                }
+            }
+        }
+        var verifyResult = pathVerify.verifyRules(pageRules);
+        if(verifyResult.article_ref_empty || verifyResult.article_ref_navigation_website){
+            window.isEmptyPage = true;
+            window.isFromNav = false;
+            window.stepBtnRedirectApp = true;
+        }
+        if(verifyResult.article_ref_baidu || verifyResult.article_ref_sm || verifyResult.article_ref_sogou || verifyResult.article_ref_360){
+            window.isEmptyPage = true;
+            window.isFromNav = true;
+            window.stepBtnRedirectApp = false;
+        }
+        if(pathVerify.tools.testWebview("miniprogram")){
+            window.isEmptyPage = false;
+            window.isFromNav = false;
+            window.stepBtnRedirectApp = false;
+        }
+        //防页面报错,所以使用字符串
+        window.specialHideAdStr = "false";
+        window.specialHideAd = specialHideAdStr == "true" ? true : false;
+    </script>
+    <script src="//static.ws.126.net/163/wap/article-ssr-2018/manifest.2ef32bb.js"></script><script src="//static.ws.126.net/163/wap/article-ssr-2018/vendor.91498b8.js"></script><script src="//static.ws.126.net/163/wap/article-ssr-2018/run.85e0dde.js"></script>
+    <script type="text/javascript">
+        if (NEWAP.trackerQueue) {
+            NEWAP.tools.publicMethod.doTrackerQueue();
+        };
+    </script>
+    <!-- 极光点击统计 important -->
+    <script>!function(n){function t(){}function e(){var n=Math.round((+new Date-$)/1e3);return n<0?0:n}function i(n){var t=n.className,e=l(n),i={script:1,style:1,link:1,img:1,hr:1,br:1},a=!0;return i[e]?a=!1:/blank\d/.test(t)&&(a=!1),a}function a(t){A||(m&&window._ntes_sendInfo?(n.each(j,function(n,t){u(t)}),A=!0):j.push(t)),A&&u(t)}function r(n){return n<10?n.toString():n>62?"z":String.fromCharCode(n+(n<36?55:61))}function o(n,t){if(!t)return n;var e=n.length-1,i=n.charCodeAt(e);return i<58?i-=48:i<91?i-=55:i<123&&(i-=61),n.substr(0,e)+r(i+t)}function c(n,t,e){t&&t.setAttribute((e?"_":"")+"jcid",n)}function s(n){if(n){var t=this.getAttribute("href")||"";y++;var i="/ntes_p?"+w+"&_nct="+e()+"&_nah="+escape(t)+"&_nat={id}_"+n;a(i)}}function u(t){if("ywa"==m.substr(0,3)){var e=location.pathname.substr(7).replace(/\/.*/,""),i={money:2,mobile:3,digi:4,ent:5,game:6,tech:7,edu:9,nba:10,news:11,auto:12,photo:13,dy:14,lady:15,war:16,jiankang:17,exclusive:18,travel:21,baby:22,sports:24,idol:25};i[e]&&(m=m.substr(0,3)+(i[e]>9?"":"0")+i[e])}else"ywma1"==m&&n(".article_bot")[0]&&(m="ywma2");_ntes_sendInfo("jc",_ntes_src_addr+t.replace("{id}",m))}function f(n,t,e){for(var i={a:1,area:1},a=n,r=null;n.tagName&&n!=C;){if(i[l(n)]){r=n;break}n=n.parentNode}if(r)for(;n&&n!=t&&!(e=n.getAttribute("jcid"));)n=n.parentNode;for(;!e&&!(e=a.getAttribute("_jcid"));)if(a=a.parentNode,!a||!a.tagName||a==C)return;e&&s.call(r||n,e)}function l(n){return n.tagName.toLowerCase()}function _(n,t,e){"iframe"!=l(n)&&t(n,e)}function d(n){return(n.innerHTML.match(/jcid=".*?"/g)||[]).join("")}function h(n,t){var e,i;v(n).bind("mouseover touchstart",function(){var a=d(n),r=n.innerHTML.replace(/<.*?>/g,"").length;!n.children.length||a==e&&r==i||(t(),e=d(n),i=r)})}function p(n,t){var e=n[0],i=n.level;return e&&i&&b(e,i,t),e}function b(t,e,i){if(n.util.isArray(t))n.each(t,function(n,t){b(t,e,i)});else if("object"==typeof t)if(t.i)t.k=o(t.i.substr(0,e+1),i)+t.i.substr(e+1);else for(var a in t)b(t[a],e,i)}var v=n;n.zepto&&(v=function(){var t,e=[].slice.call(arguments),i=e[0],a=e[1]||document.body,r="string"==typeof i&&">"==i.substr(0,1);r&&(t=a.id,a.id="__cmon__",e[0]="#__cmon__"+i);var o=n.apply(this,e);return r&&(t?a.id=t:a.removeAttribute("id")),o});var m,g,w="_nacc=siteclick&_npurl="+escape(document.URL),y=0,A=!1,j=[],C=document.body,$=window.performance&&window.performance.timing?window.performance.timing.connectStart:+new Date,k=[function(t,e,i){t+=r(i.start||1),i.bind?n(e).bind("click",function(n){s.call(e,t)}):c(t,e,i.all)},function(n,t,e){var i,a=e.start||1,o=e.query||"a";/(.*?)\|(.*)/.test(o)?(i=RegExp.$1,o=RegExp.$2,v(i,t).each(function(t,i){a=e.start||1,v(o,i).each(function(t,i){c(n+r(a++),i,e.all)})})):v(o,t).each(function(t,i){c(n+r(a++),i,e.all)})},function(t,e,a){for(var o=1,s=a.level||1,u=[e],f=0;f<s;f++){var _=[];n.each(u,function(t,e){var a=0;"a"==l(e)||/ntes-nav-select/.test(e.className)||n.each(e.children,function(n,t){i(t)&&(_.push(t),a++)}),a||_.push(e)}),u=_}n.each(u,function(n,e){c(t+r(o++),e,a.all)})},function(n,t,e){var i=v(">form",t);i[0]&&i.bind("submit",function(){s.call(this,n+"1")})},function(n,t,e){var i=v(e.h,t),a=v(e.b,t);if(i&&a){var o=e.step||10,s=2;c(n+"1",t),i.each(function(t,e){c(n+r(s+t*o),e)}),a.each(function(t,e){c(n+r(s+t*o+1),e)})}},function(t,e,a){var o=a.union||"",s={};if(/^[\s\d,]+$/.test(o)){var u=0;n.each(o.split(/\s*,\s*/),function(n,t){if(t=parseInt(t))for(var e=0;e<t;e++)s[u++]=n})}var f=2;c(t+"1",e);var l=parseInt(a.step)||10,_=v(a.h,e);if(_&&d){n.each(_,function(n,e){c(t+r(n*l+f),e)});var d=v(a.b,e);n.each(d,function(e,a){var o=e*l+f+1,u=a.children;if(0==u.length)u=[a];else for(;1==u.length;)u=u[0].children;var _=0;n.each(u,function(n,e){i(e)&&("undefined"!=typeof s[n]&&(_=s[n]),c(t+r(o+_),e),_++)})})}}];t.prototype={init:function(t,i){t&&5==t.length&&(m=t),g||(g=location.href.indexOf("_aCM")>-1||Math.random()<(i||.1),g&&(n("body").bind("click",function(n){f(n.target,C)}),n(function(){function t(){r&&(a("/ntes_u?"+r+"&_nct="+e()+"&_mcn="+y+o),r=0)}var i=n(window),r=w+"&_nch={id}",o="",c="&_msl="+e();i.bind("load",function(){o="&_msl="+e()}),a("/ntes_u?"+r+c),i.bind("beforeunload",t);var s=navigator.userAgent.toLowerCase();!/compatible/.test(s)&&/firefox/.test(s)&&i.bind("unload",t)}),this.retain&&this.area(C,this.retain)))},area:function(n,t,e){for(var i in t){var a=!1,r=t[i];r.level=e||0,/(.*?)=$/.test(i)&&(i=RegExp.$1,a=!0),this.procA(n,i,r,a)}},procA:function(n,t,e,i){var a=this,r=e.level+1;if(i)return void h(n,function(){a.procA(n,t,e)});var o=function(n,t){a.area(n,t,r)},c=0,s=0,u=0;/(.*?)!$/.test(t)&&(t=RegExp.$1,s=1),/(.*?)\*$/.test(t)?(t=RegExp.$1,c=1):/(.*?)\+$/.test(t)&&(t=RegExp.$1,u=1);var f,l=t?v(t,n):[n],d=0,b=l.length;for(f=0;f<b;f++){var m=l[f];if(!s||!m.id){var g=c?e[0]:e[d];if(u&&1==e.length&&(g=p(e,d)),g&&m)if(g.i)for(var w=g.s||1,y=0;y<w;y++)g.j=y,this.zone(l[f+y],g);else _(m,o,g);d++}}},zone:function(n,t){var e=o(t.k||t.i,t.j),i=k[t.f||0],a=t.p||{};n&&i&&(a.dyn?h(n,function(){i(e,n,a)}):_(n,function(n){i(e,n,a)}))},batch:function(n){g?this.area(C,n):this.retain=n}},window._aCM=new t}(window.jQuery||window.Zepto),function(){_aCM.init(window._aCMID||"ywa01"),setTimeout(function(){_aCM.batch({".s_main_nav":[{"":[{"":[{i:"111"}]}]}],".s_sb_news":[{"":[{"":[{i:"211"}]}]}],".s_sb_ent":[{"":[{"":[{i:"311"}]}]}],".s_sb_sports":[{"":[{"":[{i:"411"}]}]}],".s_sb_money":[{"":[{"":[{i:"511"}]}]}],".s_sb_photo":[{"":[{"":[{i:"611"}]}]}],".s_sb_video":[{"":[{"":[{i:"711"}]}]}],".s_sb_lady":[{"":[{"":[{i:"811"}]}]}],".s_sb_mobile":[{"":[{"":[{i:"911"}]}]}],".s_sb_tech":[{"":[{"":[{i:"A11"}]}]}],".s_sb_digi":[{"":[{"":[{i:"B11"}]}]}],".s_sb_edu":[{"":[{"":[{i:"C11"}]}]}],".s_sb_exclusive":[{"":[{"":[{i:"D11"}]}]}],".s_sb_caipiao":[{"":[{"":[{i:"E11"}]}]}],"#login_panel":[{"":[{"":[{i:"F11",f:1}]}]}],".u_topbar":[{">.u_llogo":[{"":[{i:"G11",p:{dyn:1,all:1}}]}],">.u_rlogo":[{"":[{i:"G21",f:1}]}]}],".icon_setting":[{"":[{"":[{i:"H11"}]}]}],".u_topad":[{"":[{"":[{i:"I11"}]}]}],".bar_wrap":[{"":[{"":[{i:"J11",f:2,p:{level:4,dyn:1,all:1}}]}]}],".contents-tablist":[{"":[{"":[{i:"K11",f:1,p:{query:".contents-tablist-wrap|.headslide,.swipe-content,.content-list section,.u_p_items>.item_cell,.rank-list a,.match_scroll_wrap a",dyn:1}}]}]}],".float":[{">a":[{"":[{i:"L11"}]}]}]})},1e3)}();</script>
+    <!-- 百度点击统计 -->
+    
+    <script>
+  ! function () {
+    function n(n, e, t) {
+      if (!n.href.match(/3g\.163\.com/)) return !0;
+      var r = e.filter(function (e) {
+        return t = e, r = n.href, !new RegExp("(\\?|#|&)" + t + "=.+").test(r);
+        var t, r
+      }).map(function (n) {
+        return {
+          k: n,
+          v: function (n) {
+            var e = new RegExp("(?:\\?|&|#)" + n + "=(.*?)(?:$|&|#)"),
+              t = window.location.href.match(e);
+            if (t && t[1] && t[1].length) return t[1]
+          }(n)
+        }
+      }).filter(function (n) {
+        return n.v
+      }).map(function (n) {
+        return n.k + "=" + n.v
+      }).join("&");
+      if (r.length) {
+        var o = n.search;
+        return "&" === o.substr(-1) && (o = o.substr(0, o.length - 1)), n.search = o.length ? o + "&" + r : "?" + r, !0
+      }
+    }! function (e) {
+      if (!e.length) return;
+      if (function (n) {
+          for (var e = !0, t = 0; t < n.length; t++) {
+            var r = n[t];
+            new RegExp("(\\?|#|&)" + r + "=").test(window.location.href) && (e = !1)
+          }
+          return e
+        }(e)) return;
+      ! function (n, e) {
+        document.body.addEventListener("click", function (t) {
+          for (var r = t.target; r.parentNode !== document && "a" !== r.tagName.toLowerCase();) r = r.parentNode;
+          var o = r;
+          return o !== document && o.href && o.href.indexOf("3g.163.com") > -1 && n && n.call(null, o, e, t), !0
+        })
+      }(n, e)
+    }(["qd", "ver"])
+  }();
+</script>
+</body>
