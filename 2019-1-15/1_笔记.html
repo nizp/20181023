@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/* 
+    最简单的react:
+
+        专门构建于用户界面的js库（顶多它是MVC中的V层框架）
+
+        核心思想，通过数据操作视图。
+
+        以前英文、webpack是拦路虎（一上来就报错）
+        
+        相对vue来说只是写法不一样，思想都是类似的，代码相对vue要多一点点
+        基本上都是原生，自己写的功能多一些
+
+    优势:
+        react -> facebook出品，背景大、生态比较丰富
+
+        声明式:
+            let a = 100;
+            function fn(){}
+
+            通过声明一个类(函数)来创建UI的
+            class Person {
+
+            }
+            function(){
+
+            }
+
+        组件化
+    
+    1.安装create-react-app
+
+        npx create-react-app my-app
+        cd my-app
+        npm start/yarn start
+
+        create-react-app  官方推荐使用的脚手架。
+
+    2.react全家桶
+        react  react-router-dom  redux(mobx)  第三方UI库antd
+
+        react-native  开发原生APP
+
+        react:
+            jsx语法
+            state
+            props
+            数据的通信
+
+        使用:
+            1.引包react、react-dom
+
+            2.ReactDOM.render(
+                <div>xxx</div>,
+                document.getElementById('root'),
+                ()=>{
+                    挂载完成之后的代码
+                }
+            );
+
+             *** ReactDOM.render()是个方法
+            三个参数:
+                第一个参数:
+                    模板、组件（所有的模板顶层只能有一个标签）
+                第二个参数:
+                    挂载的根节点
+                第三个参数:
+                    挂载完成之后触发的回调函数
+
+        jsx -> javascript + xml  一种js和自定义写法的一种混合模式
+
+        jsx语法主要是为了更好的读、写模板或者组件，jsx语法浏览器是不识别的
+        通过babel的方式把jsx转成浏览器能够识别的代码.
+
+
+        在react中，写<div></div>，其实就等同于写了一个
+        React.createElement('div',children:[],'click','active')
+
+
+        jsx规则:
+                1.遇到样式中的class，直接变成className
+                2.标签必须/闭合(特别是单标签要注意)
+                3.{} 
+                    （1）放js代码，可以运行 *
+                    （2）默认帮你展开数组  *
+                        [1,2,3,4] -> 1 2 3 4
+                        [<Li />,<Li/>] 如果数组中的值为组件（列表）
+                        那么一定要给列表中的每项加key（唯一），为了优化
+                    （3）注释 {/(*x2)/}
+                    （4）可以申明函数，但是不能直接调用 *
+                    （5）value={a} 赋值某个元素的属性
+                    （6）设置style={{width:'200px'}}
+                    
+
+                4.表单元素设置默认值的时候,会报错，因为它认为
+                input为一个受限组件，value值是动态就会操作数据（value就一定会变化）
+                一定会变化，就一定要有事件（onChange），所以才会报错。
+                一定要使用2种方式解决
+
+                <input value="1"/>  报错
+
+                1.就给表单元素加上事件（onChange）  (受控组件)官方更加推荐使用
+                    <input 
+                        value="1"
+                        onChange={}
+                    />
+
+                2.定义默认值的时候就使用defaultValue（非受控组件）
+                    <input 
+                        defaultValue="1"
+                    />
+
+            定义组件的方式:
+                class App extends React.Component { } 
+                或者
+                import React,{Component} from 'react'; 引Component
+                class App extends Component { }
+                
+                
+                class App extends Component {
+                    render(){
+                        return (
+                            <div>
+                                <h1>组件</h1>    
+                            </div>
+                        )
+                    }
+                }
+
+                function Fn(){
+                    return (
+                        <div>
+                            <h1>组件</h1>    
+                        </div>
+                    )
+                }
+
+            类的声明方式，有状态、this、生命周期
+
+            写方法的时候，如果不对函数做处理，事件函数中的this默认指向undefined
+            解决方案:
+                1.使用create-app    √
+                    click = () => {
+
+                    }
+
+                2.bind，this
+                    click(){
+                        
+                    }
+                    constructor(){
+                        this.click = this.click.bind(this);
+                    }
+                3.
+                    click(){}
+                    
+                    <button 
+                        onClick={this.click.bind(this)}
+                    >
+                4.
+                    click(){
+                        
+                    }
+                    
+                    <button 
+                        onClick={(e)=>this.click(e)}
+                    >
+
+            state  状态
+            操作状态中的数据，就能操作视图
+
+            constructor(){
+                this.state = {num:1}
+            }
+            
+            操作数据不能直接使用this.state.xx = ooo
+
+           ***只能通过this.setState()去修改你的状态
+
+           this.setState(对象（就是你state的数据）, ()=>{当操作完数据之后的回调函数})  推荐使用这种写法
+           
+           this.setState(函数(prev)=>{return {num:prev.num+1}},()=>{当操作完数据之后的回调函数})
+
+           
+
+
+            数据之间的通信(单向数据流)
+                传递数据在组件身上使用属性的绑定
+                    <App aaa="你好" {...{
+                        bbb:123,
+                        ccc:'4321'
+                    }}/>          
+                    
+                子组件接收
+                    this.props
+
+            
+                
+
+
+            
+
+        https://react.docschina.org/
+        https://reactjs.org/
+
+    vue  MVVM框架  渐进式（粘性弱，弱主张）
+
+    vue + vue-router + vuex + vue-cli
+
+
+
+
+
+*/    
+</script>
+</body>
+</html>
