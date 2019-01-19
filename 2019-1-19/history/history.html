@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <button id="btn3">按钮3</button>
+    <div id="box"></div>
+
+    <a href="javascript:;" id="back">后退</a> 
+    <a href="javascript:;" id="fw">前进</a> 
+<script>
+    /*
+        
+        添加浏览器历史记录的
+            history.pushState(数据,'浏览器都忽略的名字',你显示的url地址)
+
+        onpopstate
+            当你触发了浏览器的前进或者后退就会触发这个事件
+            在这个事件中，ev下有state属性，可以接收到pushState时的数据
+
+    
+    */
+    // console.log(window.history)
+
+    // let obj = {
+    //     name:'小妹妹'
+    // }
+    // btn.onclick = function(){
+    //     history.pushState(obj,'','http://127.0.0.1:5500/history.html/xmm');
+    // }
+
+    // window.onpopstate = function(ev){
+    //     console.log(ev.state);
+    // }
+
+    let btns = document.getElementsByTagName('button');
+
+    let arr = [
+        '太阳',
+        '月亮',
+        '星星'
+    ];
+
+    for(let [i,ele] of Object.entries(btns)){
+        ele.onclick = function(){
+            //每点击一个按钮，存放数据和url到历史记录中
+            history.pushState({data:arr[i]},'','http://127.0.0.1:5500/history.html/'+arr[i]+'.html');
+            box.innerHTML = arr[i];
+        }
+    }
+
+    //点击后退
+    back.onclick = function(){
+        history.go(-1);
+    }
+    //点击前进
+    fw.onclick = function(){
+        history.go(1);
+    }
+
+    //当切换历史记录的时候，触发事件并且通过ev.state获取push时存放数据
+    window.onpopstate = (ev) => {
+        box.innerHTML = ev.state.data;
+    }
+
+
+
+    
+</script>
+</body>
+</html>

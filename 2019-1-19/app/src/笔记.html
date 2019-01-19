@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /* 
+
+        http://localhost
+
+        http://localhost/static/index.html
+
+
+        / -> index.html
+
+        http://localhost/index.html
+
+        以前后台接收到前端的请求，不但要发送数据给前端还要返回页面
+
+        前端路由，切换页面不需要服务器返回，减少了服务器压力、单页应用
+        公共资源只需要请求一次即可，前端的职责就更多，前端比重就较高（逻辑多了）
+
+        react-router-dom
+
+        https://reacttraining.com/react-router/
+
+       
+
+        history路由（浏览器历史记录管理）在服务器下访问
+            添加浏览器历史记录的
+            history.pushState(数据,'浏览器都忽略的名字',你显示的url地址)
+            onpopstate
+                当你触发了浏览器的前进或者后退就会触发这个事件
+                在这个事件中，ev下有state属性，可以接收到pushState时的数据
+
+            history.length  查看历史记录中的个数（据说最高是50个）
+
+            back()  回退
+            forward()  前进
+            go()
+
+        BrowserRouter : (浏览器路由)
+
+        1.import {BrowserRouter as Router} from 'react-router-dom';
+
+        2.引入把Router包在ReactDOM.render(根下);
+            比如:
+                ReactDOM.render(<Router><App /></Router>);
+
+        3.配置路由
+            import {Route} from 'react-router-dom';
+            <Route path="/home" component={组件}/>
+
+        特性:
+            默认配置如果/下有组件，那么所有关于/xxx都吃得到/下的这个组件
+
+        如果，/下匹配组件，/下的xxx不想匹配/这个组件，那么可以在Route 下
+        加一个exact 意思，只有/才能匹配到/下的组件。
+
+
+        <Route path="/one" />    /one/two     能显示one
+        <Route path="/one" exact/>  /one/two   只能显示/two不能显示/one
+
+        /one	/one/two	true	no
+        /one	/one/two	false	yes
+
+
+        strict
+            严格匹配
+
+            在path为/detail/  没有加strict那么 url为/detail能够匹配
+
+            加了strict的时候，能匹配
+                1./detail/
+                2./detail/xxx
+
+
+        可以2个一起用
+
+
+        <Link  to="/路径">到路径</Link>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+           
+
+            
+
+
+
+
+
+
+
+
+
+
+    */
+</script>
+</body>
+</html>
