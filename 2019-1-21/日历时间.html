@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        一个月有多少天，这个月有多少天(把时间设置为下个月的上个月)
+
+        29  28   
+    */
+
+    let d = new Date;
+    d.setDate(1); //设置为本月第一天
+    d.setMonth(d.getMonth() + 1); //下个月
+    d.setDate(0); //上个月有多少天
+    console.log(d.getDate());
+
+</script>
+</body>
+</html>

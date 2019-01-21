@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="redux.js"></script>
+<script>
+/* 
+    reduce + flux = redux
+
+    redux：
+        是一个可预测的状态管理容器。
+
+    三大核心:
+        reducer 必须传入一个纯函数
+        action要处理哪个逻辑
+        store联系和管理
+        
+
+        state就为初始化数据
+        action要处理哪个逻辑
+        reducer
+        function reducer(state={num:0},action){
+           switch(action.type){
+                case "ADD":
+                    let state = Object.assgin({},state);
+                    state.num ++;
+                return state;  //state为新的地址
+            }
+        }
+
+        store.dispatch({type:'ADD'})    发起一个action
+        store.getState()   读取状态数据
+        store.subscribe(()=>{})  监听状态的变化（只要状态发生了变化，就执行subscribe的方法）
+
+
+*/
+
+const store = createStore(reducer);
+
+function reducer(state={num:0},action){
+    switch (action.type) {
+        case "ADD":
+            let newState = Object.assign({},state);
+            newState.num ++;
+            return newState;
+        default:
+            return state;
+    }
+}
+console.log(store.getState().num);
+
+/*
+    subscribe:只要状态更新就执行
+*/
+store.subscribe(()=>{
+    console.log(store.getState().num);
+});
+
+store.dispatch({
+    type:"ADD"
+});
+
+
+
+// console.log(store.getState().num);
+
+store.dispatch({
+    type:"ADD"
+});
+// console.log(store.getState().num);
+
+
+</script>
+</body>
+</html>

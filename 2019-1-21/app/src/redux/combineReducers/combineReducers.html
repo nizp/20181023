@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="r1"></button>
+    <button id="r2"></button>
+<script src="./reducer1.js"></script>
+<script src="./reducer2.js"></script>
+<script src="../redux.js"></script>
+<script>
+    /*
+        combineReducers:合并多个reducer的
+        combineReducers({
+            reducer1:reducer1,
+            reducer2:reducer2,
+        });
+
+        使用:
+            store.getState().reducer1.num
+
+    */
+    let reducer = combineReducers({
+        reducer1,
+        reducer2
+    });
+
+    const store = createStore(reducer);
+
+    r1.innerHTML = 'reducer1:'+ store.getState().reducer1.num;
+    r2.innerHTML = 'reducer2:'+ store.getState().reducer2.num;
+
+    store.subscribe(()=>{
+        r1.innerHTML = 'reducer1:'+ store.getState().reducer1.num;
+        r2.innerHTML = 'reducer2:'+ store.getState().reducer2.num;
+    });
+
+
+
+    /*
+        actions.js
+    */
+
+    //默认返回一个对象
+    function add(){
+        return {type:"INCREMENT"}
+    }
+
+    function addT(id){
+        return {type:"INCREMENT_T",payload:id}
+    }
+
+
+
+    r1.onclick = function(){
+        store.dispatch(add());
+    }
+    r2.onclick = function(){
+        store.dispatch(addT(2));
+    }
+    
+
+    // console.log(store.getState().reducer2.num);
+
+</script>
+</body>
+</html>

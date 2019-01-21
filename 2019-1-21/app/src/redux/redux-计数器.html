@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">0</button>
+    <button id="btn2">点击</button>
+    <ul id="ul"></ul>
+<script src="redux.js"></script>
+<script>
+    const store = createStore(reducer);
+    function reducer(state={num:0,html:''},action){
+        switch (action.type) {
+            case "INCREMENT":
+                    let nData = Object.assign({},state);
+                    nData.num ++;
+                return nData;
+            case "ADD_LI":
+                    let newData = Object.assign({},state);
+                    let temp = '';
+                    for(let i=0;i<state.num;i++){
+                        temp += '<li>'+ i +'</li>';
+                    }
+                    newData.html = temp;
+                return newData;
+            
+            default:
+                    return state;
+                break;
+        }
+    };
+
+    store.subscribe(()=>{
+        btn.innerHTML = store.getState().num;
+        ul.innerHTML = store.getState().html;
+    });
+
+    btn.onclick = function(){
+        store.dispatch({type:'INCREMENT'});
+    }
+    btn2.onclick = function(){
+        store.dispatch({type:'ADD_LI'});
+    }
+
+
+
+</script>
+</body>
+</html>

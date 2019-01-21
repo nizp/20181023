@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /* 
+        react:
+            jsx
+                className
+                {}
+                < />
+                <App />
+
+            受限组件、非受限组件
+            this.state
+            this.setState({})
+            ref
+            props
+            xxx = () => {}
+            生命周期
+                mounting
+                    constructor
+                    componentWillMount
+                    render
+                    componentDidMount
+
+                updating
+                    componentWillReceiveProps
+                    shouldComponentUpdate
+                    componentWillUpdate
+                    render
+                    componentDidUpdate
+
+                unmounting
+                    componentWillUnmount
+
+            PropTypes  能够验证父级传递进来的数据类型（为了报错）
+
+            import PropTypes from 'prop-types';
+
+            PPa.propTypes = {
+                num: PropTypes.array
+            }
+        
+        当路由既有动态路由，又有静态路由
+            /about/:id  动态
+            /about/d    静态
+
+        输入静态路由的时候，会匹配到动态路由（2个组件都会显示）
+
+        需求是输入静态路由只显示静态。这个时候就要使用
+        
+        Switch: 从上到下去读，只匹配一个
+            import {Switch} from 'react-router-dom';
+        
+        <Switch>
+            /about/d 
+            /about/:id 
+        </Switch>
+
+        当输入/about/d 的时候，只会在2个中选择一个
+
+        高阶组件:源于高阶函数（参数为函数，返回一个新的函数(或者一类运算结果)）
+
+        function fn(f){
+            return f.bind(document)
+        }
+
+        传一个组件，返回另外一个组件。
+
+
+        redux:
+            reduce + flux(是一个可预测的状态管理容器。)
+
+        
+        Redux三大原则:
+            整个应用的state被存储在一颗object tree中，并且这个object tree
+            只存在于唯一一个store中
+
+            state是只读的，唯一改变state的方法基于是触发action，action是
+            一个用于描述已发生事件的普通对象使用纯函数来执行修改，为了描述
+            action如何改变state tree，你需要编写reducers
+
+            单一数据源的设计让react的组件之间的通信更加方便，同时也便于状态统一管理
+
+
+    
+        store,就是保存数据的地方，你可以把它看成一个容器。整个应用只有一个store
+
+        const store = createStore(reducer);
+
+        reducer:必须是个纯函数
+
+            纯函数 -> 对于任何相同的输入有着相同的输出结果
+            简单来说:
+                每次发起了action，action处理之后的结果为新地址的state
+
+        
+        function reducer(state,action){
+            switch(action.type){
+                case "ADD":
+                    let state = Object.assgin({},state);
+                    state.num ++;
+                return state;  //state为新的地址
+            }
+        }
+
+        store.dispatch({type:'ADD'})    发起一个action
+        store.getState()   读取状态数据
+        store.subscribe(()=>{})  监听状态的变化（只要状态发生了变化，就执行subscribe的方法）
+
+
+    react-redux
+
+        Provider必须在顶层
+
+        有router有redux就是
+            <Provider>
+                <Router>
+                    <App/>
+                </Router>
+            </Provider>
+
+        只有redux
+            <Provider>
+                <App/>
+            </Provider>
+
+        
+        使用react-redux + redux的内功心法。
+
+            1.引包react-redux 中的Provider,redux中的createStore
+
+            2.创建store
+                const store = createStore(reducer);
+
+            3.
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+
+            4.哪个组件需要使用
+                就在哪个组件中引入react-redux中的connect
+
+                在导出的地方 把组件用connect包一下
+
+                connect((state)=>state)(组件的名字)
+
+                state就是reducer下的state状态
+
+                那么做之后，就可以通过this.props.xx去获取状态值
+
+                this.props.dispatch去发起action
+                
+
+            
+
+        
+        
+
+
+
+
+
+
+
+
+
+    */
+</script>
+</body>
+</html>
