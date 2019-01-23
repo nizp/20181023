@@ -32,7 +32,7 @@ const obj = {
                         options:{
                             limit:4096,
                             outputPath:'../images',
-                            publicPath:'./images',
+                            publicPath:'../images',
                         }
                     }
                 ]

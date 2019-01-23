@@ -2,7 +2,7 @@ const ex = require('express');
 
 const app = ex(); //app就是创建服务的对象
 
-
+console.log(1);
 
 //get请求 url
 //app.get(路径,回调函数(req,res,next))

@@ -172,7 +172,6 @@ ul input{
                     <input 
                         type="checkbox" 
                         v-model="val.active"
-                        @click = "change"
                     />
                     <span>{{val.name}}</span>
                     <span>${{val.price}}</span>
@@ -207,7 +206,6 @@ ul input{
         3.删除功能
         4.总计功能
     */
-
     new Vue({
         el:'#main',
         data:{

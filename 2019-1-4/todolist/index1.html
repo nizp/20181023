@@ -19,7 +19,6 @@
                     type="checkbox"
                     v-model="all"
                 >
-                {{filters}}
                 <list 
                     :ary="cal"
                     @rmdata="parentRm"
@@ -98,7 +97,6 @@
                 console.log(hash);
                 this.cnum = hash;
             }
-            
         },
         computed:{
             all:{
@@ -133,15 +131,13 @@
             }
         },
         created(){
-            // let hash = window.location.hash;
-            // if(!hash){
-            //     window.location.hash = '#/all';
-            // }else{
-            //     this.hashc();
-            // }
-            // window.onhashchange = this.hashc;
-            
-            
+            let hash = window.location.hash;
+            if(!hash){
+                window.location.hash = '#/all';
+            }else{
+                this.hashc();
+            }
+            window.onhashchange = this.hashc;
         }
     });
 </script>

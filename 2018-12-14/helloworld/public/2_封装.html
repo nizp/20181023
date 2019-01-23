@@ -21,17 +21,19 @@
     */
     txt.onkeyup = async function(){
         try {
-            let data = await jsonp({
+            console.log('000')
+            
+         let data = await jsonp({
                 url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
                 callback:'cb',
                 data:{
                     wd:this.value
                 }
-            });
-            console.log(data);
+            })
+        console.log(data);
         
         } catch (error) {
-            
+            console.log('报错')
         }
 
     }
@@ -64,8 +66,9 @@
             if(window.onOff === false){
                 window.onOff = true;
                 opt[fnName] = setTimeout(function(){
+                    // console.log(1)
                     reject('请求超时');
-                },10000);
+                },2000);
             }
             
             window[fnName] = function (data){ //全局函数

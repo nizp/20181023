@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /* 
+        reducer中state可以是简单类型也可以是复合类型
+
+
+        如果是简单类型是可以直接更改state的
+        如果是复合类型的，每一次修改必须赋值一个新的地址，方便管理
+            state = {a:5}
+            state = {a:6}
+            [{a:5},{a:6}]
+
+        
+
+        redux：
+            createStore(reducer,initialstate,middleware)
+            initialstate 初始值
+            middleware  放中间件接口
+
+            也可以写成
+                createStore(reducer,middleware)
+
+        用的比较多的
+            thunk能够在发起action之前做一次拦截，可以人为判断是否能够发起本次action
+            redux-logger 
+
+
+
+            combineReducers({})  
+                可以放入多个 reducer 
+
+            bindActionCreators(actioncreats,dispatch) 
+                返回一个对象，可以把actions直接挂到this.props下
+
+            actioncreators
+                发起action的小函数
+                const ADD = 'ADD';  为了让action是唯一，所以用变量。
+                function add(){
+                    return {
+                        type:ADD
+                    }
+                }
+
+        react-redux
+            Provider 挂在顶层，并且挂一个属性叫store={store}
+            connect 哪个组件需要状态管理器中的数据，就用connect包裹
+            返回新的组件
+
+            let mapStateProp = (state,ownProps)=>{ 
+                state状态管理器中的所有数据，
+                也可以返回一个当前组件需要的数据
+                return state;  //必须返回对象
+            }
+
+            let mapDispatchProp = (dispatch,ownProps) => {
+                return bindActionCreators(actionCreators,dispatch)
+            }
+
+            ownProps:只要接收到的新的父级传进来的数据，就会在运行一次此函数
+
+            connect(mapStateProp,mapDispatchProp)(App)
+
+        actioncreators 放置发起的action，action的名字
+        assets:  静态文件，
+            图片
+            css
+        components: 放置组件的
+            list
+            collection
+            addto
+
+        routers 路由表
+            routers.js
+        store:状态文件
+            reducer.js
+            store
+
+        
+
+    */
+
+    let arr = [
+        {id:0,txt:'小燕子',like:true,price:1,num:0},
+        {id:1,txt:'小胖子',like:true,price:2,num:1},
+        {id:2,txt:'小肚子',like:true,price:3,num:2},
+        {id:3,txt:'小孩子',like:false,price:4,num:3}
+    ]
+
+    let a = arr.reduce((prev,next)=>{
+        // console.log(prev.num)
+        return {
+            num:prev.num + next.num,
+            price:prev.price + next.price,
+        }
+    },{num:0,price:0});
+
+    console.log(a);
+
+    // sum:prev.num + next.num,
+    //         total:prev.price + next.price
+
+    
+
+
+
+
+    // let arr2 = [
+    //     {id:0,txt:'小燕子',checked:true},
+    //     {id:1,txt:'小胖子',checked:false},
+    //     {id:2,txt:'小肚子',checked:true},
+    // ];
+
+    // //0,2  把arr2中的小燕子、小肚子删除
+    
+    // let arr3 = arr2.filter(e=>e.checked);
+
+    // arr3.forEach(e=>{
+    //     arr.forEach(e2=>{
+    //         if(e.id == e2.id){
+    //             e2.like = false;
+    //         }
+    //     });
+    // });
+
+    // arr2 = arr2.filter(e=>!e.checked);
+
+    // console.log(arr,arr2);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

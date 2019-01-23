@@ -7,6 +7,7 @@ rename.onclick = function(){
     }else{
         let id = breadNav.getElementsByTagName('span')[0].dataset.id*1;
         let arr = getChild(id);
+        r = false;
         //把选中的项过滤掉。
         arr = arr.filter(e=>e.title!=seleEleArr[0].title);
         let ele = folders.getElementsByClassName('file-item');

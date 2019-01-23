@@ -1,6 +1,18 @@
 const kuang = folderBox.getElementsByClassName('kuang')[0];
 let {duang} = myTools;
+let r = true;
 folders.addEventListener('mousedown',function(ev){
+    // ev.preventDefault();
+   
+    if(r){
+        ev.returnValue = false;
+    }else{
+        ev.returnValue = true;
+    }
+    console.log(r)
+    r = true;
+    
+    
     
     //如果down的时候点中了文件夹，就不能让选框出来。
     if(targetP(ev.target,'file-item'))return;
@@ -27,7 +39,7 @@ folders.addEventListener('mousedown',function(ev){
     kuang.style.top = disY + 'px';
 
     let move = function(ev){
-        ev.preventDefault();
+        // ev.preventDefault();
         //在拖拽的时候，按下的点和移动的点比，哪边小left和top值就走哪边
         let l = ev.pageX - disX;
         let t = ev.pageY - disY;

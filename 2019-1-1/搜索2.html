@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#main{
+    width: 500px;
+    /* height: 600px; */
+    height: 100%;
+    padding-bottom: 50px;
+    margin: 0 auto;
+    border: 1px solid #878787;
+}
+input{
+    outline:none;
+    -webkit-appearance: none;
+}
+#main input{
+    width: 300px;
+    height: 30px;
+    font-size: 14px;
+    margin: 80px auto 40px auto;
+    display: block;
+    border-radius: 10px;
+    line-height: 30px;
+    padding: 0px 0 0 40px;
+    background:#fff no-repeat 12px 8px ;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU5NEY0RTlFMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU5NEY0RTlGMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk0RjRFOUMxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk0RjRFOUQxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4DjA/RAAABK0lEQVR42pTSQUdEURjG8dOY0TqmPkGmRcqYD9CmzZAWJRHVRIa0iFYtM6uofYaiEW2SRJtEi9YxIklp07ZkWswu0v/wnByve7vm5ee8M+85zz1jbt9Os+WiGkYdYxjCOx5wgFeXUHmtBSzpcCGa+5BJTCjEP+0nKWAT8xqe4ArPGEEVC1hHEbs2oBwdXkM7mj/JLZrad437sCGHOfUtcziutuYu2v8XUFF/4f6vMK/YgAH1HxkBYV60AR31gxkBYd6xAeF3VzMCwvzOBpypX8V4yuFRzX2d2gD/l5yjH4fYQEnzkj4fae5rJulF2sMXVrAsaTWttRFu4Osb+1jEDT71/ZveyhouTch2fINQL9hKefKjuYFfuznXWzXMTabyrvfyIV3M4vhXgAEAUMs7K0J9UJAAAAAASUVORK5CYII=);
+ 
+}
+#main input::-webkit-input-placeholder{
+    color: #999;
+}
+#main ul{
+    list-style: none;
+    width: 500px;
+    /* border: 1px solid red; */
+    /* clear: both; */
+    margin: 0px auto;
+}
+#main ul li{
+    height: 55px;
+    line-height: 55px;
+    margin: 0px 40px 0 40px;
+    border-bottom: 1px dashed #BABABA;
+    color: #878787;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+    <div id="main" v-cloak>
+        <input type="text" placeholder="请输入要搜索的内容" v-on:input.lazy="confirm"
+        v-model="con"
+        >
+
+<!-- 回车返回搜索后的内容 -->
+        <!-- <input type="text" placeholder="请输入要搜索的内容" @keyup.enter="confirm"
+        v-model="con"
+        > -->
+        <!-- {{con}} -->
+        <ul>
+            <li v-for="(val,key) in arr">{{val.title}}</li>
+        </ul>
+    </div>
+<script src="./vue.js"></script>
+<script>
+/*
+
+var chils= s.childNodes;  //得到s的全部子节点
+var par=s.parentNode;   //得到s的父节点
+var ns=s.nextSibling;   //获得s的下一个兄弟节点
+var ps=s.previousSibling;  //得到s的上一个兄弟节点
+var fc=s.firstChild;   //获得s的第一个子节点
+var lc=s.lastChild;   //获得s的最后一个子节点
+
+
+*/
+    var child = Vue.extend({
+        template: '<p>This is a component</p>'
+    });
+    new Vue({                                                                                                                 
+        el:'#main',
+        data:{
+            arr:[
+                {'title':'有志者自有千计万计，无志者只感千难万难。'},
+                {'title':'实现自己既定的目标，必须能耐得住寂寞单干。'},
+                {'title':'世界会向那些有目标和远见的人让路'},
+                {'title':'阿发hi按我国爬模按个'},
+                {'title':'必须从过去的错误学习教训而非依赖过去的成功'},
+                {'title':'世界会向那的人让路'},
+                {'title':'阿发hi按个'},
+                {'title':'afiahwofaj'},
+                {'title':'aoep'},
+                {'title':'世界会向那的hfoaogioaj'},
+                {'title':'世界会向那的ajrwiwjgjoaojghhgh人让路'},
+
+            ],
+            con:'',
+        },
+        methods:{
+            confirm(ev){
+                console.log(this.con)
+                let arr2 = [];
+                if(!this.con){
+                    arr2 = this.arr;
+                }else{
+                    console.log(this.con)
+                    this.arr.forEach((ele,i) => {
+                    if(ele.title.indexOf(this.con) !==-1 ){
+                      
+                        arr2.push(this.arr[i]);
+                    }
+                    });
+                    console.log(arr2)
+                }
+                
+                //ev.target.nextElementSibling 找到弟弟节点
+                if(arr2.length<1){
+                    // console.log(ev.target.nextElementSibling)
+                    
+                    ev.target.nextElementSibling.innerHTML = '您搜索的内容找不到'
+                }
+                this.arr = arr2;
+
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

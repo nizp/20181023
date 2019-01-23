@@ -36,7 +36,7 @@
         let $btn = $('<button>按钮</button>');
         $btn.on('click',{e},function(ev){
             // console.log(ev.data.e);
-            console.log(ev);
+            console.log(ev.data.e);
         })
         $('#box').append($btn);
     });

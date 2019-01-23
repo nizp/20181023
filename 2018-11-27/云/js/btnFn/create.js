@@ -3,7 +3,7 @@ create.onclick = function(){
     // console.log(data);
     fEmpty.style.display = 'none';
     let id = breadNav.getElementsByTagName('span')[0].dataset.id*1;
-    console.log(id)
+    // console.log(id);
     let div = document.createElement('div');
     let v = ''; //默认的新建文件夹编号
     div.className = 'file-item';

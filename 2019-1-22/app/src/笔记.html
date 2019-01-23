@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /* 
+        reducer中state可以是简单类型也可以是复合类型
+
+
+        如果是简单类型是可以直接更改state的
+        如果是复合类型的，每一次修改必须赋值一个新的地址，方便管理
+            state = {a:5}
+            state = {a:6}
+            [{a:5},{a:6}]
+
+        
+
+        redux：
+            createStore(reducer)
+
+            combineReducers({})  
+                可以放入多个 reducer 
+
+            bindActionCreators(actioncreats,dispatch) 
+                返回一个对象，可以把actions直接挂到this.props下
+
+            actioncreators
+                发起action的小函数
+                const ADD = 'ADD';  为了让action是唯一，所以用变量。
+                function add(){
+                    return {
+                        type:ADD
+                    }
+                }
+
+        react-redux
+            Provider 挂在顶层，并且挂一个属性叫store={store}
+            connect 哪个组件需要状态管理器中的数据，就用connect包裹
+            返回新的组件
+
+            let mapStateProp = (state,ownProps)=>{ 
+                state状态管理器中的所有数据，
+                也可以返回一个当前组件需要的数据
+                return state;  //必须返回对象
+            }
+
+            let mapDispatchProp = (dispatch,ownProps) => {
+                return bindActionCreators(actionCreators,dispatch)
+            }
+
+            ownProps:只要接收到的新的父级传进来的数据，就会在运行一次此函数
+
+            connect(mapStateProp,mapDispatchProp)(App)
+
+    */
+</script>
+</body>
+</html>

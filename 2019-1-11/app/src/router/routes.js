@@ -18,13 +18,13 @@ export default [
         path:'/about',
         // redirect:{name:'login'}
         redirect:to=>{
-            let {query} = to;
-            if(query.onoff){
-                return '/about3';
-            }else{
-                return '/login';
-            }
-            // return '/login';
+            
+            // if(query.onoff){
+            //     return '/about3';
+            // }else{
+            //     return '/login';
+            // }
+            return '/about3';
         }
     },
     {
@@ -32,7 +32,7 @@ export default [
         component:About,
         children:[
             {
-                path:'/about/ta',
+                path:'/about3/ta',
                 component:Ta,
             },
             {

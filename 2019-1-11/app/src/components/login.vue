@@ -21,7 +21,7 @@ export default {
             let {val,pas} = this;
             let obj = arr.find(e=>e.name == val);
             if(obj && obj.pass == pas){
-                this.$router.push('/about?onoff=true');
+                this.$router.push('/about');
             }
         }
     }

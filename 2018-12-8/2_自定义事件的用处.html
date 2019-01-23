@@ -27,20 +27,21 @@
         document.dispatchEvent(event); //发布
     */
     //A
-    // document.addEventListener('长按',function(ev){
-    //     // console.log();
-    //     function fn(){
-    //         console.log('A同学');
-    //     }
-    //     if(ev.ev.target.id === 'box'){
-    //         box.style.opacity = 1 - ev.ev.n;
-    //     }
-    //     if(ev.ev.target.id === 'box2'){
-    //         box2.style.border = '10px solid skyblue';
-    //         fn();
-    //     }
+    document.addEventListener('长按',function(ev){
+        // console.log();
+        function fn(){
+            console.log('A同学');
+        }
+        if(ev.aoe.target.id === 'box'){
+            console.log(ev.n)
+            box.style.opacity = 1 - ev.n;
+        }
+        if(ev.aoe.target.id === 'box2'){
+            box2.style.border = '10px solid skyblue';
+            fn();
+        }
        
-    // });
+    });
 
     //B
     // document.addEventListener('长按',function(ev){

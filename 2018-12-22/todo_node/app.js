@@ -41,6 +41,7 @@ app.use((req,res,next)=>{
  * 
 */
 app.use('/add',require('./data/add'));
+app.use('/sort',require('./data/add'));
 
 app.use('/getdata',require('./data/data'));
 

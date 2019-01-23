@@ -94,10 +94,13 @@
             },20000);
             window[fnName] = function (data){ //全局函数
                 // opt.success(data);
-                // console.log(data);
+                
                 clearTimeout(opt[fnName]);
+                delete this[fnName];
                 resolve(data);
+                console.dir(window);
             }
+            
 
             //把对象转成字符串
             let arr = [];

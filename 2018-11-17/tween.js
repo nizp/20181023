@@ -180,7 +180,6 @@ function move(obj){
 		if(time >= opt.duration)time = opt.duration;
 		opt.moveMM(time,opt.duration); //在运动中的生命周期
 		for(let k in j){
-			
 			opt.ele.style[k] = Tween[opt.fx](time, j[k].begin, j[k].count, opt.duration) + j[k].unit;
 		}
 		if(time === opt.duration){
