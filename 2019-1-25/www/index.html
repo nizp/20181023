@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input type="text" id="user"/>
+    年龄:<input type="text" id="age" />
+    <button id="btn">提交</button>
+<script>
+    btn.onclick = function(){
+        let obj = {
+            user:user.value,
+            age:age.value
+        }
+        // fetch('/users?'+new URLSearchParams(obj).toString())
+        fetch('/users',{
+            method: 'post',
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body:new URLSearchParams(obj).toString()
+        })
+        .then(d=>d.json())
+        .then(d=>{
+            console.log(d);
+        });
+    }
+</script>
+</body>
+</html>

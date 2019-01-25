@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input type="text" id="user"/>
+    学号:<input type="text" id="num" />
+    性别:<input type="text" id="sex" />
+    <button id="btn">提交</button>
+
+    <hr />
+
+    查询:
+    <select id="sele">
+        <option value="name">用户名查询</option>
+        <option value="id">学号查询</option>
+        <option value="sex">性别查询</option>
+    </select>
+    <input type="text" id="t2">
+    <button id="btn2">提交</button>
+
+    <button id="btn3">找到大于1小于4的学号</button>
+
+    <button id="btn4">把小燕子修改为女</button>
+
+
+
+
+<script>
+    //添加
+    btn.onclick = function(){
+        let obj = {
+            act:'add',
+            name:user.value,
+            sex:sex.value,
+            id:num.value
+        }
+        fetch('/classinfo?'+new URLSearchParams(obj).toString())
+        .then(d=>d.json())
+        .then(d=>{
+            console.log(d);
+        });
+    }
+
+
+    //查询
+    let k = 'id';
+    let v = 0;
+    btn2.onclick = function(){
+
+        if(sele.value){
+            k = sele.value;
+            v = t2.value;
+        }
+
+        let obj = {
+            act:'search',
+            [k]:v
+        }
+        fetch('/classinfo?'+new URLSearchParams(obj).toString())
+        .then(d=>d.json())
+        .then(d=>{
+            console.log(d);
+        });
+    }
+
+    btn3.onclick = function(){
+        let obj = {
+            act:'search2',
+            // gt:1,
+            or:JSON.stringify([{id:1},{sex:'女'}])
+            // lt:4
+        }
+        fetch('/classinfo?'+new URLSearchParams(obj).toString())
+        .then(d=>d.json())
+        .then(d=>{
+            console.log(d);
+        });
+    }
+
+    btn4.onclick = function(){
+        let obj = {
+            act:'update',
+            name:'小燕子',
+            update:JSON.stringify({sex:'女'})
+        }
+        fetch('/classinfo?'+new URLSearchParams(obj).toString())
+        .then(d=>d.json())
+        .then(d=>{
+            console.log(d);
+        });
+    }
+
+
+</script>
+</body>
+</html>

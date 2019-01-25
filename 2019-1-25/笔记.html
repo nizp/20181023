@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    小总结:
+
+            1.项目初始化  npm init -y
+            2.安装koa  npm i koa -S
+            3.使用
+                const Koa = require('koa');
+                const app = new Koa();
+                app.use(async(ctx)=>{
+                    拿东西  ctx.request.query
+                    输出    ctx.body = {}
+                })
+            
+            4.路由
+                1.安装  npm i koa-router -S
+                2.引包
+                    const router = require('koa-router')();
+
+                3.  router.get('/',async (ctx)=>)
+                    router.get('/',require('../xxx'))
+                
+                4. app.use(router.routes())
+
+            5.静态资源
+                
+                1.安装  npm i koa-static -S
+                2.引包
+                    const static = require('koa-static');
+                    const path = require('path');
+
+                3. 使用static中间件，并且设置静态资源的目录
+                    app.use(static(path.join(__dirname,'www'))) 
+
+        事件：
+            let str = '';
+            //数据开始接收
+            ctx.req.on('data',(data)=>{
+                str += data
+            })
+            
+            //数据接收完成触发
+            ctx.req.addListener('end',()=>{
+                console.log(str);
+            })
+
+        小技巧:
+            post请求的时候可以使用bodyParser中间件
+
+            1.安装  npm i koa-bodyparser -S
+            2.引包
+                const bodyparser = require('koa-bodyparser');
+            3. 使用
+                app.use(bodyparser());
+
+            就可以在ctx.request.body 去取数据  {}
+        
+        1.安装MongoDB
+        2.https://mongoosejs.com/
+
+
+        使用mongoose
+
+            0.启动数据库
+                找到mongodb目录
+                bin/运行环境
+                
+                mongod --dbpath=数据库的目录  --port=27017
+
+            1.安装
+                npm i mongoose -S
+
+            2.引包 
+
+            3.mongoose.connect('mongodb://localhost:27017')  链接
+
+            4.监听链接状态
+                mongoose.connection.on('connected',(error)=>{
+                    if(error){
+                        //链接失败
+                    }else{
+                        //链接成功
+                        一般在数据库链接成功之后写后台逻辑
+                    }
+                })
+        
+        Mongoose 里，一切都始于Schema，是建模，定义一类数据的格式
+
+        (1) let schema = new mongoose.Schema({数据的名字:数据的类型}) 
+
+        (2)  const Animal = mongoose.model('名字', 建模);  //创建类
+
+        实例化类
+            添加操作：
+            let wc = new Animal({
+                type:'dog',
+                name:'旺财'
+            })
+
+            写入数据库
+            (3)    wc.save();
+
+            查询操作:
+                find查询所有
+            (4)    let arr = Animal.find(查询条件,()=>{})  koa中要使用async和await
+                
+            (5)    ctx.body = {
+                    data:arr
+                }
+
+    $or　　　　或关系
+    $nor　　　　或关系取反
+    $gt　　　　大于
+    $gte　　　大于等于
+    $lt　　　　小于
+    $lte　　　　小于等于
+    $ne　　　　不等于
+    $in　　　　在多个值范围内
+    $nin　　　　不在多个值范围内
+    $all　　　　匹配数组中多个值
+    $regex　　　　正则，用于模糊查询
+    $size　　　　匹配数组大小
+    $maxDistance　　　　范围查询，距离（基于LBS）
+    $mod　　　　取模运算
+    $near　　　　邻域查询，查询附近的位置（基于LBS）
+    $exists　　　　字段是否存在
+    $elemMatch　　　　匹配内数组内的元素
+    $within　　　　范围查询（基于LBS）
+    $box　　　　范围查询，矩形范围（基于LBS）
+    $center　　　　范围醒询，圆形范围（基于LBS）
+    $centerSphere　　　　范围查询，球形范围（基于LBS）
+    $slice　　　　查询字段集合中的元素（比如从第几个之后，第N到第M个元素
+
+    全局查找有带w字符的用户么，$regex后面写的就是javascript正则表达式
+    User.find({'user':{$regex:/w/g}})
+
+
+    update 更新
+
+        User.update({'user' : 'ws'}, {'pwd': '123'})
+
+        {'user' : 'ws'}  要修改哪条数据
+        {'pwd': '123'}   修改它的什么
+
+    删除
+        User.remove( {'user' : 'ws'})
+            {'user' : 'ws'}  要删除哪条数据
+
+
+
+    
+
+
+
+
+
+
+
+
+
+        
+        
+
+        
+*/    
+</script>
+</body>
+</html>
