@@ -5,7 +5,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="width:100px;height:100px;background:red"></div>
+    <div style="width:100px;height:100px;"></div>
 <script>
     /*
         git与github
@@ -82,7 +82,7 @@
         撤销：
             git reset HEAD 文件名 可以将暂存区文件撤销会工作区（绿色变红色）
             
-            工作区代码还原暂存区或版本区
+            工作区代码还原暂存区或版本区(有暂存区就回滚暂存，没有就回滚版本区)
                 git checkout -- 文件名
             
             git commit -m “注释” --amend
