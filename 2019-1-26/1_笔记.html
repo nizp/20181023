@@ -110,11 +110,14 @@
 
                 git reset --hard 历史记录编码 还原整个版本
 
-                git reset --hard HEAD^    [1,2,3,4,5]
+                git reset --hard HEAD^（上一个）    [1,2,3,4,5]
                     回滚版本记录 
                     输出第一次为最近的记录，第二次就是倒数第二个历史记
-
+            
                 git reset --hard HEAD~2  回滚倒数第三个历史记录 （跳过了2个）
+                以当前版本，后退几个版本，
+                    比如当前是6，git reset --hard HEAD~2等同于 6-2=4返回到4这个版本
+
             
                 如果说git log找不到历史ID，可以通过git reflog去查看操作过的历史记录
                 
