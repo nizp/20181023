@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* .box {
+        margin: 40px auto;
+        width: 1000px;
+        overflow: hidden;
+    } */
+
+    .ul_box {
+        /* width: 80%; */
+        box-sizing: border-box;
+        margin: 0 auto;
+        position: relative;
+        border: 1px solid #000;
+    }
+
+    img {
+        width: 178px;
+    }
+    /* .ul_box div{
+        border: 1px solid #000;
+        margin-bottom: 10px;
+    } */
+    .ul_box li {
+        width:178px;
+        position: absolute;
+        left:0;
+        top:0;
+        box-shadow: 0 0px 5.5px #000;
+        transition: 1s;
+    }
+    h3{
+        text-align: center;
+    }
+    #loading{
+        position: fixed;
+        width:100%;
+        bottom: 0;
+        left:0;
+        background: #fff;
+        display: none;
+        text-align: center;
+    }
+    #loading img{
+        width:200px;
+        margin: 0 auto;
+        display: block;
+    }
+
+</style>
+
+<body>
+    <ul class="ul_box">
+        <!-- <li>
+            <img src="./img/3.png" alt="">
+            <h3>这个时title</h3>
+        </li> -->
+    </ul>
+    <div id="loading">
+        <img src="./img/timg.gif" alt="">
+    </div>
+</body>
+<script src="fetch.js"></script>
+<script>
+//http://www.wookmark.com/api/json/popular?callback=fn&page=1
+
+    //动态计算可视区能放多少张图片
+    let iW = document.documentElement.clientWidth;
+    let iH = window.innerHeight;
+    const picW = 178; //一张图片的宽度
+    const ml = 10; //margin-left
+    const actualW = picW + ml; //实际的宽度
+    const ul = document.querySelector('.ul_box');
+    let onOff = true;
+    let num = 0; //默认为第一页（前50条数据）
+
+    let len = Math.floor((iW+ml)/actualW); //页面能放几张图片
+
+    ul.style.width = actualW * len + 'px'; //计算ul的宽度
+
+    //去创建left和top的数组
+    let arrL = [];
+    let arrT = [];
+    for(let i=0;i<len;i++){
+        arrT.push(0);
+        arrL.push(i*actualW);
+    }
+
+    //请求数据
+    function render(num){
+        loading.style.display = 'block';
+        jsonp({
+            url:'http://www.wookmark.com/api/json/popular',
+            data:{
+                page:num
+            }
+        })
+        // fetch('data.json')
+        // .then(e=>e.json())
+        .then(data=>{
+            if(data.length){ //有length说明有数据
+                loading.children[0].style.display = 'block';
+                data.forEach(e=>{
+                        console.log(e);
+                        let li = document.createElement('li');
+                        let picH = picW/e.width*e.height;
+                        //添加图片的时候可能有坏的图片，只要是成功的图片就正常加载
+                        //进了onload就是成功的图片
+                        let img = new Image;
+                        img.src = e.preview;
+
+                        img.onload = function(){
+                            li.innerHTML = `
+                                <img 
+                                    src="${e.preview}" 
+                                    alt=""
+                                    height="${picH}";
+                                >
+                                <h3>${e.id}</h3>
+                            `;
+                            let index = min(arrT).index;
+                            li.style.cssText = `
+                                left:${arrL[index]}px;
+                                top:${arrT[index]}px;
+                            `;
+                            ul.appendChild(li);
+                            arrT[index] += li.scrollHeight + 10;
+                        }    
+                        
+                });
+                onOff = true;
+                
+            }else{
+                //没length说明没有数据了
+                loading.children[0].style.display = 'none';
+                loading.innerHTML = '我还是有底线的....';
+            }
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 500);
+        });
+    }
+    render(num);
+
+    //滚轮加载
+
+    window.onscroll = function(){
+        console.log(onOff);
+        if(onOff){
+            let minH = min(arrT).t;
+            if(iH + window.pageYOffset >= minH){
+                onOff = false;
+                console.log('加载');
+                num ++;
+                render(num);
+            }
+        }
+    }
+
+    //缩放
+    window.onresize = function(){
+        //重新计算可视区的宽度和图片张数
+        iW = document.documentElement.clientWidth;
+        len = Math.floor((iW+ml)/actualW);
+        if(len < 4){
+            len = 4;
+        }else if(len > 8){
+            len = 8;
+        }
+        arrL.length = arrT.length = 0;
+        for(let i=0;i<len;i++){
+            arrT.push(0);
+            arrL.push(i*actualW);
+        }
+        ul.style.width = actualW * len + 'px'; //计算ul的宽度
+        let lis = document.querySelectorAll('li');
+        lis.forEach(ele=>{
+            let index = min(arrT).index;
+            ele.style.cssText = `left:${arrL[index]}px;top:${arrT[index]}px`;
+            arrT[index] += ele.scrollHeight + 10;
+        });
+        console.log(len);
+
+    }
+
+
+
+   
+
+
+    function min(arr){
+        let t = Math.min(...arr);
+        return {
+            t,
+            index:arr.findIndex(e=>e===t)
+        }
+    }
+
+    console.log(arrT,arrL);
+
+
+
+
+
+    console.log(len);
+
+
+
+</script>
+</html>
