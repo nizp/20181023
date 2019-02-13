@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<script>
+    // const picw = 750;
+
+    // console.log(window.innerWidth / picw);//0.5
+
+    ;(function anonymous() {
+        function computed() {
+            let HTML = document.documentElement,
+                winW = HTML.clientWidth,
+                desW = 750;
+            if (winW >= desW) {
+                HTML.style.fontSize = '100px';
+                return;
+            }
+            HTML.style.fontSize = winW / 750 * 100 + 'px'; //=>HTML中单独编写的代码尽量不要出现{}等操作，例如：ES6模板字符串，否则WEBPACK编译失败
+        }
+        computed();
+        window.addEventListener('resize', computed, false);
+    })();
+
+
+</script>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+span{
+    width:100px;
+    height:100px;
+    background: red;
+}
+mark{
+    background: red;
+    color:#fff;
+}
+#box{
+    width:200px;
+    height:200px;
+    border:1px solid #000;
+    font-size:20px;
+}
+html{
+    font-size:20px;
+}
+#box2{
+    width:1rem;
+    height:1rem;
+    /* width:1em;
+    height:1em; */
+    font-size:10px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <span>span</span>
+    <main>你好</main>
+    <p>我在这里<mark>等你</mark></p>
+    <!-- <video preload="auto" loop="loop" src="http://wvideo.spriteapp.cn/video/2018/0616/5b23fb82b07ee_wpd.mp4" controls="controls"></video> -->
+<script>
+/*
+    1.介绍HTML5的标签 √
+    2.认识移动端   √
+    3.CSS3新增属性
+    4.CSS3的动画
+    5.3D魔方
+    6.使用LESS
+    7.适配布局 √
+    8.移动端事件
+    9.字体图标 √
+    10.音频 √
+    11.酷狗音乐
+
+
+    6、7、8
+
+    H5:（H5->html5）外界直接认为只要是运行在手机上的页面就是H5
+        html5页面运行在手机浏览器中
+
+        核心:学完后，你的应用能够适配所有的系统。
+        优势:跨平台，可以通用苹果和安卓系统
+        劣势:不能轻易的调用系统中的摄像头，通讯录...
+
+    APP:安卓（native-java）、苹果（Object-c、swift）
+        2个系统使用的是不同的语言进行开发，所以安卓的应用不可以直接移植到苹果上
+        要实现同一时间上线，就要并行开发
+        开发出来的应用是要放到应用商店审核的，一般周期为7天，打回的次数越多
+        耗费的时间就越长，有可能开发完成上线，此应用已经GG了
+
+        优势:
+            性能高、速度快，天生就能使用本系统的大部分功能，比如摄像头，通讯录...
+        劣势:
+            不跨平台、开发周期长、审核复杂
+
+    
+    web APP：
+        html5页面只能运行在浏览器中，app里面内嵌webkit内核；h5页面中如果需要调用摄像头，通讯录，重力感应器...；需要通知浏览器去调用这些功能；
+
+    Hybird 混合开发
+        比如:
+            微信本身是原生应用，在应用中把常用的系统功能（摄像头，通讯录...）
+            封装为js能够调用的方法，并暴露在全局对象下，当用户操作应用
+            中的浏览器的时候调用暴露出来的方法，实现原生的功能。
+
+        react-native ——> Hybird
+
+
+    // HTML4 :
+    // HTML5 : 超文本标记语言；
+    // 可以显示图片，音频，视频；
+    // XHTML : 更加严谨的标记语言；
+    // XML : 可扩展的标记语言；
+
+    产品(工作流程)： 
+        市场调研 --->  构造产品  -->  
+        PM（产品经理）--> 
+        
+        召开一个产品分析会议（产品经理、UI、前端、后端、技术总监、测试、运营、运维..）
+
+            目的:确定需求、规划好排期、预期目标
+        -> UI --> 
+        前端工程师 --> 拿设计图、切图（html,css;工具：PS）、添加js逻辑
+        后台写接口 --> 【接口文档】 
+        ---> 联调 【测试】---> 
+        测试部门 ---> 改bug(给测试回滚)---> 上线；
+        --> 维护 --> code review(代码 审查);
+
+        一般情况，不是改完BUG就完了，还会有BUG的....
+
+   
+
+    块级标签（独占一行、支持宽高）：
+        div  p  h1--h6  ul  li  ol  li  dl  dt  dd  table  form
+    行内标签：（不独占一行，默认不支持宽高）
+        span  a  label  em i  b  strong  br
+    行内块标签：(又支持宽高又不独占一行)
+        input  img  textarea
+
+    display : block  display : inline-block;
+
+    HTML5的新标签:(为了语义化，SEO优化)
+    header  : 头部
+    section : 块  代替了div   HTML + CSS
+    main : 主体部分
+    footer : 底部
+    nav : 导航；
+    figure : 图片
+    figurecaption : 图片描述
+    article ： 文章
+    mark : 高亮；
+    canvas : 画布
+    video : 视频
+        <video autoplay="autoplay">
+            <source src="movie.ogg" type="video/ogg">
+            <source src="movie.mp4" type="video/mp4">
+        </video>
+        source会自动切换当前浏览器支持格式
+        autoplay  自动播放
+        loop  循环播放
+        preload="auto"  加载
+
+    audio:
+        <audio src="song.mp3" controls="controls"></audio>
+        Media.volume = value; //音量
+        Media.muted = value; //静音
+        Media.pause() 暂停
+        Media.play() 暂停
+        timeupdate当前播放时间发生改变的时候
+        currentTime用来获取或者控制当前的播放时间，单位是秒（S）
+        startTime返回起始的播放时间
+
+    https://blog.csdn.net/gongstrong123/article/details/50339249
+
+    https://blog.csdn.net/c__chao/article/details/78573737
+
+       
+    // 新增input的属性；
+    <input type="number" min="2" max="10" step="2"> 上下加减
+    <input type="range" min="2" max="10" step="2">  进度条
+    <input type="search"> text可以点删除
+    <input type="date">  默认日历
+    <input type="color"> 色板
+    <input type="text" autocomplete="on" name="tel"> 提示
+    autofocus input自动聚焦
+
+    
+    rem布局： 现在移动端最流行的方式；
+    
+    em :是相对于父级元素或者自身的fontSize值,如果自身有font-size优先走自身；
+
+    rem : 是一个像素单位（root（根->html） em）； 是相对于页面HTML的fontSize 这个属性的属性值；
+          1rem = HTML的fontsize;
+    
+    px : 像素
+
+    为什么要适配？
+        因为每款手机的屏幕尺寸不一样，同一个应用在不同的手机上显示是不一样的，
+        我们前端要做到，所有的手机都兼容。
+
+        media -> 百分比 -> table -> rem
+
+    
+    REM适配，可以通过手机屏幕的大小动态的计算html的fontSize大小，
+    来控制页面的布局的尺寸，达到不同机型屏幕适配的目的。
+
+
+
+
+    
+
+    
+
+
+
+
+    
+    视口： 
+    布局视口 -->视觉视口--->理想视口；
+    大多数浏览器的可视窗口都是980px;
+
+
+
+*/    
+</script>
+
+
+<!-- <input type="number" min="2" max="10" step="2">
+<input type="range" min="0" max="10" step="2">
+<input type="search">
+<input type="date">
+<input type="color">
+<input type="text" autocomplete="on" name="tel">
+<input type="text" autofocus name="tel"> -->
+<!-- <input type="text" name="tel" pattern="/\d+/"> -->
+
+<div id="box">
+    <div id="box2"></div>
+</div>
+</body>
+</html>

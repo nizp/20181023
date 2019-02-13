@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        ;(function anonymous() {
+            function computed() {
+                let HTML = document.documentElement,
+                    winW = HTML.clientWidth,
+                    desW = 750;
+                if (winW >= desW) {
+                    HTML.style.fontSize = '100px';
+                    return;
+                }
+                HTML.style.fontSize = winW / 750 * 100 + 'px'; //=>HTML中单独编写的代码尽量不要出现{}等操作，例如：ES6模板字符串，否则WEBPACK编译失败
+            }
+            computed();
+            window.addEventListener('resize', computed, false);
+        })();
+    </script>
+<style>
+*{
+    margin:0;
+    padding:0;
+}
+.title{
+    height:.5rem;
+    background: #46ba57;
+}
+/* .title div {
+    
+} */
+.city{
+    float: left;
+    font-size:.32rem;
+    color: #fff; 
+    width:.96rem;
+    height:.32rem;
+    margin-left:.2rem;
+    position: relative;
+}
+.city:after{
+	content: '';
+    position: relative;
+    display: inline-block;
+    left: .72rem;
+    width: .12rem;
+    height: .12rem;
+    border-bottom: .1em solid #fff;
+    border-left: .1em solid #fff;
+    transform: scaleX(0.7) rotateZ(-45deg);
+    top: -.5rem;
+}
+.title h5{
+    width:1.38rem;
+    height:.32rem;
+    margin: 0 auto;
+    color: #fff;
+    font-size:.32rem;
+    font-weight: 2;
+}
+.icon{
+    right:0.2rem;
+    width:.38rem;
+    height:.32rem;
+    background:url('./1.png') no-repeat;
+    background-size:cover;
+    position: absolute;
+    top:0.1rem;
+}
+</style>
+</head>
+<body>
+<section>
+    <header>
+        <div class="title">
+            <div class="city">
+                <p>北京</p>
+            </div>
+            <h5>积分商城</h5>
+            <span class="icon"></span>
+        </div>
+    </header>
+</section>
+</body>
+</html>
