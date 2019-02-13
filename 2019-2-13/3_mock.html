@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script type="text/javascript" src="mock.js"></script>
+<script src="./jquery-3.1.1.min.js"></script>
+<script>
+    // console.log(Mock)
+    let arr = [
+            {
+                'id|+1':0,
+                'checked':true,
+                'age|18-30':1,
+                'img|+1':Mock.Random.image('200x100', '#ffcc33', '#FFF', 'png')
+            }
+        ]
+    var data = Mock.mock('http:123.com',{
+        'list|1000':arr
+    });
+    Mock.mock('http:123.com','delete',function(options){
+        var id = parseInt(options.body.split("=")[1])//获取删除的id
+        var index;
+        for(var i in arr){
+            if(arr[i].id===id){//在数组arr里找到这个id
+                index=i
+                break;
+            }
+        }
+        arr.splice(index,1)//把这个id对应的对象从数组里删除
+        return arr;//返回这个数组,也就是返回处理后的假数据
+    })
+
+    document.onclick = function(){
+        $.ajax({
+            url:'http:123.com',
+            type:"DELETE",
+            data:{
+                id:1//假设需要删除id=1的数据
+            },
+            success:function(e){
+                console.log(e)
+            }
+        });
+    }
+
+    $.ajax({
+        url:'http:123.com',
+        dataType:'json',
+        success:function(e){
+            console.log(JSON.stringify(e.list))
+        }
+    });
+
+
+
+
+    
+    
+
+    // export {data}
+    // 输出结果
+    // console.log(data)  
+
+    // console.log()
+</script>
+</body>
+</html>
