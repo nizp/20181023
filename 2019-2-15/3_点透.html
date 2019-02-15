@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+#box{
+    position: absolute;
+    width:100px;
+    height:100px;
+    left:0;
+    top:0;
+    background: red;
+    opacity:.3;
+}
+</style>
+</head>
+<body>
+    <a id="a" href="http://www.baidu.com">去百度</a>
+    <!-- <p id="p">去百度</p> -->
+    <div id="box"></div>
+    <!-- <input /> -->
+<script>
+    //428626
+
+    //第一种解决方案开定时器
+    // box.addEventListener('touchstart',()=>{
+    //     setTimeout(() => {
+    //         box.style.display = 'none';
+    //     },400);
+    //     // box.style.display = 'none';
+    // });
+
+
+    // //第二种解决方案不使用焦点元素
+
+    // box.addEventListener('touchstart',()=>{
+    //     box.style.display = 'none';
+    // });
+
+    // p.addEventListener('touchend',()=>{
+    //     window.location.href = 'http://baidu.com';
+    // });
+
+    
+    document.addEventListener('touchend',(ev)=>{
+        ev.preventDefault();
+    })
+    //三种解决方案不使用焦点元素
+    box.addEventListener('touchstart',()=>{
+        box.style.display = 'none';
+    });
+
+    a.addEventListener('touchend',()=>{
+        console.log(1);
+        window.location.href = 'http://baidu.com';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style >
+#box{
+    width:300px;
+    height:300px;
+    background: red;
+    font-size:50px;
+    color:#fff;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        touches（作用于整个屏幕）:表示当前跟踪的触摸操作的Touch对象的数组–点击触摸时有多少个Touch对象
+        targetTouches（作用于一开始start的元素）：特定于事件目标的Touch对象的数组–点击触摸时有多少个Touch对象
+      √  changedTouches（一上来触摸的元素，并且不会累计手指数量）:表示自上次触摸以来发生了什么改变的Touch对象的数组–发生改变的活着当前是多少touch对象，即相当于touchmove
+    */
+
+    // document.addEventListener('touchstart',(ev)=>{
+    //    ev.preventDefault();
+    // });
+
+    document.addEventListener('touchstart',(ev)=>{
+        // console.log(ev.changedTouches[0].pageX); //拿用户的操作信息。
+        box.innerHTML = ev.targetTouches.length;
+    })
+</script>
+</body>
+</html>

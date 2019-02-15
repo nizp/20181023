@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+body,html{
+    overflow: hidden;
+}
+#box{
+    position: absolute;
+    width:100px;
+    height:100px;
+    left:0;
+    top:0;
+    background: red;
+    opacity:.3;
+}
+#box2{
+    width:20000px;
+    height:30px;
+    background:yellow;
+}
+</style>
+</head>
+<body id="body">
+    <a id="a" href="http://www.baidu.com">去百度</a>
+    <!-- <p id="p">去百度</p> -->
+    <div id="box"></div>
+    <div id="box2"></di> 
+    <!-- <input /> -->
+<script>
+    //428626
+
+    /*
+        在2018年3月份，还可以去掉橡皮筋效果
+    */
+
+    document.body.addEventListener('touchmove', function (e) {
+        e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
+    }, {passive: false});
+    
+    //三种解决方案不使用焦点元素
+    box.addEventListener('touchstart',()=>{
+        box.style.display = 'none';
+    });
+
+    a.addEventListener('touchend',()=>{
+        console.log(1);
+        window.location.href = 'http://baidu.com';
+    });
+</script>
+</body>
+</html>

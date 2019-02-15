@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+*{margin: 0;padding:0}
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+}
+#box2{
+    width:100px;
+    height:100px;
+    background: yellow;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    // box.onmousedown = function(){
+    //     console.log('按下');
+    //     box.onmouseup = function(){
+    //         console.log('抬起');
+    //     }
+    // }
+    // box2.onmousedown = function(){
+    //     console.log('按下2');
+    //     box2.onmouseup = function(){
+    //         console.log('抬起2');
+    //     }
+    // }
+
+
+    box.addEventListener('touchstart',function(){
+        console.log('按下');
+    })
+    box.addEventListener('touchend',function(){
+        console.log('抬起');
+    });
+    box2.addEventListener('touchstart',function(){
+        console.log('按下2');
+        
+    })
+    box2.addEventListener('touchend',function(){
+        console.log('抬起2');
+    });
+</script>
+</body>
+</html>
