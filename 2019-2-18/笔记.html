@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        react-create-app 跨域
+
+        通过porxy去跨域
+
+        1.找到devServer文件 -> start.js
+        2.里面引入setupProxy.js （跨域的中间件）
+            require('../src/setupProxy')(devServer);
+
+            setupProxy文件中有:
+                const proxy = require("http-proxy-middleware");
+                module.exports = function(app) {
+                    app.use(()=>{
+                        proxy("/api",{ 
+                            target:'跨域的地址',
+                            changeOrigin:true
+                        });
+                    })
+                }
+        3.
+        axios.get('/api?json=true')
+        .then(e=>{
+            console.log(e);
+        });
+
+
+
+            
+    */    
+</script>
+</body>
+</html>
