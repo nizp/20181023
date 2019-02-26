@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+<script>
+/*
+    git 分支
+
+        git branch  查看分支
+
+        创建分支:
+            git branch 分支名
+
+        切换分支
+            git checkout 分支名
+
+        合并分支
+            git merge 分支名
+
+        在合并的时候，容易发生冲突，这个时候人为手动把冲突解决，然后再次提交版本
+        就解决了冲突。
+
+        git branch --merged （查看当前主干上有多少个分支已经合并）
+        git branch --no-merged （查看没有合并的分支）
+        git branch -d 分支名 （合并完分支后删除）
+        git branch -D 分支名 （强制删除没有合并的分支）    
+*/
+    // var arr = [1,2,3];
+    // var arr2 = arr;  //[1,2,3];
+    // arr[0] = 8; //[8,2,3]
+    // arr2[0] = 9;//[9,2,3]
+    // console.log(arr,arr2); //[9,2,3] [9,2,3]
+    // arr = [4,5,6];
+    // console.log(arr,arr2);//[4,5,6] [9,2,3]
+
+
+    // for(let i=0;i<5;i++){
+    //     setTimeout(() => {
+    //         console.log(i);
+    //     }, 100);
+    // }
+
+
+    // let li = document.querySelectorAll('li'); //静态的
+    // for(var i=0;i<li.length;i++){//3
+    //     li[i].addEventListener('click',()=>{
+    //         console.log(i);
+    //     })
+    // };
+
+
+    // function Animal(){}
+    // Animal.prototype.fn = function(){
+    //     alert('fn就是我');
+    // }
+    // function Dog(){}
+    //非常方便就继承了父级，但是constructor指向会修改，解决，手动修正指向
+    // Dog.prototype = new Animal();
+
+    // Dog.prototype.constructor = Dog
+
+    //直接通过对象赋址的方式去继承，因为是赋址，所以改A会影响B -> 解决:for in hasOwnProperty
+    // Dog.prototype = Animal.prototype;
+
+    // Dog.prototype = Object.create(Animal.prototype);
+
+    // let d = new Dog();
+    /*
+        把一个新的对象给子类，但是constructor有问题，同第一个一样。
+    */
+    // d.__proto__ = Object.create(Animal.prototype);
+
+    // d.fn();
+    // console.log(d.constructor);
+
+
+    /************************************************/
+    
+    // let lis = Array.from(document.querySelectorAll('li'));
+    // lis = lis.reverse();
+    // lis.forEach(e=>{
+    //     ul.appendChild(e);
+    // })
+
+    
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

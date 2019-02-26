@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    color:red;
+}
+#ul{
+    position: absolute;
+    top:0;
+    left:0;
+    transition: .2s;
+}
+</style>
+</head>
+<body>
+    <audio src="http://fs.open.kugou.com/19ea79c8eba4b671607e1e641e57420a/5c74155f/G121/M0B/1B/09/uQ0DAFxv8VeAcENcAEEkj5jMnYw500.mp3" id="music" autoplay></audio>
+    <ul id="ul"></ul>
+<script>
+    /*
+        react-create-app 跨域
+
+        通过porxy去跨域
+
+        1.找到devServer文件 -> start.js
+        2.里面引入setupProxy.js （跨域的中间件）
+            require('../src/setupProxy')(devServer);
+
+            setupProxy文件中有:
+                const proxy = require("http-proxy-middleware");
+                module.exports = function(app) {
+                    app.use(()=>{
+                        proxy("/api",{ 
+                            target:'跨域的地址',
+                            changeOrigin:true
+                        });
+                    })
+                }
+        3.
+        axios.get('/api?json=true')
+        .then(e=>{
+            console.log(e);
+        });
+
+
+        
+
+
+            歌词
+            http://m.kugou.com/app/i/krc.php?cmd=100&keyword=回忆有毒&hash=F8066025FA74624F74F7B90ECA788CB5&timelength=221000&d=0.1999228323483424
+
+            http://m.kugou.com/app/i/krc.php?cmd=100&keyword=%E9%BB%84%E5%AD%90%E9%9F%AC%20-%20%E5%8D%95%E8%BA%AB&hash=4C4641423DDCDA3FDF787C44F22CF268&timelength=222000&d=0.4148839770952575
+            http://m.kugou.com/app/i/krc.php?cmd=100&keyword=%E9%BB%84%E5%AD%90%E9%9F%AC%20-%20%E5%8D%95%E8%BA%AB&hash=4C4641423DDCDA3FDF787C44F22CF268&timelength=222000&d=0.4148839770952575
+    */    
+
+    let str = `
+        [00:00.72]张北北 - 给你唱过的歌
+        [00:01.48]作词：李悦
+        [00:01.69]作曲：李悦
+        [00:01.84]视觉：hoshifuruya
+        [00:01.94]OP：云猫文化（In Move）
+        [00:02.60]制作人：宋孟君
+        [00:19.96]身不由己很爱过
+        [00:23.70]痴心绝对不值得
+        [00:27.85]我知道你都知道
+        [00:31.02]我真的受伤了
+        [00:34.40]认真的雪冻结我们的爱
+        [00:38.77]说好的幸福呢
+        [00:42.16]死了都要爱
+        [00:44.15]我们说好的手放开
+        [00:47.39]心如刀割
+        [00:50.86]我比从前更寂寞
+        [00:54.75]那么爱你为什么
+        [00:58.83]我的歌声里
+        [01:00.90]一生所爱
+        [01:02.98]没离开过
+        [01:05.41]记得比我幸福
+        [01:07.74]如果没有你
+        [01:09.76]我会好好的
+        [01:13.10]突然好想你
+        [01:15.25]我最亲爱的
+        [01:17.42]你怎么舍得我难过
+        [01:24.20]我唱着 给你唱过的歌
+        [01:28.20]从遇见痛快
+        [01:29.94]唱到 离歌
+        [01:32.07]第一次开始懂了
+        [01:34.38]原来孤独患者
+        [01:36.66]拥抱你离去解脱
+        [01:39.98]你还要我怎样
+        [01:42.00]我不难过
+        [01:44.02]不将就
+        [01:44.68]你要的不是我
+        [01:48.17]我没那种命
+        [01:49.85]爱我别走
+        [01:51.37]是泡沫
+        [02:12.28]我比从前更寂寞
+        [02:16.01]那么爱你为什么
+        [02:20.12]我的歌声里
+        [02:22.14]一生所爱
+        [02:24.22]没离开过
+        [02:26.64]记得比我幸福
+        [02:28.87]如果没有你
+        [02:31.00]我会好好的
+        [02:34.35]突然好想你
+        [02:36.37]我最亲爱的
+        [02:38.50]你怎么舍得我难过
+        [02:43.55]我唱着 给你唱过的歌
+        [02:47.54]从遇见痛快
+        [02:49.36]唱到 离歌
+        [02:51.58]第一次开始懂了
+        [02:53.78]原来孤独患者
+        [02:56.06]拥抱你离去解脱
+        [02:59.26]你还要我怎样
+        [03:01.33]我不难过
+        [03:03.22]不将就
+        [03:03.98]你要的不是我
+        [03:07.48]我没那种命
+        [03:09.25]爱我别走
+        [03:10.57]是泡沫
+        [03:16.03]领悟分手快乐
+        [03:19.84]天亮了梦醒了
+        [03:23.79]给我一个理由忘记
+        [03:27.04]爱上你 等于爱上寂寞
+        [03:33.82]我唱着 给你唱过的歌
+        [03:37.87]从遇见痛快
+        [03:39.62]唱到 离歌
+        [03:41.70]第一次开始懂了
+        [03:44.03]原来孤独患者
+        [03:46.36]拥抱你离去解脱
+        [03:49.65]你还要我怎样
+        [03:51.67]我不难过
+        [03:53.50]不将就
+        [03:54.31]你要的不是我
+        [03:57.70]我没那种命
+        [03:59.46]爱我别走
+        [04:00.88]是泡沫
+    `;
+
+   let arr = str.match(/[^\n]+\n/g);
+   let nn = 0;
+   
+   //拿到的是多少秒
+   
+   function formatTime(time) {
+        // 187 "03:07"  87  "01:27";
+        // time : 秒；
+        // 185  03:05;
+        // 计算分钟和秒；如果小于10，需要补0；
+        let min = Math.floor(time/60);
+        let sec = Math.round(time-min*60);
+        min = min<10?"0"+min :''+min;
+        sec = sec<10?"0"+sec:''+sec;
+        return {min,sec};
+    };
+    let n = 0;
+    let prev = '';
+    music.ontimeupdate = function(){
+        let temp = '';
+        let {min,sec} = formatTime(music.currentTime);
+        // console.log('播放器的时间:'+min,sec);
+        arr.forEach((item,i,all)=>{
+            let [,kicM,kicS,s] = item.match(/(\d{2}):(\d{2})\.(\d{2})/);
+            if(all[i+1]){
+                var [,kicM2,kicS2] = all[i+1] && all[i+1].match(/(\d{2}):(\d{2})\.(\d{2})/);
+            }
+            // console.log('这次的'+kicM+':'+kicS,'下次的'+kicM2+':'+kicS2);
+            //这次的00:31 下次的00:34
+            //00:32
+
+            // 00>=00  32>=31    00<=00 32<=34
+
+            // if((min >= kicM && min <= kicM2) && (sec <= kicS && sec <= kicS2)){
+            if((min*1>=kicM*1 && min*1 <= kicM2*1) && (sec*1 >= kicS*1 && sec*1 <= kicS2*1)){
+                // console.log(kicM,kicS)
+                // console.log('这次的'+kicM+':'+kicS,'下次的'+kicM2+':'+kicS2);
+                temp += '<li class="active">'+ item.split(']')[1] +'</li>';
+                n++;
+                if(n > 15 && prev != item){
+                    nn += 3;
+                    ul.style.top = -nn + 'px'
+                }
+                prev = item;
+            }else{
+                temp += '<li>'+ item.split(']')[1] +'</li>'
+            }
+            
+            // console.log('这次的'+kicM+':'+kicS,'下次的'+kicM2+':'+kicS2,'播放的'+min+':'+sec);
+            
+            // console.log(min,sec);
+            //当前播放的分钟要比上次的大，比下次的小
+
+        });
+        
+
+        // console.log('wan')
+        ul.innerHTML = temp;
+    }
+
+    
+       
+       
+
+  
+//    console.log(arr);
+
+</script>
+</body>
+</html>

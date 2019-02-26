@@ -1,0 +1,196 @@
+* {
+  margin: 0rem;
+  padding: 0rem;
+  list-style: none;
+  font-size: 0.12rem;
+  text-decoration: none;
+}
+header {
+  width: 7.5rem;
+  height: 1.04rem;
+  background: #2ca2f9;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+header h1 {
+  font-size: 0rem;
+  width: 2.35rem;
+  height: 1.04rem;
+  margin-left: 0.22rem;
+  float: left;
+  line-height: 1.04rem;
+  text-align: center;
+}
+header h1 img {
+  width: 2.35rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+header .search {
+  width: 0.55rem;
+  float: right;
+  line-height: 1.04rem;
+  text-align: center;
+  margin-right: 0.22rem;
+}
+header .search img {
+  width: 0.55rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+nav {
+  height: 1.02rem;
+  background: #fff;
+  width: 7.5rem;
+  margin: 0rem auto;
+  overflow: hidden;
+  position: absolute;
+  top: 1.04rem;
+  left: 0rem;
+}
+.nav li {
+  float: left;
+  width: 1.78rem;
+  height: 0.96rem;
+  text-align: center;
+  line-height: 0.96rem;
+  border-bottom: 0.06rem solid #fff;
+}
+.nav li a {
+  font-size: 0.4rem;
+  color: #000;
+}
+.nav li.active {
+  border-bottom: 0.06rem solid #2ca2f9;
+}
+.body_box {
+  background: #f8f8f8;
+  position: absolute;
+  top: 2.08rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+.body {
+  width: 7.32rem;
+  margin: 0.1rem auto;
+}
+.banner {
+  width: 7.32rem;
+  overflow: hidden;
+  position: relative;
+  height: 2.75rem;
+}
+.banner ul {
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  height: 2.75rem;
+  transform: translateX(0);
+}
+.banner li {
+  width: 7.32rem;
+  float: left;
+}
+.banner img {
+  width: 7.32rem;
+}
+.list li {
+  height: 1.32rem;
+  border-bottom: 0.02rem solid #e5e5e5;
+  background: #fff;
+}
+.list li p {
+  height: 1.32rem;
+  font-size: 0.32rem;
+  line-height: 1.32rem;
+  margin-left: 0.26rem;
+  float: left;
+  width: 6.2rem;
+  overflow: hidden;
+}
+.list li img {
+  float: right;
+  width: 0.44rem;
+  margin-top: 0.46rem;
+  margin-left: 0.15rem;
+}
+#rankinfo {
+  position: absolute;
+  top: 1.04rem;
+  width: 7.5rem;
+}
+#rankinfo .infoBanner {
+  width: 7.5rem;
+  overflow: hidden;
+  height: 4rem;
+  position: relative;
+}
+#rankinfo .infoBanner .title {
+  width: 7.5rem;
+  position: absolute;
+  z-index: 1;
+  height: 0.88rem;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  font-size: 0;
+  line-height: 0.88rem;
+}
+#rankinfo .infoBanner .title img {
+  margin-left: 0.2rem;
+  vertical-align: middle;
+}
+#rankinfo .infoBanner .title h6 {
+  font-size: 0.32rem;
+  text-align: center;
+  height: 0.88rem;
+  color: #fff;
+  float: right;
+  width: 7rem;
+  font-weight: 500;
+}
+#rankinfo .infoBanner .bg {
+  width: 7.5rem;
+  position: absolute;
+  left: 0rem;
+  top: -1.5rem;
+  z-index: 0;
+}
+#rankinfo .infoBanner .info-time {
+  width: 100%;
+  height: 2.8rem;
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#rankinfo .infoBanner .info-time p {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.07143rem;
+  color: #fafff2;
+  font-size: 0.3rem;
+}
+.list span {
+  float: left;
+  width: .4rem;
+  height: .4rem;
+  margin-top: 0.5rem;
+  font-size: .3rem;
+  line-height: .4rem;
+  color: #999;
+  text-align: center;
+}
+.list span.one {
+  color: #fff;
+  background: #e80000;
+}
+.list span.two {
+  color: #fff;
+  background: #ff7200;
+}
+.list span.three {
+  color: #fff;
+  background: #f8b300;
+}

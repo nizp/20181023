@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+/* #box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+} */
+/* #box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-top:-50px;
+    margin-left:-50px;
+} */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+/*
+    用css实现一个DIV横向和竖向居中？
+
+    rem \ px \ em的区别？
+        rem:root em（根em） 根据html的font-size计算尺寸
+        px:像素
+        em:跟父级或自己的font-size计算尺寸
+
+    call 和 apply的区别？
+        call和apply都能改变this指向，但是call有多个参数，applay只有2个参数
+
+        第一个参数都为改变this值，
+            call:第二个以后的参数就是实参的个数
+            applay:第二个为数组，实参就放在数组中
+
+        
+    Vue组件间的参数传递？
+        通过给子组件上添加属性，如果是动态的要用:n="arr",静态的n="hw"
+        子级通过props:['n']||{}
+
+
+    列出你用过的状态（state）管理工具？
+        vuex、dva、redux、mobx
+
+    请谈谈小程序的双向数据绑定和Vue的异同？
+        Object.defineProperty() 数据劫持
+    
+    React中refs的作用是什么？
+        能够快速定位组件或者元素的一种标识.
+        // ref="gj"  this.refs.gj
+
+*/
+
+// 分析下列程序代码，得出运行结果，解释其原因？
+const promise = new Promise((resolve,reject)=>{
+    console.log(1)
+    resolve();
+    console.log(2)
+})
+promise.then(()=>{
+    console.log(3)
+    console.log(1)
+    resolve();
+    console.log(2)
+})
+promise.then(()=>{
+    console.log(3)
+})
+console.log(4);
+
+// 4131322
+// 1431322
+// 12431xx
+
+
+//124313
+
+
+</script>
+</body>
+</html>

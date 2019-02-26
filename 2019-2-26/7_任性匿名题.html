@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    1.React的生命周期函数中，
+        当props改变的时候 会引发的后续变化， 
+        rander()函数什么时候执行
+
+    答:
+        componentWillUpdate 之后
+        render
+        componentDidupdate(){} 之前
+
+
+    2. redux数据流通的过程
+        1.用户操作视图
+        2.发起一次dispatch -> 
+            有异步:
+                返回一个函数（使用thunk中间件）
+                异步请求，请求成功之后return {type:xx}
+            没有异步:
+                return {type:xx}
+        3.  进入了reducer，通过对应的type去修改state，最后返回一个新的state
+
+            return {...state,xx}
+            return JSON.parse(JSON.stringify(state))
+
+            state = JSON.parse(JSON.stringify(state))
+            return state;
+
+    3. react的diff算法
+
+        深度优先遍历:
+            每传入一个节点，就对比新的DOM树上的对象，然后记录差异，这个
+            节点比对完成，又会去这个节点下的子节点去对比，没有子节点就
+            传入节点的下个兄弟节点去对比差异，以此类推。
+
+        对比差异:
+            给差异归为4类:
+                1.替换类
+                2.属性类
+                3.文本类
+                4.顺序类
+
+        https://www.cnblogs.com/zhuzhenwei918/p/7271305.html
+            
+
+    4. react16中更新的内容
+
+        context
+        取消了getInitialstate
+        废除了createClass
+        废弃了React.PropTypes = {}
+        react开源协议为MIT协议  ***
+
+
+    5. ES6的常用语法 ES7中的新语法
+    
+
+    6. react和vue的区别
+        
+        单向数据流
+
+        VUE：
+            MVVM   双向数据绑定
+        REACT:
+            MVC的V层js库、生态（native）
+
+    7. http请求流程
+        
+        三次握手，四次挥手
+        7层协议
+        https://www.cnblogs.com/linjiqin/p/3560152.html
+
+
+    8. 做过哪些实际上的优化
+        字符串拼接'<li>'
+        for循环存储变量值
+        for当某个条件成立时就不需要循环的时候break
+        script标签放在body结束标签的上面
+        不使用定时器的时候关闭定时器
+        雪碧图
+        延迟加载
+        webpack:
+            不看node_modules下的文件
+            url-loader属于优化
+
+
+        vue:
+            能用v-show就不要用v-if
+            keep-alive
+        react 移动端  加载  图片处理 首屏加载  浏览器 延迟加载   瀑布  重回重拍
+        
+        性能优化：                                                                                                                        content方向： 
+
+    　　1. 减少HTTP请求：合并文件、CSS精灵、inline Image
+    　　2. 减少DNS查询：DNS查询完成之前浏览器不能从这个主机下载任何文件。方法：DNS缓存、将资源分布到恰当数量的主机名，平衡并行下载和DNS查询
+    　　3. 避免重定向：多余的中间访问
+    　　4. 使Ajax可缓存
+    　　5. 非必须组件延迟加载
+    　　6. 未来所需组件预加载
+    　　7. 减少DOM元素数量
+    　　8. 将资源放到不同的域下：浏览器同时从一个域下载资源的数目有限，增加域可以提高并行下载量
+    　　9. 减少iframe数量
+    　　10. 减少404页面
+
+    　　Server方面
+
+    　　1. 使用CDN
+    　　2. 添加Expires或者Cache-Control响应头 
+    　　3. 对组件使用Gzip压缩
+    　　4. 配置ETag
+    　　5. Flush Buffer Early
+    　　6. Ajax使用GET进行请求
+    　　7. 避免空src的img标签
+
+    　　Cookie方面
+
+    　　1. 减小cookie大小
+    　　2. 引入资源的域名不要包含cookie
+
+    　　css方面
+
+    　　1. 将样式表放到页面顶部
+    　　2. 不使用CSS表达式
+    　　3. 使用不使用@import
+    　　4. 不使用IE的Filter
+
+    　　Javascript方面
+
+    　　1. 将脚本放到页面底部
+    　　2. 将javascript和css从外部引入
+    　　3. 压缩javascript和css
+    　　4. 删除不需要的脚本
+    　　5. 减少DOM访问
+    　　6. 合理设计事件监听器
+
+    　　图片方面
+
+    　　1. 优化图片：根据实际颜色需要选择色深、压缩
+    　　2. 优化css精灵
+    　　3. 不要在HTML中拉伸图片
+    　　4. 保证favicon.ico小并且可缓存
+
+
+    我认为优化是个长期迭代的过程，一般不会因为优化一两句代码
+    就有很明显的变化，一般都是这里优化点，那里优化点，加在一起
+    可能会明显些。在开发的时候已经养成了一定的代码洁癖。
+    优化过之后，能够立竿见影的是优化图片
+            https://tinypng.com/
+            智图
+            延迟加载...
+            把图片缓存到cdn
+
+    
+
+    9. react高阶组件
+        高阶组件是由高阶函数衍变来的，传入一个函数返回新的函数
+        传入一个组件返回新的组件
+        connect
+        withRouter
+            
+
+    10. 怎样处理版本分支
+        git branch 
+        git checkout -b 名字
+        git branch --merged
+        git branch --no-merged
+        git branch merge
+        git branch -d
+        git branch -D
+        git branch -vv
+
+
+    react里面的坑。
+            
+    js中dom事件，
+            
+            
+    自己有没有封装过组件
+        尽可能的让大不部分人使用
+        会考虑到扩展、功能全面性、传参简单、低耦合、高内聚
+
+
+
+*/    
+</script>
+</body>
+</html>

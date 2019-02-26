@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+</style>
+</head>
+<body>
+    <canvas id="context" width="500" height="500"></canvas>
+<script>
+    /*
+        context.arc(x,y,radius,startingAngle,endingAngle,anticlockwise);
+        radius:半径
+        startingAngle:起始位置
+        endingAngle：起始位置
+        anticlockwise:默认false 顺时针
+    */
+    let n = 0;
+    const canvas = document.getElementById('context');
+    let context = canvas.getContext("2d"); //绘图环境
+    setInterval(() => {
+        if(n < 2){
+            context.strokeStyle='red'; //设置颜色
+            n+=.1;
+            context.beginPath();
+            context.arc(100,75,50,0,n*Math.PI,false);
+            context.stroke();
+        } 
+    }, 50);
+</script>
+</body>
+</html>

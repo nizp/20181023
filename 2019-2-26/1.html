@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    box.addEventListener('mousedown',function(ev){
+        let disX = ev.pageX - box.offsetLeft;
+        let disY = ev.pageY - box.offsetTop;
+        
+    });
+</script>
+</body>
+</html>

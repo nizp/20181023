@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+    border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    let timer = null;
+    let speed = 0;
+    
+    timer = setInterval(() => {
+        speed += 5;
+        //实际的位置 = 当前元素的位置 + speed
+        let ih = box.offsetTop + speed;
+        let h = box.offsetHeight;
+        let b = window.innerHeight - h; //底边的边距
+
+        //元素到了底边就500-> -500
+        if(ih >= b){
+            speed = -speed;
+            ih = b;
+        }
+
+        if(ih <= 0){
+            speed = -speed;
+            ih = 0;
+        }
+        
+        box.style.top = ih + "px";
+
+    }, 30);
+</script>
+</body>
+</html>

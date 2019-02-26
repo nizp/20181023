@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="start">start</div>
+    <div class="remove">remove</div>
+
+<script>
+    class Test {
+        constructor() {
+            this.count = 0;
+            let s = this.startCount.bind(this);
+            this.timer = null;
+            document.querySelector('.start').addEventListener('click',s);
+            document.querySelector('.remove').addEventListener('click',()=>{
+                clearInterval(this.timer);
+                document.querySelector('.start').removeEventListener('click',s)
+            });
+        }
+        startCount(){
+            clearInterval(this.timer);
+            this.timer = setInterval(() => {
+                this.count ++;
+                console.log(this.count);
+            }, 1000);
+        }
+    }
+    const test = new Test();
+
+    //this为start this.count  为undefined
+    //绑定的和解绑的不是一个地址（必须为一个有名函数）
+    //没有关闭定时器
+
+    /*
+        8:
+            this.wbst = this.wbst || {}
+            (function(){
+                function Banner(){}
+                wbst.Banner = Banner;
+            })();
+
+            //另外一个js
+            this.wbst = this.wbst || {}
+            (function(){
+                function News(){}
+                wbst.News = News;
+            })();
+
+
+
+        能够保证wbst为一个对象
+
+    */
+
+</script>
+</body>
+</html>

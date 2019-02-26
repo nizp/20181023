@@ -1,4 +1,7 @@
-http://m.kugou.com/plist/index&json=true
+http://m.kugou.com/i/getSongInfo.php?cmd=playInfo&hash=4C4641423DDCDA3FDF787C44F22CF268’
+
+?json=true 
+plist/index&json=true
 
 [1]:首页列表
 ?json=true
@@ -14,7 +17,7 @@ playcount:num 多少人听过
 
 [3]:听歌
 
-/app/i/getSongInfo.php?cmd=playInfo&hash='382656E087183CE4E605A7ED4B820419’
+/app/i/getSongInfo.php?cmd=playInfo&hash='4C4641423DDCDA3FDF787C44F22CF268’
 
 -------------------------------------
 [4]:排行榜

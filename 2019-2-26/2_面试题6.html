@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="subA">sunA</div>
+        <div class="subB">sunB</div>
+    </div>
+<script>
+    document.querySelector('.subA').addEventListener('click',(e)=>{
+        console.log('subA click'); //1
+        console.log(e.target);//sunA
+    })
+    document.querySelector('.container').addEventListener('click',(e)=>{
+        console.log('container click'); //2
+        console.log(e.target);//sunA
+    })
+
+    /*
+        点a:
+            (subA click) sunA  (container click)  sunA
+
+        点container、点:subB
+            container click  container
+    */
+
+    
+</script>
+</body>
+</html>
