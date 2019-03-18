@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    // document.onclick = function() {
+    //     fn();
+    // } ;
+
+    // function fn(){
+    //     console.log(this);
+    // }
+
+    /*
+        一个月有多少天?
+
+            设置setDate(0) 就能拿到当前月有多少天
+
+        一个月的第一天是周几
+    */
+
+    let d = new Date;
+    /*
+        下个月的最后一天，就能得到这个月有多少时间。
+    */
+    let m = d.setMonth(d.getMonth()+1); //下个月
+    d.setDate(0); //设置下个月的0，就等同于这个月有多少天。
+
+    console.log(d.getDate()); //31，但是这个31是12月份的31天，上个月的时间
+
+    // console.log(d.getMonth());
+
+
+    // let d = new Date;
+    // /*
+    //     setDate(1)  这个月的第一天
+    //     setDate(0)  上个月的最后一天  
+    // */
+    // d.setDate(1); 
+    // console.log(d.getDay());
+
+
+    // console.log(d.getDate());
+
+
+
+
+    
+</script>
+</body>
+</html>

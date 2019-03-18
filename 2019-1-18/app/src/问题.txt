@@ -1,0 +1,9 @@
+1.双击
+2.底部切换
+3.除了state还能如何设置初始值（构造函数内也能设置属性）
+let {arr} = this.state;
+4.不解构赋值this.setState({arr:this.state.arr})
+5.不知道如何下手。
+
+
+举一反三，多个框架就找共同点  

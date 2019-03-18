@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /* 
+        this.state = {}   状态初始化 初始化必须放在constructor下
+        只要更新state就会更新视图。
+        this.setState({})
+
+        
+        从父级传进来的为props
+        <input num="n">   props:['num']
+        <input num="aaa" />  this.props.num
+
+        父级传子级，把数据挂在子组件的属性上
+        子组件接收父组件的数据通过this.props
+
+
+        表单如果要设置默认值，defaultValue/onChange
+        checkbox  defaultChecked/onChange
+
+
+        @nn="cc"
+        this.$emit('nn')
+
+        子传父
+            1.父级需要定义一个修改数据的方法
+            2.把修改数据的方法传给子组件
+            3.当子组件需要修改父级数据的时候，调用父级传过来的修改方法
+
+        方法2:(把父级的数据变成子级，子级的数据不跟父级的数据有瓜葛了)
+            1.把父级的数据变成子级的
+            2.子级修改
+
+
+    生命周期:
+
+        回调函数（钩子函数，生命周期函数）
+
+        当某个条件（事务）成立的时候触发的函数。
+
+        mounting
+            只会执行一次
+
+            constructor  -> 数据的初始化   ***
+            ComponentWillmount  组件挂载之前 
+            render    解析jsx   ***
+            ComponentDidMount  挂载成功     *** 数据请求  
+
+     
+        componentWillMount方法的调用
+        在constructor之后，在render之前，
+        在这方法里的代码调用setState方法不会触发重渲染，
+        所以它一般不会用来作加载数据之用，它也很少被使用到。
+
+        验证:
+            在render中打印this.state的数据
+
+            如果在componentWillMount中调用setState，那么
+            render中打印this.state,render只会走一次。
+
+            如果放在componentDidMount中调用setState，
+            那么 render中打印this.state,
+            第一次是数据初始化的状态，
+            第二次是是改变之后的状态（异步请求）
+
+
+            第一次的render就是为了挂载结构，第二次render渲染数据
+
+
+        updating
+            当数据改变的时候触发
+            componentWillReceiveProps  当父级的数据变化  **
+            shouldComponentUpdate(nextProps, nextState)  **
+            优化性能，接下来的组件要不要更新,注意千万不要在shouldComponentUpdate使用this.setState，容易死循环
+
+
+            componentWillUpdate
+            render  ***  当做computed用
+            componentDidUpdate  **  可以当watch来用
+            当子级的更新完成才会执行父级的componentDidUpdate
+
+
+
+        unmounting
+            组件卸载的时候
+            componentWillUnmount  ***  关闭定时器，清除各种事件...
+
+        
+
+        表单元素如果设置一个默认值（基于state中的状态），此时表单元素就是一个受控组件。
+        value、checked
+
+
+
+
+
+
+
+
+
+        
+
+    */
+</script>
+</body>
+</html>
